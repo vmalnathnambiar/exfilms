@@ -3,7 +3,7 @@ import { join } from 'path';
 
 import { parse } from 'arraybuffer-xml-parser';
 
-import { spinner, configParam } from '../bin/exfil-ms.js';
+import { spinner, configParam } from '../bin/exfilms.js';
 
 import { extractMZML } from './extractMZML.js';
 import { writeLog } from './writeLog.js';
