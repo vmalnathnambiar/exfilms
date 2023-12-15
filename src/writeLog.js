@@ -1,7 +1,7 @@
 import { appendFile } from 'fs/promises';
 import { join } from 'path';
 
-import { pkg, configParam } from '../bin/exfil-ms.js';
+import { pkg, configParam } from '../bin/exfilms.js';
 
 // Write log data into file
 export async function writeLog(data) {

@@ -1,4 +1,4 @@
-import { configParam } from '../bin/exfil-ms.js';
+import { configParam } from '../bin/exfilms.js';
 
 export async function initChromatogramArray() {
   let chromatogram;

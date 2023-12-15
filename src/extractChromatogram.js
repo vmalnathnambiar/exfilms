@@ -1,4 +1,4 @@
-import { configParam } from '../bin/exfil-ms.js';
+import { configParam } from '../bin/exfilms.js';
 
 import { keyMap, valueMap } from './cvParamMap.js';
 import { decodeBinary } from './decodeBinary.js';

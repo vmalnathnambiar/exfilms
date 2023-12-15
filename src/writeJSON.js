@@ -1,7 +1,7 @@
 import { writeFileSync, appendFileSync } from 'fs';
 import { join } from 'path';
 
-import { configParam } from '../bin/exfil-ms.js';
+import { configParam } from '../bin/exfilms.js';
 
 // Write MS data into JSON file
 export async function writeJSON(data) {
