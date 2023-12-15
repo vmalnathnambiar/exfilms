@@ -10,43 +10,43 @@ A command line interface (CLI) application to extract and filter MS data.
 ## Installation
 
 ```bash
-$ cd exfil-ms
+$ cd exfilms
 $ sudo npm install
 $ sudo npm install -g .
 ```
 
-<!-- `$ npm i exfil-ms` -->
+<!-- `$ npm i exfilms` -->
 
 ## Usage
 
 ```bash
-$ exfil-ms --inputDir (or -i) "/path/to/input/directory/"
+$ exfilms --inputDir (or -i) "/path/to/input/directory/"
 
 # Use interactive mode
-$ exfil-ms --interactive
+$ exfilms --interactive
 
 # Show help
-$ exfil-ms --help
+$ exfilms --help
 ```
 
 <!-- ```js
-import library from 'exfil-ms';
+import library from 'exfilms';
 
 const result = library(args);
 // result is ...
 ``` -->
 
-<!-- ## [API Documentation](https://vimalnathnambiar.github.io/exfil-ms/) -->
+<!-- ## [API Documentation](https://vimalnathnambiar.github.io/exfilms/) -->
 
 ## License
 
 [MIT](./LICENSE)
 
-[npm-image]: https://img.shields.io/npm/v/exfil-ms.svg
-[npm-url]: https://www.npmjs.com/package/exfil-ms
-[ci-image]: https://github.com/vimalnathnambiar/exfil-ms/workflows/Node.js%20CI/badge.svg?branch=main
-[ci-url]: https://github.com/vimalnathnambiar/exfil-ms/actions?query=workflow%3A%22Node.js+CI%22
-[codecov-image]: https://img.shields.io/codecov/c/github/vimalnathnambiar/exfil-ms.svg
-[codecov-url]: https://codecov.io/gh/vimalnathnambiar/exfil-ms
-[download-image]: https://img.shields.io/npm/dm/exfil-ms.svg
-[download-url]: https://www.npmjs.com/package/exfil-ms
+[npm-image]: https://img.shields.io/npm/v/exfilms.svg
+[npm-url]: https://www.npmjs.com/package/exfilms
+[ci-image]: https://github.com/vimalnathnambiar/exfilms/workflows/Node.js%20CI/badge.svg?branch=main
+[ci-url]: https://github.com/vimalnathnambiar/exfilms/actions?query=workflow%3A%22Node.js+CI%22
+[codecov-image]: https://img.shields.io/codecov/c/github/vimalnathnambiar/exfilms.svg
+[codecov-url]: https://codecov.io/gh/vimalnathnambiar/exfilms
+[download-image]: https://img.shields.io/npm/dm/exfilms.svg
+[download-url]: https://www.npmjs.com/package/exfilms
