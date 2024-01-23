@@ -21,15 +21,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vimalnathnambiar/exfilms.git"
+    "url": "git+https://github.com/vmalnathnambiar/exfilms.git"
   },
   "keywords": [],
   "author": "Vimalnath Nambiar",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vimalnathnambiar/exfilms/issues"
+    "url": "https://github.com/vmalnathnambiar/exfilms/issues"
   },
-  "homepage": "https://github.com/vimalnathnambiar/exfilms#readme",
+  "homepage": "https://github.com/vmalnathnambiar/exfilms#readme",
   "jest": {
     "testEnvironment": "node"
   },
