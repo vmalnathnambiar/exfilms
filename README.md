@@ -5,27 +5,36 @@
 [![Test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
 
-A command line interface (CLI) application to extract and filter MS data.
+A command line application to extract MS data from mzML into JSON, with spectrum filtering capability.
 
-## Installation
+## Installation  
+Download [Node.js®][nodejs-url]  
 
 ```bash
+# Clone and navigate to repository
+$ git clone https://github.com/vmalnathnambiar/exfilms.git
 $ cd exfilms
-$ sudo npm install
-$ sudo npm install -g .
+
+# Install dependencies
+$ npm install
+
+# Install package globally
+$ npm install -g .
 ```
 
+<!-- If ExfilMS is created as a package available on NPM, execute the following command  instead of steps 2 and 3: -->
 <!-- `$ npm i exfilms` -->
 
 ## Usage
 
 ```bash
-$ exfilms --inputDir (or -i) "/path/to/input/directory/"
+# Basic execution with default extraction/filtering parameters
+$ exfilms --inputDir (or -i) "/path/to/input/directory/containing/mzML/data/files/"
 
-# Use interactive mode
+# For interactive mode
 $ exfilms --interactive
 
-# Show help
+# For help
 $ exfilms --help
 ```
 
@@ -50,3 +59,4 @@ const result = library(args);
 [codecov-url]: https://codecov.io/gh/vimalnathnambiar/exfilms
 [download-image]: https://img.shields.io/npm/dm/exfilms.svg
 [download-url]: https://www.npmjs.com/package/exfilms
+[nodejs-url]: https://nodejs.org/en/download/
