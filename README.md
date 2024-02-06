@@ -43,7 +43,7 @@ $ exfilms --interactive
 $ exfilms --help
 ```
 
-*For assistance in converting your vendor-specific MS data into mzML, please refer to our guide on data conversion [here](./guide/dataConversion.md).*
+*For assistance in converting your vendor-specific MS data into mzML, please refer to our data conversion guide [here](./guide/dataConversion.md).*
 
 ## Platform Compatibility  
 
