@@ -37,6 +37,7 @@ Download [Docker][docker-url]
 2. Choose your raw MS data files to be converted
 3. Configure conversion parameters
 4. Start converting!  
+<br>
 
 ### Method 2 - via Docker (Linux and Intel-based MacOS)
 1. Launch `Docker`
