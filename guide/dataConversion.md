@@ -24,7 +24,8 @@ The following formats are currently supported by ProteoWizard msConvert for data
 
 ## Installation
 ### Method 1 - Graphical User Interface (Windows)
-Download [ProteoWizard][pwiz-download]
+Download [ProteoWizard][pwiz-download]  
+<br>
 
 ### Method 2 - via Docker (Linux and Intel-based MacOS)
 Download [Docker][docker-url]  
@@ -35,9 +36,8 @@ Download [Docker][docker-url]
 1. Launch `msConvertGUI`
 2. Choose your raw MS data files to be converted
 3. Configure conversion parameters
-4. Start converting!
-
-It's as simple as that!
+4. Start converting!  
+<br>
 
 ### Method 2 - via Docker (Linux and Intel-based MacOS)
 1. Launch `Docker`
