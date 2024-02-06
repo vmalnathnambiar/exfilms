@@ -7,10 +7,14 @@
 
 A command line application to extract MS data from mzML into JSON, with spectrum filtering capability.
 
-## Installation  
-Download [Node.js®][nodejs-url]  
+## Installation
+To install `exfilms`, you will need to first have the following installed on your machine:
+- [Node.js®][nodejs-url]  
 
-```bash
+### Method 1 - via GitHub
+This is useful if you want to contribute or just want to use it without publishing any changes back to GitHub.
+
+```md
 # Clone and navigate to repository
 $ git clone https://github.com/vmalnathnambiar/exfilms.git
 $ cd exfilms
@@ -22,34 +26,36 @@ $ npm install
 $ npm install -g .
 ```
 
-<!-- If ExfilMS is created as a package available on NPM, execute the following command  instead of steps 2 and 3: -->
-<!-- `$ npm i exfilms` -->
+### Method 2 - via npm (node package manager) [CURRENTLY NOT AVAILABLE]
+`$ npm install exfilms`
 
 ## Usage
-
-```bash
-# Basic execution with default extraction/filtering parameters
+```md
+# Basic command execution using default extraction/filtering parameters
 $ exfilms --inputDir (or -i) "/path/to/input/directory/containing/mzML/data/files/"
 
-# For interactive mode
+# To use interactive mode
 $ exfilms --interactive
 
 # For help
 $ exfilms --help
 ```
 
-<!-- ```js
-import library from 'exfilms';
+*For assistance in converting your vendor-specific MS data into mzML, please refer to our guide on [data conversion](./guide/dataConversion.md).*
 
-const result = library(args);
-// result is ...
-``` -->
+## Platform Compatibility  
 
-<!-- ## [API Documentation](https://vimalnathnambiar.github.io/exfilms/) -->
+This package has been tested on the following platforms:
+- Windows
+- macOS
+- Linux
+
+<!-- ## API Documentation
+Please refer to our API documentation [here](https://vimalnathnambiar.github.io/exfilms/).
 
 ## License
 
-[MIT](./LICENSE)
+[MIT](./LICENSE) -->
 
 [npm-image]: https://img.shields.io/npm/v/exfilms.svg
 [npm-url]: https://www.npmjs.com/package/exfilms
