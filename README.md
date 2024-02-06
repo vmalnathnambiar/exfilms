@@ -43,10 +43,11 @@ $ exfilms --interactive
 $ exfilms --help
 ```
 
-*For assistance in converting your vendor-specific MS data into mzML, please refer to our data conversion guide [here](./guide/dataConversion.md).*
+*For more assistance, please refer to our following guides:*
+- [Data Conversion to mzML](./guide/data-conversion-to-mzML.md)
+- [How To ExfilMS: The Ultimate Guide](./guide/how-to-exfilms-the-ultimate-guide.md)
 
 ## Platform Compatibility  
-
 `exfilms` has been tested on the following platforms:
 - Windows
 - macOS

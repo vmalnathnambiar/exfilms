@@ -1,4 +1,4 @@
-# Convert Vendor-Specific MS Data Files to mzML
+# Data Conversion to mzML
 Data retrieved from MS instruments (from now on referred to as raw MS data) is widely stored in proprietary vendor formats that are optimised to its respective hardware and are only accessibly using vendor-provided software libraries. To enable cross-platform data integration and analysis, mzML was introduced as an open, universal format to store raw MS data acquired independently of vendor-specific instruments.
 
 To convert these raw MS data files to mzML, we can use ProteoWizard msConvert tool using a graphical user interface (GUI) for Windows machines or within a Docker environment for Linux- or macOS (Intel)-based machines. 
