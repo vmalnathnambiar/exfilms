@@ -12,12 +12,12 @@ To install `exfilms`, you will need to first have the following installed on you
 - [Node.js®][nodejs-url]  
 <br>
 
-### Method 1 - via npm (node package manager) [CURRENTLY NOT AVAILABLE]
+### Method 2 - via npm (node package manager) [CURRENTLY NOT AVAILABLE]
 `$ npm install exfilms`  
 <br>
 
 ### Method 2 - via GitHub
-This is useful if you want to contribute or just want to use it without publishing any changes back to GitHub.
+This is useful if you want to contribute or just want to use the package without publishing any changes back to GitHub.
 
 ```md
 # Clone and navigate to repository
@@ -47,7 +47,7 @@ $ exfilms --help
 
 ## Platform Compatibility  
 
-This package has been tested on the following platforms:
+`exfilms` has been tested on the following platforms:
 - Windows
 - macOS
 - Linux
