@@ -41,7 +41,7 @@ $ exfilms --interactive
 $ exfilms --help
 ```
 
-*For assistance in converting your vendor-specific MS data into mzML, please refer to our guide on [data conversion](./guide/dataConversion.md).*
+*For assistance in converting your vendor-specific MS data into mzML, please refer to our guide on data conversion [here](./guide/dataConversion.md).*
 
 ## Platform Compatibility  
 
@@ -50,12 +50,11 @@ This package has been tested on the following platforms:
 - macOS
 - Linux
 
-<!-- ## API Documentation
+## API Documentation
 Please refer to our API documentation [here](https://vimalnathnambiar.github.io/exfilms/).
 
 ## License
-
-[MIT](./LICENSE) -->
+Please refer to our license information [here](./LICENSE).
 
 [npm-image]: https://img.shields.io/npm/v/exfilms.svg
 [npm-url]: https://www.npmjs.com/package/exfilms

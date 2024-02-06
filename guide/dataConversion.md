@@ -1,11 +1,27 @@
 # Convert Vendor-Specific MS Data Files to mzML
 Data retrieved from MS instruments (from now on referred to as raw MS data) is widely stored in proprietary vendor formats that are optimised to its respective hardware and are only accessibly using vendor-provided software libraries. To enable cross-platform data integration and analysis, mzML was introduced as an open, universal format to store raw MS data acquired independently of vendor-specific instruments.
 
-To convert these raw MS data files to mzML, we can use ProteoWizard msConvert tool using a graphical user interface (GUI) for Windows machines or within a Docker environment for Linux- or macOS (Intel)-based machines.
+To convert these raw MS data files to mzML, we can use ProteoWizard msConvert tool using a graphical user interface (GUI) for Windows machines or within a Docker environment for Linux- or macOS (Intel)-based machines. The following vendor formats are currently supported by ProteoWizard msConvert for data conversion:
+
+|Format                 |Status     |
+|---                    |---        |
+|ABI T2D                |Not working|
+|Agilent MHDAC (non-IMS)|Working    |
+|Agilent MHDAC (IMS)    |Working    |
+|Bruker BAF             |Working    |
+|Bruker FID/YEP         |Not Working|
+|Bruker TDF             |Working    |
+|SCIEX WIFF             |Working    |
+|SCIEX WIFF2            |Working    |
+|Shimadzu QQQ           |Working    |
+|Shimadzu QToF          |Working    |
+|Thermo RAW             |Working    |
+|Waters RAW             |Working    |
+|Waters UNIFI           |Not Working|
 
 ## Installation
 ### Method 1 - Graphical User Interface (Windows)
-You can just download the regular [ProteoWizard installer][pwiz-download].
+Download [ProteoWizard][pwiz-download]
 
 ### Method 2 - via Docker (Linux and Intel-based MacOS)
 Download [Docker][docker-url]  
@@ -61,26 +77,7 @@ It's as simple as that!
 
     filenames:
     ```
-    *For more info on available conversion paramaters, please refer to https://proteowizard.sourceforge.io/tools/msconvert.html*
-
-## Supported Vendor Formats
-The following vendor formats are supported by ProteoWizard msConvert for data conversion:
-
-|Format          |Status     |
-|---                    |---        |
-|ABI T2D                |Not working|
-|Agilent MHDAC (non-IMS)|Working    |
-|Agilent MHDAC (IMS)    |Working    |
-|Bruker BAF             |Working    |
-|Bruker FID/YEP         |Not Working|
-|Bruker TDF             |Working    |
-|SCIEX WIFF             |Working    |
-|SCIEX WIFF2            |Working    |
-|Shimadzu QQQ           |Working    |
-|Shimadzu QToF          |Working    |
-|Thermo RAW             |Working    |
-|Waters RAW             |Working    |
-|Waters UNIFI           |Not Working|
+    *For more info on available conversion paramaters, please refer to https://proteowizard.sourceforge.io/tools/msconvert.html.*
 
 
 [pwiz-download]: https://proteowizard.sourceforge.io/download.html
