@@ -7,11 +7,11 @@
 
 A command line application to extract MS data from mzML into JSON, with spectrum filtering capability.
 
-## Installation
+## Pre-requisites
 To install `exfilms`, you will need to first have the following installed on your machine:
 - [Node.js®][nodejs-url]  
-<br>
 
+## Installation
 ### Method 1 - via npm (node package manager) [CURRENTLY NOT AVAILABLE]
 `$ npm install exfilms`  
 <br>
