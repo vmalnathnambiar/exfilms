@@ -12,7 +12,7 @@ To install `exfilms`, you will need to first have the following installed on you
 - [Node.js®][nodejs-url]  
 <br>
 
-### Method 2 - via npm (node package manager) [CURRENTLY NOT AVAILABLE]
+### Method 1 - via npm (node package manager) [CURRENTLY NOT AVAILABLE]
 `$ npm install exfilms`  
 <br>
 
