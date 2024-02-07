@@ -5,14 +5,14 @@
 `exfilms` is a cross-platform, command line application that allows you to easily extract MS data from mzML files into JSON formatted output files, with spectrum filtering capability. This guide will help you understand the accepted input parameters that can be configured and how to use it for the extraction/filtering of MS data to suit your analytical needs.
 
 There are two primary ways to use `exfilms`: 
-1. [Command line input flags](#command-line-input)
-2. [Interactive mode](#interactive-mode)
+1. [Command Line](#command-line)
+2. [Interactive Mode](#interactive-mode)
 
 <br>
 
 Let's begin!
 
-## Command Line Input
+## Command Line
 
 ## Interactive Mode
 
