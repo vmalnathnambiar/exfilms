@@ -25,10 +25,10 @@ Once the required prerequisites has been installed, use npm to install `exfilms`
 
 ## Usage
 ```md
-# Basic command execution using default parameters
+# ExfilMS basic command execution using default parameters
 $ exfilms --inputDir (or -i) "/path/to/input/directory/containing/mzML/data/files/"
 
-# To use interactive mode
+# To use ExfilMS in interactive mode
 $ exfilms --interactive
 
 # For help

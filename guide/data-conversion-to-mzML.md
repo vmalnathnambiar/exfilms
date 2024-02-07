@@ -1,7 +1,7 @@
 # Data Conversion to mzML
 Data retrieved from MS instruments (from now on referred to as raw MS data) is widely stored in proprietary vendor formats that are optimised to its respective hardware and are only accessibly using vendor-provided software libraries. To enable cross-platform data integration and analysis, mzML was introduced as an open, universal format to store raw MS data acquired independently of vendor-specific instruments.
 
-To convert these raw MS data files to mzML, we can use ProteoWizard msConvert tool using a graphical user interface (GUI) for Windows machines or within a Docker environment for Linux- or macOS (Intel)-based machines. 
+To convert these raw MS data files to mzML, we can use ProteoWizard *msConvert* tool using a graphical user interface (GUI) for Windows machines or within a Docker environment for Linux- or macOS (Intel)-based machines. 
 
 ## Supported Vendor Formats
 The following formats are currently supported by ProteoWizard msConvert for data conversion:
@@ -29,7 +29,7 @@ Download [ProteoWizard][pwiz-download]
 
 ### Method 2 - via Docker (Linux and Intel-based MacOS)
 Download [Docker][docker-url]  
-*Note: If you are using a Linux-based machine, it is recommended to download the Docker Engine.*
+> *Note: If you are using a Linux-based machine, it is recommended to download the Docker Engine.*
 
 ## Usage
 ### Method 1 - Graphical User Interface (Windows)
@@ -42,19 +42,23 @@ Download [Docker][docker-url]
 ### Method 2 - via Docker (Linux and Intel-based MacOS)
 1. Launch `Docker`
 
-    *Note: If you are using Docker Engine, do the following:*
+    If you are using Docker Engine, please do one of the following:
     ```md
-    # To start manually
+    # To start Docker manually
     sudo systemctl start docker
-
-    # To configure docker to start on boot with systemd
+    ```
+    or
+    ```md
+    # To configure Docker to start on boot with systemd
     sudo groupadd docker
     sudo usermod -aG docker *Insert User here*
 
     sudo systemctl enable docker.service
     sudo systemctl enable containerd.service
-    # Log out and log back in for membership re-evaluation. Restart may be required.
     ```
+    > *Note: Please log out and log back in for membership re-evaluation. Restart may be required.*
+
+<br>
 
 2. Open terminal/command
 3. Execute command
@@ -80,8 +84,9 @@ Download [Docker][docker-url]
 
     filenames:
     ```
-    *For more info on available conversion paramaters, please refer to https://proteowizard.sourceforge.io/tools/msconvert.html.*
+    For more info on available conversion parameters provided by ProteoWizard *msConvert* tool, please refer [here][msconvert-doc].
 
-
+<!-- URLs used in the markdown document-->
 [pwiz-download]: https://proteowizard.sourceforge.io/download.html
 [docker-url]: https://docs.docker.com/engine/install/
+[msconvert-doc]: https://proteowizard.sourceforge.io/tools/msconvert.html
