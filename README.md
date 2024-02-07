@@ -1,4 +1,4 @@
-# exfilms
+# ExfilMS
 
 [![NPM version][npm-image]][npm-url]
 [![build status][ci-image]][ci-url]
@@ -13,19 +13,19 @@ You will need to have the following installed on your machine:
 
 <br>
 
-Once the required prerequisites has been installed, use npm to install `exfilms`:
+Once the required prerequisites has been installed, use npm to install ExfilMS:
 
 `$ npm install exfilms`
 
 ## Platform Compatibility  
-`exfilms` has been tested on the following platforms:
+ExfilMS has been tested on the following platforms:
 - Windows
 - macOS
 - Linux
 
 ## Usage
 ```md
-# ExfilMS basic command execution using default parameters
+# ExfilMS basic command to run with default extraction/spectrum filtering parameters
 $ exfilms --inputDir (or -i) "/path/to/input/directory/containing/mzML/data/files/"
 
 # To use ExfilMS in interactive mode
@@ -36,7 +36,7 @@ $ exfilms --help
 ```
 <br>
 
-For more guidance on how to use `exfilms`, please refer to the available guides below:
+For more guidance on how to use ExfilMS, please refer to the available guides below:
 - [Data Conversion to mzML](./guide/data-conversion-to-mzML.md)
 - [How To ExfilMS: The Ultimate Guide](./guide/how-to-exfilms-the-ultimate-guide.md)
 

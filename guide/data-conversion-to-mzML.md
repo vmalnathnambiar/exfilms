@@ -63,10 +63,10 @@ Download [Docker][docker-url]
 2. Open terminal/command
 3. Execute command
     ```md
-    # Docker command execution of msConvert using default conversion parameters
+    # Docker command to run ProteoWizard msConvert with default data conversion parameters
     docker run --rm -v /path/to/directory/containing/raw/MS/data/:/inputDirectory -v /path/to/output/directory/:/outputDirectory proteowizard/pwiz-skyline-i-agree-to-the-vendor-licenses wine msconvert /inputDirectory/*.* -o /outputDirectory
 
-    # Default conversion parameters
+    # Default data conversion parameters used
     format: mzML
         m/z: Compression-None, 64-bit
         intensity: Compression-None, 32-bit
@@ -84,7 +84,7 @@ Download [Docker][docker-url]
 
     filenames:
     ```
-    For more info on available conversion parameters provided by ProteoWizard *msConvert* tool, please refer [here][msconvert-doc].
+    For more info on available conversion parameters provided by ProteoWizard *msConvert*, please refer [here][msconvert-doc].
 
 <!-- URLs used in the markdown document-->
 [pwiz-download]: https://proteowizard.sourceforge.io/download.html
