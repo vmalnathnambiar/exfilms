@@ -2,21 +2,21 @@
 
 > *Note: If you are reading this guide, it is assumed that you have ExfilMS already installed and is available on your machine. If it is not installed, please refer to the installation guide [here](../README.md#installation).*
 
-ExfilMS is a cross-platform, command line application that allows you to easily extract MS data from mzML files into JSON formatted output files, with spectrum filtering capability. This guide will help you understand the accepted parameters that can be configured for the extraction/filtering of MS data to suit your analytical needs.
+ExfilMS is a cross-platform, command line application that allows you to easily extract MS data from mzML formatted files into JSON, with spectrum filtering capabilities. This guide will help you understand how to use ExfilMS to its full potential. 
 
-There are two primary ways to use ExfilMS: 
-1. [Command Line](#command-line)
+Once ExfilMS has been installed on your local machine, the ExfilMS process can be initiated through the execution of simple, easy-to-use command line prompts upon installation. There are currently two ways of executing ExfilMS: 
+1. [Command Line Flags](#command-line-flags)
 2. [Interactive Mode](#interactive-mode)
 
 <br>
 
 Let's begin!
 
-## Command Line
+## Command Line Flags
 
 ## Interactive Mode
 
-Extending the command line input, you can easily initiate ExfilMS in an interactive mode. This mode will trigger different input prompts that will guide you through the parameter configuration process. 
+You can easily initiate ExfilMS in interactive mode, where you will be prompted with different input prompts. These prompts will guide you in configuring the necessary parameters required to run ExfilMS in the way you desire. 
 
 To use interactive mode, simply run `exfilms` with the `--interactive` flag in your terminal:
 

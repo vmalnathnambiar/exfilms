@@ -5,7 +5,7 @@
 [![Test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
 
-A cross-platform, command line application to extract MS data from mzML files into JSON formatted output files, with spectrum filtering capability.
+A cross-platform, command line application to extract MS data from mzML formatted files into JSON, with spectrum filtering capabilities.
 
 ## Installation
 You will need to have the following installed on your machine:
