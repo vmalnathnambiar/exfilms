@@ -10,7 +10,7 @@ import { hideBin } from 'yargs/helpers';
 const argv = yargs(hideBin(process.argv))
   .option('interactive', {
     type: 'boolean',
-    description: 'Use interactive mode',
+    description: 'Run interactive mode',
   })
   .option('inputDir', {
     alias: 'i',

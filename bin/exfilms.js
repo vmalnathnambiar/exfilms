@@ -53,11 +53,11 @@ figlet('ExfilMS', async function (err, data) {
       console.log('');
     } else if (!argv.inputDir) {
       throw new Error(
-        '\n--inputDir (or -i) "/path/to/input/directory/" required',
+        '\n-i (or --inputDir) "/path/to/input/directory/" required',
       );
     } else if (argv.targetedAssay && argv.mzRange) {
       throw new Error(
-        '\nUse one of the following options for m/z value range filtering:\n--targetedAssay (or -t) --targetFile "/path/or/URL/to/target/file.tsv" --mzTolerance <number> --ppm <number>\n--mzRange (or -r) --minMZ <number> --maxMZ <number>',
+        '\nUse one of the following options for m/z value range filtering:\n-t (or --targetedAssay) --targetFile "/path/or/URL/to/target/file.tsv" --mzTolerance <number> --ppm <number>\n-r (or --mzRange) --minMZ <number> --maxMZ <number>',
       );
     } else if (argv.targetedAssay && !argv.targetFile) {
       throw new Error('\n--targetFile "/path/to/target/file.tsv" required');
@@ -66,12 +66,12 @@ figlet('ExfilMS', async function (err, data) {
       (argv.targetFile || argv.mzTolerance !== 0.005 || argv.ppm !== 5)
     ) {
       throw new Error(
-        '--targetedAssay (or -t) required to specify targetFile, mzTolerance or ppm',
+        '-t (or --targetedAssay) required to specify --targetFile, --mzTolerance and --ppm',
       );
     } else if (!argv.mzRange && (argv.minMZ || argv.maxMZ)) {
-      throw new Error('\n--mzRange required to specify minMZ or maxMZ');
+      throw new Error('\n-r (or --mzRange) required to specify --minMZ and --maxMZ');
     } else if (!isNaN(argv.maxMZ) && argv.maxMZ <= argv.minMZ) {
-      throw new Error('\nmaxMZ needs to be greater than minMZ');
+      throw new Error('\nmaxMZ value needs to be greater than minMZ value');
     } else if (
       !argv.filterSpectrum &&
       (argv.spectrumType.length !== 2 ||
@@ -82,7 +82,7 @@ figlet('ExfilMS', async function (err, data) {
         argv.excludeMzData)
     ) {
       throw new Error(
-        '\n--filterSpectrum (or -f) required to specify spectrumType, msLevel, polarity or excludeMzData',
+        '\n-f (or --filterSpectrum) required to specify --spectrumType, --msLevel, --polarity and --excludeMzData',
       );
     } else {
       configParam = await setDefaults(argv);
