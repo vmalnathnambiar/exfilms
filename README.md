@@ -1,9 +1,10 @@
-# ExfilMS
+# ![logo](./img/logo.png)
 
 [![NPM version][npm-image]][npm-url]
 [![build status][ci-image]][ci-url]
 [![Test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
+
 
 A cross-platform, command line application to extract MS data from mzML formatted files into JSON, with spectrum filtering capabilities.
 
