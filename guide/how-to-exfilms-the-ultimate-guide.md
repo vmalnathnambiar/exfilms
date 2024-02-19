@@ -23,6 +23,7 @@ Now, let's go through the flags available to be used with exfilMS.
 Displays a help message listing all available flags and their functions.
 
 ```md
+# Show help
 $ exfilms --help
 ```
 <br> **`--version`**
@@ -30,6 +31,7 @@ $ exfilms --help
 Display the version of ExfilMS.
 
 ```md
+# Show version number
 $ exfilms --version
 ```
 
@@ -38,11 +40,30 @@ $ exfilms --version
 Run ExfilMS in interactive mode. In this mode, you will be prompted for input allowing for more control over what data gets sent or how it gets there.
 
 ```md
+# Run interactive mode
 $ exfilms --interactive
 ```
 
-<!-- <br> **`-i`, `--inputDir`** -->
+<br> **`-i`, `--inputDir`**
 
+*_*Required_*
+
+Specify the input directory where mzML data files will be read from for the ExfilMS operation. This flag must always be provided when using `exfilms`. If no value is specified, an error message will be prompted.
+
+```md
+# Specify input directory containing mzML data files
+$ exfilms -i (or --inputDir) "/path/to/input/directory/"
+```
+
+<br> By default, once the input directory has been specified - all files ("*") within the input directory will be read for the ExfilMS operation. However, users can specify a specific list of files to exfiltrate from by including a secondary command line flag `--fileList` a space-separated list of file names.
+
+```md
+# Default: All files in input directory
+$ exfilms -i (or --inputDir) "/path/to/input/directory/" --fileList "*"
+
+# List specific file(s) in input directory
+$ exfilms -i (or --inputDir) "/path/to/input/directory/" --fileList "file1.mzML" "file2.mzML" "file3.mzML"
+```
 
 <!-- URLs used in the markdown document-->
 [nodejs-url]: https://nodejs.org/en/download/
