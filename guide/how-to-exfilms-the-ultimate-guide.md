@@ -108,7 +108,7 @@ MS data (i.e., m/z values detected by the instrument) often comes with precision
 
 ```md
 # Specify number of decimal places to round precision values to
-$ exfilms -i (or --inputDir) "/path/to/input/directory/"  -d (or --decimalPlace) <number>
+$ exfilms -i (or --inputDir) "/path/to/input/directory/"  -d (or --decimalPlace) <Insert number here>
 ```
 
 *Default: ExfilMS will not round and will maintain the exact number of decimal places for the precision values identified in the processed mzML data file.*
