@@ -89,13 +89,15 @@ figlet('ExfilMS', async function (err, data) {
     }
 
     configParam.decimalPlace = Number(configParam.decimalPlace);
+
     if (configParam.targeted) {
+      configParam.mzTolerance = Number(configParam.mzTolerance);
+      configParam.ppmTolerance = Number(configParam.ppmTolerance);
+
       const targetFile = await parseTargetFile();
       configParam.mzTargetList = targetFile.mzTargetList;
       configParam.minMZ = targetFile.minMZ;
       configParam.maxMZ = targetFile.maxMZ;
-      configParam.mzTolerance = Number(configParam.mzTolerance);
-      configParam.ppmTolerance = Number(configParam.ppmTolerance);
     }
 
     if (configParam.mzRange) {
