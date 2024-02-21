@@ -216,7 +216,7 @@ export async function extractSpectrum(spectrumArray, chromatogram) {
     // Filter for spectrum type, msLevel and polarity based on spectrum (if filter applied) and add spectrum data object to array
     const ticIDX = chromatogram.findIndex((chromObj) => chromObj.id === 'TIC');
     const bpcIDX = chromatogram.findIndex((chromObj) => chromObj.id === 'BPC');
-    if (configParam.filterSpectrum) {
+    if (configParam.filterSpectrumData) {
       if (
         configParam.spectrumType.includes(data.spectrumType) &&
         configParam.msLevel.includes(data.msLevel) &&

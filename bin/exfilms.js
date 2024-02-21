@@ -51,29 +51,29 @@ figlet('ExfilMS', async function (err, data) {
         configParam.msLevel = configParam.msLevel.split(' ').map(Number);
       }
       console.log('');
-    } else if (!argv.inputDir) {
+    } else if (!argv.inputDirectory) {
       throw new Error(
-        '\n-i (or --inputDir) "/path/to/input/directory/" required',
+        '\n-i (or --inputDirectory) "/path/to/input/directory/" required',
       );
-    } else if (argv.targetedAssay && argv.mzRange) {
+    } else if (argv.targeted && argv.mzRange) {
       throw new Error(
-        '\nUse one of the following options for m/z value range filtering:\n-t (or --targetedAssay) --targetFile "/path/or/URL/to/target/file.tsv" --mzTolerance <number> --ppm <number>\n-r (or --mzRange) --minMZ <number> --maxMZ <number>',
+        '\nUse one of the following options for m/z value range filtering:\n-t (or --targeted) --targetFile "/local/path/or/published/to/web/URL/to/target/tsv/file" --mzTolerance <number> --ppmTolerance <number>\n-r (or --mzRange) --minMZ <number> --maxMZ <number>',
       );
-    } else if (argv.targetedAssay && !argv.targetFile) {
+    } else if (argv.targeted && !argv.targetFile) {
       throw new Error('\n--targetFile "/path/to/target/file.tsv" required');
     } else if (
-      !argv.targetedAssay &&
-      (argv.targetFile || argv.mzTolerance !== 0.005 || argv.ppm !== 5)
+      !argv.targeted &&
+      (argv.targetFile || argv.mzTolerance !== 0.005 || argv.ppmTolerance !== 5)
     ) {
       throw new Error(
-        '-t (or --targetedAssay) required to specify --targetFile, --mzTolerance and --ppm',
+        '-t (or --targeted) required to specify --targetFile, --mzTolerance and --ppmTolerance',
       );
     } else if (!argv.mzRange && (argv.minMZ || argv.maxMZ)) {
       throw new Error('\n-r (or --mzRange) required to specify --minMZ and --maxMZ');
     } else if (!isNaN(argv.maxMZ) && argv.maxMZ <= argv.minMZ) {
       throw new Error('\nmaxMZ value needs to be greater than minMZ value');
     } else if (
-      !argv.filterSpectrum &&
+      !argv.filterSpectrumData &&
       (argv.spectrumType.length !== 2 ||
         (argv.msLevel.length !== 2 &&
           argv.msLevel[0] !== 1 &&
@@ -82,20 +82,20 @@ figlet('ExfilMS', async function (err, data) {
         argv.excludeMzData)
     ) {
       throw new Error(
-        '\n-f (or --filterSpectrum) required to specify --spectrumType, --msLevel, --polarity and --excludeMzData',
+        '\n-f (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeMzData',
       );
     } else {
       configParam = await setDefaults(argv);
     }
 
     configParam.decimalPlace = Number(configParam.decimalPlace);
-    if (configParam.targetedAssay) {
+    if (configParam.targeted) {
       const targetFile = await parseTargetFile();
       configParam.mzTargetList = targetFile.mzTargetList;
       configParam.minMZ = targetFile.minMZ;
       configParam.maxMZ = targetFile.maxMZ;
       configParam.mzTolerance = Number(configParam.mzTolerance);
-      configParam.ppm = Number(configParam.ppm);
+      configParam.ppmTolerance = Number(configParam.ppmTolerance);
     }
 
     if (configParam.mzRange) {
@@ -117,11 +117,11 @@ figlet('ExfilMS', async function (err, data) {
     }
 
     // Create output and log directory
-    if (!existsSync(configParam.outputDir)) {
-      mkdirSync(configParam.outputDir, { recursive: true });
+    if (!existsSync(configParam.outputDirectory)) {
+      mkdirSync(configParam.outputDirectory, { recursive: true });
     }
-    if (!existsSync(configParam.logDir)) {
-      mkdirSync(configParam.logDir, { recursive: true });
+    if (!existsSync(configParam.logDirectory)) {
+      mkdirSync(configParam.logDirectory, { recursive: true });
     }
 
     console.log('Parameters:');

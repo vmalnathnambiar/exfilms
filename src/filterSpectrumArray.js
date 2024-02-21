@@ -21,7 +21,7 @@ export async function filterSpectrumArray(
   let mz, intensity;
 
   // Check to filter for general m/z or targeted m/z data array
-  if (!configParam.targetedAssay) {
+  if (!configParam.targeted) {
     // Set m/z range (minMZ and maxMZ)
     const minMZ = configParam.minMZ;
     const maxMZ = isNaN(configParam.maxMZ)
@@ -50,7 +50,7 @@ export async function filterSpectrumArray(
     // Loop through m/z target list
     for (const targetMZ of configParam.mzTargetList) {
       // Set new m/z range (minMZ & maxMZ) based on target m/z
-      const ppmTolerance = Math.abs((configParam.ppm / 1e6) * targetMZ);
+      const ppmTolerance = Math.abs((configParam.ppmTolerance / 1e6) * targetMZ);
       const tolerance = Math.max(ppmTolerance, configParam.mzTolerance);
       let minMZ = targetMZ - tolerance;
       let maxMZ = targetMZ + tolerance;
@@ -65,7 +65,7 @@ export async function filterSpectrumArray(
       let massPPM =
         configParam.mzTolerance > ppmTolerance
           ? Math.abs((configParam.mzTolerance / targetMZ) * 1e6)
-          : configParam.ppm;
+          : configParam.ppmTolerance;
       mz = 0;
       intensity = 0;
 
@@ -104,7 +104,7 @@ export async function filterSpectrumArray(
       const idx = chromatogram.findIndex(
         (chromObj) => chromObj.id === `EIC ${targetMZ}`,
       );
-      if (configParam.filterSpectrum) {
+      if (configParam.filterSpectrumData) {
         if (
           configParam.spectrumType.includes(spectrumType) &&
           configParam.msLevel.includes(msLevel) &&

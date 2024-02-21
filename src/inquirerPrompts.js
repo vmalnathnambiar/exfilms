@@ -8,14 +8,14 @@ import { listMZML } from './listMZML.js';
 const prompts = [
   {
     type: 'input',
-    name: 'inputDir',
+    name: 'inputDirectory',
     message: 'Specify input directory containing mzML data files:',
-    validate: (inputDir) => {
-      if (!inputDir) {
+    validate: (inputDirectory) => {
+      if (!inputDirectory) {
         return 'Input directory is required';
-      } else if (!existsSync(inputDir)) {
+      } else if (!existsSync(inputDirectory)) {
         return 'Input directory does not exist';
-      } else if (!statSync(inputDir).isDirectory()) {
+      } else if (!statSync(inputDirectory).isDirectory()) {
         return 'Input directory specified is not a directory';
       }
       return true;
@@ -24,9 +24,9 @@ const prompts = [
   {
     type: 'checkbox',
     name: 'fileList',
-    message: 'Select file(s) for extraction:\n',
+    message: 'Select file(s) to process:\n',
     choices: async (answers) => {
-      return listMZML(answers.inputDir);
+      return listMZML(answers.inputDirectory);
     },
     validate: (fileList) => {
       if (fileList.length === 0) {
@@ -37,17 +37,17 @@ const prompts = [
   },
   {
     type: 'input',
-    name: 'outputDir',
+    name: 'outputDirectory',
     message: 'Specify output directory:',
     default: async (answers) => {
-      return join(homedir(), '/data/JSON/', `${basename(answers.inputDir)}/`);
+      return join(homedir(), '/data/JSON/', `${basename(answers.inputDirectory)}/`);
     },
   },
   {
     type: 'input',
-    name: 'logDir',
+    name: 'logDirectory',
     message: 'Specify log directory:',
-    default: join(homedir(), '/.exfil-ms/'),
+    default: join(homedir(), '/.exfilms/'),
   },
   {
     type: 'input',
@@ -57,15 +57,15 @@ const prompts = [
   },
   {
     type: 'confirm',
-    name: 'targetedAssay',
-    message: 'Running targeted assay?',
+    name: 'targeted',
+    message: 'Filter for targeted m/z values?',
     default: false,
   },
   {
     type: 'input',
     name: 'targetFile',
     message:
-      'Specify a target file path (locally stored or published to web .tsv document) containing list of targeted ions and respective m/z value to look for:',
+      'Specify target file (locally stored path or published to web URL - tsv file):',
     validate: async (targetFile) => {
       const urlPattern = /^(?:http|https):\/\/[^ "]+&output=tsv$/;
       const tsvPattern = /\.tsv$/i;
@@ -88,12 +88,12 @@ const prompts = [
       }
       return true;
     },
-    when: (answers) => answers.targetedAssay,
+    when: (answers) => answers.targeted,
   },
   {
     type: 'input',
     name: 'mzTolerance',
-    message: 'Specify m/z tolerance range:',
+    message: 'Set accepted m/z tolerance:',
     default: 0.005,
     validate: (mzTolerance) => {
       const tolerance = Number(mzTolerance);
@@ -102,28 +102,28 @@ const prompts = [
       }
       return true;
     },
-    when: (answers) => answers.targetedAssay,
+    when: (answers) => answers.targeted,
   },
   {
     type: 'input',
-    name: 'ppm',
-    message: 'Specify accepted mass accuracy (ppm) range:',
+    name: 'ppmTolerance',
+    message: 'Set accepted mass accuracy (ppm) tolerance:',
     default: 5,
-    validate: (ppm) => {
-      const tolerance = Number(ppm);
+    validate: (ppmTolerance) => {
+      const tolerance = Number(ppmTolerance);
       if (isNaN(tolerance)) {
         return 'Please enter a valid number';
       }
       return true;
     },
-    when: (answers) => answers.targetedAssay,
+    when: (answers) => answers.targeted,
   },
   {
     type: 'confirm',
     name: 'mzRange',
-    message: 'Filter for a specific m/z value range?',
+    message: 'Filter for specific m/z value range?',
     default: false,
-    when: (answers) => !answers.targetedAssay,
+    when: (answers) => !answers.targeted,
   },
   {
     type: 'input',
@@ -156,9 +156,9 @@ const prompts = [
   },
   {
     type: 'confirm',
-    name: 'filterSpectrum',
+    name: 'filterSpectrumData',
     message:
-      'Filter spectrum based on type, MS levels and polarity, or exclude m/z data array?',
+      'Filter spectrum data based on spectrum type, MS levels and polarity, or exclude m/z data array?',
     default: false,
   },
   {
@@ -167,12 +167,12 @@ const prompts = [
     message: 'Select spectrum type to filter for?',
     choices: ['profile', 'centroid'],
     default: ['profile', 'centroid'],
-    when: (answers) => answers.filterSpectrum,
+    when: (answers) => answers.filterSpectrumData,
   },
   {
     type: 'input',
     name: 'msLevel',
-    message: 'Specify MS levels to filter for (space-separated)?',
+    message: 'Specify MS level(s) to filter for (space-separated)?',
     default: '1 2',
     validate: (msLevel) => {
       const levels = msLevel.split(' ').map(Number);
@@ -190,22 +190,22 @@ const prompts = [
       }
       return true;
     },
-    when: (answers) => answers.filterSpectrum,
+    when: (answers) => answers.filterSpectrumData,
   },
   {
     type: 'checkbox',
     name: 'polarity',
-    message: 'Select spectrum polarity to filter for?',
+    message: 'Select polarity to filter for?',
     choices: ['positive', 'negative'],
     default: ['positive', 'negative'],
-    when: (answers) => answers.filterSpectrum,
+    when: (answers) => answers.filterSpectrumData,
   },
   {
     type: 'confirm',
     name: 'excludeMzData',
-    message: 'Exclude m/z data array (value and intensity)?',
+    message: 'Exclude m/z and intensity values from output?',
     default: false,
-    when: (answers) => answers.filterSpectrum,
+    when: (answers) => answers.filterSpectrumData,
   },
 ];
 

@@ -5,7 +5,7 @@ import { configParam } from '../bin/exfilms.js';
 
 // Write MS data into JSON file
 export async function writeJSON(data) {
-  const jsonFile = join(configParam.outputDir, `${data.sampleID}.json`);
+  const jsonFile = join(configParam.outputDirectory, `${data.sampleID}.json`);
 
   writeFileSync(jsonFile, '{\n');
   appendFileSync(jsonFile, `\t"sampleID": "${data.sampleID}",\n`);

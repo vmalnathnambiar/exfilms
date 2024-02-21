@@ -23,7 +23,7 @@ export async function parseMZML() {
 
     try {
       // Check file path
-      const filePath = join(configParam.inputDir, file);
+      const filePath = join(configParam.inputDirectory, file);
       if (!existsSync(filePath)) {
         throw new Error(`File not found: ${file}`);
       }

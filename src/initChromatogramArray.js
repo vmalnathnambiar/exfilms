@@ -3,7 +3,7 @@ import { configParam } from '../bin/exfilms.js';
 export async function initChromatogramArray() {
   let chromatogram;
 
-  // Basic chromatogram data (applicable to both non-targeted and targeted assay)
+  // Basic chromatogram data (applicable to both non-targeted and targeted)
   const basicArray = [
     {
       index: 0,
@@ -37,8 +37,8 @@ export async function initChromatogramArray() {
     },
   ];
 
-  // Check if running targeted assay, additional chromatogram data required based on m/z target list
-  if (configParam.targetedAssay) {
+  // Check if running targeted, additional chromatogram data required based on m/z target list
+  if (configParam.targeted) {
     chromatogram = [
       ...basicArray,
       ...configParam.mzTargetList.map((value, index) => ({

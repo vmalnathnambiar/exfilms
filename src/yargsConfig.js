@@ -12,59 +12,59 @@ const argv = yargs(hideBin(process.argv))
     type: 'boolean',
     description: 'Run interactive mode',
   })
-  .option('inputDir', {
+  .option('inputDirectory', {
     alias: 'i',
     type: 'string',
     description: 'Specify input directory containing mzML data files',
-    coerce: (inputDir) => {
-      if (!inputDir) {
+    coerce: (inputDirectory) => {
+      if (!inputDirectory) {
         throw new Error('Input directory path is required');
       }
-      if (!existsSync(inputDir)) {
+      if (!existsSync(inputDirectory)) {
         throw new Error('Input directory does not exist');
       }
-      if (!statSync(inputDir).isDirectory()) {
+      if (!statSync(inputDirectory).isDirectory()) {
         throw new Error('Input directory specified is not a directory');
       }
 
-      return inputDir;
+      return inputDirectory;
     },
   })
   .option('fileList', {
     type: 'array',
     description:
-      'List file(s) for extraction (space-separated or "*" for all files)',
+      'List file(s) to process (space-separated or "*" for all files)',
     default: '*',
   })
-  .option('outputDir', {
+  .option('outputDirectory', {
     alias: 'o',
     type: 'string',
     description: 'Specify output directory',
     default: join(homedir(), '/data/JSON/'),
   })
-  .option('logDir', {
+  .option('logDirectory', {
     alias: 'l',
     type: 'string',
     description: 'Specify log directory',
-    default: join(homedir(), '/.exfil-ms/'),
+    default: join(homedir(), '/.exfilms/'),
   })
   .option('decimalPlace', {
     alias: 'd',
     type: 'number',
-    description: 'Number of decimal places to round precision values to',
+    description: 'Specify number of decimal places to round precision values to',
     default: NaN,
   })
-  .option('targetedAssay', {
+  .option('targeted', {
     alias: 't',
     type: 'boolean',
     description:
-      'Filter for targeted assays (Automatically filters m/z range based on a specified target file)',
+      'Filter for targeted m/z values',
     default: false,
   })
   .option('targetFile', {
     type: 'string',
     description:
-      'Specify target file (locally stored or published to web .tsv document) containing list of targeted ions and its respective m/z values',
+      'Specify target file (locally stored path or published to web URL - tsv file)',
     coerce: (targetFile) => {
       const urlPattern = /^(?:http|https):\/\/[^ "]+&output=tsv$/;
       const tsvPattern = /\.tsv$/i;
@@ -90,7 +90,7 @@ const argv = yargs(hideBin(process.argv))
   })
   .option('mzTolerance', {
     type: 'number',
-    description: 'Set accepted m/z tolerance range',
+    description: 'Set accepted m/z tolerance',
     default: 0.005,
     coerce: (mzTolerance) => {
       if (isNaN(mzTolerance)) {
@@ -99,21 +99,21 @@ const argv = yargs(hideBin(process.argv))
       return mzTolerance;
     },
   })
-  .option('ppm', {
+  .option('ppmTolerance', {
     type: 'number',
-    description: 'Set accepted mass accuracy (ppm) range',
+    description: 'Set accepted mass accuracy (ppm) tolerance',
     default: 5,
-    coerce: (ppm) => {
-      if (isNaN(ppm)) {
-        throw new Error('ppm value is not a valid number');
+    coerce: (ppmTolerance) => {
+      if (isNaN(ppmTolerance)) {
+        throw new Error('ppm tolerance is not a valid number');
       }
-      return ppm;
+      return ppmTolerance;
     },
   })
   .option('mzRange', {
     alias: 'r',
     type: 'boolean',
-    description: 'Filter for a specific m/z value range',
+    description: 'Filter for specific m/z value range',
     default: false,
   })
   .option('minMZ', {
@@ -132,11 +132,11 @@ const argv = yargs(hideBin(process.argv))
     description: 'Set maximum m/z value',
     default: NaN,
   })
-  .option('filterSpectrum', {
+  .option('filterSpectrumData', {
     alias: 'f',
     type: 'boolean',
     description:
-      'Filter spectrum based on type, MS levels and polarity, or exclude m/z data array',
+      'Filter spectrum data based on type, MS levels and polarity, and/or exclude m/z data',
     default: false,
   })
   .option('spectrumType', {
@@ -147,7 +147,7 @@ const argv = yargs(hideBin(process.argv))
   })
   .option('msLevel', {
     type: 'array',
-    description: 'Specify MS level to filter for (space-separated)',
+    description: 'Specify MS level(s) to filter for (space-separated)',
     default: [1, 2],
     coerce: (msLevel) => {
       if (msLevel.some(isNaN)) {
@@ -168,12 +168,12 @@ const argv = yargs(hideBin(process.argv))
   .option('polarity', {
     type: 'array',
     choices: ['positive', 'negative'],
-    description: 'Specify spectrum polarity to filter for (space-separated)',
+    description: 'Specify polarity to filter for (space-separated)',
     default: ['positive', 'negative'],
   })
   .option('excludeMzData', {
     type: 'boolean',
-    description: 'Exclude m/z data array (value and intensity)',
+    description: 'Exclude m/z and intensity values from output',
     default: false,
   }).argv;
 
