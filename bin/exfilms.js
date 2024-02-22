@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-// @ts-nocheck
 /* eslint-disable no-console */
 /* eslint-disable func-names */
 

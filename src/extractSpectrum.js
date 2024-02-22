@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { configParam } from '../bin/exfilms.js';
 
 import { keyMap, valueMap } from './cvParamMap.js';
