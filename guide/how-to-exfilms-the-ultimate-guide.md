@@ -6,13 +6,14 @@ ExfilMS is a cross-platform, command line application that allows you to easily 
 
 ## The Use of Command Line Flags
 ExfilMS can easily be executed upon installation via the terminal with the command `exfilms`. However, running this command on its own will result in an error, as seen below.  
-<br>
 
 ![launch-err](../img/launch-err.png)  
+> *Note: The `i`, `--inputDirectory` displayed in the error message is referred to as a command line flag (or "flag") that is required for the successful execution of ExfilMS.*
+
 <br>
 
-The `i`, `--inputDirectory` displayed in the error message is referred to as a command line flag (or "flag") that is required for the successful execution of ExfilMS. ExfilMS comes with a few command line flags (both mandatory and non-mandatory) that can be executed along with the `exfilms` command to establish the behaviour of the application and to configure the parameters that will be used for the extraction/filtration process.  
-<br>
+ExfilMS comes with a few flags (both mandatory and non-mandatory) that can be executed along with the `exfilms` command to establish the behaviour of the application and to configure the parameters that will be used for the extraction/filtration process.  
+<br><br>
 
 `--help`
 
@@ -63,8 +64,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" --fileList "*"
 # Process specific file(s) in input directory
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" --fileList "file1.mzML" "file2.mzML" "file3.mzML"
 ```
-> *Default: All files within the specified input directory path will be processed.*  
-
+Default: All files within the specified input directory path will be processed.  
 <br><br>
 
 `-o`, `--outputDirectory`
@@ -75,8 +75,7 @@ This flag allows you to specify the output directory that should be used to stor
 # Specify output directory
 $ exfilms -i "/path/to/input/directory/" -o (or --outputDirectory) "/path/to/output/directory/"
 ```
-> *Default: The output directory will be set to `/data/<outputFormat>/` in the home directory of your machine.*
-
+Default: The output directory will be set to `/data/<outputFormat>/` in the home directory of your machine.  
 <br><br>
 
 `-l`, `--logDirectory`
@@ -87,8 +86,7 @@ This flag allows you to specify the log directory that should be used to store t
 # Specify log directory
 $ exfilms -i "/path/to/input/directory/" -l (or --logDirectory) "/path/to/log/directory/"
 ```
-> *Default: A hidden folder called `.exfilms` will be created in the home directory of your machine to store the generated log file. A new log file (`log.txt`) will also be created automatically if it is not found in the log directory path.*
-
+Default: A hidden folder called `.exfilms` will be created in the home directory of your machine to store the generated log file. A new log file (`log.txt`) will also be created automatically if it is not found in the log directory path.  
 <br><br>
 
 `-d`, `--decimalPlace`
@@ -99,9 +97,8 @@ MS data (i.e., m/z values detected by the instrument) often comes with precision
 # Specify number of decimal places to round precision values to
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -d (or --decimalPlace) <number>
 ```
-> *Default: The precision values identified in the processed mzML data file and target file (if provided) will not be rounded to a specific number of decimal place.*
-
-<br>
+Default: The precision values identified in the processed mzML data file and target file (if provided) will not be rounded to a specific number of decimal place.  
+<br><br>
 
 ### Mass Spectra Filtering
 ExfilMS also provides you with the capability to filter the mass spectra (m/z and intensity) acquired during acquisition for each scan point (retention time) via two methods - targeted m/z filtering or m/z range filtering.
@@ -111,12 +108,11 @@ ExfilMS also provides you with the capability to filter the mass spectra (m/z an
 <br>
 
 #### Method 1 - Targeted m/z Filtering
-The first method is based on targeted m/z filtering, whereby the m/z values for analytes of interest are known.  
 <br>
 
 `-t`, `--targeted` **Required*  
 
-To use this method to filter for targeted m/z values, you are also **REQUIRED** to include the `--targetFile` flag that specifies the locally stored path or published to web URL target file - in tab separated value format (tsv). The target file specified with this flag must contain a list of target m/z values that the user would like to filter their mass spectra data against. The target file specified should be available in tab separated value (tsv) format only.  
+This method is based on targeted m/z filtering, whereby the m/z values for analytes of interest are known. To use this method to filter for targeted m/z values, you are also **REQUIRED** to include the `--targetFile` flag that specifies the locally stored path or published to web URL target file - in tab separated value format (tsv). The target file specified with this flag must contain a list of target m/z values that the user would like to filter their mass spectra data against. The target file specified should be available in tab separated value (tsv) format only.  
 
 ```md
 # Targeted m/z filtering
@@ -124,7 +120,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -t (or --targeted
 ```  
 <br>
 
-> *Note: The target file to be used is required to follow a specific layout.*
+The target file to be used for this method has to follow a specific layout.
 
 ![targetFile-layout](../img/targetFile-layout.png)
 The above layout was created using Google Sheets. The use of Google Sheets enable users to easily export or publish the sheet to the web as tsv.  
@@ -136,15 +132,15 @@ In addition to the required flags stated above for this method, the m/z and mass
 # Targeted m/z filtering with user specified m/z and ppm tolerance values
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -t (or --targeted) --targetFile "/local/path/or/published/to/web/URL/to/target/tsv/file" --mzTolerance <number> --ppmTolerance <number>
 ```
-> *Default: The accepted m/z tolerance and ppm tolerance will be set to 0.005 and 5 respectively.* 
-
-<br>
+Default: The accepted m/z tolerance and ppm tolerance will be set to 0.005 and 5 respectively.  
+<br><br>
 
 #### Method 2: m/z Range Filtering
-The second method for mass spectra filtering is based on a range filtering based on a minimum (lower bound) and maximum (upper bound). If you still require to filter the mass spectra but the specific m/z values to filter for is not known, this method is for you.  
 <br>
 
 `-r`, `--mzRange` **Required*  
+
+The second method for mass spectra filtering is based on a range filtering based on a minimum (lower bound) and maximum (upper bound). If you still require to filter the mass spectra but the specific m/z values to filter for is not known, this method is for you. 
 
 ```md
 # m/z range filtering
@@ -158,26 +154,23 @@ With the above flag included in the command, you can also specify the minimum an
 # m/z range filtering with specified minimum and maximum m/z value
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -r (or --mzRange) --minMZ <number> --maxMZ <number>
 ```
-> *Note: Please ensure that the value defined for `--maxMZ` is greater than that of `--minMZ`.*  
-
-> *Default: The minimum and maximum m/z value will be set to 0 and last recorded m/z found in the mass spectra array respectively.*
+Default: The minimum and maximum m/z value will be set to 0 and last recorded m/z found in the mass spectra array respectively.*
+> *Note: When defining these flags, please ensure that the value defined for `--maxMZ` is greater than that of `--minMZ`.*  
 
 <br>
 
 ### Spectrum Data Filtering
-There are additional flags that can be included to configure parameters allowing for spectrum data filtering based on spectrum properties such as spectrum type, MS level and polarity. Spectrum data filtering also allows the exclusion of mass spectra found with each spectrum information from being stored in the output file.  
 <br>
 
-`-f`, `--filterSpectrumData` **Required*  
+`-f`, `--filterSpectrumData` **Required* 
+
+This flag allows you to configure to configure parameters allowing for spectrum data filtering based on spectrum properties such as spectrum type, MS level and polarity. With spectrum data filtering, you can also exclude the mass spectra data found with each spectrum information from being stored in the output file.  
 
 ```md
 # Filter spectrum data
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -f (or --filterSpectrumData) 
 ```
-<br>
-
-Once the above flag is defined, there are other flags that can be included in the command that will allow for the configuration of the spectrum data filtering capability.  
-<br>
+<br><br>
 
 `--spectrumType`
 
@@ -192,8 +185,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -f (or --filterSp
 # Filter for centroid spectrum type only
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -f (or --filterSpectrumData) --spectrumType "centroid"
 ```
-> *Default: Spectrum data of both profile and centroid spectrum type will be filtered for.*
-
+Default: Spectrum data of both profile and centroid spectrum type will be filtered for.  
 <br><br>
 
 `--msLevel`
@@ -204,8 +196,7 @@ This flag allows you to specify the MS level(s) of the spectrum data to filter f
 # Filter for specific MS level
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -f (or --filterSpectrumData) --msLevel 1 2
 ```
-> *Default: Spectrum data of MS level 1 and 2 will be filtered for.*
-
+Default: Spectrum data of MS level 1 and 2 will be filtered for.  
 <br><br>
 
 `--polarity`
@@ -221,8 +212,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -f (or --filterSp
 # Filter for negative polarity only
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -f (or --filterSpectrumData) --spectrumType "negative"
 ```
-> *Default: Spectrum data of both positive and negative polarity will be filtered for.*
-
+Default: Spectrum data of both positive and negative polarity will be filtered for.  
 <br><br>
 
 `--excludeMzData`
@@ -233,7 +223,7 @@ This flag will ensure the exclusion of mass spectra data identified in each spec
 # Exclude m/z and intensity values from output
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -f (or --filterSpectrumData) --excludeMzData
 ```
-> *Default: The m/z and intensity values identified in each spectrum data will not be excluded.*
+Default: The m/z and intensity values identified in each spectrum data will not be excluded.
 
 <!-- URLs used in the markdown document-->
 [nodejs-url]: https://nodejs.org/en/download/
