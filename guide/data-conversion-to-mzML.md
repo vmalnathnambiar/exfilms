@@ -22,7 +22,6 @@ The following formats are currently supported by ProteoWizard msConvert for data
 |Thermo RAW             |Working    |
 |Waters RAW             |Working    |
 |Waters UNIFI           |Not Working|
-|                       |           |
 <br>
 
 ## Installation
