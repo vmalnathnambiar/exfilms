@@ -51,7 +51,7 @@ Download [Docker][docker-url]
     ```md
     # To configure Docker to start on boot with systemd
     sudo groupadd docker
-    sudo usermod -aG docker *Insert User here*
+    sudo usermod -aG docker <username>
 
     sudo systemctl enable docker.service
     sudo systemctl enable containerd.service
