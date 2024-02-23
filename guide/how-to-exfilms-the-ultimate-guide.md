@@ -10,10 +10,9 @@ ExfilMS can easily be executed upon installation via the terminal with the comma
 ![launch-err](../img/launch-err.png)  
 > *Note: The `i`, `--inputDirectory` displayed in the error message is referred to as a command line flag (or "flag") that is required for the successful execution of ExfilMS.*
 
-<br>
+<br><br>
 
 ExfilMS comes with a few flags (both mandatory and non-mandatory) that can be executed along with the `exfilms` command to establish the behaviour of the application and to configure the parameters that will be used for the extraction/filtration process.  
-<br><br>
 
 `--help`
 
@@ -157,7 +156,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -r (or --mzRange)
 Default: The minimum and maximum m/z value will be set to 0 and last recorded m/z found in the mass spectra array respectively.*
 > *Note: When defining these flags, please ensure that the value defined for `--maxMZ` is greater than that of `--minMZ`.*  
 
-<br>
+<br><br>
 
 ### Spectrum Data Filtering
 <br>
