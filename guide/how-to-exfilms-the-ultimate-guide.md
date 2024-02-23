@@ -10,7 +10,7 @@ ExfilMS can easily be executed upon installation via the terminal with the comma
 ![launch-err](../img/launch-err.png)  
 > *Note: The `i`, `--inputDirectory` displayed in the error message is referred to as a command line flag (or "flag") that is required for the successful execution of ExfilMS.*
 
-<br>
+<br><br>
 
 ExfilMS comes with a few flags (both mandatory and non-mandatory) that can be executed along with the `exfilms` command to establish the behaviour of the application and to configure the parameters that will be used for the extraction/filtration process.  
 
