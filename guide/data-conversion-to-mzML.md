@@ -1,7 +1,8 @@
 # Data Conversion to mzML
 Data retrieved from MS instruments (from now on referred to as raw MS data) is widely stored in proprietary vendor formats that are optimised to its respective hardware and are only accessibly using vendor-provided software libraries. To enable cross-platform data integration and analysis, mzML was introduced as an open, universal format to store raw MS data acquired independently of vendor-specific instruments.
 
-To convert these raw MS data files to mzML, we can use ProteoWizard *msConvert* tool using a graphical user interface (GUI) for Windows machines or within a Docker environment for Linux- or macOS (Intel)-based machines. 
+To convert these raw MS data files to mzML, we can use ProteoWizard *msConvert* tool using a graphical user interface (GUI) for Windows machines or within a Docker environment for Linux- or macOS (Intel)-based machines.  
+<br>
 
 ## Supported Vendor Formats
 The following formats are currently supported by ProteoWizard msConvert for data conversion:
@@ -21,6 +22,8 @@ The following formats are currently supported by ProteoWizard msConvert for data
 |Thermo RAW             |Working    |
 |Waters RAW             |Working    |
 |Waters UNIFI           |Not Working|
+|                       |           |
+<br>
 
 ## Installation
 ### Method 1 - Graphical User Interface (Windows)
@@ -30,6 +33,8 @@ Download [ProteoWizard][pwiz-download]
 ### Method 2 - via Docker (Linux and Intel-based MacOS)
 Download [Docker][docker-url]  
 > *Note: If you are using a Linux-based machine, it is recommended to download the Docker Engine.*
+
+<br>
 
 ## Usage
 ### Method 1 - Graphical User Interface (Windows)
@@ -43,11 +48,14 @@ Download [Docker][docker-url]
 1. Launch `Docker`
 
     If you are using Docker Engine, please do one of the following:
+
     ```md
     # To start Docker manually
     sudo systemctl start docker
     ```
+
     or
+
     ```md
     # To configure Docker to start on boot with systemd
     sudo groupadd docker
@@ -61,7 +69,9 @@ Download [Docker][docker-url]
 <br>
 
 2. Open terminal/command
+
 3. Execute command
+
     ```md
     # Docker command to run ProteoWizard msConvert with default data conversion parameters
     docker run --rm -v /path/to/directory/containing/raw/MS/data/:/inputDirectory -v /path/to/output/directory/:/outputDirectory proteowizard/pwiz-skyline-i-agree-to-the-vendor-licenses wine msconvert /inputDirectory/*.* -o /outputDirectory

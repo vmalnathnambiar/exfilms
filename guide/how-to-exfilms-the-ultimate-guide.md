@@ -2,65 +2,61 @@
 
 > *Note: If you are reading this guide, it is assumed that you have ExfilMS already installed and is available on your machine. If it is not installed, please refer to the installation guide [here](../README.md#installation).*
 
-ExfilMS is a cross-platform, command line application that allows you to easily extract MS data from mzML formatted files into JSON, with spectrum filtering capabilities. This guide will help you understand how to use ExfilMS to its full potential.
+ExfilMS is a cross-platform, command line application that allows you to easily extract MS data from mzML formatted files into JSON, with spectrum filtering capabilities. This guide will help you understand how to use ExfilMS to its full potential.  
+<br>
 
 ## The Use of Command Line Flags
 
-ExfilMS can easily be executed upon installation via the terminal with the command `exfilms`. However, running this command on its own will result in an error, as seen below. The `i`, `--inputDir` displayed in the error message (as seen in the image below and will be discussed later in this guide) is referred to as a command line flag (or "flag") that is required for the successful execution of the `exfilms` command.
+ExfilMS can easily be executed upon installation via the terminal with the command `exfilms`. However, running this command on its own will result in an error, as seen below. The `i`, `--inputDirectory` displayed in the error message (as seen in the image below and will be discussed later in this guide) is referred to as a command line flag (or "flag") that is required for the successful execution of ExfilMS.
 
-![launchError](../img/launchError.png)
+![launch-err](../img/launch-err.png)
 
-ExfilMS comes with a few command line flags (both mandatory and non-mandatory) that can be executed along with the `exfilms` command to establish the behaviour of the application and configure the parameters to be used for the extraction/filtration of MS data.
+ExfilMS comes with a few command line flags (both mandatory and non-mandatory) that can be executed along with the `exfilms` command to establish the behaviour of the application and to configure the parameters that will be used for the extraction/filtration process.  
+<br>
 
-Now, let's go through the flags available to be used with exfilMS.
+`--help`
 
-<br> **`--help`**
-
-Show help.
-
-This command will display all of the options and arguments you can use when launching ExfilMS in the terminal.
+This flag will display all the flags available for use when using ExfilMS.
 
 ```md
 # Show help
 $ exfilms --help
 ```
+<br><br>
 
-<br> **`--version`**
+`--version`
 
-Show version number.
-
-This command will display the current version of ExfilMS. This is useful if you want to check whether you are running the latest version or not.
+This flag is particularly useful if you would like to check the version of ExfilMS being executed on your machine. 
 
 ```md
 # Show version number
 $ exfilms --version
-```
+```  
+<br><br>
 
-<br> **`--interactive`**
+`--interactive`
 
-Run interactive mode.
-
-In this mode, you will be prompted for input allowing for more control over the configuration of ExfilMS to run its operation.
+This flag enables you to run ExfilMS in interactive mode, where you will be prompted with questions to configure the setup of ExfilMS for its operation.
 
 ```md
 # Run interactive mode
 $ exfilms --interactive
-```
+```  
+<br><br>
 
-<br> **`-i`, `--inputDirectory`** **Required*
+`-i`, `--inputDirectory`
 
-Specify input directory containing mzML data files.
+**Required*
 
-This flag **SHOULD ALWAYS** be provided when using `exfilms`. If no value is specified, an error message will be prompted.
+This flag requires you to specify the input directory containing mzML data files to be processed as its value.
 
 ```md
 # Specify input directory
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/"
-```
-
+```  
 <br>
 
-Users can also specify a specific list of files to process by including a secondary flag `--fileList` with a space-separated list of file names as its value.
+Along with the above flag, you can also specify specific files within the directory that you would like to process. To do so, simple use `--fileList` followed by a space-separated list of file names as its value.
 
 ```md
 # Process all files in input directory
@@ -69,49 +65,49 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" --fileList "*"
 # Process specific file(s) in input directory
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" --fileList "file1.mzML" "file2.mzML" "file3.mzML"
 ```
-*Default: All files within the specified input directory path will be processed for the ExfilMS operation.*
+> *Default: All files within the specified input directory path will be processed for the ExfilMS operation.*  
 
-<br> **`-o`, `--outputDirectory`**
+<br><br>
 
-Specify output directory.
+`-o`, `--outputDirectory`
 
-The specified path will be used to store the generated output files from the ExfilMS operation.
+This flag allows you to specify the output directory that should be used to store the generated output files.
 
 ```md
 # Specify output directory
 $ exfilms -i "/path/to/input/directory/" -o (or --outputDirectory) "/path/to/output/directory/"
 ```
-*Default: The output directory will be set to `/data/JSON/` in the home directory of the user if not specified.*
+> *Default: The output directory will be set to `/data/<outputFormat>/` in the home directory of your machine if not specified.*
 
-<br> **`-l`, `--logDirectory`**
+<br><br>
 
-Specify log directory.
+`-l`, `--logDirectory`
 
-The specified path will store the log file generated during the ExfilMS operation.
+This flag allows you to specify the log directory that should be used to store the generated log file.
 
 ```md
 # Specify log directory
 $ exfilms -i "/path/to/input/directory/" -l (or --logDirectory) "/path/to/log/directory/"
 ```
-*Default: ExfilMS will create a hidden folder called `.exfilms` in the home directory oft he user to store the generated log file. A new log file (`exfilms_log.txt`) will be created automatically if it is not found in the log directory path.*
+> *Default: ExfilMS will create a hidden folder called `.exfilms` in the home directory of your machine to store the generated log file. A new log file (`log.txt`) will be created automatically if it is not found in the log directory path.*
 
-<br> **`-d`, `--decimalPlace`**
+<br><br>
 
-Specify number of decimal places to round precision values to.
+`-d`, `--decimalPlace`
 
-MS data (i.e., m/z values detected by the instrument) often comes with precision values that contain a long range of decimal places. However, it is found that some targeted libraries used for processing MS data contains precision values that are represented by a smaller range of decimal places (i.e., 4 decimal places). This flag allows users to round precision values to the desired number of decimal places during the ExfilMS operation.
+MS data (i.e., m/z values detected by the instrument) often comes with precision values that contains a long range of decimal places. However, it is found that some targeted libraries used for processing MS data contains precision values that are represented by a smaller range of decimal places (i.e., 4 decimal places). With this flag, you can determine the number of decimal places that you would like to round the precision values to.
 
 ```md
 # Specify number of decimal places to round precision values to
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -d (or --decimalPlace) <number>
 ```
-*Default: ExfilMS will not round and will maintain the exact number of decimal places for the precision values identified in the processed mzML data file and target file (if provided).*
+> *Default: ExfilMS will not round and will keep the exact number of decimal places identified for the precision values in the processed mzML data file and target file (if provided).*
 
 <br>
 
 ### Mass Spectra Filtering
 
-ExfilMS provides user with the capability to filter the mass spectra (m/z and intensity) acquired during acquisition for each scan point (retention time) via two methods - targeted m/z filtering or m/z range filtering.
+ExfilMS also provides you with the capability to filter the mass spectra (m/z and intensity) acquired during acquisition for each scan point (retention time) via two methods - targeted m/z filtering or m/z range filtering.
 
 > *Note: The mass spectra filtering options are mutually exclusive. Users can can only use **ONE** of the method at a time.*
 

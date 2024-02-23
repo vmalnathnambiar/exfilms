@@ -6,28 +6,30 @@
 [![npm download][download-image]][download-url]
 
 
-A cross-platform, command line application to extract MS data from mzML formatted files into JSON, with spectrum filtering capabilities.
+A cross-platform, command line application to extract MS data from mzML formatted files into JSON, with spectrum filtering capabilities.  
+<br>
 
 ## Installation
 You will need to have the following installed on your machine:
-- [Node.js®][nodejs-url]
-
+- [Node.js®][nodejs-url]  
 <br>
 
 Once the required prerequisites has been installed, use npm to install ExfilMS:
 
-`$ npm install exfilms`
+`$ npm install exfilms`  
+<br>
 
 ## Platform Compatibility  
 ExfilMS has been tested on the following platforms:
 - Windows
 - macOS
-- Linux
+- Linux  
+<br>
 
 ## Usage
 ```md
 # ExfilMS basic command to run with default extraction/spectrum filtering parameters
-$ exfilms --inputDir (or -i) "/path/to/input/directory/containing/mzML/data/files/"
+$ exfilms -i (or -inputDirectory) "/path/to/input/directory/containing/mzML/data/files/"
 
 # To use ExfilMS in interactive mode
 $ exfilms --interactive
@@ -39,7 +41,8 @@ $ exfilms --help
 
 For more guidance on how to use ExfilMS, please refer to the available guides below:
 - [Data Conversion to mzML](./guide/data-conversion-to-mzML.md)
-- [How To ExfilMS: The Ultimate Guide](./guide/how-to-exfilms-the-ultimate-guide.md)
+- [How To ExfilMS: The Ultimate Guide](./guide/how-to-exfilms-the-ultimate-guide.md)  
+<br>
 
 <!-- ## API Documentation
 Please refer to our API documentation [here](https://vmalnathnambiar.github.io/exfilms/). -->
