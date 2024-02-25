@@ -81,7 +81,7 @@ figlet('ExfilMS', async function (err, data) {
         argv.excludeMzData)
     ) {
       throw new Error(
-        '\n-f (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeMzData',
+        '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeMzData',
       );
     } else {
       configParam = await setDefaults(argv);

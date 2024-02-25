@@ -161,13 +161,13 @@ Default: The minimum and maximum m/z value will be set to 0 and last recorded m/
 ### Spectrum Data Filtering
 <br>
 
-`-f`, `--filterSpectrumData` **Required* 
+`-s`, `--filterSpectrumData` **Required* 
 
 This flag allows you to configure to configure parameters allowing for spectrum data filtering based on spectrum properties such as spectrum type, MS level and polarity. With spectrum data filtering, you can also exclude the mass spectra data found with each spectrum information from being stored in the output file.  
 
 ```md
 # Filter spectrum data
-$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -f (or --filterSpectrumData) 
+$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSpectrumData) 
 ```
 <br><br>
 
@@ -179,10 +179,10 @@ This flag allows you to specify the spectrum type of the data to filter for.
 
 ```md
 # Filter for profile spectrum type only
-$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -f (or --filterSpectrumData) --spectrumType "profile"
+$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSpectrumData) --spectrumType "profile"
 
 # Filter for centroid spectrum type only
-$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -f (or --filterSpectrumData) --spectrumType "centroid"
+$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSpectrumData) --spectrumType "centroid"
 ```
 Default: Spectrum data of both profile and centroid spectrum type will be filtered for.  
 <br><br>
@@ -193,7 +193,7 @@ This flag allows you to specify the MS level(s) of the spectrum data to filter f
 
 ```md
 # Filter for specific MS level
-$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -f (or --filterSpectrumData) --msLevel 1 2
+$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSpectrumData) --msLevel 1 2
 ```
 Default: Spectrum data of MS level 1 and 2 will be filtered for.  
 <br><br>
@@ -206,10 +206,10 @@ This flag allows you to specify the polarity of the spectrum data to filter for.
 
 ```md
 # Filter for positive polarity only
-$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -f (or --filterSpectrumData) --spectrumType "positive"
+$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSpectrumData) --spectrumType "positive"
 
 # Filter for negative polarity only
-$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -f (or --filterSpectrumData) --spectrumType "negative"
+$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSpectrumData) --spectrumType "negative"
 ```
 Default: Spectrum data of both positive and negative polarity will be filtered for.  
 <br><br>
@@ -220,7 +220,7 @@ This flag will ensure the exclusion of mass spectra data identified in each spec
 
 ```md
 # Exclude m/z and intensity values from output
-$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -f (or --filterSpectrumData) --excludeMzData
+$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSpectrumData) --excludeMzData
 ```
 Default: The m/z and intensity values identified in each spectrum data will not be excluded.
 

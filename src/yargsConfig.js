@@ -133,7 +133,7 @@ const argv = yargs(hideBin(process.argv))
     default: NaN,
   })
   .option('filterSpectrumData', {
-    alias: 'f',
+    alias: 's',
     type: 'boolean',
     description:
       'Filter spectrum data based on type, MS levels and polarity, and/or exclude m/z data',
