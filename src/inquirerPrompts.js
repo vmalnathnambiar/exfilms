@@ -58,7 +58,7 @@ const prompts = [
   {
     type: 'confirm',
     name: 'targeted',
-    message: 'Filter for targeted m/z values?',
+    message: 'Filter mass spectra for targeted m/z values?',
     default: false,
   },
   {
@@ -121,7 +121,7 @@ const prompts = [
   {
     type: 'confirm',
     name: 'mzRange',
-    message: 'Filter for specific m/z value range?',
+    message: 'Filter mass spectra for specific m/z value range?',
     default: false,
     when: (answers) => !answers.targeted,
   },
@@ -158,7 +158,7 @@ const prompts = [
     type: 'confirm',
     name: 'filterSpectrumData',
     message:
-      'Filter spectrum data based on spectrum type, MS levels and polarity, or exclude m/z data array?',
+      'Filter spectrum data based on spectrum type, MS levels and polarity, and/or exclude spectra?',
     default: false,
   },
   {
@@ -202,8 +202,8 @@ const prompts = [
   },
   {
     type: 'confirm',
-    name: 'excludeMzData',
-    message: 'Exclude m/z and intensity values from output?',
+    name: 'excludeSpectra',
+    message: 'Exclude spectra (m/z and intensity values) from output?',
     default: false,
     when: (answers) => answers.filterSpectrumData,
   },

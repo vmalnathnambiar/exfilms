@@ -207,7 +207,7 @@ export async function extractSpectrum(spectrumArray, chromatogram) {
     }
 
     // Empty m/z data arrays (m/z and intensities) if true
-    if (configParam.excludeMzData) {
+    if (configParam.excludeSpectra) {
       data.mzArray = [];
       data.intensityArray = [];
     }

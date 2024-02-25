@@ -39,7 +39,7 @@ export async function setDefaults(argv) {
     configParam.spectrumType = argv.spectrumType;
     configParam.msLevel = argv.msLevel;
     configParam.polarity = argv.polarity;
-    configParam.excludeMzData = argv.excludeMzData;
+    configParam.excludeSpectra = argv.excludeSpectra;
   }
 
   return configParam;

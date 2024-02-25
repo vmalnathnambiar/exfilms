@@ -78,10 +78,10 @@ figlet('ExfilMS', async function (err, data) {
           argv.msLevel[0] !== 1 &&
           argv.msLevel[1] !== 2) ||
         argv.polarity.length !== 2 ||
-        argv.excludeMzData)
+        argv.excludeSpectra)
     ) {
       throw new Error(
-        '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeMzData',
+        '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
       );
     } else {
       configParam = await setDefaults(argv);

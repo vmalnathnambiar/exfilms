@@ -58,7 +58,7 @@ const argv = yargs(hideBin(process.argv))
     alias: 't',
     type: 'boolean',
     description:
-      'Filter for targeted m/z values',
+      'Filter spectra for targeted m/z values',
     default: false,
   })
   .option('targetFile', {
@@ -113,7 +113,7 @@ const argv = yargs(hideBin(process.argv))
   .option('mzRange', {
     alias: 'r',
     type: 'boolean',
-    description: 'Filter for specific m/z value range',
+    description: 'Filter spectra for specific m/z value range',
     default: false,
   })
   .option('minMZ', {
@@ -136,7 +136,7 @@ const argv = yargs(hideBin(process.argv))
     alias: 's',
     type: 'boolean',
     description:
-      'Filter spectrum data based on type, MS levels and polarity, and/or exclude m/z data',
+      'Filter spectrum data based on type, MS levels and polarity, and/or exclude spectra',
     default: false,
   })
   .option('spectrumType', {
@@ -171,9 +171,9 @@ const argv = yargs(hideBin(process.argv))
     description: 'Specify polarity to filter for (space-separated)',
     default: ['positive', 'negative'],
   })
-  .option('excludeMzData', {
+  .option('excludeSpectra', {
     type: 'boolean',
-    description: 'Exclude m/z and intensity values from output',
+    description: 'Exclude spectra (m/z and intensity values) from output',
     default: false,
   }).argv;
 
