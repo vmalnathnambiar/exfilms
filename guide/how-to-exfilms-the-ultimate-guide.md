@@ -169,7 +169,7 @@ With the above flag included in the command, you can also specify the minimum an
 # m/z range filtering with specified minimum and maximum m/z value
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -r (or --mzRange) --minMZ <number> --maxMZ <number>
 ```
-Default: The minimum and maximum m/z value will be set to 0 and last recorded m/z found in the spectra respectively.*
+Default: The minimum and maximum m/z value will be set to 0 and last recorded m/z found in the spectra respectively.
 > *Note: When defining these flags, please ensure that the value defined for `--maxMZ` is greater than that of `--minMZ`.*  
 
 <br><br>
@@ -238,7 +238,7 @@ This flag will ensure the exclusion of the spectra identified (m/z and intensity
 # Exclude m/z and intensity values from output
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSpectrumData) --excludeSpectra
 ```
-Default: The m/z and intensity values identified in each spectrum data will not be excluded.
+Default: The spectra identified (m/z and intensity values) in each spectrum data will not be excluded.
 
 <!-- URLs used in the markdown document-->
 [nodejs-url]: https://nodejs.org/en/download/
