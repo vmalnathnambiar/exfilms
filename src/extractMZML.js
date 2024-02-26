@@ -62,7 +62,7 @@ export async function extractMZML(msData) {
   // Write JSON file
   if (configParam.outputFormat === 'JSON') {
     await writeJSON(data);
-  } else {
+  } else if (configParam.outputFormat === 'TSV') {
     await writeTSV(data);
   }
 }
