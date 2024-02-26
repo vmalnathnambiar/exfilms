@@ -11,9 +11,10 @@ export async function setDefaults(argv) {
   configParam.inputDirectory = argv.inputDirectory;
   configParam.fileList =
     argv.fileList[0] === '*' ? await listMZML(argv.inputDirectory) : argv.fileList;
+  configParam.outputFormat = argv.outputFormat[0];
   configParam.outputDirectory =
-    argv.outputDirectory === join(homedir(), '/data/JSON/')
-      ? join(argv.outputDirectory, `${basename(argv.inputDir)}/`)
+    argv.outputDirectory === join(homedir(), '/data/outputFormat/')
+      ? join(homedir(), `data/${configParam.outputFormat}/${basename(configParam.inputDirectory)}/`)
       : argv.outputDirectory;
   configParam.logDirectory = argv.logDirectory;
   configParam.decimalPlace = argv.decimalPlace;

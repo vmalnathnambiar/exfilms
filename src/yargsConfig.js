@@ -18,15 +18,12 @@ const argv = yargs(hideBin(process.argv))
     description: 'Specify input directory containing mzML data files',
     coerce: (inputDirectory) => {
       if (!inputDirectory) {
-        throw new Error('Input directory path is required');
-      }
-      if (!existsSync(inputDirectory)) {
+        throw new Error('Input directory is required');
+      } else if (!existsSync(inputDirectory)) {
         throw new Error('Input directory does not exist');
-      }
-      if (!statSync(inputDirectory).isDirectory()) {
+      } else if (!statSync(inputDirectory).isDirectory()) {
         throw new Error('Input directory specified is not a directory');
       }
-
       return inputDirectory;
     },
   })
@@ -36,11 +33,26 @@ const argv = yargs(hideBin(process.argv))
       'List file(s) to process (space-separated or "*" for all files)',
     default: '*',
   })
+  .option('outputFormat', {
+    alias: 'f',
+    type: 'array',
+    choices: ['JSON', 'TSV'],
+    description: 'Specify output format',
+    default: ['JSON'],
+    coerce: (outputFormat) => {
+      if (outputFormat.length === 0) {
+        throw new Error('Output format is required');
+      } else if (outputFormat.length > 1) {
+        throw new Error('More than one output format specified');
+      }
+      return outputFormat;
+    }
+  })
   .option('outputDirectory', {
     alias: 'o',
     type: 'string',
     description: 'Specify output directory',
-    default: join(homedir(), '/data/JSON/'),
+    default: join(homedir(), '/data/outputFormat/'),
   })
   .option('logDirectory', {
     alias: 'l',
@@ -71,17 +83,12 @@ const argv = yargs(hideBin(process.argv))
 
       if (!targetFile) {
         throw new Error('Target file is required');
-      }
-
-      if (!urlPattern.test(targetFile) && !tsvPattern.test(targetFile)) {
+      } else if (!urlPattern.test(targetFile) && !tsvPattern.test(targetFile)) {
         throw new Error('Invalid target file input');
-      }
-
-      if (tsvPattern.test(targetFile)) {
+      } else if (tsvPattern.test(targetFile)) {
         if (!existsSync(targetFile)) {
           throw new Error('Target file does not exist');
-        }
-        if (!statSync(targetFile).isFile()) {
+        } else if (!statSync(targetFile).isFile()) {
           throw new Error('Target file specified is not a file');
         }
       }
@@ -152,16 +159,11 @@ const argv = yargs(hideBin(process.argv))
     coerce: (msLevel) => {
       if (msLevel.some(isNaN)) {
         throw new Error('msLevel specified cannot be a non-integer value');
-      }
-
-      if (msLevel.some((num) => num <= 0)) {
+      } else if (msLevel.some((num) => num <= 0)) {
         throw new Error('msLevel specified needs to be greater than 0');
-      }
-
-      if (new Set(msLevel).size !== msLevel.length) {
+      } else if (new Set(msLevel).size !== msLevel.length) {
         throw new Error('msLevel specified are not unique');
       }
-
       return msLevel;
     },
   })

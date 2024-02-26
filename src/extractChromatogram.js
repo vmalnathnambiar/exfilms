@@ -37,12 +37,10 @@ export async function extractChromatogram(chromatogramArray) {
     const chromatogramCvParam = Array.isArray(cvParamMap)
       ? cvParamMap
       : [cvParamMap];
-
     for (const cvParam of chromatogramCvParam) {
       const mappedKey = keyMap[cvParam.$name];
       let paramValue = cvParam.$value;
       const mappedValue = valueMap[cvParam.$name];
-
       if (mappedKey) {
         data[mappedKey] = mappedValue || paramValue;
       }
@@ -95,7 +93,6 @@ export async function extractChromatogram(chromatogramArray) {
       const binaryCvParam = Array.isArray(binaryData.cvParam)
         ? binaryData.cvParam
         : [binaryData.cvParam];
-
       const encoder = {
         precision: null,
         compression: null,

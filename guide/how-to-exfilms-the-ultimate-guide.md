@@ -66,6 +66,22 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" --fileList "file1
 Default: All files within the specified input directory path will be processed.  
 <br><br>
 
+`-f`, `--outputFormat`
+
+*Choices: "JSON", "TSV"*
+
+This flag allows you to specify the format of the generated output files.
+
+```md
+# Output in JSON format
+$ exfilms -i "/path/to/input/directory/" -f (or --outputFormat) "JSON"
+
+# Output in TSV format
+$ exfilms -i "/path/to/input/directory/" -f (or --outputFormat) "TSV"
+```
+Default: The output format will be set to JSON.  
+<br><br>
+
 `-o`, `--outputDirectory`
 
 This flag allows you to specify the output directory that should be used to store the generated output files.

@@ -3,7 +3,7 @@
 /* eslint-disable no-console */
 /* eslint-disable func-names */
 
-import { existsSync, mkdirSync, readFileSync } from 'fs';
+import { readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -13,6 +13,7 @@ import figlet from 'figlet';
 import inquirer from 'inquirer';
 import ora from 'ora';
 
+import { createDefaultDirectories } from '../src/createDefaultDirectories.js';
 import { prompts } from '../src/inquirerPrompts.js';
 import { parseMZML } from '../src/parseMZML.js';
 import { parseTargetFile } from '../src/parseTargetFile.js';
@@ -88,7 +89,6 @@ figlet('ExfilMS', async function (err, data) {
     }
 
     configParam.decimalPlace = Number(configParam.decimalPlace);
-
     if (configParam.targeted) {
       configParam.mzTolerance = Number(configParam.mzTolerance);
       configParam.ppmTolerance = Number(configParam.ppmTolerance);
@@ -117,18 +117,12 @@ figlet('ExfilMS', async function (err, data) {
       }
     }
 
-    // Create output and log directory
-    if (!existsSync(configParam.outputDirectory)) {
-      mkdirSync(configParam.outputDirectory, { recursive: true });
-    }
-    if (!existsSync(configParam.logDirectory)) {
-      mkdirSync(configParam.logDirectory, { recursive: true });
-    }
+    // Create output and log directories
+    await createDefaultDirectories();
 
+    // Display and write parameters into log file
     console.log('Parameters:');
     console.log(configParam);
-
-    // Write parameters into log file
     await writeLog(`Parameters\n${JSON.stringify(configParam, null, '\t')}\n`);
 
     // Parse mzML data files for extraction

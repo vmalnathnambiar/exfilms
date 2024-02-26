@@ -30,7 +30,22 @@ const prompts = [
     },
     validate: (fileList) => {
       if (fileList.length === 0) {
-        return 'At least one file needs to be selected';
+        return 'At least ONE file needs to be selected';
+      }
+      return true;
+    },
+  },
+  {
+    type: 'checkbox',
+    name: 'outputFormat',
+    message: 'Specify output format:',
+    choices: ['JSON', 'TSV'],
+    default: ['JSON'],
+    validate: async (output) => {
+      if (output.length === 0) {
+        return 'Output format is required'
+      } else if (output.length > 1) {
+        return 'Please select only ONE output format';
       }
       return true;
     },
@@ -40,7 +55,7 @@ const prompts = [
     name: 'outputDirectory',
     message: 'Specify output directory:',
     default: async (answers) => {
-      return join(homedir(), '/data/JSON/', `${basename(answers.inputDirectory)}/`);
+      return join(homedir(), `/data/${answers.outputFormat}/${basename(answers.inputDirectory)}/`);
     },
   },
   {
@@ -72,17 +87,12 @@ const prompts = [
 
       if (!targetFile) {
         return 'Target file is required';
-      }
-
-      if (!urlPattern.test(targetFile) && !tsvPattern.test(targetFile)) {
+      } else if (!urlPattern.test(targetFile) && !tsvPattern.test(targetFile)) {
         return 'Invalid target file input';
-      }
-
-      if (tsvPattern.test(targetFile)) {
+      } else if (tsvPattern.test(targetFile)) {
         if (!existsSync(targetFile)) {
-          return 'Target file does not exist at the specified path';
-        }
-        if (!statSync(targetFile).isFile()) {
+          return 'Target file does not exist';
+        } else if (!statSync(targetFile).isFile()) {
           return 'Target file specified is not a file';
         }
       }
@@ -176,16 +186,11 @@ const prompts = [
     default: '1 2',
     validate: (msLevel) => {
       const levels = msLevel.split(' ').map(Number);
-
       if (levels.some(isNaN)) {
         return 'Please enter a space-separated list of numbers';
-      }
-
-      if (levels.some((num) => num <= 0)) {
+      } else if (levels.some((num) => num <= 0)) {
         return 'Please enter only numbers greater than 0';
-      }
-
-      if (new Set(levels).size !== levels.length) {
+      } else if (new Set(levels).size !== levels.length) {
         return 'Please enter unique numbers';
       }
       return true;

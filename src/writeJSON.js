@@ -17,8 +17,8 @@ export async function writeJSON(data) {
   if (data.spectrumCount !== 0) {
     for (let i = 0; i < data.spectrumCount; i++) {
       const spectrum = data.spectrum[i];
-      appendFileSync(jsonFile, '\t\t{\n');
 
+      appendFileSync(jsonFile, '\t\t{\n');
       Object.entries(spectrum).forEach(([key, value], index) => {
         if (
           (key === 'scanID' ||
@@ -39,7 +39,6 @@ export async function writeJSON(data) {
           index < Object.keys(spectrum).length - 1 ? ',\n' : '\n',
         );
       });
-
       appendFileSync(
         jsonFile,
         `\t\t}${i !== data.spectrumCount - 1 ? ',' : ''}\n`,
@@ -53,11 +52,12 @@ export async function writeJSON(data) {
     `\t"chromatogramCount": ${data.chromatogramCount},\n`,
   );
   appendFileSync(jsonFile, '\t"chromatogram": [\n');
+
   if (data.chromatogramCount !== 0) {
     for (let i = 0; i < data.chromatogramCount; i++) {
       const chromatogram = data.chromatogram[i];
-      appendFileSync(jsonFile, '\t\t{\n');
 
+      appendFileSync(jsonFile, '\t\t{\n');
       Object.entries(chromatogram).forEach(([key, value], index) => {
         if (
           (key === 'id' ||
@@ -82,13 +82,13 @@ export async function writeJSON(data) {
           index < Object.keys(chromatogram).length - 1 ? ',\n' : '\n',
         );
       });
-
       appendFileSync(
         jsonFile,
         `\t\t}${i !== data.chromatogramCount - 1 ? ',' : ''}\n`,
       );
     }
   }
+
   appendFileSync(jsonFile, '\t]\n');
   appendFileSync(jsonFile, '}');
 }

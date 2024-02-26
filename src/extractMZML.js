@@ -1,3 +1,7 @@
+/* eslint-disable no-console */
+
+import { configParam } from '../bin/exfilms.js';
+
 import { extractChromatogram } from './extractChromatogram.js';
 import { extractSpectrum } from './extractSpectrum.js';
 import { extractTimeStamp } from './extractTimeStamp.js';
@@ -57,5 +61,9 @@ export async function extractMZML(msData) {
   };
 
   // Write JSON file
-  await writeJSON(data);
+  if (configParam.outputFormat === 'JSON') {
+    await writeJSON(data);
+  } else {
+    console.log('- No method found to write output file');
+  }
 }
