@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+
 import { existsSync, statSync } from 'fs';
 import { homedir } from 'os';
 import { join } from 'path';
@@ -46,7 +47,7 @@ const argv = yargs(hideBin(process.argv))
         throw new Error('More than one output format specified');
       }
       return outputFormat;
-    }
+    },
   })
   .option('outputDirectory', {
     alias: 'o',
@@ -63,14 +64,14 @@ const argv = yargs(hideBin(process.argv))
   .option('decimalPlace', {
     alias: 'd',
     type: 'number',
-    description: 'Specify number of decimal places to round precision values to',
+    description:
+      'Specify number of decimal places to round precision values to',
     default: NaN,
   })
   .option('targeted', {
     alias: 't',
     type: 'boolean',
-    description:
-      'Filter spectra for targeted m/z values',
+    description: 'Filter spectra for targeted m/z values',
     default: false,
   })
   .option('targetFile', {

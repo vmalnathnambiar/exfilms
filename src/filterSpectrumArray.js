@@ -50,7 +50,9 @@ export async function filterSpectrumArray(
     // Loop through m/z target list
     for (const targetMZ of configParam.mzTargetList) {
       // Set new m/z range (minMZ & maxMZ) based on target m/z
-      const ppmTolerance = Math.abs((configParam.ppmTolerance / 1e6) * targetMZ);
+      const ppmTolerance = Math.abs(
+        (configParam.ppmTolerance / 1e6) * targetMZ,
+      );
       const tolerance = Math.max(ppmTolerance, configParam.mzTolerance);
       let minMZ = targetMZ - tolerance;
       let maxMZ = targetMZ + tolerance;

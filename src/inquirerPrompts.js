@@ -43,7 +43,7 @@ const prompts = [
     default: ['JSON'],
     validate: async (output) => {
       if (output.length === 0) {
-        return 'Output format is required'
+        return 'Output format is required';
       } else if (output.length > 1) {
         return 'Please select only ONE output format';
       }
@@ -55,7 +55,10 @@ const prompts = [
     name: 'outputDirectory',
     message: 'Specify output directory:',
     default: async (answers) => {
-      return join(homedir(), `/data/${answers.outputFormat}/${basename(answers.inputDirectory)}/`);
+      return join(
+        homedir(),
+        `/data/${answers.outputFormat}/${basename(answers.inputDirectory)}/`,
+      );
     },
   },
   {

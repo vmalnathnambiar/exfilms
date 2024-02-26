@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+// @ts-nocheck
 /* eslint-disable no-console */
 /* eslint-disable func-names */
 
@@ -69,7 +70,9 @@ figlet('ExfilMS', async function (err, data) {
         '-t (or --targeted) required to specify --targetFile, --mzTolerance and --ppmTolerance',
       );
     } else if (!argv.mzRange && (argv.minMZ || argv.maxMZ)) {
-      throw new Error('\n-r (or --mzRange) required to specify --minMZ and --maxMZ');
+      throw new Error(
+        '\n-r (or --mzRange) required to specify --minMZ and --maxMZ',
+      );
     } else if (!isNaN(argv.maxMZ) && argv.maxMZ <= argv.minMZ) {
       throw new Error('\nmaxMZ value needs to be greater than minMZ value');
     } else if (
