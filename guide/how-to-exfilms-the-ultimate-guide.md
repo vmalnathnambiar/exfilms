@@ -14,6 +14,8 @@ ExfilMS can easily be executed upon installation via the terminal with the comma
 
 > _Note: The `i`, `--inputDirectory` displayed in the error message is referred to as a command line flag (or "flag") that is required for the successful execution of ExfilMS._
 
+<br>
+
 ExfilMS comes with a few flags (both mandatory and non-mandatory) that can be executed along with the `exfilms` command to establish the behaviour of the application and to configure the parameters that will be used for the extraction/filtration process.
 
 `--help`
@@ -141,6 +143,8 @@ ExfilMS also provides you with the capability to filter the spectra (m/z and int
 
 > _Note: The spectra filtering options are mutually exclusive. You can only use **ONE** of the method at a time._
 
+<br>
+
 #### Method 1 - Targeted m/z Filtering
 
 `-t`, `--targeted` \*_Required_
@@ -153,10 +157,14 @@ This method is based on targeted m/z filtering, whereby the m/z values for analy
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -t (or --targeted) --targetFile "/local/path/or/published/to/web/URL/to/target/tsv/file"
 ```
 
+<br>
+
 The target file to be used for this method **MUST** follow the layout shown below.
 
 ![targetFile-layout](../img/targetFile-layout.png)
 The above layout was created using Google Sheets. The use of Google Sheets enable users to easily export or publish the sheet to the web as tsv.
+
+<br>
 
 In addition to the required flags stated above for this method, the m/z and mass accuracy (ppm) tolerance that should be used during the targeted m/z filtering can be configured using `--mzTolerance` and `--ppmTolerance` respectively.
 

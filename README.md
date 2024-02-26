@@ -45,8 +45,6 @@ $ exfilms --interactive
 $ exfilms --help
 ```
 
-<br>
-
 For more guidance on how to use ExfilMS, please refer to the available guides below:
 
 - [Data Conversion to mzML](./guide/data-conversion-to-mzML.md)
