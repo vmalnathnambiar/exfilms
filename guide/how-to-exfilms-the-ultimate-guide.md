@@ -1,6 +1,6 @@
 # How to ExfilMS: The Ultimate Guide
 
-ExfilMS is a cross-platform, command line application that allows you to easily extract MS data from mzML formatted files, with spectrum filtering capabilities. This guide will help you understand how to use ExfilMS to its full potential.
+ExfilMS is a cross-platform, command line interface (CLI) application tool that allows you to easily extract MS data from mzML formatted files, with spectrum filtering capabilities. This guide will help you understand how to use ExfilMS to its full potential.
 
 > _Note: If you are reading this guide, it is assumed that you have ExfilMS already installed and is available on your machine. If it is not installed, please refer to the installation guide [here](../README.md#installation)._
 

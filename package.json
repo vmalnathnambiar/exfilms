@@ -1,7 +1,7 @@
 {
   "name": "exfilms",
   "version": "1.0.0",
-  "description": "A cross-platform, command line application to extract MS data from mzML formatted files, with spectrum filtering capabilities.",
+  "description": "A cross-platform, command line interface (CLI) application tool to extract MS data from mzML formatted files, with spectrum filtering capabilities.",
   "main": "lib/index.js",
   "module": "src/index.js",
   "files": [
