@@ -69,7 +69,7 @@ Along with the above flag, you can also specify specific files within the direct
 ```md
 # Process all files in input directory
 
-$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" --fileList "\*"
+$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" --fileList "*"
 
 # Process specific file(s) in input directory
 

@@ -2,7 +2,7 @@
 
 Data retrieved from MS instruments (from now on referred to as raw MS data) is widely stored in proprietary vendor formats that are optimised to its respective hardware and are only accessibly using vendor-provided software libraries. To enable cross-platform data integration and analysis, mzML was introduced as an open, universal format to store raw MS data acquired independently of vendor-specific instruments.
 
-To convert these raw MS data files to mzML, we can use ProteoWizard _msConvert_ tool using a graphical user interface (GUI) for Windows machines or within a Docker environment for Linux- or macOS (Intel)-based machines.  
+To convert these raw MS data files to mzML, we can use ProteoWizard _msConvert_ tool using a graphical user interface (GUI) on Windows-based machines or within a Docker environment across all platforms (Linux, Windows and macOS).  
 <br>
 
 ## Supported Vendor Formats
@@ -34,7 +34,7 @@ The following formats are currently supported by ProteoWizard msConvert for data
 Download [ProteoWizard][pwiz-download]  
 <br>
 
-### Method 2 - via Docker (Linux and Intel-based MacOS)
+### Method 2 - via Docker (Cross-platform)
 
 Download [Docker][docker-url]
 
@@ -52,7 +52,7 @@ Download [Docker][docker-url]
 4. Start converting!  
    <br>
 
-### Method 2 - via Docker (Linux and Intel-based MacOS)
+### Method 2 - via Docker (Cross-platform)
 
 1. Launch `Docker`
 
@@ -87,7 +87,7 @@ Download [Docker][docker-url]
    ```md
    # Docker command to run ProteoWizard msConvert with default data conversion parameters
 
-   docker run --rm -v /path/to/directory/containing/raw/MS/data/:/inputDirectory -v /path/to/output/directory/:/outputDirectory proteowizard/pwiz-skyline-i-agree-to-the-vendor-licenses wine msconvert /inputDirectory/_._ -o /outputDirectory
+   docker run --rm -v "/path/to/directory/containing/raw/MS/data/":/inputDirectory -v "/path/to/output/directory/":/outputDirectory proteowizard/pwiz-skyline-i-agree-to-the-vendor-licenses wine msconvert /inputDirectory/"*.*" -o /outputDirectory
 
    # Default data conversion parameters used
 
