@@ -51,8 +51,8 @@ Once you select the option, you will be prompted a pop-up box allowing you to sp
 For the purpose of ExfilMS, you should do the following:
 
 1. Click on Link
-2. Choose the sheet that you would like to publish
-3. Choose TSV format
+2. Choose the sheet that you would like to publish from the dropdown options
+3. Choose TSV format from the dropdown options
 4. Publish
 
 <br>
