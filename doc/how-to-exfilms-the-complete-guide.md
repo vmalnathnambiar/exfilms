@@ -119,7 +119,7 @@ Specify output format. There are currently two available output formats for you 
 
 1. JSON, also known as JavaScript Object Notation is a standard, human readable text stored in the basis of object key-value pairs.
 
-2. TSV, on the other hand, is a output format in the form of tab separated values.
+2. TSV, on the other hand, is an output format in the form of tab separated values.
    > Due to the characteristics of MS data being n-dimensional, it is a challenge to store all of the extracted data into a single file. If you do choose TSV as your desired output format, two folders will be created in the output directory labelled 'spectrum' and 'chromatogram', containing the associated MS data of the file being processed, respectively.
 
 <br>
