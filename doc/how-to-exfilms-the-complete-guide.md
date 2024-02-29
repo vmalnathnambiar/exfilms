@@ -91,14 +91,14 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/"
 
 Along with the `-i`, `--inputDirectory` flag, you can also specify specific files within the input directory that you would like to process by simply appending `--fileList` to the command. This flag accepts space-separated strings of file names or "\*" for all files as its value.
 
-_Input type: Space-separated Strings_
+_Input type: Space-separated strings_
 
 _Default: "\*"_
 
 ```md
 # Process all files
 
-$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" --fileList "*"
+$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" --fileList "\*"
 
 # Process specific file(s)
 
@@ -202,15 +202,15 @@ ExfilMS also provides you with the capability to filter the spectra (m/z and int
 
 _Input type: String_
 
-This method works with the assumption that the m/z values of investigated analytes of interest within a spectra are known to you. To use this method for filtering targeted m/z values within the spectra, you are **REQUIRED** to include the above two flags in the command to be executed. The `-t`, `--targeted` flag indicates to ExfilMS that you would like to perform this method of spectra filtering, whereas the `--targetFile` flag specifies a target file that is locally stored on your device or published to web URL (Available in TSV format).
+This method works with the assumption that the m/z values of investigated analytes of interest within a spectra are known to you. To use this method for filtering targeted m/z values within the spectra, you are **REQUIRED** to include the above two flags in the command to be executed. The `-t`, `--targeted` flag indicates to ExfilMS that you would like to perform this method of spectra filtering, whereas the `--targetFile` flag specifies a target file that is locally stored on your device or published to web URL (Should be available in TSV format).
+
+For more info on how to create a target file, please refer [here](./how-to-create-a-target-file.md).
 
 ```md
 # Targeted m/z filtering
 
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -t (or --targeted) --targetFile "/local/path/or/published/to/web/URL/to/target/tsv/file"
 ```
-
-For more info on how to create a target file, please refer [here](./how-to-create-a-target-file.md).
 
 <br>
 
@@ -298,7 +298,7 @@ ExfilMS also provides you with the functionality of filtering the spectrum based
 
 `--spectrumType`
 
-_Input type: Space-separated Strings_
+_Input type: Space-separated strings_
 
 _Choices: "profile", "centroid" | Default: Both spectrum types_
 
@@ -312,7 +312,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSp
 
 `--msLevel`
 
-_Input type: Space-separated Numbers_
+_Input type: Space-separated numbers_
 
 _Default: MS level 1 and 2_
 
@@ -326,7 +326,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSp
 
 `--polarity`
 
-_Input type: Space-separated Strings_
+_Input type: Space-separated strings_
 
 _Choices: "positive", "negative" | Default: Both polarities_
 
