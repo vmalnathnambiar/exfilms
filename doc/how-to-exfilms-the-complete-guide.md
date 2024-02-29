@@ -164,6 +164,8 @@ Specify the log directory to store the generated log file of the extraction (and
 $ exfilms -i "/path/to/input/directory/" -l (or --logDirectory) "/path/to/log/directory/"
 ```
 
+<br>
+
 ### Dealing with Precision
 
 `-d`, `--decimalPlace`
@@ -343,7 +345,5 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSp
 
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSpectrumData) --excludeSpectra
 ```
-
-<br>
 
 <!-- URLs used in the markdown document-->
