@@ -31,7 +31,7 @@ const argv = yargs(hideBin(process.argv))
   .option('fileList', {
     type: 'array',
     description:
-      'List file(s) to process (space-separated or "*" for all files)',
+      'List file(s) to process (space-separated strings of file names or "*" for all files)',
     default: '*',
   })
   .option('outputFormat', {
@@ -53,7 +53,7 @@ const argv = yargs(hideBin(process.argv))
     alias: 'o',
     type: 'string',
     description: 'Specify output directory',
-    default: join(homedir(), '/data/outputFormat/'),
+    default: join(homedir(), '/exfilms/outputFormat/inputDirectoryName/'),
   })
   .option('logDirectory', {
     alias: 'l',
@@ -121,12 +121,12 @@ const argv = yargs(hideBin(process.argv))
   .option('mzRange', {
     alias: 'r',
     type: 'boolean',
-    description: 'Filter spectra for specific m/z value range',
+    description: 'Filter spectra for specific m/z range',
     default: false,
   })
   .option('minMZ', {
     type: 'number',
-    description: 'Set minimum m/z value',
+    description: 'Set minimum m/z',
     default: 0,
     coerce: (minMZ) => {
       if (isNaN(minMZ)) {
@@ -137,7 +137,7 @@ const argv = yargs(hideBin(process.argv))
   })
   .option('maxMZ', {
     type: 'number',
-    description: 'Set maximum m/z value',
+    description: 'Set maximum m/z',
     default: NaN,
   })
   .option('filterSpectrumData', {
@@ -150,12 +150,13 @@ const argv = yargs(hideBin(process.argv))
   .option('spectrumType', {
     type: 'array',
     choices: ['profile', 'centroid'],
-    description: 'Specify spectrum type to filter for (space-separated)',
+    description:
+      'Specify spectrum type to filter for (space-separated strings)',
     default: ['profile', 'centroid'],
   })
   .option('msLevel', {
     type: 'array',
-    description: 'Specify MS level(s) to filter for (space-separated)',
+    description: 'Specify MS level(s) to filter for (space-separated numbers)',
     default: [1, 2],
     coerce: (msLevel) => {
       if (msLevel.some(isNaN)) {
@@ -171,12 +172,12 @@ const argv = yargs(hideBin(process.argv))
   .option('polarity', {
     type: 'array',
     choices: ['positive', 'negative'],
-    description: 'Specify polarity to filter for (space-separated)',
+    description: 'Specify polarity to filter for (space-separated strings)',
     default: ['positive', 'negative'],
   })
   .option('excludeSpectra', {
     type: 'boolean',
-    description: 'Exclude spectra (m/z and intensity values) from output',
+    description: 'Exclude spectra (m/z and intensity values) from output file',
     default: false,
   }).argv;
 

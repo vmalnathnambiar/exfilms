@@ -1,13 +1,24 @@
 # Data Conversion to mzML
 
-Data retrieved from MS instruments (from now on referred to as raw MS data) is widely stored in proprietary vendor formats that are optimised to its respective hardware and are only accessibly using vendor-provided software libraries. To enable cross-platform data integration and analysis, mzML was introduced as an open, universal format to store raw MS data acquired independently of vendor-specific instruments.
+1. [Introduction](#introduction)
+2. [Supported Vendor Formats](#supported-vendor-formats)
+3. [Installation](#installation)
+   - [Graphical User Interface](#method-1---graphical-user-interface-windows)
+   - [Docker](#method-2---via-docker)
+4. [Usage](#usage)
+   - [Graphical User Interface](#method-1---graphical-user-interface-windows-1)
+   - [Docker](#method-2---via-docker-1)
 
-To convert these raw MS data files to mzML, we can use ProteoWizard _msConvert_ tool using a graphical user interface (GUI) on Windows-based machines or within a Docker environment across all platforms (Linux, Windows and macOS).  
+<br>
+
+## Introduction
+
+Data retrieved from MS instruments (from now on referred to as raw MS data) is widely stored in proprietary vendor formats that are optimised to its respective hardware and are only accessibly using vendor-provided software libraries. To enable cross-platform data integration and analysis, mzML was introduced as an open, universal format to store raw MS data acquired independently of vendor-specific instruments. One of the most prominent way of converting these raw MS data files to mzML is using the ProteoWizard _msConvert_ tool.  
 <br>
 
 ## Supported Vendor Formats
 
-The following formats are currently supported by ProteoWizard msConvert for data conversion:
+The following formats are currently supported by ProteoWizard _msConvert_ for data conversion:
 
 | Format                  | Status      |
 | ----------------------- | ----------- |
@@ -34,11 +45,11 @@ The following formats are currently supported by ProteoWizard msConvert for data
 Download [ProteoWizard][pwiz-download]  
 <br>
 
-### Method 2 - via Docker (Cross-platform)
+### Method 2 - via Docker
 
 Download [Docker][docker-url]
 
-> _Note: If you are using a Linux-based machine, it is recommended to download the Docker Engine._
+> _Note: If you are using Linux, it is recommended to download the Docker Engine._
 
 <br>
 
@@ -48,15 +59,15 @@ Download [Docker][docker-url]
 
 1. Launch `msConvertGUI`
 2. Choose your raw MS data files to be converted
-3. Configure conversion parameters
-4. Start converting!  
+3. Configure the conversion parameters
+4. Begin conversion  
    <br>
 
-### Method 2 - via Docker (Cross-platform)
+### Method 2 - via Docker
 
 1. Launch `Docker`
 
-   If you are using Docker Engine, please do one of the following:
+   If you are using Docker Engine, execute **ONE** of the following from your terminal.
 
    ```md
    # To start Docker manually
@@ -76,18 +87,16 @@ Download [Docker][docker-url]
    sudo systemctl enable containerd.service
    ```
 
-   > _Note: Please log out and log back in for membership re-evaluation. Restart may be required._
+   > _Note: Please log out and log back into your device for membership re-evaluation. Restart may be required._
 
 <br>
 
-2. Open terminal/command
-
-3. Execute command
+2. Execute docker command from terminal
 
    ```md
-   # Docker command to run ProteoWizard msConvert with default data conversion parameters
+   # Run ProteoWizard msConvert with default data conversion parameters
 
-   docker run --rm -v "/path/to/directory/containing/raw/MS/data/":/inputDirectory -v "/path/to/output/directory/":/outputDirectory proteowizard/pwiz-skyline-i-agree-to-the-vendor-licenses wine msconvert /inputDirectory/"*.*" -o /outputDirectory
+   docker run --rm -v "/path/to/directory/containing/raw/MS/data/":/inputDirectory -v "/path/to/output/directory/":/outputDirectory proteowizard/pwiz-skyline-i-agree-to-the-vendor-licenses wine msconvert /inputDirectory/"_._" -o /outputDirectory
 
    # Default data conversion parameters used
 
@@ -109,7 +118,7 @@ Download [Docker][docker-url]
    filenames:
    ```
 
-   For more info on available conversion parameters provided by ProteoWizard _msConvert_, please refer [here][msconvert-doc].
+   For more info on all available conversion parameters provided by ProteoWizard _msConvert_ tool, please refer [here][msconvert-doc].
 
 <!-- URLs used in the markdown document-->
 

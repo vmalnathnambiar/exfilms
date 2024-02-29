@@ -5,51 +5,47 @@
 [![Test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
 
-A cross-platform, command line interface (CLI) application tool to extract MS data from mzML formatted files, with spectrum filtering capabilities.  
+`exfilms` is a cross-platform, command line interface (CLI) tool to extract MS data from mzML formatted files, with spectrum filtering capabilities.  
 <br>
 
 ## Installation
 
-You will need to have the following installed on your machine:
+Before being able to install ExfilMS on your device, you will first need to have the following installed:
 
-- [Node.js®][nodejs-url]  
-  <br>
+- [Node.js®][nodejs-url]
 
-Once the required prerequisites has been installed, use npm to install ExfilMS:
-
-`$ npm install exfilms`  
 <br>
 
-## Platform Compatibility
+Once the required prerequisites have been installed, you can now use npm to install ExfilMS from your terminal.
 
-ExfilMS has been tested on the following platforms:
+`$ npm install exfilms`
 
-- Windows
-- macOS
-- Linux  
-  <br>
+> _Note: ExfilMS have been tested on Windows, macOS and Linux._
+
+<br>
 
 ## Usage
 
 ```md
-# ExfilMS basic command to run with default extraction/spectrum filtering parameters
+# Run with default extraction/spectrum filtering parameters
 
 $ exfilms -i (or -inputDirectory) "/path/to/input/directory/containing/mzML/data/files/"
 
-# To use ExfilMS in interactive mode
+# Run interactive mode
 
 $ exfilms --interactive
 
-# For help
+# Getting help
 
 $ exfilms --help
 ```
 
-For more guidance on how to use ExfilMS, please refer to the available guides below:
+For more guidance on how to use ExfilMS, please refer to our available guides below:
 
-- [Data Conversion to mzML](./guide/data-conversion-to-mzML.md)
-- [How To ExfilMS: The Ultimate Guide](./guide/how-to-exfilms-the-ultimate-guide.md)  
-  <br>
+- [Data Conversion to mzML](./doc/data-conversion-to-mzML.md)
+- [How To ExfilMS: The Complete Guide](./doc/how-to-exfilms-the-complete-guide.md)
+
+<br>
 
 <!-- ## API Documentation
 Please refer to our API documentation [here](https://vmalnathnambiar.github.io/exfilms/). -->

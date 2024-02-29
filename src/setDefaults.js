@@ -15,10 +15,11 @@ export async function setDefaults(argv) {
       : argv.fileList;
   configParam.outputFormat = argv.outputFormat[0];
   configParam.outputDirectory =
-    argv.outputDirectory === join(homedir(), '/data/outputFormat/')
+    argv.outputDirectory ===
+    join(homedir(), '/exfilms/outputFormat/inputDirectoryName/')
       ? join(
           homedir(),
-          `data/${configParam.outputFormat}/${basename(
+          `/exfilms/${configParam.outputFormat}/${basename(
             configParam.inputDirectory,
           )}/`,
         )

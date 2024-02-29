@@ -38,7 +38,7 @@ const prompts = [
   {
     type: 'checkbox',
     name: 'outputFormat',
-    message: 'Specify output format:',
+    message: 'Select output format:',
     choices: ['JSON', 'TSV'],
     default: ['JSON'],
     validate: async (output) => {
@@ -57,7 +57,7 @@ const prompts = [
     default: async (answers) => {
       return join(
         homedir(),
-        `/data/${answers.outputFormat}/${basename(answers.inputDirectory)}/`,
+        `/exfilms/${answers.outputFormat}/${basename(answers.inputDirectory)}/`,
       );
     },
   },
@@ -134,14 +134,14 @@ const prompts = [
   {
     type: 'confirm',
     name: 'mzRange',
-    message: 'Filter mass spectra for specific m/z value range?',
+    message: 'Filter mass spectra for specific m/z range?',
     default: false,
     when: (answers) => !answers.targeted,
   },
   {
     type: 'input',
     name: 'minMZ',
-    message: 'Set minimum m/z value:',
+    message: 'Set minimum m/z:',
     default: 0,
     validate: (minMZ) => {
       const min = Number(minMZ);
@@ -155,7 +155,7 @@ const prompts = [
   {
     type: 'input',
     name: 'maxMZ',
-    message: 'Set maximum m/z value',
+    message: 'Set maximum m/z:',
     default: NaN,
     validate: (maxMZ, answers) => {
       const max = Number(maxMZ);
@@ -177,7 +177,7 @@ const prompts = [
   {
     type: 'checkbox',
     name: 'spectrumType',
-    message: 'Select spectrum type to filter for?',
+    message: 'Select spectrum type to filter for:',
     choices: ['profile', 'centroid'],
     default: ['profile', 'centroid'],
     when: (answers) => answers.filterSpectrumData,
@@ -185,7 +185,7 @@ const prompts = [
   {
     type: 'input',
     name: 'msLevel',
-    message: 'Specify MS level(s) to filter for (space-separated)?',
+    message: 'Specify MS level(s) to filter for (space-separated numbers):',
     default: '1 2',
     validate: (msLevel) => {
       const levels = msLevel.split(' ').map(Number);
@@ -203,7 +203,7 @@ const prompts = [
   {
     type: 'checkbox',
     name: 'polarity',
-    message: 'Select polarity to filter for?',
+    message: 'Select polarity to filter for:',
     choices: ['positive', 'negative'],
     default: ['positive', 'negative'],
     when: (answers) => answers.filterSpectrumData,
@@ -211,7 +211,7 @@ const prompts = [
   {
     type: 'confirm',
     name: 'excludeSpectra',
-    message: 'Exclude spectra (m/z and intensity values) from output?',
+    message: 'Exclude spectra (m/z and intensity values) from output file?',
     default: false,
     when: (answers) => answers.filterSpectrumData,
   },
