@@ -96,10 +96,6 @@ _Input type: Space-separated strings_
 _Default: "\*"_
 
 ```md
-# Process all files
-
-$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" --fileList "\*"
-
 # Process specific file(s)
 
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" --fileList "file1.mzML" "file2.mzML" "file3.mzML"
