@@ -2,23 +2,23 @@
 
 To create the target file, I would highly recommend the use of Google Sheets. This will enable you to easily save and/or publish the sheet to the web as tsv with ease.
 
-1. [Layout](#layout)
+1. [File Layout](#file-layout)
 2. [Save to Local Device](#save-to-local-device)
 3. [Publish to Web](#publish-to-web)
 
 <br>
 
-## Target File Layout
+## File Layout
 
 The targeted m/z filtering method provided by ExfilMS for spectra filtering requires a target file. This target file should consist of the following data:
 
-1. Analyte Name
-2. Analyte Type
-3. m/z Value
-4. Retention Time
-5. MS Level
-6. Associated Internal Standards
-7. Associated Products
+- Analyte Name
+- Analyte Type
+- m/z Value
+- Retention Time
+- MS Level
+- Associated Internal Standards
+- Associated Products
 
 <br>
 

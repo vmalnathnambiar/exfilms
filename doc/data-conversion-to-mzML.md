@@ -101,11 +101,11 @@ Download [Docker][docker-url]
    # Default data conversion parameters used
 
    format: mzML
-   m/z: Compression-None, 64-bit
-   intensity: Compression-None, 32-bit
-   rt: Compression-None, 64-bit
+      m/z: Compression-None, 64-bit
+      intensity: Compression-None, 32-bit
+      rt: Compression-None, 64-bit
    ByteOrder_LittleEndian
-   indexed="true"
+      indexed="true"
    outputPath: /outputDirectory
    extension: .mzML
    contactFilename:
