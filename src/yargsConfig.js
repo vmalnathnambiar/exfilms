@@ -10,6 +10,7 @@ import { hideBin } from 'yargs/helpers';
 // Yargs config
 const argv = yargs(hideBin(process.argv))
   .option('interactive', {
+    alias: 'x',
     type: 'boolean',
     description: 'Run interactive mode',
   })
@@ -179,6 +180,18 @@ const argv = yargs(hideBin(process.argv))
     type: 'boolean',
     description: 'Exclude spectra (m/z and intensity values) from output file',
     default: false,
-  }).argv;
+  })
+  .usage('Usage: $0 <flags> <sub-flags>')
+  .alias('help', 'h')
+  .alias('version', 'v')
+  .example('$0 -x', 'Run ExfilMS in interactive mode')
+  .example(
+    '$0 -i "/path/to/input/directory/"',
+    'Run ExfilMS with default configurations',
+  )
+  .example(
+    '$0 -i "/path/to/input/directory/" -f --spectrumType "centroid" --msLevel 1 2 --polarity "positive" "negative"',
+    'Run ExfilMS configured to filter spectrum data for centroided MS1 and MS2 spectrum data with both polarity types',
+  ).argv;
 
 export { argv };
