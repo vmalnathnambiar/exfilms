@@ -61,7 +61,7 @@ export async function parseTargetFile() {
       throw new Error('\nInvalid target file - Targeted m/z data not found');
     }
 
-    // Round m/z target list if decimal place is configured
+    // Round m/z target list if decimal place is defined
     mzTargetList = !isNaN(configParam.decimalPlace)
       ? await Promise.all(
           mzTargetList.map((value) =>
@@ -71,9 +71,12 @@ export async function parseTargetFile() {
       : mzTargetList;
 
     // Set new minMZ and maxMZ based on extracted target m/z list
-    const minMZ = mzTargetList[0] - configParam.mzTolerance;
-    const maxMZ =
-      mzTargetList[mzTargetList.length - 1] + configParam.mzTolerance;
+    let minMZ = mzTargetList[0] - configParam.mzTolerance;
+    let maxMZ = mzTargetList[mzTargetList.length - 1] + configParam.mzTolerance;
+    if (!isNaN(configParam.decimalPlace)) {
+      minMZ = await roundDecimalPlace(minMZ, configParam.decimalPlace);
+      maxMZ = await roundDecimalPlace(maxMZ, configParam.decimalPlace);
+    }
 
     return { mzTargetList, minMZ, maxMZ };
   } catch (err) {
