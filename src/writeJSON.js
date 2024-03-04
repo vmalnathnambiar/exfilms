@@ -3,7 +3,11 @@ import { join } from 'path';
 
 import { configParam } from '../bin/exfilms.js';
 
-// Write MS data into JSON file
+/**
+ * Write extracted (and filtered) MS data into JSON file in output directory.
+ * @param {Object} data MS data extracted from parsed mzML file.
+ * @returns {Promise<void>} A Promise that resolves when the writing to JSON file is complete.
+ */
 export async function writeJSON(data) {
   const jsonFile = join(configParam.outputDirectory, `${data.sampleID}.json`);
 

@@ -5,10 +5,15 @@ import { configParam } from '../bin/exfilms.js';
 import { keyMap, valueMap } from './cvParamMap.js';
 import { decodeBinary } from './decodeBinary.js';
 import { extractBasePeakMZ } from './extractBasePeakMZ.js';
-import { filterSpectrumArray } from './filterSpectrumArray.js';
+import { filterSpectrum } from './filterSpectrum.js';
 import { roundDecimalPlace } from './roundDecimalPlace.js';
 
-// Extract spectrum data
+/**
+ * Extract spectrum data from parsed mzML data.
+ * @param {array} spectrumArray An array of spectrum data contained within the parsed mzML data.
+ * @param {array} chromatogram An array of chromatogram data defined by initChromatogramArray to be used for the extraction (and filtration) process.
+ * @returns {Promise<Object>} A promise that resolves with an object containing the extracted spectrum count, spectrum data array and chromatogram data array .
+ */
 export async function extractSpectrum(spectrumArray, chromatogram) {
   let spectrumCount = 0;
   let spectrum = [];
@@ -190,7 +195,7 @@ export async function extractSpectrum(spectrumArray, chromatogram) {
 
     // Filter spectrum data (m/z and intensity) if true
     if (configParam.minMZ && (configParam.maxMZ || isNaN(configParam.maxMZ))) {
-      const filteredData = await filterSpectrumArray(
+      const filteredData = await filterSpectrum(
         data.spectrumType,
         data.msLevel,
         data.polarity,
@@ -208,13 +213,15 @@ export async function extractSpectrum(spectrumArray, chromatogram) {
       data.intensityArray = filteredData.intensityValues;
     }
 
-    // Empty m/z data arrays (m/z and intensities) if true
+    // Empty spectra data arrays (m/z and intensities) if true
     if (configParam.excludeSpectra) {
       data.mzArray = [];
       data.intensityArray = [];
     }
 
-    // Filter for spectrum type, msLevel and polarity based on spectrum (if filter applied) and add spectrum data object to array
+    // Filter for spectrum type, msLevel and polarity (if filter applied)
+    // And append spectrum data object to spectrum array
+    // And update chromatogram (Total Ion Chromatogram and Base Peak Chromatogram) data
     const ticIDX = chromatogram.findIndex((chromObj) => chromObj.id === 'TIC');
     const bpcIDX = chromatogram.findIndex((chromObj) => chromObj.id === 'BPC');
     if (configParam.filterSpectrumData) {

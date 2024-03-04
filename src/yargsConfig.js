@@ -7,7 +7,10 @@ import { join } from 'path';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
-// Yargs config
+/**
+ * @type {Object}
+ * @description An object containing the parsed command line arguments.
+ */
 const argv = yargs(hideBin(process.argv))
   .option('interactive', {
     alias: 'x',
@@ -194,4 +197,8 @@ const argv = yargs(hideBin(process.argv))
     'Run ExfilMS configured to filter spectrum data for centroided MS1 and MS2 spectrum data with both polarity types',
   ).argv;
 
+/**
+ * @type {Object}
+ * @property {Object} argv Parsed command line arguments.
+ */
 export { argv };

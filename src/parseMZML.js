@@ -8,7 +8,11 @@ import { spinner, configParam } from '../bin/exfilms.js';
 import { extractMZML } from './extractMZML.js';
 import { writeLog } from './writeLog.js';
 
-// Parse mzML data files for extraction
+/**
+ * Parse mzML files to be processed for MS data extraction (and filtration).
+ * @return {Promise<void>} A promise that resolves when all mzML files to be processed have been parsed and extracted (and filtered).
+ * @throws {?Error} Throw error displaying a list of mzML files that encountered issues in the parsing process.
+ */
 export async function parseMZML() {
   let failedFiles = [];
 

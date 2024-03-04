@@ -4,7 +4,10 @@ import { join, basename } from 'path';
 
 import { listMZML } from './listMZML.js';
 
-// Inquirer interactive prompts
+/**
+ * @type {Object}
+ * @description An object containing user input for each interactive question prompt.
+ */
 const prompts = [
   {
     type: 'input',
@@ -217,4 +220,8 @@ const prompts = [
   },
 ];
 
+/**
+ * @type {Object}
+ * @property {Object} prompts User input for each prompt message.
+ */
 export { prompts };

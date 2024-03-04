@@ -1,5 +1,9 @@
 import { configParam } from '../bin/exfilms.js';
 
+/**
+ * Initialise chromatogram array (specifically due to targeted m/z filtering).
+ * @returns {Promise<array>} A promise that resolves with an array with the structure needed to store the extracted chromatogram data
+ */
 export async function initChromatogramArray() {
   let chromatogram;
 
@@ -37,7 +41,7 @@ export async function initChromatogramArray() {
     },
   ];
 
-  // Check if running targeted, additional chromatogram data required based on m/z target list
+  // Check if targeted m/z filtering is defined for, additional chromatogram data required based on m/z target list
   if (configParam.targeted) {
     chromatogram = [
       ...basicArray,

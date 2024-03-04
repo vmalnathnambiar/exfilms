@@ -1,4 +1,7 @@
-// Key mapping for cvParams
+/**
+ * @type {Object}
+ * @description Provides a mapping between original cvParam keys and their corresponding values.
+ */
 const keyMap = {
   'ms level': 'msLevel',
   'MS1 spectrum': 'scanType',
@@ -37,7 +40,10 @@ const keyMap = {
   'non-standard data array': 'msLevelArray',
 };
 
-// Value mapping for cvParams
+/**
+ * @type {Object}
+ * @description Provides a mapping between original cvParam values and their corresponding representations.
+ */
 const valueMap = {
   'MS1 spectrum': 'MS1',
   'MSn spectrum': 'MSn',
@@ -60,4 +66,9 @@ const valueMap = {
     'selected reaction monitoring chromatogram',
 };
 
+/**
+ * @type {Object}
+ * @property {Object} keyMap Key mapping for cvParam.
+ * @property {Object} valueMap Value mapping for cvParam.
+ */
 export { keyMap, valueMap };

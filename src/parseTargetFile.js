@@ -7,7 +7,11 @@ import { configParam } from '../bin/exfilms.js';
 
 import { roundDecimalPlace } from './roundDecimalPlace.js';
 
-// Parse target file (tsv) from local file path or a published to web URL
+/**
+ * Parse target file (tsv) from local file path or a published to web URL.
+ * @returns {Promise<Object>} A promise that resolves with an object containing the m/z target list (array), and the minimum and maximum m/z values.
+ * @throws {?Error} Throw error if the target file parsing process encounters issues.
+ */
 export async function parseTargetFile() {
   const urlPattern = /^(?:http|https):\/\/[^ "]+&output=tsv$/;
   const tsvPattern = /\.tsv$/i;
@@ -24,21 +28,19 @@ export async function parseTargetFile() {
             header: true,
           }));
         });
-    }
-
-    if (tsvPattern.test(configParam.targetFile)) {
+    } else if (tsvPattern.test(configParam.targetFile)) {
       ({ data } = papa.parse(readFileSync(configParam.targetFile, 'utf-8'), {
         delimiter: '\t',
         header: true,
       }));
     }
 
-    // Throw err if data is undefined
+    // Throw error if data is undefined
     if (!data) {
       throw new Error('\nInvalid target file - Data undefined');
     }
 
-    // Extract and sort m/z target list (distinct values only)
+    // Extract and sort m/z target list (distinct values only) - Requires to follow a targetFile layout (header - msLevel and mzValue must be present)
     let mzTargetList = configParam.filterSpectrumData
       ? Array.from(
           new Set(
@@ -54,7 +56,7 @@ export async function parseTargetFile() {
           new Set(data.map((row) => Number(row.mzValue)).sort((a, b) => a - b)),
         );
 
-    // Throw err if no m/z data found
+    // Throw error if no m/z data found
     if (mzTargetList.length === 0) {
       throw new Error('\nInvalid target file - Targeted m/z data not found');
     }
@@ -68,7 +70,7 @@ export async function parseTargetFile() {
         )
       : mzTargetList;
 
-    // Set new minMZ and maxMZ based on extracted m/z target list
+    // Set new minMZ and maxMZ based on extracted target m/z list
     const minMZ = mzTargetList[0] - configParam.mzTolerance;
     const maxMZ =
       mzTargetList[mzTargetList.length - 1] + configParam.mzTolerance;

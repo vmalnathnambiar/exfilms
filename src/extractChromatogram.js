@@ -1,10 +1,16 @@
+// @ts-nocheck
+
 import { configParam } from '../bin/exfilms.js';
 
 import { keyMap, valueMap } from './cvParamMap.js';
 import { decodeBinary } from './decodeBinary.js';
 import { roundDecimalPlace } from './roundDecimalPlace.js';
 
-// Extract chromatogram data
+/**
+ * Extract chromatogram data from parsed mzML data array.
+ * @param {array} chromatogramArray An array of chromatogram data contained within the parsed mzML data.
+ * @returns {Promise<array>} A promise that resolves with an array of extracted chromatogram array
+ */
 export async function extractChromatogram(chromatogramArray) {
   let chromatogram = [];
 

@@ -7,7 +7,11 @@ import { initChromatogramArray } from './initChromatogramArray.js';
 import { writeJSON } from './writeJSON.js';
 import { writeTSV } from './writeTSV.js';
 
-// Extract MS data from the parsed mzML data file
+/**
+ * extract MS data from parsed mzML.
+ * @param {Object} msData An object that contains all MS data parsed from the mzML file.
+ * @returns {Promise<void>} A promise that resolves when the extraction is complete.
+ */
 export async function extractMZML(msData) {
   const mzmlMap = msData.indexedmzML.mzML;
   const runMap = mzmlMap.run;
@@ -25,7 +29,7 @@ export async function extractMZML(msData) {
   let chromatogramCount = 0;
   let chromatogram = [];
 
-  // Check if spectrum array exists and extract data accordingly
+  // Check if spectrum array exists in parsed mzML and extract data accordingly
   if (spectrumListMap) {
     // Initialise chromatogram array to store chromatogram data
     chromatogram = await initChromatogramArray();

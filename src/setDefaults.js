@@ -3,11 +3,15 @@ import { join, basename } from 'path';
 
 import { listMZML } from './listMZML.js';
 
-// Set default values for parameter configuration
+/**
+ * Set the default values for configuration parameters.
+ * @param {Object} argv An object containing the input arguments passed through the CLI.
+ * @returns {Promise<Object>} A promise that resolves with an object containing the default values for the configuration parameters.
+ */
 export async function setDefaults(argv) {
   let configParam = {};
 
-  // General input config
+  // General config
   configParam.inputDirectory = argv.inputDirectory;
   configParam.fileList =
     argv.fileList[0] === '*'
@@ -27,7 +31,7 @@ export async function setDefaults(argv) {
   configParam.logDirectory = argv.logDirectory;
   configParam.decimalPlace = argv.decimalPlace;
 
-  // Targeted config
+  // Targeted m/z filtering config
   configParam.targeted = argv.targeted;
   if (configParam.targeted) {
     configParam.targetFile = argv.targetFile;
@@ -35,14 +39,14 @@ export async function setDefaults(argv) {
     configParam.ppmTolerance = argv.ppmTolerance;
   }
 
-  // m/z range config
+  // m/z range filtering config
   configParam.mzRange = argv.mzRange;
   if (configParam.mzRange) {
     configParam.minMZ = argv.minMZ;
     configParam.maxMZ = argv.maxMZ;
   }
 
-  // Filter spectrum config
+  // Spectrum data filtering config
   configParam.filterSpectrumData = argv.filterSpectrumData;
   if (configParam.filterSpectrumData) {
     configParam.spectrumType = argv.spectrumType;

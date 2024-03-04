@@ -2,8 +2,18 @@ import { configParam } from '../bin/exfilms.js';
 
 import { roundDecimalPlace } from './roundDecimalPlace.js';
 
-// Filter spectrum array (m/z and intensity)
-export async function filterSpectrumArray(
+/**
+ * Filter the spectra within each spectrum data by range or targeted filtering.
+ * @param {string} spectrumType
+ * @param {number} msLevel
+ * @param {string} polarity
+ * @param {number} retentionTime
+ * @param {number[]} mzArray An array representing the m/z values detected in a spectrum
+ * @param {number[]} intensityArray An array representing the intensity values of the respective m/z values in a spectrum.
+ * @param {array} chromatogram An array of chromatogram data defined by initChromatogramArray to be used for the extraction (and filtration) process.
+ * @returns {Promise<Object>} A promise that resolves with an object containing the chromatogram array, base peak intensity, base peak m/z, total ion current, and spectra array (m/z and intensity values)
+ */
+export async function filterSpectrum(
   spectrumType,
   msLevel,
   polarity,
@@ -20,9 +30,10 @@ export async function filterSpectrumArray(
 
   let mz, intensity;
 
-  // Check to filter for general m/z or targeted m/z data array
+  // Check to execute m/z range or targeted m/z filtering
+  // If m/z range filtering
   if (!configParam.targeted) {
-    // Set m/z range (minMZ and maxMZ)
+    // Set m/z range boundaries (minMZ and maxMZ)
     const minMZ = configParam.minMZ;
     const maxMZ = isNaN(configParam.maxMZ)
       ? mzArray.reduce((max, num) => {
@@ -30,7 +41,7 @@ export async function filterSpectrumArray(
         }, mzArray[0])
       : configParam.maxMZ;
 
-    // Loop through spectrum data array
+    // Loop through spectra array
     for (let i = 0; i < mzArray.length; i++) {
       mz = mzArray[i];
       intensity = intensityArray[i];
@@ -46,7 +57,8 @@ export async function filterSpectrumArray(
         intensityValues.push(intensity);
       }
     }
-  } else {
+  } // If targeted m/z filtering
+  else {
     // Loop through m/z target list
     for (const targetMZ of configParam.mzTargetList) {
       // Set new m/z range (minMZ & maxMZ) based on target m/z
@@ -92,7 +104,7 @@ export async function filterSpectrumArray(
         }
       }
 
-      // New filtered spectrum data
+      // New filtered spectra (Gap-filling for targeted m/z that is not found in filtering range)
       mz = mz === 0 ? targetMZ : mz;
       if (intensity > basePeakIntensity) {
         basePeakIntensity = intensity;
@@ -102,7 +114,7 @@ export async function filterSpectrumArray(
       mzValues.push(mz);
       intensityValues.push(intensity);
 
-      // Store chromatogram data for target m/z based on spectrum filter applied
+      // Append chromatogram data (Extracted Ion Chromatogram) for targeted m/z based on spectrum data filter applied
       const idx = chromatogram.findIndex(
         (chromObj) => chromObj.id === `EIC ${targetMZ}`,
       );
