@@ -2,7 +2,7 @@ import { readdirSync } from 'fs';
 
 /**
  * Read and list out mzML files contained within a directory.
- * @param {string} directory A string representing the input directory path containing mzML files to be processed.
+ * @param {string} directory Directory path containing mzML files to be processed.
  * @returns {Promise<string[]>} A promise that resolves with an array of mzML file names to be processed.
  */
 export async function listMZML(directory) {

@@ -1,5 +1,3 @@
-import { configParam } from '../bin/exfilms.js';
-
 import { extractChromatogram } from './extractChromatogram.js';
 import { extractSpectrum } from './extractSpectrum.js';
 import { extractTimeStamp } from './extractTimeStamp.js';
@@ -9,10 +7,11 @@ import { writeTSV } from './writeTSV.js';
 
 /**
  * extract MS data from parsed mzML.
+ * @param {Object} configParam Configuration parameters passed via the command line interface.
  * @param {Object} msData An object that contains all MS data parsed from the mzML file.
  * @returns {Promise<void>} A promise that resolves when the extraction is complete.
  */
-export async function extractMZML(msData) {
+export async function extractMZML(configParam, msData) {
   const mzmlMap = msData.indexedmzML.mzML;
   const runMap = mzmlMap.run;
   const spectrumListMap = runMap.spectrumList;
@@ -32,14 +31,18 @@ export async function extractMZML(msData) {
   // Check if spectrum array exists in parsed mzML and extract data accordingly
   if (spectrumListMap) {
     // Initialise chromatogram array to store chromatogram data
-    chromatogram = await initChromatogramArray();
+    chromatogram = await initChromatogramArray(configParam);
     chromatogramCount = chromatogram.length;
 
     // Extract spectrum data
     const spectrumArray = Array.isArray(spectrumListMap.spectrum)
       ? spectrumListMap.spectrum
       : [spectrumListMap.spectrum];
-    const spectrumData = await extractSpectrum(spectrumArray, chromatogram);
+    const spectrumData = await extractSpectrum(
+      configParam,
+      spectrumArray,
+      chromatogram,
+    );
     spectrumCount = spectrumData.spectrumCount;
     spectrum = spectrumData.spectrum;
     chromatogram = spectrumData.chromatogram;
@@ -49,7 +52,7 @@ export async function extractMZML(msData) {
     const chromatogramArray = Array.isArray(chromatogramListMap.chromatogram)
       ? chromatogramListMap.chromatogram
       : [chromatogramListMap.chromatogram];
-    chromatogram = await extractChromatogram(chromatogramArray);
+    chromatogram = await extractChromatogram(configParam, chromatogramArray);
   }
 
   // Combine all MS data into a standardized data object
@@ -65,8 +68,8 @@ export async function extractMZML(msData) {
 
   // Write JSON file
   if (configParam.outputFormat === 'JSON') {
-    await writeJSON(data);
+    await writeJSON(configParam, data);
   } else if (configParam.outputFormat === 'TSV') {
-    await writeTSV(data);
+    await writeTSV(configParam, data);
   }
 }

@@ -2,18 +2,19 @@ import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 
 import { parse } from 'arraybuffer-xml-parser';
-
-import { spinner, configParam } from '../bin/exfilms.js';
+import ora from 'ora';
 
 import { extractMZML } from './extractMZML.js';
 import { writeLog } from './writeLog.js';
 
 /**
  * Parse mzML files to be processed for MS data extraction (and filtration).
+ * @param {Object} configParam Configuration parameters passed via the command line interface.
  * @return {Promise<void>} A promise that resolves when all mzML files to be processed have been parsed and extracted (and filtered).
- * @throws {?Error} Throw error displaying a list of mzML files that encountered issues in the parsing process.
+ * @throws {?Error} Throws error displaying a list of mzML files that encountered issues in the parsing process.
  */
-export async function parseMZML() {
+export async function parseMZML(configParam) {
+  const spinner = ora();
   let failedFiles = [];
 
   spinner.info(
@@ -29,7 +30,7 @@ export async function parseMZML() {
       // Check file path
       const filePath = join(configParam.inputDirectory, file);
       if (!existsSync(filePath)) {
-        throw new Error(`File not found: ${file}`);
+        throw new Error('File not found in input directory');
       }
 
       // Get current timestamp
@@ -40,10 +41,10 @@ export async function parseMZML() {
       let msData = parse(readFileSync(filePath));
 
       // Extract MS data
-      await extractMZML(msData);
+      await extractMZML(configParam, msData);
 
       // Write timestamp and file name into log file
-      await writeLog(logger);
+      await writeLog(configParam, logger);
       spinner.succeed();
     } catch (err) {
       failedFiles.push(file);
@@ -52,7 +53,7 @@ export async function parseMZML() {
   }
 
   // Write failed files list into log file
-  await writeLog(`Failed files: [${failedFiles}]\n\n`);
+  await writeLog(configParam, `Failed files: [${failedFiles}]\n\n`);
 
   // Throw error if there were failed files
   if (failedFiles.length !== 0) {

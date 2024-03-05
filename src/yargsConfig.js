@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 import { existsSync, statSync } from 'fs';
 import { homedir } from 'os';
 import { join } from 'path';
@@ -184,7 +182,7 @@ const argv = yargs(hideBin(process.argv))
     description: 'Exclude spectra (m/z and intensity values) from output file',
     default: false,
   })
-  .usage('Usage: $0 <flags> <sub-flags>')
+  .usage('Usage: $0 <commands> <subcommands>')
   .alias('help', 'h')
   .alias('version', 'v')
   .example('$0 -x', 'Run ExfilMS in interactive mode')

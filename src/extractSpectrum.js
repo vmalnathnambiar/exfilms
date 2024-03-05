@@ -1,7 +1,5 @@
 // @ts-nocheck
 
-import { configParam } from '../bin/exfilms.js';
-
 import { keyMap, valueMap } from './cvParamMap.js';
 import { decodeBinary } from './decodeBinary.js';
 import { extractBasePeakMZ } from './extractBasePeakMZ.js';
@@ -10,11 +8,16 @@ import { roundDecimalPlace } from './roundDecimalPlace.js';
 
 /**
  * Extract spectrum data from parsed mzML data.
+ * @param {Object} configParam Configuration parameters passed via the command line interface.
  * @param {array} spectrumArray An array of spectrum data contained within the parsed mzML data.
  * @param {array} chromatogram An array of chromatogram data defined by initChromatogramArray to be used for the extraction (and filtration) process.
  * @returns {Promise<Object>} A promise that resolves with an object containing the extracted spectrum count, spectrum data array and chromatogram data array .
  */
-export async function extractSpectrum(spectrumArray, chromatogram) {
+export async function extractSpectrum(
+  configParam,
+  spectrumArray,
+  chromatogram,
+) {
   let spectrumCount = 0;
   let spectrum = [];
 
@@ -196,6 +199,7 @@ export async function extractSpectrum(spectrumArray, chromatogram) {
     // Filter spectrum data (m/z and intensity) if true
     if (configParam.minMZ && (configParam.maxMZ || isNaN(configParam.maxMZ))) {
       const filteredData = await filterSpectrum(
+        configParam,
         data.spectrumType,
         data.msLevel,
         data.polarity,

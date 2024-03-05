@@ -1,9 +1,8 @@
-import { configParam } from '../bin/exfilms.js';
-
 import { roundDecimalPlace } from './roundDecimalPlace.js';
 
 /**
  * Filter the spectra within each spectrum data by range or targeted filtering.
+ * @param {Object} configParam Configuration parameters passed via the command line interface.
  * @param {string} spectrumType
  * @param {number} msLevel
  * @param {string} polarity
@@ -14,6 +13,7 @@ import { roundDecimalPlace } from './roundDecimalPlace.js';
  * @returns {Promise<Object>} A promise that resolves with an object containing the chromatogram array, base peak intensity, base peak m/z, total ion current, and spectra array (m/z and intensity values)
  */
 export async function filterSpectrum(
+  configParam,
   spectrumType,
   msLevel,
   polarity,

@@ -1,9 +1,5 @@
 #!/usr/bin/env node
 
-// @ts-nocheck
-/* eslint-disable no-console */
-/* eslint-disable func-names */
-
 import { readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -12,28 +8,14 @@ import chalk from 'chalk';
 import clear from 'clear';
 import figlet from 'figlet';
 import inquirer from 'inquirer';
-import ora from 'ora';
 
 import { createDefaultDirectories } from '../src/createDefaultDirectories.js';
 import { prompts } from '../src/inquirerPrompts.js';
 import { parseMZML } from '../src/parseMZML.js';
-import { parseTargetFile } from '../src/parseTargetFile.js';
-import { roundDecimalPlace } from '../src/roundDecimalPlace.js';
-import { setDefaults } from '../src/setDefaults.js';
+import { setForSpectraFiltering } from '../src/setForSpectraFiltering.js';
 import { writeLog } from '../src/writeLog.js';
 import { argv } from '../src/yargsConfig.js';
-
-/**
- * @type {Object}
- * @description An instance object of the ora spinner.
- */
-const spinner = ora();
-
-/**
- * @type {Object}
- * @description An object containing the configuration parameters defined.
- */
-let configParam = {};
+import { yargsFlagCheck } from '../src/yargsFlagCheck.js';
 
 /**
  * Figlet callback function to display ASCII art and execute the CLI tool.
@@ -62,116 +44,39 @@ figlet('ExfilMS', async function (err, data) {
       )}`,
     );
 
-    // Parse yargs input and set configuration parameters for ExfilMS
-    // And throw error if flags and respective input values are not used appropriately
-    // If interactive mode
+    // Check if CLI is executed in interactive mode
+    let configParam = {};
     if (argv.interactive) {
+      // If interactive mode
       configParam = await inquirer.prompt(prompts);
       if (configParam.msLevel) {
         configParam.msLevel = configParam.msLevel.split(' ').map(Number);
       }
       console.log('');
-    } // If -i, --inputDirectory is not defined
-    else if (!argv.inputDirectory) {
-      throw new Error(
-        '\n-i (or --inputDirectory) "/path/to/input/directory/" required',
-      );
-    } // If both -t, --targeted and -r, --mzRange is defined
-    else if (argv.targeted && argv.mzRange) {
-      throw new Error(
-        '\nUse one of the following options for m/z value range filtering:\n-t (or --targeted) --targetFile "/local/path/or/published/to/web/URL/to/target/tsv/file" --mzTolerance <number> --ppmTolerance <number>\n-r (or --mzRange) --minMZ <number> --maxMZ <number>',
-      );
-    } // If -t, --targeted is defined but --targetFile is not defined
-    else if (argv.targeted && !argv.targetFile) {
-      throw new Error('\n--targetFile "/path/to/target/file.tsv" required');
-    } // If either or all: --targetFile, --mzTolerance and --ppmTolerance; are defined (not using the default values) without -t, --targeted
-    else if (
-      !argv.targeted &&
-      (argv.targetFile || argv.mzTolerance !== 0.005 || argv.ppmTolerance !== 5)
-    ) {
-      throw new Error(
-        '-t (or --targeted) required to specify --targetFile, --mzTolerance and --ppmTolerance',
-      );
-    } // If either or all: --minMZ and --maxMZ; are defined without -r, --mzRange
-    else if (!argv.mzRange && (argv.minMZ || argv.maxMZ)) {
-      throw new Error(
-        '\n-r (or --mzRange) required to specify --minMZ and --maxMZ',
-      );
-    } // If --maxMZ value defined is a number and is smaller than --minMZ value
-    else if (!isNaN(argv.maxMZ) && argv.maxMZ <= argv.minMZ) {
-      throw new Error('\nmaxMZ value needs to be greater than minMZ value');
-    } // If either or all: --spectrumType, --msLevel, --polarity and --excludeSpectra; are defined (not using the default values) without -s, --filterSpectrumData
-    else if (
-      !argv.filterSpectrumData &&
-      (argv.spectrumType.length !== 2 ||
-        (argv.msLevel.length !== 2 &&
-          argv.msLevel[0] !== 1 &&
-          argv.msLevel[1] !== 2) ||
-        argv.polarity.length !== 2 ||
-        argv.excludeSpectra)
-    ) {
-      throw new Error(
-        '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
-      );
-    } // If input parameters pass all the previous checks, set defaults where required
-    else {
-      configParam = await setDefaults(argv);
-    }
-    configParam.decimalPlace = Number(configParam.decimalPlace);
-
-    // If targeted m/z filtering is defined
-    if (configParam.targeted) {
-      configParam.mzTolerance = Number(configParam.mzTolerance);
-      configParam.ppmTolerance = Number(configParam.ppmTolerance);
-
-      // Parse target file containing the targeted m/z values to filter for
-      const targetFile = await parseTargetFile();
-      configParam.mzTargetList = targetFile.mzTargetList;
-      configParam.minMZ = targetFile.minMZ;
-      configParam.maxMZ = targetFile.maxMZ;
+    } else {
+      // Check yargs arguments and set up appropriately
+      configParam = await yargsFlagCheck(argv);
     }
 
-    // If m/z range filtering is defined
-    if (configParam.mzRange) {
-      configParam.minMZ = Number(configParam.minMZ);
-      configParam.maxMZ = Number(configParam.maxMZ);
-
-      if (!isNaN(configParam.decimalPlace)) {
-        configParam.minMZ = await roundDecimalPlace(
-          configParam.minMZ,
-          configParam.decimalPlace,
-        );
-        if (!isNaN(configParam.maxMZ)) {
-          configParam.maxMZ = await roundDecimalPlace(
-            configParam.maxMZ,
-            configParam.decimalPlace,
-          );
-        }
-      }
-    }
+    // Set spectra filtering method if defined
+    configParam = await setForSpectraFiltering(configParam);
 
     // Create output and log directories based on configuration
-    await createDefaultDirectories();
+    await createDefaultDirectories(configParam);
 
     // Display and write configuration parameters into log file
     console.log('Configuration Parameters:');
     console.log(configParam);
     await writeLog(
+      configParam,
       `Configuration Parameters\n${JSON.stringify(configParam, null, '\t')}\n`,
     );
 
     // Parse mzML data files for extraction
-    await parseMZML();
+    await parseMZML(configParam);
   } catch (err) {
     console.error(`\n${err.toString()}\n`);
   } finally {
     console.log('ExfilMS process complete');
   }
 });
-
-/**
- * @type {Object}
- * @property {Object} spinner An instance object of the ora spinner.
- * @property {Object} configParam An object containing the configuration parameters defined
- */
-export { spinner, configParam };

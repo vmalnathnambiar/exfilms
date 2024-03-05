@@ -3,16 +3,15 @@ import { readFileSync } from 'fs';
 import fetch from 'node-fetch';
 import papa from 'papaparse';
 
-import { configParam } from '../bin/exfilms.js';
-
 import { roundDecimalPlace } from './roundDecimalPlace.js';
 
 /**
  * Parse target file (tsv) from local file path or a published to web URL.
+ * @param {Object} configParam Configuration parameters passed via the command line interface.
  * @returns {Promise<Object>} A promise that resolves with an object containing the m/z target list (array), and the minimum and maximum m/z values.
- * @throws {?Error} Throw error if the target file parsing process encounters issues.
+ * @throws {?Error} Throws error if the target file parsing process encounters issues.
  */
-export async function parseTargetFile() {
+export async function parseTargetFile(configParam) {
   const urlPattern = /^(?:http|https):\/\/[^ "]+&output=tsv$/;
   const tsvPattern = /\.tsv$/i;
   let data;

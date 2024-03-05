@@ -1,14 +1,13 @@
 import { writeFileSync, appendFileSync } from 'fs';
 import { join } from 'path';
 
-import { configParam } from '../bin/exfilms.js';
-
 /**
  * Write extracted (and filtered) MS data into TSV file in output directories (spectrum and chromatogram).
+ * @param {Object} configParam Configuration parameters passed via the command line interface.
  * @param {Object} data MS data extracted from parsed mzML file.
  * @returns {Promise<void>} A Promise that resolves when the writing to TSV files are complete.
  */
-export async function writeTSV(data) {
+export async function writeTSV(configParam, data) {
   // Path to spectrum and chromatogram output path
   const spectrumFile = join(
     configParam.outputDirectory,

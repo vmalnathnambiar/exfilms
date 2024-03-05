@@ -1,10 +1,9 @@
-import { configParam } from '../bin/exfilms.js';
-
 /**
  * Initialise chromatogram array (specifically due to targeted m/z filtering).
+ * @param {Object} configParam Configuration parameters passed via the command line interface.
  * @returns {Promise<array>} A promise that resolves with an array with the structure needed to store the extracted chromatogram data
  */
-export async function initChromatogramArray() {
+export async function initChromatogramArray(configParam) {
   let chromatogram;
 
   // Basic chromatogram data (applicable to both non-targeted and targeted)
