@@ -4,24 +4,38 @@ import { describe, test, expect } from 'vitest';
 
 import { roundDecimalPlace } from '../roundDecimalPlace.js';
 
-describe('round decimal place', () => {
-  test('round values appropriately', async () => {
-    expect(await roundDecimalPlace(1518.712539, 4)).toBe(1518.7125);
-  });
+/**
+ * To test roundDecimalPlace(toRoundValue, decimalPlace) function
+ *    Input: toRoundValue (number), decimalPlace (number)
+ *    Output: Promise<number> (Rounded value)
+ */
+describe('roundDecimalPlace', () => {
+  //Initialise dummy data
+  const toRoundValue = 1518.712539;
+  const decimalPlace = 4;
+  const roundedValue = 1518.7125;
 
-  test('throw error if other than number types are passed for toRoundValue', async () => {
+  // Test for input parameter type error
+  test('throw error if toRoundValue is not of type "number"', async () => {
     expect(
-      async () => await roundDecimalPlace('1518.712539', 4),
+      roundDecimalPlace(`${toRoundValue}`, decimalPlace),
     ).rejects.toThrowError(
-      `\nInvalid argument: toRoundValue must be type Number`,
+      '\nInvalid argument: toRoundValue must be of type "number"',
     );
   });
 
-  test('throw error if other than number types are passed for decimalPlace', async () => {
+  test('throw error if decimalPlace is not of type "number"', async () => {
     expect(
-      async () => await roundDecimalPlace(1518.712539, '5'),
+      roundDecimalPlace(toRoundValue, `${decimalPlace}`),
     ).rejects.toThrowError(
-      `\nInvalid argument: decimalPlace must be type Number`,
+      '\nInvalid argument: decimalPlace must be of type "number"',
+    );
+  });
+
+  // Test for rounding of toRoundValue to a specific decimal place
+  test('Round value to a specific decimal place', async () => {
+    expect(await roundDecimalPlace(toRoundValue, decimalPlace)).toBe(
+      roundedValue,
     );
   });
 });

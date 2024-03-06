@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+/* eslint-disable no-console */
+/* eslint-disable func-names */
+
 import { readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';

@@ -8,6 +8,11 @@ import { join } from 'path';
  * @returns {Promise<void>} A promise that resolves when the writing operation is completed
  */
 export async function writeLog(configParam, data) {
+  // Check input parameter type
+  if (typeof data !== 'string') {
+    throw new Error('\nInvalid argument: data must be of type "string"');
+  }
+
   const logFile = join(configParam.logDirectory, 'log.txt');
   return appendFile(logFile, data);
 }

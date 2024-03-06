@@ -8,18 +8,28 @@ import { join } from 'path';
  */
 export async function createDefaultDirectories(configParam) {
   // Create output directory/directories
-  if (!existsSync(configParam.outputDirectory)) {
-    mkdirSync(configParam.outputDirectory, { recursive: true });
-
+  if (configParam.outputFormat === 'TSV') {
     // If output format is TSV
-    if (configParam.outputFormat === 'TSV') {
-      mkdirSync(join(configParam.outputDirectory, 'spectrum/'), {
-        recursive: true,
-      });
-      mkdirSync(join(configParam.outputDirectory, 'chromatogram/'), {
+    const spectrumDirectory = join(configParam.outputDirectory, 'spectrum/');
+    const chromatogramDirectory = join(
+      configParam.outputDirectory,
+      'chromatogram/',
+    );
+
+    if (!existsSync(spectrumDirectory)) {
+      mkdirSync(spectrumDirectory, {
         recursive: true,
       });
     }
+
+    if (!existsSync(chromatogramDirectory)) {
+      mkdirSync(chromatogramDirectory, {
+        recursive: true,
+      });
+    }
+  } else if (!existsSync(configParam.outputDirectory)) {
+    // If output format is anything other than TSV
+    mkdirSync(configParam.outputDirectory, { recursive: true });
   }
 
   // Create log directory

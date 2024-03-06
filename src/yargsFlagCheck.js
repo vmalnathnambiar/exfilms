@@ -8,6 +8,8 @@ import { setDefaults } from './setDefaults.js';
  */
 export async function yargsFlagCheck(argv) {
   let configParam = {};
+
+  // Check command line arguments
   if (!argv.inputDirectory) {
     // If -i, --inputDirectory is not defined
     throw new Error(
@@ -51,7 +53,7 @@ export async function yargsFlagCheck(argv) {
       '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
     );
   } else {
-    // Set default values where required
+    // Set default values (where required)
     configParam = await setDefaults(argv);
   }
 
