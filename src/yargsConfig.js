@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 import { existsSync, statSync } from 'fs';
 import { homedir } from 'os';
 import { join } from 'path';

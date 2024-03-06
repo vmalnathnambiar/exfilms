@@ -1,4 +1,5 @@
 // @ts-nocheck
+/* eslint-disable no-await-in-loop */
 
 import { keyMap, valueMap } from './cvParamMap.js';
 import { decodeBinary } from './decodeBinary.js';

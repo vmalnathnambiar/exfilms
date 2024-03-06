@@ -1,3 +1,5 @@
+/* eslint-disable no-await-in-loop */
+
 import { roundDecimalPlace } from './roundDecimalPlace.js';
 
 /**
