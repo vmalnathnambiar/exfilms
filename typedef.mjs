@@ -8,7 +8,7 @@
  * @property {?string} scanType Scan type
  * @property {?string} polarity Polarity
  * @property {?number} retentionTime Retention time
- * @property {?any} scanPresetConfiguration Scan preset configuration
+ * @property {?number} scanPresetConfiguration Scan preset configuration
  * @property {?number} scanWindowLowerLimit Scan window lower limit
  * @property {?number} scanWindowUpperLimit Scan window upper limit
  * @property {?number} isolationWindowTarget Isolation window target
@@ -31,7 +31,7 @@
  * @property {?number} arrayLength Length of data stored in array
  * @property {?string} chromatogramType Chromatogram type
  * @property {?string} polarity Polarity
- * @property {?string} dwellTime Dwell time
+ * @property {?number} dwellTime Dwell time
  * @property {?number} isolationWindowTarget Isolation window target
  * @property {?string} collisionType Collision type
  * @property {?number} collisionEnergy Collision energy
