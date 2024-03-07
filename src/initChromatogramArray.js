@@ -1,7 +1,11 @@
 /**
+ * @typedef {import('../typedef.mjs').Chromatogram} Chromatogram
+ */
+
+/**
  * Initialise chromatogram array (specifically due to targeted m/z filtering).
  * @param {Object} configParam Configuration parameters passed via the command line interface.
- * @returns {Promise<array>} A promise that resolves with an array with the structure needed to store the extracted chromatogram data
+ * @returns {Promise<Chromatogram[]>} A promise that resolves with an array structure to store the extracted chromatogram data
  */
 export async function initChromatogramArray(configParam) {
   let chromatogram;

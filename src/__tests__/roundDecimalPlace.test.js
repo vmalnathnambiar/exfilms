@@ -10,32 +10,29 @@ import { roundDecimalPlace } from '../roundDecimalPlace.js';
  *    Output: Promise<number> (Rounded value)
  */
 describe('roundDecimalPlace', () => {
-  //Initialise dummy data
+  // Dummy data
   const toRoundValue = 1518.712539;
   const decimalPlace = 4;
   const roundedValue = 1518.7125;
 
-  // Test for input parameter type error
-  test('throw error if toRoundValue is not of type "number"', async () => {
-    expect(
+  // Test if the function throws an error if toRoundValue is not a number
+  test('throws error if toRoundValue is not a number', async () => {
+    await expect(
       roundDecimalPlace(`${toRoundValue}`, decimalPlace),
-    ).rejects.toThrowError(
-      '\nInvalid argument: toRoundValue must be of type "number"',
-    );
+    ).rejects.toThrowError('\ntoRoundValue must be a number');
   });
 
-  test('throw error if decimalPlace is not of type "number"', async () => {
-    expect(
+  // Test if the function throws an error if decimalPlace is not a number
+  test('throws error if decimalPlace is not a number', async () => {
+    await expect(
       roundDecimalPlace(toRoundValue, `${decimalPlace}`),
-    ).rejects.toThrowError(
-      '\nInvalid argument: decimalPlace must be of type "number"',
-    );
+    ).rejects.toThrowError('\ndecimalPlace must be a number');
   });
 
-  // Test for rounding of toRoundValue to a specific decimal place
-  test('Round value to a specific decimal place', async () => {
-    expect(await roundDecimalPlace(toRoundValue, decimalPlace)).toBe(
-      roundedValue,
-    );
+  // Test if the function returns a number that has been rounded to a specific decimal place
+  test('return a number rounded a specific decimal place', async () => {
+    expect(await roundDecimalPlace(toRoundValue, decimalPlace))
+      .toBeTypeOf('number')
+      .toBe(roundedValue);
   });
 });

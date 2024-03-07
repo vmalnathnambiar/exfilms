@@ -220,8 +220,4 @@ const prompts = [
   },
 ];
 
-/**
- * @type {Object}
- * @property {Object} prompts User input for each prompt message.
- */
 export { prompts };

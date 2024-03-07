@@ -66,9 +66,4 @@ const valueMap = {
     'selected reaction monitoring chromatogram',
 };
 
-/**
- * @type {Object}
- * @property {Object} keyMap Key mapping for cvParam.
- * @property {Object} valueMap Value mapping for cvParam.
- */
 export { keyMap, valueMap };

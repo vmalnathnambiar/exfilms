@@ -1,13 +1,22 @@
+/**
+ * @typedef {import('../typedef.mjs').MS} MS
+ */
 import { writeFileSync, appendFileSync } from 'fs';
 import { join } from 'path';
 
 /**
  * Write extracted (and filtered) MS data into TSV file in output directories (spectrum and chromatogram).
  * @param {Object} configParam Configuration parameters passed via the command line interface.
- * @param {Object} data MS data extracted from parsed mzML file.
+ * @param {MS} data MS data extracted from parsed mzML file.
  * @returns {Promise<void>} A Promise that resolves when the writing to TSV files are complete.
+ * @throws {?Error} Throws error if writing to TSV process encounters issues.
  */
 export async function writeTSV(configParam, data) {
+  // Check input parameters
+  if (typeof configParam.outputDirectory !== 'string') {
+    throw new Error('\noutput directory path must be a string');
+  }
+
   // Path to spectrum and chromatogram output path
   const spectrumFile = join(
     configParam.outputDirectory,
@@ -44,7 +53,7 @@ export async function writeTSV(configParam, data) {
   }
 
   // Chromatogram data
-  if (data.chromatogram !== 0) {
+  if (data.chromatogramCount !== 0) {
     for (let i = 0; i < data.chromatogramCount; i++) {
       const chromatogram = data.chromatogram[i];
 
@@ -53,5 +62,10 @@ export async function writeTSV(configParam, data) {
         `${data.sampleID}\t${data.date}\t${data.time}\t${data.chromatogramCount}\t${chromatogram.index}\t${chromatogram.id}\t${chromatogram.arrayLength}\t${chromatogram.chromatogramType}\t${chromatogram.polarity}\t${chromatogram.dwellTime}\t${chromatogram.isolationWindowTarget}\t${chromatogram.collisionType}\t${chromatogram.collisionEnergy}\t${chromatogram.timeArray}\t${chromatogram.intensityArray}\t${chromatogram.msLevelArray}\t${chromatogram.mzArray}\n`,
       );
     }
+  } else {
+    appendFileSync(
+      chromatogramFile,
+      `${data.sampleID}\t${data.date}\t${data.time}\t${data.chromatogramCount}\n`,
+    );
   }
 }

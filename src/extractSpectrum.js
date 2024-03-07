@@ -1,5 +1,9 @@
-// @ts-nocheck
 /* eslint-disable no-await-in-loop */
+// @ts-nocheck
+
+/**
+ * @typedef {import('../typedef.mjs').Chromatogram} Chromatogram
+ */
 
 import { keyMap, valueMap } from './cvParamMap.js';
 import { decodeBinary } from './decodeBinary.js';
@@ -11,7 +15,7 @@ import { roundDecimalPlace } from './roundDecimalPlace.js';
  * Extract spectrum data from parsed mzML data.
  * @param {Object} configParam Configuration parameters passed via the command line interface.
  * @param {array} spectrumArray An array of spectrum data contained within the parsed mzML data.
- * @param {array} chromatogram An array of chromatogram data defined by initChromatogramArray to be used for the extraction (and filtration) process.
+ * @param {Chromatogram[]} chromatogram An array of chromatogram data defined by initChromatogramArray to be used for the extraction (and filtration) process.
  * @returns {Promise<Object>} A promise that resolves with an object containing the extracted spectrum count, spectrum data array and chromatogram data array .
  */
 export async function extractSpectrum(

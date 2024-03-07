@@ -1,13 +1,22 @@
+/**
+ * @typedef {import('../typedef.mjs').MS} MS
+ */
 import { writeFileSync, appendFileSync } from 'fs';
 import { join } from 'path';
 
 /**
  * Write extracted (and filtered) MS data into JSON file in output directory.
  * @param {Object} configParam Configuration parameters passed via the command line interface.
- * @param {Object} data MS data extracted from parsed mzML file.
+ * @param {MS} data MS data extracted from parsed mzML file.
  * @returns {Promise<void>} A Promise that resolves when the writing to JSON file is complete.
+ * @throws {?Error} Throws error if writing to JSON process encounters issues.
  */
 export async function writeJSON(configParam, data) {
+  // Check input parameters
+  if (typeof configParam.outputDirectory !== 'string') {
+    throw new Error('\noutput directory path must be a string');
+  }
+
   const jsonFile = join(configParam.outputDirectory, `${data.sampleID}.json`);
 
   writeFileSync(jsonFile, '{\n');

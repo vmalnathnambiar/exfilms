@@ -5,15 +5,11 @@
  * @returns {Promise<number>} A promise that resolves with the rounded value to the specified number of decimal places.
  */
 export async function roundDecimalPlace(toRoundValue, decimalPlace) {
-  // Check input parameter type
+  // Check input parameters
   if (typeof toRoundValue !== 'number') {
-    throw new Error(
-      '\nInvalid argument: toRoundValue must be of type "number"',
-    );
+    throw new Error('\ntoRoundValue must be a number');
   } else if (typeof decimalPlace !== 'number') {
-    throw new Error(
-      '\nInvalid argument: decimalPlace must be of type "number"',
-    );
+    throw new Error('\ndecimalPlace must be a number');
   }
 
   // Round value to specific decimal place

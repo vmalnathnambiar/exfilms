@@ -1,6 +1,9 @@
-// @ts-nocheck
 /* eslint-disable no-await-in-loop */
+// @ts-nocheck
 
+/**
+ * @typedef {import('../typedef.mjs').Chromatogram} Chromatogram
+ */
 import { keyMap, valueMap } from './cvParamMap.js';
 import { decodeBinary } from './decodeBinary.js';
 import { roundDecimalPlace } from './roundDecimalPlace.js';
@@ -9,7 +12,7 @@ import { roundDecimalPlace } from './roundDecimalPlace.js';
  * Extract chromatogram data from parsed mzML data array.
  * @param {Object} configParam Configuration parameters passed via the command line interface.
  * @param {array} chromatogramArray An array of chromatogram data contained within the parsed mzML data.
- * @returns {Promise<array>} A promise that resolves with an array of extracted chromatogram array
+ * @returns {Promise<Chromatogram[]>} A promise that resolves with an array of extracted chromatogram array
  */
 export async function extractChromatogram(configParam, chromatogramArray) {
   let chromatogram = [];

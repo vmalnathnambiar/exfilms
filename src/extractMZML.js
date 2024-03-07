@@ -9,7 +9,7 @@ import { writeTSV } from './writeTSV.js';
  * extract MS data from parsed mzML.
  * @param {Object} configParam Configuration parameters passed via the command line interface.
  * @param {Object} msData An object that contains all MS data parsed from the mzML file.
- * @returns {Promise<void>} A promise that resolves when the extraction is complete.
+ * @returns {Promise<void>} A promise that resolves when the extraction process is complete.
  */
 export async function extractMZML(configParam, msData) {
   const mzmlMap = msData.indexedmzML.mzML;
