@@ -1,4 +1,9 @@
+// @ts-nocheck
 /* eslint-disable no-undef */
+
+/**
+ * @typedef {import('../typedef.mjs').Yargs} Yargs
+ */
 
 import { existsSync, statSync } from 'fs';
 import { homedir } from 'os';
@@ -8,8 +13,7 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
 /**
- * @type {Object}
- * @description An object containing the parsed command line arguments.
+ * @type {Yargs}
  */
 const argv = yargs(hideBin(process.argv))
   .option('interactive', {

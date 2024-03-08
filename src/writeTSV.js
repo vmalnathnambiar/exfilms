@@ -1,6 +1,7 @@
 /**
  * @typedef {import('../typedef.mjs').MS} MS
  */
+
 import { writeFileSync, appendFileSync } from 'fs';
 import { join } from 'path';
 
@@ -9,14 +10,8 @@ import { join } from 'path';
  * @param {Object} configParam Configuration parameters passed via the command line interface.
  * @param {MS} data MS data extracted from parsed mzML file.
  * @returns {Promise<void>} A Promise that resolves when the writing to TSV files are complete.
- * @throws {?Error} Throws error if writing to TSV process encounters issues.
  */
 export async function writeTSV(configParam, data) {
-  // Check input parameters
-  if (typeof configParam.outputDirectory !== 'string') {
-    throw new Error('\noutput directory path must be a string');
-  }
-
   // Path to spectrum and chromatogram output path
   const spectrumFile = join(
     configParam.outputDirectory,

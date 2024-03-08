@@ -17,8 +17,8 @@ import { prompts } from '../src/inquirerPrompts.js';
 import { parseMZML } from '../src/parseMZML.js';
 import { setForSpectraFiltering } from '../src/setForSpectraFiltering.js';
 import { writeLog } from '../src/writeLog.js';
+import { yargsCheck } from '../src/yargsCheck.js';
 import { argv } from '../src/yargsConfig.js';
-import { yargsFlagCheck } from '../src/yargsFlagCheck.js';
 
 /**
  * Figlet callback function to display ASCII art and execute the CLI tool.
@@ -58,7 +58,7 @@ figlet('ExfilMS', async function (err, data) {
       console.log('');
     } else {
       // Check yargs arguments and set up appropriately
-      configParam = await yargsFlagCheck(argv);
+      configParam = await yargsCheck(argv);
     }
 
     // Set spectra filtering method if defined

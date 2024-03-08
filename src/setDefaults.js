@@ -1,3 +1,9 @@
+// @ts-nocheck
+
+/**
+ * @typedef {import('../typedef.mjs').Yargs} Yargs
+ */
+
 import { homedir } from 'os';
 import { join, basename } from 'path';
 
@@ -5,7 +11,7 @@ import { listMZML } from './listMZML.js';
 
 /**
  * Set the default values for configuration parameters.
- * @param {Object} argv An object containing the input arguments passed through the CLI.
+ * @param {Yargs} argv Yargs command line arguments.
  * @returns {Promise<Object>} A promise that resolves with an object containing the default values for the configuration parameters.
  */
 export async function setDefaults(argv) {

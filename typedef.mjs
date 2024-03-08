@@ -1,4 +1,27 @@
 /**
+ * @typedef Yargs
+ * @property {boolean} interactive Interactive mode?
+ * @property {undefined|string} inputDirectory Input directory path
+ * @property {string[]} fileList File list to process
+ * @property {string[]} outputFormat Output format
+ * @property {string} outputDirectory Output directory path
+ * @property {string} logDirectory Log directory path
+ * @property {number} decimalPlace Number of decimal places to round precision values to
+ * @property {boolean} targeted Filter spectra for targeted m/z values?
+ * @property {undefined|string} targetFile Target file path
+ * @property {number} mzTolerance Accepted m/z tolerance
+ * @property {number} ppmTolerance Accepted mass accuracy (ppm) tolerance
+ * @property {boolean} mzRange Filter spectra for specific m/z range?
+ * @property {number} minMZ Minimum m/z
+ * @property {number} maxMZ Maximum m/z
+ * @property {boolean} filterSpectrumData Filter spectrum data based on type, MS levels, and polarity?
+ * @property {string[]} spectrumType Spectrum type to filter for
+ * @property {number[]} msLevel MS level(s) to filter for
+ * @property {string[]} polarity Polarity to filter for
+ * @property {boolean} excludeSpectra Exclude spectra from output file?
+ */
+
+/**
  * @typedef Spectrum
  * @property {number} index Spectrum index
  * @property {string} scanID Spectrum scan ID

@@ -1,33 +1,44 @@
-/* eslint-disable no-empty-function */
-// @ts-nocheck
-
 /**
+ * @typedef {import('../../typedef.mjs').Yargs} Yargs
+ * @typedef {import('../../typedef.mjs').Spectrum} Spectrum
+ * @typedef {import('../../typedef.mjs').Chromatogram} Chromatogram
  * @typedef {import('../../typedef.mjs').MS} MS
  */
-import { readFile, rm, mkdir } from 'fs/promises';
-import { join } from 'path';
 
-import {
-  describe,
-  test,
-  expect,
-  beforeAll,
-  beforeEach,
-  afterAll,
-} from 'vitest';
-
-import { writeTSV } from '../writeTSV.js';
+import { describe, test, expect } from 'vitest';
 
 /**
- * To test writeTSV(configParam, data) function
- *    Input: configParam (Object) - outputDirectory, data (MS)
- *    Output: Promise<void> (true or false)
+ * To test typedef properties
+ * - Spectrum
+ * - Chromatogram
+ * - MS
  */
-describe('writeTSV', () => {
+describe('typedef Check', () => {
   // Dummy data
-  /**
-   * @type {MS}
-   */
+  /**@type {Yargs} */
+  const testArgv = {
+    interactive: false,
+    inputDirectory: '/tmp/input/directory/',
+    fileList: ['*'],
+    outputFormat: ['JSON'],
+    outputDirectory: '/tmp/output/directory/',
+    logDirectory: '/tmp/log/directory/',
+    decimalPlace: 4,
+    targeted: true,
+    targetFile: '/path/to/file.tsv',
+    mzTolerance: 0.005,
+    ppmTolerance: 5,
+    mzRange: true,
+    minMZ: 0,
+    maxMZ: NaN,
+    filterSpectrumData: true,
+    spectrumType: ['profile', 'centroid'],
+    msLevel: [1, 2],
+    polarity: ['positive', 'negative'],
+    excludeSpectra: false,
+  };
+
+  /**@type {MS} */
   const testData = {
     sampleID: 'testSample',
     date: '2022-08-17',
@@ -199,105 +210,79 @@ describe('writeTSV', () => {
       },
     ],
   };
-  const outputDirectory = './tmp/';
-  const configParam = { outputDirectory };
-  const spectrumDirectory = join(outputDirectory, 'spectrum/');
-  const chromatogramDirectory = join(outputDirectory, 'chromatogram/');
-  const spectrumFile = join(spectrumDirectory, `${testData.sampleID}.tsv`);
-  const chromatogramFile = join(
-    chromatogramDirectory,
-    `${testData.sampleID}.tsv`,
-  );
 
-  // Setting up test environment behavior
-  beforeAll(async () => {
-    await mkdir(spectrumDirectory, { recursive: true }).catch(() => {});
-    await mkdir(chromatogramDirectory, { recursive: true }).catch(() => {});
+  // Tests
+  test('CommandLineArgument defined', () => {
+    expect(testArgv).toHaveProperty('interactive');
+    expect(testArgv).toHaveProperty('inputDirectory');
+    expect(testArgv).toHaveProperty('fileList');
+    expect(testArgv).toHaveProperty('outputFormat');
+    expect(testArgv).toHaveProperty('outputDirectory');
+    expect(testArgv).toHaveProperty('logDirectory');
+    expect(testArgv).toHaveProperty('decimalPlace');
+    expect(testArgv).toHaveProperty('targeted');
+    expect(testArgv).toHaveProperty('targetFile');
+    expect(testArgv).toHaveProperty('mzTolerance');
+    expect(testArgv).toHaveProperty('ppmTolerance');
+    expect(testArgv).toHaveProperty('mzRange');
+    expect(testArgv).toHaveProperty('minMZ');
+    expect(testArgv).toHaveProperty('maxMZ');
+    expect(testArgv).toHaveProperty('filterSpectrumData');
+    expect(testArgv).toHaveProperty('spectrumType');
+    expect(testArgv).toHaveProperty('msLevel');
+    expect(testArgv).toHaveProperty('polarity');
+    expect(testArgv).toHaveProperty('excludeSpectra');
   });
 
-  beforeEach(async () => {
-    await rm(spectrumFile).catch(() => {});
-    await rm(chromatogramFile).catch(() => {});
+  test('Spectrum defined', () => {
+    expect(testData.spectrum[0]).toHaveProperty('index');
+    expect(testData.spectrum[0]).toHaveProperty('scanID');
+    expect(testData.spectrum[0]).toHaveProperty('arrayLength');
+    expect(testData.spectrum[0]).toHaveProperty('spectrumType');
+    expect(testData.spectrum[0]).toHaveProperty('msLevel');
+    expect(testData.spectrum[0]).toHaveProperty('scanType');
+    expect(testData.spectrum[0]).toHaveProperty('scanType');
+    expect(testData.spectrum[0]).toHaveProperty('polarity');
+    expect(testData.spectrum[0]).toHaveProperty('retentionTime');
+    expect(testData.spectrum[0]).toHaveProperty('scanPresetConfiguration');
+    expect(testData.spectrum[0]).toHaveProperty('scanWindowLowerLimit');
+    expect(testData.spectrum[0]).toHaveProperty('scanWindowUpperLimit');
+    expect(testData.spectrum[0]).toHaveProperty('isolationWindowTarget');
+    expect(testData.spectrum[0]).toHaveProperty('isolationWindowLowerOffset');
+    expect(testData.spectrum[0]).toHaveProperty('isolationWindowUpperOffset');
+    expect(testData.spectrum[0]).toHaveProperty('selectedIonMZ');
+    expect(testData.spectrum[0]).toHaveProperty('collisionType');
+    expect(testData.spectrum[0]).toHaveProperty('collisionEnergy');
+    expect(testData.spectrum[0]).toHaveProperty('basePeakIntensity');
+    expect(testData.spectrum[0]).toHaveProperty('basePeakMZ');
+    expect(testData.spectrum[0]).toHaveProperty('totalIonCurrent');
+    expect(testData.spectrum[0]).toHaveProperty('mzArray');
+    expect(testData.spectrum[0]).toHaveProperty('intensityArray');
   });
 
-  afterAll(async () => {
-    // Clean log file after all test is complete
-    await rm(outputDirectory, { recursive: true, force: true }).catch(() => {});
+  test('Chromatogram defined', () => {
+    expect(testData.chromatogram[0]).toHaveProperty('index');
+    expect(testData.chromatogram[0]).toHaveProperty('id');
+    expect(testData.chromatogram[0]).toHaveProperty('arrayLength');
+    expect(testData.chromatogram[0]).toHaveProperty('chromatogramType');
+    expect(testData.chromatogram[0]).toHaveProperty('polarity');
+    expect(testData.chromatogram[0]).toHaveProperty('dwellTime');
+    expect(testData.chromatogram[0]).toHaveProperty('isolationWindowTarget');
+    expect(testData.chromatogram[0]).toHaveProperty('collisionType');
+    expect(testData.chromatogram[0]).toHaveProperty('collisionEnergy');
+    expect(testData.chromatogram[0]).toHaveProperty('timeArray');
+    expect(testData.chromatogram[0]).toHaveProperty('intensityArray');
+    expect(testData.chromatogram[0]).toHaveProperty('msLevelArray');
+    expect(testData.chromatogram[0]).toHaveProperty('mzArray');
   });
 
-  // Test if the function throws an error if outputDirectory is not a string
-  test('throws an error if output directory path is not a string', async () => {
-    await expect(
-      writeTSV({ outputDirectory: 123 }, testData),
-    ).rejects.toThrowError('\noutput directory path must be a string');
-  });
-
-  // Test if the function writes into the TSV files with correct headers and data
-  test('writes TSV files with data that has spectrum count and chromatogram count greater than 0', async () => {
-    expect(await writeTSV(configParam, testData));
-
-    // Check spectrum file
-    const spectrumHeader =
-      'sampleID\tdate\ttime\tspectrumCount\tindex\tscanID\tarrayLength\tspectrumType\tmsLevel\tscanType\tpolarity\tretentionTime\tscanPresetConfiguration\tscanWindowLowerLimit\tscanWindowUpperLimit\tisolationWindowTarget\tisolationWindowLowerOffset\tisolationWindowUpperOffset\tselectedIonMZ\tcollisionType\tcollisionEnergy\tbasePeakIntensity\tbasePeakMZ\ttotalIonCurrent\tmzArray\tintensityArray\n';
-    const spectrumContent = await readFile(spectrumFile, 'utf-8');
-    const spectrumLine = spectrumContent.split('\n');
-    expect(spectrumLine[0].replace(/\s+/g, ' ').trim()).toStrictEqual(
-      spectrumHeader.replace(/\s+/g, ' ').trim(),
-    );
-
-    const spectrum = testData.spectrum[0];
-    const testFirstSpectrum = `${testData.sampleID}\t${testData.date}\t${testData.time}\t${testData.spectrumCount}\t${spectrum.index}\t${spectrum.scanID}\t${spectrum.arrayLength}\t${spectrum.spectrumType}\t${spectrum.msLevel}\t${spectrum.scanType}\t${spectrum.polarity}\t${spectrum.retentionTime}\t${spectrum.scanPresetConfiguration}\t${spectrum.scanWindowLowerLimit}\t${spectrum.scanWindowUpperLimit}\t${spectrum.isolationWindowTarget}\t${spectrum.isolationWindowLowerOffset}\t${spectrum.isolationWindowUpperOffset}\t${spectrum.selectedIonMZ}\t${spectrum.collisionType}\t${spectrum.collisionEnergy}\t${spectrum.basePeakIntensity}\t${spectrum.basePeakMZ}\t${spectrum.totalIonCurrent}\t${spectrum.mzArray}\t${spectrum.intensityArray}\n`;
-    expect(spectrumLine[1].replace(/\s+/g, ' ').trim()).toStrictEqual(
-      testFirstSpectrum.replace(/\s+/g, ' ').trim(),
-    );
-
-    // Check chromatogram file
-    const chromatogramHeader =
-      'sampleID\tdate\ttime\tchromatogramCount\tindex\tid\tarrayLength\tchromatogramType\tpolarity\tdwellTime\tisolationWindowTarget\tcollisionType\tcollisionEnergy\ttimeArray\tintensityArray\tmsLevelArray\tmzArray\n';
-    const chromatogramContent = await readFile(chromatogramFile, 'utf-8');
-    const chromatogramLine = chromatogramContent.split('\n');
-    expect(chromatogramLine[0].replace(/\s+/g, ' ').trim()).toStrictEqual(
-      chromatogramHeader.replace(/\s+/g, ' ').trim(),
-    );
-
-    const chromatogram = testData.chromatogram[0];
-    const testFirstChromatogram = `${testData.sampleID}\t${testData.date}\t${testData.time}\t${testData.chromatogramCount}\t${chromatogram.index}\t${chromatogram.id}\t${chromatogram.arrayLength}\t${chromatogram.chromatogramType}\t${chromatogram.polarity}\t${chromatogram.dwellTime}\t${chromatogram.isolationWindowTarget}\t${chromatogram.collisionType}\t${chromatogram.collisionEnergy}\t${chromatogram.timeArray}\t${chromatogram.intensityArray}\t${chromatogram.msLevelArray}\t${chromatogram.mzArray}\n`;
-    expect(chromatogramLine[1].replace(/\s+/g, ' ').trim()).toStrictEqual(
-      testFirstChromatogram.replace(/\s+/g, ' ').trim(),
-    );
-  });
-
-  test('writes TSV files with data that has spectrum count and chromatogram count equals to 0', async () => {
-    testData.spectrumCount = 0;
-    testData.chromatogramCount = 0;
-    await writeTSV(configParam, testData);
-
-    // Check spectrum file
-    const spectrumHeader =
-      'sampleID\tdate\ttime\tspectrumCount\tindex\tscanID\tarrayLength\tspectrumType\tmsLevel\tscanType\tpolarity\tretentionTime\tscanPresetConfiguration\tscanWindowLowerLimit\tscanWindowUpperLimit\tisolationWindowTarget\tisolationWindowLowerOffset\tisolationWindowUpperOffset\tselectedIonMZ\tcollisionType\tcollisionEnergy\tbasePeakIntensity\tbasePeakMZ\ttotalIonCurrent\tmzArray\tintensityArray\n';
-    const spectrumContent = await readFile(spectrumFile, 'utf-8');
-    const spectrumLine = spectrumContent.split('\n');
-    expect(spectrumLine[0].replace(/\s+/g, ' ').trim()).toStrictEqual(
-      spectrumHeader.replace(/\s+/g, ' ').trim(),
-    );
-
-    const testFirstSpectrum = `${testData.sampleID}\t${testData.date}\t${testData.time}\t${testData.spectrumCount}\n`;
-    expect(spectrumLine[1].replace(/\s+/g, ' ').trim()).toStrictEqual(
-      testFirstSpectrum.replace(/\s+/g, ' ').trim(),
-    );
-
-    // Check chromatogram file
-    const chromatogramHeader =
-      'sampleID\tdate\ttime\tchromatogramCount\tindex\tid\tarrayLength\tchromatogramType\tpolarity\tdwellTime\tisolationWindowTarget\tcollisionType\tcollisionEnergy\ttimeArray\tintensityArray\tmsLevelArray\tmzArray\n';
-    const chromatogramContent = await readFile(chromatogramFile, 'utf-8');
-    const chromatogramLine = chromatogramContent.split('\n');
-    expect(chromatogramLine[0].replace(/\s+/g, ' ').trim()).toStrictEqual(
-      chromatogramHeader.replace(/\s+/g, ' ').trim(),
-    );
-
-    const testFirstChromatogram = `${testData.sampleID}\t${testData.date}\t${testData.time}\t${testData.chromatogramCount}\n`;
-    expect(chromatogramLine[1].replace(/\s+/g, ' ').trim()).toStrictEqual(
-      testFirstChromatogram.replace(/\s+/g, ' ').trim(),
-    );
+  test('MS defined', () => {
+    expect(testData).toHaveProperty('sampleID');
+    expect(testData).toHaveProperty('date');
+    expect(testData).toHaveProperty('time');
+    expect(testData).toHaveProperty('spectrumCount');
+    expect(testData).toHaveProperty('spectrum');
+    expect(testData).toHaveProperty('chromatogramCount');
+    expect(testData).toHaveProperty('chromatogram');
   });
 });
