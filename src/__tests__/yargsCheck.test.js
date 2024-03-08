@@ -32,7 +32,7 @@ describe('yargs Check', () => {
       homedir(),
       '/exfilms/outputFormat/inputDirectoryName/',
     ),
-    logDirectory: '/tmp/logDirectory/',
+    logDirectory: './tmp/logDirectory/',
     decimalPlace: NaN,
     targeted: false,
     targetFile: undefined,
@@ -48,9 +48,9 @@ describe('yargs Check', () => {
     excludeSpectra: false,
   };
 
-  const testDirectory = join(homedir(), '/tmp/inputDirectory/');
-  const file1 = join(testDirectory, 'file1.mzML');
-  const file2 = join(testDirectory, 'file2.json');
+  const testDirectory = join(homedir(), './tmp/yargsCheck/');
+  const testFile1 = join(testDirectory, 'testFile1.mzML');
+  const testFile2 = join(testDirectory, 'testFile2.json');
 
   // Setting up test environment before tests
   beforeAll(() => {
@@ -58,8 +58,8 @@ describe('yargs Check', () => {
     if (!existsSync(testDirectory)) {
       mkdirSync(testDirectory, { recursive: true });
     }
-    writeFileSync(file1, 'Test file 1');
-    writeFileSync(file2, 'Test file 2');
+    writeFileSync(testFile1, 'Test file 1');
+    writeFileSync(testFile2, 'Test file 2');
   });
 
   // Tests
@@ -176,8 +176,8 @@ describe('yargs Check', () => {
   });
 
   test('execute setDefaults with defined values in argv', async () => {
-    testArgv.fileList = ['file1.mzML'];
-    testArgv.outputDirectory = '/tmp/outputDirectory/';
+    testArgv.fileList = ['testFile1.mzML'];
+    testArgv.outputDirectory = './tmp/outputDirectory/';
     testArgv.targeted = true;
     testArgv.targetFile = '/path/to/target/file.tsv';
     testArgv.mzRange = true;
@@ -189,9 +189,9 @@ describe('yargs Check', () => {
   test('return successfully', async () => {
     const configParam = await yargsCheck(testArgv);
     expect(configParam.inputDirectory).toStrictEqual(testArgv.inputDirectory);
-    expect(configParam.fileList).toStrictEqual(['file1.mzML']);
+    expect(configParam.fileList).toStrictEqual(testArgv.fileList);
     expect(configParam.outputFormat).toStrictEqual(testArgv.outputFormat[0]);
-    expect(configParam.outputDirectory).toStrictEqual('/tmp/outputDirectory/');
+    expect(configParam.outputDirectory).toStrictEqual(testArgv.outputDirectory);
     expect(configParam.logDirectory).toStrictEqual(testArgv.logDirectory);
     expect(configParam.decimalPlace).toStrictEqual(testArgv.decimalPlace);
     expect(configParam.targeted).toStrictEqual(testArgv.targeted);
@@ -211,6 +211,6 @@ describe('yargs Check', () => {
   // Clean up test environment after tests
   afterAll(() => {
     // Remove all tmp folder and files created
-    rmSync(join(homedir(), '/tmp/'), { recursive: true });
+    rmSync(testArgv.inputDirectory, { recursive: true });
   });
 });

@@ -1,5 +1,4 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
-import { homedir } from 'os';
 import { join } from 'path';
 
 import { describe, test, expect, beforeAll, afterAll } from 'vitest';
@@ -13,10 +12,10 @@ import { listMZML } from '../listMZML.js';
  */
 describe('listMZML Check', () => {
   // Dummy data
-  const testDirectory = join(homedir(), '/tmp/testDirectory/');
-  const file1 = join(testDirectory, 'file1.mzML');
-  const file2 = join(testDirectory, 'file3.json');
-  const file3 = join(testDirectory, '._file1.mzML');
+  const testDirectory = './tmp/listMZML/';
+  const testFile1 = join(testDirectory, 'testFile1.mzML');
+  const testFile2 = join(testDirectory, 'testFile2.json');
+  const testFile3 = join(testDirectory, '._testFile3.mzML');
 
   // Setting up test environment before tests
   beforeAll(() => {
@@ -24,19 +23,19 @@ describe('listMZML Check', () => {
     if (!existsSync(testDirectory)) {
       mkdirSync(testDirectory, { recursive: true });
     }
-    writeFileSync(file1, 'Test file 1');
-    writeFileSync(file2, 'Test file 2');
-    writeFileSync(file3, 'Test file 3');
+    writeFileSync(testFile1, 'Test file 1');
+    writeFileSync(testFile2, 'Test file 2');
+    writeFileSync(testFile3, 'Test file 3');
   });
 
   // Tests
   test('return list of mzML files only', async () => {
-    expect(await listMZML(testDirectory)).toStrictEqual(['file1.mzML']);
+    expect(await listMZML(testDirectory)).toStrictEqual(['testFile1.mzML']);
   });
 
   // Clean up test environment after tests
   afterAll(() => {
     // Remove all tmp folder and files created
-    rmSync(join(homedir(), '/tmp/'), { recursive: true });
+    rmSync(testDirectory, { recursive: true });
   });
 });

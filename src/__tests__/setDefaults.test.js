@@ -24,14 +24,14 @@ describe('setDefaults Check', () => {
    */
   const testArgv = {
     interactive: false,
-    inputDirectory: join(homedir(), '/tmp/inputDirectory/'),
+    inputDirectory: './tmp/setDefaults/',
     fileList: ['*'],
     outputFormat: ['JSON'],
     outputDirectory: join(
       homedir(),
       '/exfilms/outputFormat/inputDirectoryName/',
     ),
-    logDirectory: '/tmp/logDirectory/',
+    logDirectory: './tmp/logDirectory/',
     decimalPlace: 4,
     targeted: false,
     targetFile: '/path/to/target/file.tsv',
@@ -46,8 +46,8 @@ describe('setDefaults Check', () => {
     polarity: ['positive', 'negative'],
     excludeSpectra: false,
   };
-  const file1 = join(testArgv.inputDirectory, 'file1.mzML');
-  const file2 = join(testArgv.inputDirectory, 'file2.mzML');
+  const testFile1 = join(testArgv.inputDirectory, 'testFile1.mzML');
+  const testFile2 = join(testArgv.inputDirectory, 'testFile2.mzML');
 
   // Setting up test environment before tests
   beforeAll(() => {
@@ -55,8 +55,8 @@ describe('setDefaults Check', () => {
     if (!existsSync(testArgv.inputDirectory)) {
       mkdirSync(testArgv.inputDirectory, { recursive: true });
     }
-    writeFileSync(file1, 'Test file 1');
-    writeFileSync(file2, 'Test file 1');
+    writeFileSync(testFile1, 'Test file 1');
+    writeFileSync(testFile2, 'Test file 2');
   });
 
   // Tests
@@ -64,7 +64,10 @@ describe('setDefaults Check', () => {
     const configParam = await setDefaults(testArgv);
 
     expect(configParam.inputDirectory).toStrictEqual(testArgv.inputDirectory);
-    expect(configParam.fileList).toStrictEqual(['file1.mzML', 'file2.mzML']);
+    expect(configParam.fileList).toStrictEqual([
+      'testFile1.mzML',
+      'testFile2.mzML',
+    ]);
     expect(configParam.outputFormat).toStrictEqual(testArgv.outputFormat[0]);
     expect(configParam.outputDirectory).toStrictEqual(
       join(
@@ -84,14 +87,14 @@ describe('setDefaults Check', () => {
   });
 
   test('configuration with defined values', async () => {
-    testArgv.fileList = ['file1.mzML'];
-    testArgv.outputDirectory = '/tmp/outputDirectory';
+    testArgv.fileList = ['testFile1.mzML'];
+    testArgv.outputDirectory = './tmp/outputDirectory';
     testArgv.targeted = true;
     testArgv.mzRange = true;
     testArgv.filterSpectrumData = true;
     const configParam = await setDefaults(testArgv);
 
-    expect(configParam.fileList).toStrictEqual(['file1.mzML']);
+    expect(configParam.fileList).toStrictEqual(testArgv.fileList);
     expect(configParam.outputDirectory).toStrictEqual(testArgv.outputDirectory);
     expect(configParam.targetFile).toStrictEqual(testArgv.targetFile);
     expect(configParam.mzTolerance).toStrictEqual(testArgv.mzTolerance);
@@ -107,6 +110,6 @@ describe('setDefaults Check', () => {
   // Clean up test environment after tests
   afterAll(() => {
     // Remove all tmp folder and files created
-    rmSync(join(homedir(), '/tmp/'), { recursive: true });
+    rmSync(testArgv.inputDirectory, { recursive: true });
   });
 });
