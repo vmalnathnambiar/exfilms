@@ -18,14 +18,14 @@ describe('typedef Check', () => {
   /**@type {Yargs} */
   const testArgv = {
     interactive: false,
-    inputDirectory: '/tmp/input/directory/',
+    inputDirectory: './tmp/inputDirectory/',
     fileList: ['*'],
     outputFormat: ['JSON'],
-    outputDirectory: '/tmp/output/directory/',
-    logDirectory: '/tmp/log/directory/',
+    outputDirectory: './tmp/outputDirectory/',
+    logDirectory: './tmp/logDirectory/',
     decimalPlace: 4,
     targeted: true,
-    targetFile: '/path/to/file.tsv',
+    targetFile: './tmp/targetFile.tsv',
     mzTolerance: 0.005,
     ppmTolerance: 5,
     mzRange: true,

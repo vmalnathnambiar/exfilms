@@ -48,7 +48,7 @@ describe('yargs Check', () => {
     excludeSpectra: false,
   };
 
-  const testDirectory = join(homedir(), './tmp/yargsCheck/');
+  const testDirectory = './tmp/yargsCheck/';
   const testFile1 = join(testDirectory, 'testFile1.mzML');
   const testFile2 = join(testDirectory, 'testFile2.json');
 
@@ -88,7 +88,7 @@ describe('yargs Check', () => {
   test('throw an error if either or all --targetFile, --mzTolerance and --ppmTolerance are defined (not default values) without -t, --targeted', async () => {
     // targetFile
     testArgv.targeted = false;
-    testArgv.targetFile = '/path/to/file.tsv';
+    testArgv.targetFile = './tmp/targetFile.tsv';
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-t (or --targeted) required to specify --targetFile, --mzTolerance and --ppmTolerance',
     );
@@ -179,7 +179,7 @@ describe('yargs Check', () => {
     testArgv.fileList = ['testFile1.mzML'];
     testArgv.outputDirectory = './tmp/outputDirectory/';
     testArgv.targeted = true;
-    testArgv.targetFile = '/path/to/target/file.tsv';
+    testArgv.targetFile = './tmp/targetFile.tsv';
     testArgv.mzRange = true;
     testArgv.filterSpectrumData = true;
     expect(await setDefaults(testArgv));

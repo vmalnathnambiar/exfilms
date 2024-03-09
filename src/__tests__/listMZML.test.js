@@ -33,7 +33,7 @@ describe('listMZML Check', () => {
     expect(await listMZML(testDirectory)).toStrictEqual(['testFile1.mzML']);
   });
 
-  // Clean up test environment after tests
+  // Clean up tmp environment after tests
   afterAll(() => {
     // Remove all tmp folder and files created
     rmSync(testDirectory, { recursive: true });

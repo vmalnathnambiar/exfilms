@@ -34,7 +34,7 @@ describe('setDefaults Check', () => {
     logDirectory: './tmp/logDirectory/',
     decimalPlace: 4,
     targeted: false,
-    targetFile: '/path/to/target/file.tsv',
+    targetFile: './tmp/targetFile.tsv',
     mzTolerance: 0.005,
     ppmTolerance: 5,
     mzRange: false,
