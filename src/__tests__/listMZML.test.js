@@ -7,10 +7,10 @@ import { listMZML } from '../listMZML.js';
 
 /**
  * To test listMZML function
- * Input: directory path (string)
- * Output: An array list of file names (String[])
+ * Input: directory (string)
+ * Output: An array list of mzML file names (String[])
  */
-describe('listMZML Check', () => {
+describe('listMZML', () => {
   // Dummy data
   const testDirectory = './tmp/listMZML/';
   const testFile1 = join(testDirectory, 'testFile1.mzML');
@@ -19,7 +19,6 @@ describe('listMZML Check', () => {
 
   // Setting up test environment before tests
   beforeAll(() => {
-    //Create tmp folder and input files for assess
     if (!existsSync(testDirectory)) {
       mkdirSync(testDirectory, { recursive: true });
     }
@@ -29,13 +28,12 @@ describe('listMZML Check', () => {
   });
 
   // Tests
-  test('return list of mzML files only', async () => {
+  test('return an array of mzML file names only from within a directory', async () => {
     expect(await listMZML(testDirectory)).toStrictEqual(['testFile1.mzML']);
   });
 
   // Clean up tmp environment after tests
   afterAll(() => {
-    // Remove all tmp folder and files created
     rmSync(testDirectory, { recursive: true });
   });
 });

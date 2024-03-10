@@ -2,7 +2,7 @@ import { appendFile } from 'fs/promises';
 import { join } from 'path';
 
 /**
- * Write log data into text file in log directory.
+ * Write log data into log.txt in log directory.
  * @param {Object} configParam Configuration parameters passed via the command line interface.
  * @param {string} data The log message to be written in the log file
  * @returns {Promise<void>} A promise that resolves when the writing operation is completed

@@ -9,23 +9,19 @@ import { join } from 'path';
  * @param {Object} configParam Configuration parameters passed via the command line interface.
  * @param {MS} data MS data extracted from parsed mzML file.
  * @returns {Promise<void>} A Promise that resolves when the writing to JSON file is complete.
- * @throws {?Error} Throws error if writing to JSON process encounters issues.
  */
 export async function writeJSON(configParam, data) {
-  // Check input parameters
-  if (typeof configParam.outputDirectory !== 'string') {
-    throw new Error('\noutput directory path must be a string');
-  }
-
   const jsonFile = join(configParam.outputDirectory, `${data.sampleID}.json`);
 
+  // File metadata
   writeFileSync(jsonFile, '{\n');
   appendFileSync(jsonFile, `\t"sampleID": "${data.sampleID}",\n`);
   appendFileSync(jsonFile, `\t"date": "${data.date}",\n`);
   appendFileSync(jsonFile, `\t"time": "${data.time}",\n`);
+
+  // Spectrum data
   appendFileSync(jsonFile, `\t"spectrumCount": ${data.spectrumCount},\n`);
   appendFileSync(jsonFile, '\t"spectrum": [\n');
-
   if (data.spectrumCount !== 0) {
     for (let i = 0; i < data.spectrumCount; i++) {
       const spectrum = data.spectrum[i];
@@ -59,12 +55,13 @@ export async function writeJSON(configParam, data) {
   }
 
   appendFileSync(jsonFile, '\t],\n');
+
+  // Chromatogram data
   appendFileSync(
     jsonFile,
     `\t"chromatogramCount": ${data.chromatogramCount},\n`,
   );
   appendFileSync(jsonFile, '\t"chromatogram": [\n');
-
   if (data.chromatogramCount !== 0) {
     for (let i = 0; i < data.chromatogramCount; i++) {
       const chromatogram = data.chromatogram[i];
@@ -100,7 +97,6 @@ export async function writeJSON(configParam, data) {
       );
     }
   }
-
   appendFileSync(jsonFile, '\t]\n');
   appendFileSync(jsonFile, '}');
 }

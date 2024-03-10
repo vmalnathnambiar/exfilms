@@ -12,7 +12,7 @@ import { join } from 'path';
  * @returns {Promise<void>} A Promise that resolves when the writing to TSV files are complete.
  */
 export async function writeTSV(configParam, data) {
-  // Path to spectrum and chromatogram output path
+  // Spectrum and chromatogram output path
   const spectrumFile = join(
     configParam.outputDirectory,
     `spectrum/${data.sampleID}.tsv`,
@@ -22,7 +22,7 @@ export async function writeTSV(configParam, data) {
     `chromatogram/${data.sampleID}.tsv`,
   );
 
-  // Write header into both spectrum and chromatogram files
+  // Header for both spectrum and chromatogram data
   const spectrumHeader =
     'sampleID\tdate\ttime\tspectrumCount\tindex\tscanID\tarrayLength\tspectrumType\tmsLevel\tscanType\tpolarity\tretentionTime\tscanPresetConfiguration\tscanWindowLowerLimit\tscanWindowUpperLimit\tisolationWindowTarget\tisolationWindowLowerOffset\tisolationWindowUpperOffset\tselectedIonMZ\tcollisionType\tcollisionEnergy\tbasePeakIntensity\tbasePeakMZ\ttotalIonCurrent\tmzArray\tintensityArray\n';
   const chromatogramHeader =

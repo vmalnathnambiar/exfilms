@@ -9,11 +9,12 @@ import { describe, test, expect } from 'vitest';
 
 /**
  * To test typedef properties
+ * - Yargs
  * - Spectrum
  * - Chromatogram
  * - MS
  */
-describe('typedef Check', () => {
+describe('typedef', () => {
   // Dummy data
   /**@type {Yargs} */
   const testArgv = {

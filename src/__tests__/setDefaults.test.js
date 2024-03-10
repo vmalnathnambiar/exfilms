@@ -17,24 +17,24 @@ import { setDefaults } from '../setDefaults.js';
  * Input: argv (Yargs)
  * Output: configParam (Object?)
  */
-describe('setDefaults Check', () => {
+describe('setDefaults', () => {
   // Dummy data
   /**
    * @type {Yargs}
    */
   const testArgv = {
     interactive: false,
-    inputDirectory: './tmp/setDefaults/',
+    inputDirectory: './tmp/setDefaults/inputDirectory/',
     fileList: ['*'],
     outputFormat: ['JSON'],
     outputDirectory: join(
       homedir(),
       '/exfilms/outputFormat/inputDirectoryName/',
     ),
-    logDirectory: './tmp/logDirectory/',
-    decimalPlace: 4,
+    logDirectory: './tmp/setDefaults/logDirectory/',
+    decimalPlace: NaN,
     targeted: false,
-    targetFile: './tmp/targetFile.tsv',
+    targetFile: './tmp/setDefaults/targetFile.tsv',
     mzTolerance: 0.005,
     ppmTolerance: 5,
     mzRange: false,
@@ -51,7 +51,6 @@ describe('setDefaults Check', () => {
 
   // Setting up test environment before tests
   beforeAll(() => {
-    //Create tmp folder and input files for assess
     if (!existsSync(testArgv.inputDirectory)) {
       mkdirSync(testArgv.inputDirectory, { recursive: true });
     }
@@ -60,8 +59,9 @@ describe('setDefaults Check', () => {
   });
 
   // Tests
-  test('configuration with default values', async () => {
-    const configParam = await setDefaults(testArgv);
+  test('return configParam successfully', async () => {
+    // With default values
+    let configParam = await setDefaults(testArgv);
 
     expect(configParam.inputDirectory).toStrictEqual(testArgv.inputDirectory);
     expect(configParam.fileList).toStrictEqual([
@@ -84,15 +84,14 @@ describe('setDefaults Check', () => {
     expect(configParam.filterSpectrumData).toStrictEqual(
       testArgv.filterSpectrumData,
     );
-  });
 
-  test('configuration with defined values', async () => {
+    // With defined values
     testArgv.fileList = ['testFile1.mzML'];
-    testArgv.outputDirectory = './tmp/outputDirectory';
+    testArgv.outputDirectory = './tmp/setDefaults/outputDirectory/';
     testArgv.targeted = true;
     testArgv.mzRange = true;
     testArgv.filterSpectrumData = true;
-    const configParam = await setDefaults(testArgv);
+    configParam = await setDefaults(testArgv);
 
     expect(configParam.fileList).toStrictEqual(testArgv.fileList);
     expect(configParam.outputDirectory).toStrictEqual(testArgv.outputDirectory);
@@ -109,7 +108,6 @@ describe('setDefaults Check', () => {
 
   // Clean up test environment after tests
   afterAll(() => {
-    // Remove all tmp folder and files created
-    rmSync(testArgv.inputDirectory, { recursive: true });
+    rmSync('./tmp/setDefaults/', { recursive: true });
   });
 });

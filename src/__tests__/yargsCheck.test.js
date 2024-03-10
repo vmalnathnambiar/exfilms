@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 /**
  * @typedef {import('../../typedef.mjs').Yargs} Yargs
  */
@@ -10,15 +8,14 @@ import { join } from 'path';
 
 import { describe, test, expect, beforeAll, afterAll } from 'vitest';
 
-import { setDefaults } from '../setDefaults.js';
 import { yargsCheck } from '../yargsCheck.js';
 
 /**
  * To test yargsCheck function
  * Input: argv (Yargs)
- * Output:
+ * Output: configParam (Object?)
  */
-describe('yargs Check', () => {
+describe('yargsCheck', () => {
   // Dummy data
   /**
    * @type {Yargs}
@@ -32,7 +29,7 @@ describe('yargs Check', () => {
       homedir(),
       '/exfilms/outputFormat/inputDirectoryName/',
     ),
-    logDirectory: './tmp/logDirectory/',
+    logDirectory: './tmp/yargsCheck/logDirectory/',
     decimalPlace: NaN,
     targeted: false,
     targetFile: undefined,
@@ -48,13 +45,12 @@ describe('yargs Check', () => {
     excludeSpectra: false,
   };
 
-  const testDirectory = './tmp/yargsCheck/';
+  const testDirectory = './tmp/yargsCheck/inputDirectory/';
   const testFile1 = join(testDirectory, 'testFile1.mzML');
   const testFile2 = join(testDirectory, 'testFile2.json');
 
   // Setting up test environment before tests
   beforeAll(() => {
-    //Create tmp folder and input files for assess
     if (!existsSync(testDirectory)) {
       mkdirSync(testDirectory, { recursive: true });
     }
@@ -63,30 +59,27 @@ describe('yargs Check', () => {
   });
 
   // Tests
-  test('throw an error if -i, --inputDirectory is not defined', async () => {
+  test('throw error if yargs command line arguments not defined correctly', async () => {
+    // If -i, --inputDirectory is not defined
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-i (or --inputDirectory) "/path/to/input/directory/" required',
     );
-  });
 
-  test('throw an error if both -t, --targeted and -r, --mzRange are defined (not default values)', async () => {
+    // If both -t, --targeted and -r, --mzRange is defined
     testArgv.inputDirectory = testDirectory;
     testArgv.targeted = true;
     testArgv.mzRange = true;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
-      '\nUse one of the following options for m/z value range filtering:\n-t (or --targeted) --targetFile "/local/path/or/published/to/web/URL/to/target/tsv/file" --mzTolerance <number> --ppmTolerance <number>\n-r (or --mzRange) --minMZ <number> --maxMZ <number',
+      '\nUse one of the following options for spectra filtering:\n-t (or --targeted) --targetFile "/local/path/or/published/to/web/URL/to/target/tsv/file" --mzTolerance <number> --ppmTolerance <number>\n-r (or --mzRange) --minMZ <number> --maxMZ <number',
     );
     testArgv.mzRange = false;
-  });
 
-  test('throw an error if -t, --targeted is defined but --targetFile is not defined', async () => {
+    // If -t, --targeted is defined but --targetFile is not defined
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n--targetFile "/path/to/target/file.tsv" required',
     );
-  });
 
-  test('throw an error if either or all --targetFile, --mzTolerance and --ppmTolerance are defined (not default values) without -t, --targeted', async () => {
-    // targetFile
+    // If either or all --targetFile, --mzTolerance and --ppmTolerance are defined (not default values) without -t, --targeted
     testArgv.targeted = false;
     testArgv.targetFile = './tmp/targetFile.tsv';
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
@@ -94,57 +87,49 @@ describe('yargs Check', () => {
     );
     testArgv.targetFile = undefined;
 
-    // mzTolerance
     testArgv.mzTolerance = 3;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-t (or --targeted) required to specify --targetFile, --mzTolerance and --ppmTolerance',
     );
     testArgv.mzTolerance = 0.005;
 
-    // ppmTolerance
     testArgv.ppmTolerance = 3;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-t (or --targeted) required to specify --targetFile, --mzTolerance and --ppmTolerance',
     );
     testArgv.ppmTolerance = 5;
-  });
 
-  test('throw an error if either or all --minMZ and --maxMZ are defined (not default values) without -r, --mzRange', async () => {
-    // minMZ
+    // If either or all --minMZ and --maxMZ are defined without -r, --mzRange
     testArgv.minMZ = 500;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '-r (or --mzRange) required to specify --minMZ and --maxMZ',
     );
     testArgv.minMZ = 0;
 
-    // maxMZ
     testArgv.maxMZ = 500;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '-r (or --mzRange) required to specify --minMZ and --maxMZ',
     );
     testArgv.maxMZ = NaN;
-  });
 
-  test('throw an error if --maxMZ is defined is a number and is smaller than --minMZ', async () => {
+    // If --maxMZ value defined is a number and is smaller than --minMZ value
     testArgv.mzRange = true;
     testArgv.minMZ = 500;
     testArgv.maxMZ = 10;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\nmaxMZ value needs to be greater than minMZ value',
     );
+    testArgv.mzRange = false;
     testArgv.minMZ = 0;
     testArgv.maxMZ = NaN;
-  });
 
-  test('throw an error if either or all --spectrumType, --msLevel, --polarity and --excludeSpectra are defined (not default values) without -s, --filterSpectrumData', async () => {
-    // spectrumType
+    // If either or all --spectrumType, --msLevel, --polarity and --excludeSpectra are defined (not default values) without -s, --filterSpectrumData
     testArgv.spectrumType = ['profile'];
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
     );
     testArgv.spectrumType = ['profile', 'centroid'];
 
-    // msLevel
     testArgv.msLevel = [1];
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
@@ -156,14 +141,12 @@ describe('yargs Check', () => {
     );
     testArgv.msLevel = [1, 2];
 
-    // polarity
     testArgv.polarity = ['positive'];
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
     );
     testArgv.polarity = ['positive', 'negative'];
 
-    // excludeSpectra
     testArgv.excludeSpectra = true;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
@@ -171,46 +154,61 @@ describe('yargs Check', () => {
     testArgv.excludeSpectra = false;
   });
 
-  test('execute setDefaults with default values in argv', async () => {
-    expect(await setDefaults(testArgv));
-  });
+  test('return configParam successfully', async () => {
+    // Wtih default values
+    let configParam = await yargsCheck(testArgv);
 
-  test('execute setDefaults with defined values in argv', async () => {
+    expect(configParam).toHaveProperty('inputDirectory');
+    expect(configParam).toHaveProperty('fileList');
+    expect(configParam).toHaveProperty('outputFormat');
+    expect(configParam).toHaveProperty('outputDirectory');
+    expect(configParam).toHaveProperty('logDirectory');
+    expect(configParam).toHaveProperty('decimalPlace');
+    expect(configParam).toHaveProperty('targeted');
+    expect(configParam).not.toHaveProperty('targetFile');
+    expect(configParam).not.toHaveProperty('mzTolerance');
+    expect(configParam).not.toHaveProperty('ppmTolerance');
+    expect(configParam).toHaveProperty('mzRange');
+    expect(configParam).not.toHaveProperty('minMZ');
+    expect(configParam).not.toHaveProperty('maxMZ');
+    expect(configParam).toHaveProperty('filterSpectrumData');
+    expect(configParam).not.toHaveProperty('spectrumType');
+    expect(configParam).not.toHaveProperty('msLevel');
+    expect(configParam).not.toHaveProperty('polarity');
+    expect(configParam).not.toHaveProperty('excludeSpectra');
+
+    // With defined values
     testArgv.fileList = ['testFile1.mzML'];
-    testArgv.outputDirectory = './tmp/outputDirectory/';
+    testArgv.outputDirectory = './tmp/yargsCheck/outputDirectory/';
     testArgv.targeted = true;
-    testArgv.targetFile = './tmp/targetFile.tsv';
-    testArgv.mzRange = true;
+    testArgv.targetFile = './tmp/yargsCheck/targetFile.tsv';
     testArgv.filterSpectrumData = true;
-    expect(await setDefaults(testArgv));
-    testArgv.mzRange = false;
-  });
+    configParam = await yargsCheck(testArgv);
 
-  test('return successfully', async () => {
-    const configParam = await yargsCheck(testArgv);
-    expect(configParam.inputDirectory).toStrictEqual(testArgv.inputDirectory);
-    expect(configParam.fileList).toStrictEqual(testArgv.fileList);
-    expect(configParam.outputFormat).toStrictEqual(testArgv.outputFormat[0]);
-    expect(configParam.outputDirectory).toStrictEqual(testArgv.outputDirectory);
-    expect(configParam.logDirectory).toStrictEqual(testArgv.logDirectory);
-    expect(configParam.decimalPlace).toStrictEqual(testArgv.decimalPlace);
-    expect(configParam.targeted).toStrictEqual(testArgv.targeted);
-    expect(configParam.targetFile).toStrictEqual(testArgv.targetFile);
-    expect(configParam.mzTolerance).toStrictEqual(testArgv.mzTolerance);
-    expect(configParam.ppmTolerance).toStrictEqual(testArgv.ppmTolerance);
-    expect(configParam.mzRange).toStrictEqual(testArgv.mzRange);
-    expect(configParam.filterSpectrumData).toStrictEqual(
-      testArgv.filterSpectrumData,
-    );
-    expect(configParam.spectrumType).toStrictEqual(testArgv.spectrumType);
-    expect(configParam.msLevel).toStrictEqual(testArgv.msLevel);
-    expect(configParam.polarity).toStrictEqual(testArgv.polarity);
-    expect(configParam.excludeSpectra).toStrictEqual(testArgv.excludeSpectra);
+    expect(configParam).toHaveProperty('targetFile');
+    expect(configParam).toHaveProperty('mzTolerance');
+    expect(configParam).toHaveProperty('ppmTolerance');
+    expect(configParam).not.toHaveProperty('minMZ');
+    expect(configParam).not.toHaveProperty('maxMZ');
+    expect(configParam).toHaveProperty('spectrumType');
+    expect(configParam).toHaveProperty('msLevel');
+    expect(configParam).toHaveProperty('polarity');
+    expect(configParam).toHaveProperty('excludeSpectra');
+
+    testArgv.targeted = false;
+    testArgv.targetFile = undefined;
+    testArgv.mzRange = true;
+    configParam = await yargsCheck(testArgv);
+
+    expect(configParam).not.toHaveProperty('targetFile');
+    expect(configParam).not.toHaveProperty('mzTolerance');
+    expect(configParam).not.toHaveProperty('ppmTolerance');
+    expect(configParam).toHaveProperty('minMZ');
+    expect(configParam).toHaveProperty('maxMZ');
   });
 
   // Clean up test environment after tests
   afterAll(() => {
-    // Remove all tmp folder and files created
-    rmSync(testArgv.inputDirectory, { recursive: true });
+    rmSync('./tmp/yargsCheck/', { recursive: true });
   });
 });

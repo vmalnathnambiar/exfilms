@@ -8,12 +8,12 @@ import { setDefaults } from './setDefaults.js';
  * Check if CLI arguments are used correctly
  * @param {Yargs} argv  Yargs command line arguments.
  * @returns {Promise<Object>} A promise that resolves when all checks have been completed and configParam object is created
- * @throws {?Error} Throws error if the target file parsing process encounters issues.
+ * @throws {?Error} Throws error if the yargsCheck process encounters issues.
  */
 export async function yargsCheck(argv) {
   let configParam = {};
 
-  // Check command line arguments
+  // Check yargs command line arguments
   if (!argv.inputDirectory) {
     // If -i, --inputDirectory is not defined
     throw new Error(
@@ -22,7 +22,7 @@ export async function yargsCheck(argv) {
   } else if (argv.targeted && argv.mzRange) {
     // If both -t, --targeted and -r, --mzRange is defined
     throw new Error(
-      '\nUse one of the following options for m/z value range filtering:\n-t (or --targeted) --targetFile "/local/path/or/published/to/web/URL/to/target/tsv/file" --mzTolerance <number> --ppmTolerance <number>\n-r (or --mzRange) --minMZ <number> --maxMZ <number>',
+      '\nUse one of the following options for spectra filtering:\n-t (or --targeted) --targetFile "/local/path/or/published/to/web/URL/to/target/tsv/file" --mzTolerance <number> --ppmTolerance <number>\n-r (or --mzRange) --minMZ <number> --maxMZ <number>',
     );
   } else if (argv.targeted && !argv.targetFile) {
     // If -t, --targeted is defined but --targetFile is not defined
