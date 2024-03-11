@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
@@ -28,6 +30,12 @@ describe('listMZML', () => {
   });
 
   // Tests
+  test('throw error: directory is not of type string', async () => {
+    await expect(listMZML(0)).rejects.toThrowError(
+      '\nlistMZML() - directory must be of type string',
+    );
+  });
+
   test('return an array of mzML file names only from input directory', async () => {
     expect(await listMZML(testDirectory)).toStrictEqual(['testFile1.mzML']);
   });

@@ -115,6 +115,14 @@ describe('setDefaults', () => {
     expect(configParam.excludeSpectra).toStrictEqual(testArgv.excludeSpectra);
   });
 
+  test('throw error: listMZML() invalid input type', async () => {
+    testArgv.inputDirectory = 0;
+    testArgv.fileList = ['*'];
+    await expect(setDefaults(testArgv)).rejects.toThrowError(
+      '\nlistMZML() - directory must be of type string',
+    );
+  });
+
   // Clean up test environment after tests
   afterAll(() => {
     rmSync('./tmp/setDefaults/', { recursive: true });

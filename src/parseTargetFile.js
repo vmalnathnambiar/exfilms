@@ -9,7 +9,7 @@ import { roundDecimalPlace } from './roundDecimalPlace.js';
  * Parse target file (tsv) from local file path or a published to web URL.
  * @param {Object} configParam Configuration parameters passed via the command line interface.
  * @returns {Promise<Object>} A promise that resolves with an object containing the m/z target list (array), and the minimum and maximum m/z values.
- * @throws {?Error} Throws error if the target file parsing process encounters issues.
+ * @throws {?Error} Throws error if the parseTargetFile process encounters issues.
  */
 export async function parseTargetFile(configParam) {
   const urlPattern = /^(?:http|https):\/\/[^ "]+&output=tsv$/;
@@ -34,12 +34,15 @@ export async function parseTargetFile(configParam) {
       }));
     }
 
-    // Throw error if data is undefined
+    // Throw error if data is undefined (targetFile do not match pattern check)
     if (!data) {
-      throw new Error('\nInvalid target file - Data undefined');
+      throw new Error(
+        '\nparseTargetFile() - targetFile does not match TSV pattern check',
+      );
     }
 
-    // Extract and sort m/z target list (distinct values only) - Requires to follow a targetFile layout (header - msLevel and mzValue must be present)
+    // Extract and sort m/z target list (distinct values only)
+    // - Requires to follow a targetFile layout (header - msLevel and mzValue must be present)
     let mzTargetList = configParam.filterSpectrumData
       ? Array.from(
           new Set(
@@ -56,8 +59,11 @@ export async function parseTargetFile(configParam) {
         );
 
     // Throw error if no m/z data found
-    if (mzTargetList.length === 0) {
-      throw new Error('\nInvalid target file - Targeted m/z data not found');
+    if (
+      (mzTargetList.length === 1 && isNaN(mzTargetList[0])) ||
+      mzTargetList.length === 0
+    ) {
+      throw new Error('\nparseTargetFile() - Target m/z data not found');
     }
 
     // Round m/z target list if decimal place is defined
