@@ -28,7 +28,7 @@ describe('listMZML', () => {
   });
 
   // Tests
-  test('return an array of mzML file names only from within a directory', async () => {
+  test('return an array of mzML file names only from input directory', async () => {
     expect(await listMZML(testDirectory)).toStrictEqual(['testFile1.mzML']);
   });
 

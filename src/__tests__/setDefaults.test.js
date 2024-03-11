@@ -15,7 +15,7 @@ import { setDefaults } from '../setDefaults.js';
 /**
  * To test setDefaults function
  * Input: argv (Yargs)
- * Output: configParam (Object?)
+ * Output: configParam (Object)
  */
 describe('setDefaults', () => {
   // Dummy data
@@ -59,9 +59,8 @@ describe('setDefaults', () => {
   });
 
   // Tests
-  test('return configParam successfully', async () => {
-    // With default values
-    let configParam = await setDefaults(testArgv);
+  test('return configParam: using default values', async () => {
+    const configParam = await setDefaults(testArgv);
 
     expect(configParam.inputDirectory).toStrictEqual(testArgv.inputDirectory);
     expect(configParam.fileList).toStrictEqual([
@@ -80,18 +79,28 @@ describe('setDefaults', () => {
     expect(configParam.logDirectory).toStrictEqual(testArgv.logDirectory);
     expect(configParam.decimalPlace).toStrictEqual(testArgv.decimalPlace);
     expect(configParam.targeted).toStrictEqual(testArgv.targeted);
+    expect(configParam).not.toHaveProperty('targetFile');
+    expect(configParam).not.toHaveProperty('mzTolerance');
+    expect(configParam).not.toHaveProperty('ppmTolerance');
     expect(configParam.mzRange).toStrictEqual(testArgv.mzRange);
+    expect(configParam).not.toHaveProperty('minMZ');
+    expect(configParam).not.toHaveProperty('maxMZ');
     expect(configParam.filterSpectrumData).toStrictEqual(
       testArgv.filterSpectrumData,
     );
+    expect(configParam).not.toHaveProperty('spectrumType');
+    expect(configParam).not.toHaveProperty('msLevel');
+    expect(configParam).not.toHaveProperty('polarity');
+    expect(configParam).not.toHaveProperty('excludeSpectra');
+  });
 
-    // With defined values
+  test('return configParam: using defined values', async () => {
     testArgv.fileList = ['testFile1.mzML'];
     testArgv.outputDirectory = './tmp/setDefaults/outputDirectory/';
     testArgv.targeted = true;
     testArgv.mzRange = true;
     testArgv.filterSpectrumData = true;
-    configParam = await setDefaults(testArgv);
+    const configParam = await setDefaults(testArgv);
 
     expect(configParam.fileList).toStrictEqual(testArgv.fileList);
     expect(configParam.outputDirectory).toStrictEqual(testArgv.outputDirectory);

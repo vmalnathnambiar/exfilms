@@ -13,7 +13,7 @@ import { yargsCheck } from '../yargsCheck.js';
 /**
  * To test yargsCheck function
  * Input: argv (Yargs)
- * Output: configParam (Object?)
+ * Output: configParam (Object)
  */
 describe('yargsCheck', () => {
   // Dummy data
@@ -59,13 +59,13 @@ describe('yargsCheck', () => {
   });
 
   // Tests
-  test('throw error if yargs command line arguments not defined correctly', async () => {
-    // If -i, --inputDirectory is not defined
+  test('throw error: inputDirectory not defined', async () => {
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-i (or --inputDirectory) "/path/to/input/directory/" required',
     );
+  });
 
-    // If both -t, --targeted and -r, --mzRange is defined
+  test('throw error: both targeted and mzRange defined', async () => {
     testArgv.inputDirectory = testDirectory;
     testArgv.targeted = true;
     testArgv.mzRange = true;
@@ -73,13 +73,15 @@ describe('yargsCheck', () => {
       '\nUse one of the following options for spectra filtering:\n-t (or --targeted) --targetFile "/local/path/or/published/to/web/URL/to/target/tsv/file" --mzTolerance <number> --ppmTolerance <number>\n-r (or --mzRange) --minMZ <number> --maxMZ <number',
     );
     testArgv.mzRange = false;
+  });
 
-    // If -t, --targeted is defined but --targetFile is not defined
+  test('throw error: targetFile not defined when targeted is defined', async () => {
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n--targetFile "/path/to/target/file.tsv" required',
     );
+  });
 
-    // If either or all --targetFile, --mzTolerance and --ppmTolerance are defined (not default values) without -t, --targeted
+  test('throw error: targetFile, mzTolerance and ppmTolerance defined (not default values) without targeted ', async () => {
     testArgv.targeted = false;
     testArgv.targetFile = './tmp/targetFile.tsv';
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
@@ -98,8 +100,9 @@ describe('yargsCheck', () => {
       '\n-t (or --targeted) required to specify --targetFile, --mzTolerance and --ppmTolerance',
     );
     testArgv.ppmTolerance = 5;
+  });
 
-    // If either or all --minMZ and --maxMZ are defined without -r, --mzRange
+  test('throw error: minMZ and maxMZ defined (not default values) without mzRange', async () => {
     testArgv.minMZ = 500;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '-r (or --mzRange) required to specify --minMZ and --maxMZ',
@@ -111,8 +114,9 @@ describe('yargsCheck', () => {
       '-r (or --mzRange) required to specify --minMZ and --maxMZ',
     );
     testArgv.maxMZ = NaN;
+  });
 
-    // If --maxMZ value defined is a number and is smaller than --minMZ value
+  test('throw error: maxMZ defined (not default value) is smaller than minMZ', async () => {
     testArgv.mzRange = true;
     testArgv.minMZ = 500;
     testArgv.maxMZ = 10;
@@ -122,8 +126,9 @@ describe('yargsCheck', () => {
     testArgv.mzRange = false;
     testArgv.minMZ = 0;
     testArgv.maxMZ = NaN;
+  });
 
-    // If either or all --spectrumType, --msLevel, --polarity and --excludeSpectra are defined (not default values) without -s, --filterSpectrumData
+  test('throw error: spectrumType, msLevel, polarity and excludeSpectra defined (not default values) without filterSpectrumData', async () => {
     testArgv.spectrumType = ['profile'];
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
@@ -154,9 +159,8 @@ describe('yargsCheck', () => {
     testArgv.excludeSpectra = false;
   });
 
-  test('return configParam successfully', async () => {
-    // Wtih default values
-    let configParam = await yargsCheck(testArgv);
+  test('return configParam: using default values', async () => {
+    const configParam = await yargsCheck(testArgv);
 
     expect(configParam).toHaveProperty('inputDirectory');
     expect(configParam).toHaveProperty('fileList');
@@ -176,13 +180,31 @@ describe('yargsCheck', () => {
     expect(configParam).not.toHaveProperty('msLevel');
     expect(configParam).not.toHaveProperty('polarity');
     expect(configParam).not.toHaveProperty('excludeSpectra');
+  });
 
-    // With defined values
+  test('return configParam: using defined values', async () => {
     testArgv.fileList = ['testFile1.mzML'];
     testArgv.outputDirectory = './tmp/yargsCheck/outputDirectory/';
+    testArgv.filterSpectrumData = true;
+
+    // If mzRange is set to true
+    testArgv.mzRange = true;
+    let configParam = await yargsCheck(testArgv);
+
+    expect(configParam).not.toHaveProperty('targetFile');
+    expect(configParam).not.toHaveProperty('mzTolerance');
+    expect(configParam).not.toHaveProperty('ppmTolerance');
+    expect(configParam).toHaveProperty('minMZ');
+    expect(configParam).toHaveProperty('maxMZ');
+    expect(configParam).toHaveProperty('spectrumType');
+    expect(configParam).toHaveProperty('msLevel');
+    expect(configParam).toHaveProperty('polarity');
+    expect(configParam).toHaveProperty('excludeSpectra');
+    testArgv.mzRange = false;
+
+    // If targeted is set to true
     testArgv.targeted = true;
     testArgv.targetFile = './tmp/yargsCheck/targetFile.tsv';
-    testArgv.filterSpectrumData = true;
     configParam = await yargsCheck(testArgv);
 
     expect(configParam).toHaveProperty('targetFile');
@@ -194,17 +216,6 @@ describe('yargsCheck', () => {
     expect(configParam).toHaveProperty('msLevel');
     expect(configParam).toHaveProperty('polarity');
     expect(configParam).toHaveProperty('excludeSpectra');
-
-    testArgv.targeted = false;
-    testArgv.targetFile = undefined;
-    testArgv.mzRange = true;
-    configParam = await yargsCheck(testArgv);
-
-    expect(configParam).not.toHaveProperty('targetFile');
-    expect(configParam).not.toHaveProperty('mzTolerance');
-    expect(configParam).not.toHaveProperty('ppmTolerance');
-    expect(configParam).toHaveProperty('minMZ');
-    expect(configParam).toHaveProperty('maxMZ');
   });
 
   // Clean up test environment after tests
