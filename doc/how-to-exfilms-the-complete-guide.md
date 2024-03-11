@@ -162,7 +162,7 @@ $ exfilms -i "/path/to/input/directory/" -l (or --logDirectory) "/path/to/log/di
 
 <br>
 
-### Dealing with Precision
+### Dealing with Precision Values
 
 `-d`, `--decimalPlace`
 
