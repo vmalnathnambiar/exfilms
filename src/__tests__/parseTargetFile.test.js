@@ -59,7 +59,7 @@ describe('parseTargetFile', () => {
     );
   });
 
-  test('pass pattern checks', async () => {
+  test('pattern check', async () => {
     // Published to web URL
     testConfigParam.targetFile =
       'https://docs.google.com/spreadsheets/d/e/2PACX-1vSeo31hlruA3QuwoESz5IDJ9Nu6ndSAgLTRn3uc45rOPO4BlksfHzh9xtNB22Oes9JOxhEbI4NK-zxl/pub?gid=0&single=true&output=tsv';

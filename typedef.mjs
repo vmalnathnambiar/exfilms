@@ -22,6 +22,12 @@
  */
 
 /**
+ * @typedef TimeStamp
+ * @property {?string} date Date "YYYY-MM-DD"
+ * @property {?string} time Time "HH:MM:SS"
+ */
+
+/**
  * @typedef Spectrum
  * @property {number} index Spectrum index
  * @property {string} scanID Spectrum scan ID
@@ -67,8 +73,8 @@
 /**
  * @typedef MS
  * @property {string} sampleID Sample ID
- * @property {string} date Date
- * @property {string} time Time
+ * @property {?string} date Date
+ * @property {?string} time Time
  * @property {number} spectrumCount Number of spectrum data stored
  * @property {Spectrum[]} spectrum An array of spectrum data
  * @property {number} chromatogramCount Number of chromatogram data stored

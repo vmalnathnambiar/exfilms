@@ -192,7 +192,6 @@ describe('writeJSON', () => {
       },
     ],
   };
-
   const testOutputDirectory = './tmp/writeJSON/outputDirectory/';
   const testOutputFile = join(testOutputDirectory, `${testData.sampleID}.json`);
 
@@ -212,7 +211,7 @@ describe('writeJSON', () => {
 
   test('write JSON: spectrum and chromatogram data > 0', async () => {
     expect(await writeJSON(testOutputDirectory, testData));
-    let readData = JSON.parse(readFileSync(testOutputFile));
+    const readData = JSON.parse(readFileSync(testOutputFile));
 
     // File metadata
     expect(readData.sampleID).toStrictEqual(testData.sampleID);
@@ -222,53 +221,146 @@ describe('writeJSON', () => {
     // Spectrum data
     expect(readData.spectrumCount).toStrictEqual(testData.spectrumCount);
     expect(readData.spectrum).toHaveLength(testData.spectrumCount);
-    expect(readData.spectrum[0]).toHaveProperty('index');
-    expect(readData.spectrum[0]).toHaveProperty('scanID');
-    expect(readData.spectrum[0]).toHaveProperty('arrayLength');
-    expect(readData.spectrum[0]).toHaveProperty('spectrumType');
-    expect(readData.spectrum[0]).toHaveProperty('msLevel');
-    expect(readData.spectrum[0]).toHaveProperty('scanType');
-    expect(readData.spectrum[0]).toHaveProperty('scanType');
-    expect(readData.spectrum[0]).toHaveProperty('polarity');
-    expect(readData.spectrum[0]).toHaveProperty('retentionTime');
-    expect(readData.spectrum[0]).toHaveProperty('scanPresetConfiguration');
-    expect(readData.spectrum[0]).toHaveProperty('scanWindowLowerLimit');
-    expect(readData.spectrum[0]).toHaveProperty('scanWindowUpperLimit');
-    expect(readData.spectrum[0]).toHaveProperty('isolationWindowTarget');
-    expect(readData.spectrum[0]).toHaveProperty('isolationWindowLowerOffset');
-    expect(readData.spectrum[0]).toHaveProperty('isolationWindowUpperOffset');
-    expect(readData.spectrum[0]).toHaveProperty('selectedIonMZ');
-    expect(readData.spectrum[0]).toHaveProperty('collisionType');
-    expect(readData.spectrum[0]).toHaveProperty('collisionEnergy');
-    expect(readData.spectrum[0]).toHaveProperty('basePeakIntensity');
-    expect(readData.spectrum[0]).toHaveProperty('basePeakMZ');
-    expect(readData.spectrum[0]).toHaveProperty('totalIonCurrent');
-    expect(readData.spectrum[0]).toHaveProperty('mzArray');
-    expect(readData.spectrum[0]).toHaveProperty('intensityArray');
+    expect(readData.spectrum[0].index).toStrictEqual(
+      testData.spectrum[0].index,
+    );
+    expect(readData.spectrum[0].scanID).toStrictEqual(
+      testData.spectrum[0].scanID,
+    );
+    expect(readData.spectrum[0].arrayLength).toStrictEqual(
+      testData.spectrum[0].arrayLength,
+    );
+    expect(readData.spectrum[0].spectrumType).toStrictEqual(
+      testData.spectrum[0].spectrumType,
+    );
+    expect(readData.spectrum[0].msLevel).toStrictEqual(
+      testData.spectrum[0].msLevel,
+    );
+    expect(readData.spectrum[0].scanType).toStrictEqual(
+      testData.spectrum[0].scanType,
+    );
+    expect(readData.spectrum[0].polarity).toStrictEqual(
+      testData.spectrum[0].polarity,
+    );
+    expect(readData.spectrum[0].retentionTime).toStrictEqual(
+      testData.spectrum[0].retentionTime,
+    );
+    expect(readData.spectrum[0].scanPresetConfiguration).toStrictEqual(
+      testData.spectrum[0].scanPresetConfiguration,
+    );
+    expect(readData.spectrum[0].scanWindowLowerLimit).toStrictEqual(
+      testData.spectrum[0].scanWindowLowerLimit,
+    );
+    expect(readData.spectrum[0].scanWindowUpperLimit).toStrictEqual(
+      testData.spectrum[0].scanWindowUpperLimit,
+    );
+    expect(readData.spectrum[0].isolationWindowTarget).toStrictEqual(
+      testData.spectrum[0].isolationWindowTarget,
+    );
+    expect(readData.spectrum[0].isolationWindowLowerOffset).toStrictEqual(
+      testData.spectrum[0].isolationWindowLowerOffset,
+    );
+    expect(readData.spectrum[0].isolationWindowUpperOffset).toStrictEqual(
+      testData.spectrum[0].isolationWindowUpperOffset,
+    );
+    expect(readData.spectrum[0].selectedIonMZ).toStrictEqual(
+      testData.spectrum[0].selectedIonMZ,
+    );
+    expect(readData.spectrum[0].collisionType).toStrictEqual(
+      testData.spectrum[0].collisionType,
+    );
+    expect(readData.spectrum[0].collisionEnergy).toStrictEqual(
+      testData.spectrum[0].collisionEnergy,
+    );
+    expect(readData.spectrum[0].basePeakIntensity).toStrictEqual(
+      testData.spectrum[0].basePeakIntensity,
+    );
+    expect(readData.spectrum[0].basePeakMZ).toStrictEqual(
+      testData.spectrum[0].basePeakMZ,
+    );
+    expect(readData.spectrum[0].totalIonCurrent).toStrictEqual(
+      testData.spectrum[0].totalIonCurrent,
+    );
+    expect(readData.spectrum[0].mzArray).toStrictEqual(
+      testData.spectrum[0].mzArray,
+    );
+    expect(readData.spectrum[0].intensityArray).toStrictEqual(
+      testData.spectrum[0].intensityArray,
+    );
 
     // Chromatogram data
     expect(readData.chromatogramCount).toStrictEqual(
       testData.chromatogramCount,
     );
     expect(readData.chromatogram).toHaveLength(testData.chromatogramCount);
-    expect(readData.chromatogram[0]).toHaveProperty('index');
-    expect(readData.chromatogram[0]).toHaveProperty('id');
-    expect(readData.chromatogram[0]).toHaveProperty('arrayLength');
-    expect(readData.chromatogram[0]).toHaveProperty('chromatogramType');
-    expect(readData.chromatogram[0]).toHaveProperty('polarity');
-    expect(readData.chromatogram[0]).toHaveProperty('dwellTime');
-    expect(readData.chromatogram[0]).toHaveProperty('isolationWindowTarget');
-    expect(readData.chromatogram[0]).toHaveProperty('collisionType');
-    expect(readData.chromatogram[0]).toHaveProperty('collisionEnergy');
-    expect(readData.chromatogram[0]).toHaveProperty('timeArray');
-    expect(readData.chromatogram[0]).toHaveProperty('intensityArray');
-    expect(readData.chromatogram[0]).toHaveProperty('msLevelArray');
-    expect(readData.chromatogram[0]).toHaveProperty('mzArray');
+    expect(readData.chromatogram[0].index).toStrictEqual(
+      testData.chromatogram[0].index,
+    );
+    expect(readData.chromatogram[0].id).toStrictEqual(
+      testData.chromatogram[0].id,
+    );
+    expect(readData.chromatogram[0].arrayLength).toStrictEqual(
+      testData.chromatogram[0].arrayLength,
+    );
+    expect(readData.chromatogram[0].chromatogramType).toStrictEqual(
+      readData.chromatogram[0].chromatogramType,
+    );
+    expect(readData.chromatogram[0].polarity).toStrictEqual(
+      readData.chromatogram[0].polarity,
+    );
+    expect(readData.chromatogram[0].dwellTime).toStrictEqual(
+      readData.chromatogram[0].dwellTime,
+    );
+    expect(readData.chromatogram[0].isolationWindowTarget).toStrictEqual(
+      readData.chromatogram[0].isolationWindowTarget,
+    );
+    expect(readData.chromatogram[0].collisionType).toStrictEqual(
+      readData.chromatogram[0].collisionType,
+    );
+    expect(readData.chromatogram[0].collisionEnergy).toStrictEqual(
+      readData.chromatogram[0].collisionEnergy,
+    );
+    expect(readData.chromatogram[0].timeArray).toStrictEqual(
+      readData.chromatogram[0].timeArray,
+    );
+    expect(readData.chromatogram[0].intensityArray).toStrictEqual(
+      readData.chromatogram[0].intensityArray,
+    );
+    expect(readData.chromatogram[0].msLevelArray).toStrictEqual(
+      readData.chromatogram[0].msLevelArray,
+    );
+    expect(readData.chromatogram[0].mzArray).toStrictEqual(
+      readData.chromatogram[0].mzArray,
+    );
   });
 
   test('write JSON: spectrum and chromatogram data === 0', async () => {
     testData.spectrumCount = 0;
     testData.chromatogramCount = 0;
+    expect(await writeJSON(testOutputDirectory, testData));
+    const readData = JSON.parse(readFileSync(testOutputFile));
+
+    // File metadata
+    expect(readData.sampleID).toStrictEqual(testData.sampleID);
+    expect(readData.date).toStrictEqual(testData.date);
+    expect(readData.time).toStrictEqual(testData.time);
+
+    // Spectrum data
+    expect(readData.spectrumCount).toStrictEqual(testData.spectrumCount);
+    expect(readData.spectrum).toHaveLength(0);
+    expect(readData.spectrum[0]).toBeUndefined();
+
+    // Chromatogram data
+    expect(readData.chromatogramCount).toStrictEqual(
+      testData.chromatogramCount,
+    );
+    expect(readData.chromatogram).toHaveLength(0);
+    expect(readData.chromatogram[0]).toBeUndefined();
+  });
+
+  test('write JSON: null date and time', async () => {
+    testData.date = null;
+    testData.time = null;
     expect(await writeJSON(testOutputDirectory, testData));
     let readData = JSON.parse(readFileSync(testOutputFile));
 

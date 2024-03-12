@@ -46,7 +46,6 @@ describe('yargsCheck', () => {
     polarity: ['positive', 'negative'],
     excludeSpectra: false,
   };
-
   const testDirectory = './tmp/yargsCheck/inputDirectory/';
   const testFile1 = join(testDirectory, 'testFile1.mzML');
   const testFile2 = join(testDirectory, 'testFile2.json');

@@ -1,3 +1,7 @@
+/**
+ * @typedef {import('../typedef.mjs').MS} MS
+ */
+
 import { extractChromatogram } from './extractChromatogram.js';
 import { extractSpectrum } from './extractSpectrum.js';
 import { extractTimeStamp } from './extractTimeStamp.js';
@@ -57,6 +61,9 @@ export async function extractMZML(configParam, msData) {
     }
 
     // Combine all MS data into a standardized data object
+    /**
+     * @type {MS}
+     */
     let data = {
       sampleID,
       date,

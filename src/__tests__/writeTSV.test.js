@@ -194,7 +194,6 @@ describe('writeTSV', () => {
   };
   const spectrum = testData.spectrum[0];
   const chromatogram = testData.chromatogram[0];
-
   const testOutputDirectory = './tmp/writeTSV/outputDirectory/';
   const testSpectrumDirectory = join(testOutputDirectory, 'spectrum/');
   const testChromatogramDirectory = join(testOutputDirectory, 'chromatogram/');

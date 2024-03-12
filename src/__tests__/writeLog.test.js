@@ -35,7 +35,7 @@ describe('writeLog', () => {
     );
   });
 
-  test('append log data into log.txt', async () => {
+  test('write log data into log.txt', async () => {
     expect(await writeLog(testLogDirectory, testData));
     const readData = readFileSync(join(testLogDirectory, 'log.txt'), 'utf-8');
     expect(readData).toStrictEqual(testData);

@@ -22,8 +22,17 @@ export async function writeJSON(outputDirectory, data) {
   // File metadata
   writeFileSync(jsonFile, '{\n');
   appendFileSync(jsonFile, `\t"sampleID": "${data.sampleID}",\n`);
-  appendFileSync(jsonFile, `\t"date": "${data.date}",\n`);
-  appendFileSync(jsonFile, `\t"time": "${data.time}",\n`);
+  if (data.date !== null) {
+    appendFileSync(jsonFile, `\t"date": "${data.date}",\n`);
+  } else {
+    appendFileSync(jsonFile, `\t"date": ${data.date},\n`);
+  }
+
+  if (data.time !== null) {
+    appendFileSync(jsonFile, `\t"time": "${data.time}",\n`);
+  } else {
+    appendFileSync(jsonFile, `\t"time": ${data.time},\n`);
+  }
 
   // Spectrum data
   appendFileSync(jsonFile, `\t"spectrumCount": ${data.spectrumCount},\n`);
@@ -59,7 +68,6 @@ export async function writeJSON(outputDirectory, data) {
       );
     }
   }
-
   appendFileSync(jsonFile, '\t],\n');
 
   // Chromatogram data

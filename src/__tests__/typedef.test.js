@@ -1,5 +1,6 @@
 /**
  * @typedef {import('../../typedef.mjs').Yargs} Yargs
+ * @typedef {import('../../typedef.mjs').TimeStamp} TimeStamp
  * @typedef {import('../../typedef.mjs').Spectrum} Spectrum
  * @typedef {import('../../typedef.mjs').Chromatogram} Chromatogram
  * @typedef {import('../../typedef.mjs').MS} MS
@@ -10,6 +11,7 @@ import { describe, test, expect } from 'vitest';
 /**
  * To test typedef properties
  * - Yargs
+ * - TimeStamp
  * - Spectrum
  * - Chromatogram
  * - MS
@@ -37,6 +39,12 @@ describe('typedef', () => {
     msLevel: [1, 2],
     polarity: ['positive', 'negative'],
     excludeSpectra: false,
+  };
+
+  /**@type {TimeStamp} */
+  const testTimeStamp = {
+    date: '2022-08-17',
+    time: '18:43:38',
   };
 
   /**@type {MS} */
@@ -233,6 +241,11 @@ describe('typedef', () => {
     expect(testArgv).toHaveProperty('msLevel');
     expect(testArgv).toHaveProperty('polarity');
     expect(testArgv).toHaveProperty('excludeSpectra');
+  });
+
+  test('TimeStamp defined', () => {
+    expect(testTimeStamp).toHaveProperty('date');
+    expect(testTimeStamp).toHaveProperty('time');
   });
 
   test('Spectrum defined', () => {

@@ -61,7 +61,6 @@ describe('setDefaults', () => {
   // Tests
   test('return configParam: using default values', async () => {
     const configParam = await setDefaults(testArgv);
-
     expect(configParam.inputDirectory).toStrictEqual(testArgv.inputDirectory);
     expect(configParam.fileList).toStrictEqual([
       'testFile1.mzML',
@@ -101,7 +100,6 @@ describe('setDefaults', () => {
     testArgv.mzRange = true;
     testArgv.filterSpectrumData = true;
     const configParam = await setDefaults(testArgv);
-
     expect(configParam.fileList).toStrictEqual(testArgv.fileList);
     expect(configParam.outputDirectory).toStrictEqual(testArgv.outputDirectory);
     expect(configParam.targetFile).toStrictEqual(testArgv.targetFile);
