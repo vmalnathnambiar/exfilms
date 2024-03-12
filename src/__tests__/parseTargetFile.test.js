@@ -52,6 +52,7 @@ describe('parseTargetFile', () => {
   const testMinMZ = 70.06;
   const testMaxMZ = 1518.7175;
 
+  // Tests
   test('throw error: targetFile does not match TSV pattern check', async () => {
     await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
       '\nparseTargetFile() - targetFile does not match TSV pattern check',

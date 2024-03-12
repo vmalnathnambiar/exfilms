@@ -7,18 +7,20 @@ import { join } from 'path';
 
 /**
  * Write extracted (and filtered) MS data into TSV file in output directories (spectrum and chromatogram).
- * @param {Object} configParam Configuration parameters passed via the command line interface.
+ * @param {string} outputDirectory Output directory path.
  * @param {MS} data MS data extracted from parsed mzML file.
  * @returns {Promise<void>} A Promise that resolves when the writing to TSV files are complete.
  */
-export async function writeTSV(configParam, data) {
+export async function writeTSV(outputDirectory, data) {
+  // Check input type
+  if (typeof outputDirectory !== 'string') {
+    throw new Error('\nwriteTSV() - outputDirectory must be of type string');
+  }
+
   // Spectrum and chromatogram output path
-  const spectrumFile = join(
-    configParam.outputDirectory,
-    `spectrum/${data.sampleID}.tsv`,
-  );
+  const spectrumFile = join(outputDirectory, `spectrum/${data.sampleID}.tsv`);
   const chromatogramFile = join(
-    configParam.outputDirectory,
+    outputDirectory,
     `chromatogram/${data.sampleID}.tsv`,
   );
 

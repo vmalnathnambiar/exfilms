@@ -71,7 +71,7 @@ figlet('ExfilMS', async function (err, data) {
     console.log('Configuration Parameters:');
     console.log(configParam);
     await writeLog(
-      configParam,
+      configParam.logDirectory,
       `Configuration Parameters\n${JSON.stringify(configParam, null, '\t')}\n`,
     );
 

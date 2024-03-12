@@ -46,7 +46,7 @@ export async function parseMZML(configParam) {
       await extractMZML(configParam, msData);
 
       // Write timestamp and file name into log file
-      await writeLog(configParam, logger);
+      await writeLog(configParam.logDirectory, logger);
       spinner.succeed();
     } catch (err) {
       failedFiles.push(file);
@@ -55,7 +55,14 @@ export async function parseMZML(configParam) {
   }
 
   // Write failed files list into log file
-  await writeLog(configParam, `Failed files: [${failedFiles}]\n\n`);
+  try {
+    await writeLog(
+      configParam.logDirectory,
+      `Failed files: [${failedFiles}]\n\n`,
+    );
+  } catch (err) {
+    throw err.toString();
+  }
 
   // Throw error if there were failed files
   if (failedFiles.length !== 0) {

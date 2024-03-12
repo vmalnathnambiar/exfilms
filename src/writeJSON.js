@@ -6,12 +6,18 @@ import { join } from 'path';
 
 /**
  * Write extracted (and filtered) MS data into JSON file in output directory.
- * @param {Object} configParam Configuration parameters passed via the command line interface.
+ * @param {string} outputDirectory Output directory path.
  * @param {MS} data MS data extracted from parsed mzML file.
  * @returns {Promise<void>} A Promise that resolves when the writing to JSON file is complete.
  */
-export async function writeJSON(configParam, data) {
-  const jsonFile = join(configParam.outputDirectory, `${data.sampleID}.json`);
+export async function writeJSON(outputDirectory, data) {
+  // Check input type
+  if (typeof outputDirectory !== 'string') {
+    throw new Error('\nwriteJSON() - outputDirectory must be of type string');
+  }
+
+  // Output file path
+  const jsonFile = join(outputDirectory, `${data.sampleID}.json`);
 
   // File metadata
   writeFileSync(jsonFile, '{\n');

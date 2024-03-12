@@ -1,45 +1,26 @@
+// @ts-nocheck
+
 /**
- * @typedef {import('../../typedef.mjs').Yargs} Yargs
- * @typedef {import('../../typedef.mjs').Spectrum} Spectrum
- * @typedef {import('../../typedef.mjs').Chromatogram} Chromatogram
  * @typedef {import('../../typedef.mjs').MS} MS
  */
 
-import { describe, test, expect } from 'vitest';
+import { existsSync, mkdirSync, readFileSync, rmSync } from 'fs';
+import { join } from 'path';
+
+import { describe, test, expect, beforeAll, afterAll } from 'vitest';
+
+import { writeJSON } from '../writeJSON.js';
 
 /**
- * To test typedef properties
- * - Yargs
- * - Spectrum
- * - Chromatogram
- * - MS
+ * To test writeJSON function
+ * Input: outputDirectory (string), data (MS)
+ * Output: NA
  */
-describe('typedef', () => {
+describe('writeJSON', () => {
   // Dummy data
-  /**@type {Yargs} */
-  const testArgv = {
-    interactive: false,
-    inputDirectory: './tmp/inputDirectory/',
-    fileList: ['*'],
-    outputFormat: ['JSON'],
-    outputDirectory: './tmp/outputDirectory/',
-    logDirectory: './tmp/logDirectory/',
-    decimalPlace: 4,
-    targeted: true,
-    targetFile: './tmp/targetFile.tsv',
-    mzTolerance: 0.005,
-    ppmTolerance: 5,
-    mzRange: true,
-    minMZ: 0,
-    maxMZ: NaN,
-    filterSpectrumData: true,
-    spectrumType: ['profile', 'centroid'],
-    msLevel: [1, 2],
-    polarity: ['positive', 'negative'],
-    excludeSpectra: false,
-  };
-
-  /**@type {MS} */
+  /**
+   * @type {MS}
+   */
   const testData = {
     sampleID: 'testSample',
     date: '2022-08-17',
@@ -212,78 +193,105 @@ describe('typedef', () => {
     ],
   };
 
+  const testOutputDirectory = './tmp/writeJSON/outputDirectory/';
+  const testOutputFile = join(testOutputDirectory, `${testData.sampleID}.json`);
+
+  // Setting up test environment before tests
+  beforeAll(() => {
+    if (!existsSync(testOutputDirectory)) {
+      mkdirSync(testOutputDirectory, { recursive: true });
+    }
+  });
+
   // Tests
-  test('CommandLineArgument defined', () => {
-    expect(testArgv).toHaveProperty('interactive');
-    expect(testArgv).toHaveProperty('inputDirectory');
-    expect(testArgv).toHaveProperty('fileList');
-    expect(testArgv).toHaveProperty('outputFormat');
-    expect(testArgv).toHaveProperty('outputDirectory');
-    expect(testArgv).toHaveProperty('logDirectory');
-    expect(testArgv).toHaveProperty('decimalPlace');
-    expect(testArgv).toHaveProperty('targeted');
-    expect(testArgv).toHaveProperty('targetFile');
-    expect(testArgv).toHaveProperty('mzTolerance');
-    expect(testArgv).toHaveProperty('ppmTolerance');
-    expect(testArgv).toHaveProperty('mzRange');
-    expect(testArgv).toHaveProperty('minMZ');
-    expect(testArgv).toHaveProperty('maxMZ');
-    expect(testArgv).toHaveProperty('filterSpectrumData');
-    expect(testArgv).toHaveProperty('spectrumType');
-    expect(testArgv).toHaveProperty('msLevel');
-    expect(testArgv).toHaveProperty('polarity');
-    expect(testArgv).toHaveProperty('excludeSpectra');
+  test('throw error: outputDirectory is not of type string', async () => {
+    await expect(writeJSON(0, testData)).rejects.toThrowError(
+      '\nwriteJSON() - outputDirectory must be of type string',
+    );
   });
 
-  test('Spectrum defined', () => {
-    expect(testData.spectrum[0]).toHaveProperty('index');
-    expect(testData.spectrum[0]).toHaveProperty('scanID');
-    expect(testData.spectrum[0]).toHaveProperty('arrayLength');
-    expect(testData.spectrum[0]).toHaveProperty('spectrumType');
-    expect(testData.spectrum[0]).toHaveProperty('msLevel');
-    expect(testData.spectrum[0]).toHaveProperty('scanType');
-    expect(testData.spectrum[0]).toHaveProperty('scanType');
-    expect(testData.spectrum[0]).toHaveProperty('polarity');
-    expect(testData.spectrum[0]).toHaveProperty('retentionTime');
-    expect(testData.spectrum[0]).toHaveProperty('scanPresetConfiguration');
-    expect(testData.spectrum[0]).toHaveProperty('scanWindowLowerLimit');
-    expect(testData.spectrum[0]).toHaveProperty('scanWindowUpperLimit');
-    expect(testData.spectrum[0]).toHaveProperty('isolationWindowTarget');
-    expect(testData.spectrum[0]).toHaveProperty('isolationWindowLowerOffset');
-    expect(testData.spectrum[0]).toHaveProperty('isolationWindowUpperOffset');
-    expect(testData.spectrum[0]).toHaveProperty('selectedIonMZ');
-    expect(testData.spectrum[0]).toHaveProperty('collisionType');
-    expect(testData.spectrum[0]).toHaveProperty('collisionEnergy');
-    expect(testData.spectrum[0]).toHaveProperty('basePeakIntensity');
-    expect(testData.spectrum[0]).toHaveProperty('basePeakMZ');
-    expect(testData.spectrum[0]).toHaveProperty('totalIonCurrent');
-    expect(testData.spectrum[0]).toHaveProperty('mzArray');
-    expect(testData.spectrum[0]).toHaveProperty('intensityArray');
+  test('write JSON: spectrum and chromatogram data > 0', async () => {
+    expect(await writeJSON(testOutputDirectory, testData));
+    let readData = JSON.parse(readFileSync(testOutputFile));
+
+    // File metadata
+    expect(readData.sampleID).toStrictEqual(testData.sampleID);
+    expect(readData.date).toStrictEqual(testData.date);
+    expect(readData.time).toStrictEqual(testData.time);
+
+    // Spectrum data
+    expect(readData.spectrumCount).toStrictEqual(testData.spectrumCount);
+    expect(readData.spectrum).toHaveLength(testData.spectrumCount);
+    expect(readData.spectrum[0]).toHaveProperty('index');
+    expect(readData.spectrum[0]).toHaveProperty('scanID');
+    expect(readData.spectrum[0]).toHaveProperty('arrayLength');
+    expect(readData.spectrum[0]).toHaveProperty('spectrumType');
+    expect(readData.spectrum[0]).toHaveProperty('msLevel');
+    expect(readData.spectrum[0]).toHaveProperty('scanType');
+    expect(readData.spectrum[0]).toHaveProperty('scanType');
+    expect(readData.spectrum[0]).toHaveProperty('polarity');
+    expect(readData.spectrum[0]).toHaveProperty('retentionTime');
+    expect(readData.spectrum[0]).toHaveProperty('scanPresetConfiguration');
+    expect(readData.spectrum[0]).toHaveProperty('scanWindowLowerLimit');
+    expect(readData.spectrum[0]).toHaveProperty('scanWindowUpperLimit');
+    expect(readData.spectrum[0]).toHaveProperty('isolationWindowTarget');
+    expect(readData.spectrum[0]).toHaveProperty('isolationWindowLowerOffset');
+    expect(readData.spectrum[0]).toHaveProperty('isolationWindowUpperOffset');
+    expect(readData.spectrum[0]).toHaveProperty('selectedIonMZ');
+    expect(readData.spectrum[0]).toHaveProperty('collisionType');
+    expect(readData.spectrum[0]).toHaveProperty('collisionEnergy');
+    expect(readData.spectrum[0]).toHaveProperty('basePeakIntensity');
+    expect(readData.spectrum[0]).toHaveProperty('basePeakMZ');
+    expect(readData.spectrum[0]).toHaveProperty('totalIonCurrent');
+    expect(readData.spectrum[0]).toHaveProperty('mzArray');
+    expect(readData.spectrum[0]).toHaveProperty('intensityArray');
+
+    // Chromatogram data
+    expect(readData.chromatogramCount).toStrictEqual(
+      testData.chromatogramCount,
+    );
+    expect(readData.chromatogram).toHaveLength(testData.chromatogramCount);
+    expect(readData.chromatogram[0]).toHaveProperty('index');
+    expect(readData.chromatogram[0]).toHaveProperty('id');
+    expect(readData.chromatogram[0]).toHaveProperty('arrayLength');
+    expect(readData.chromatogram[0]).toHaveProperty('chromatogramType');
+    expect(readData.chromatogram[0]).toHaveProperty('polarity');
+    expect(readData.chromatogram[0]).toHaveProperty('dwellTime');
+    expect(readData.chromatogram[0]).toHaveProperty('isolationWindowTarget');
+    expect(readData.chromatogram[0]).toHaveProperty('collisionType');
+    expect(readData.chromatogram[0]).toHaveProperty('collisionEnergy');
+    expect(readData.chromatogram[0]).toHaveProperty('timeArray');
+    expect(readData.chromatogram[0]).toHaveProperty('intensityArray');
+    expect(readData.chromatogram[0]).toHaveProperty('msLevelArray');
+    expect(readData.chromatogram[0]).toHaveProperty('mzArray');
   });
 
-  test('Chromatogram defined', () => {
-    expect(testData.chromatogram[0]).toHaveProperty('index');
-    expect(testData.chromatogram[0]).toHaveProperty('id');
-    expect(testData.chromatogram[0]).toHaveProperty('arrayLength');
-    expect(testData.chromatogram[0]).toHaveProperty('chromatogramType');
-    expect(testData.chromatogram[0]).toHaveProperty('polarity');
-    expect(testData.chromatogram[0]).toHaveProperty('dwellTime');
-    expect(testData.chromatogram[0]).toHaveProperty('isolationWindowTarget');
-    expect(testData.chromatogram[0]).toHaveProperty('collisionType');
-    expect(testData.chromatogram[0]).toHaveProperty('collisionEnergy');
-    expect(testData.chromatogram[0]).toHaveProperty('timeArray');
-    expect(testData.chromatogram[0]).toHaveProperty('intensityArray');
-    expect(testData.chromatogram[0]).toHaveProperty('msLevelArray');
-    expect(testData.chromatogram[0]).toHaveProperty('mzArray');
+  test('write JSON: spectrum and chromatogram data === 0', async () => {
+    testData.spectrumCount = 0;
+    testData.chromatogramCount = 0;
+    expect(await writeJSON(testOutputDirectory, testData));
+    let readData = JSON.parse(readFileSync(testOutputFile));
+
+    // File metadata
+    expect(readData.sampleID).toStrictEqual(testData.sampleID);
+    expect(readData.date).toStrictEqual(testData.date);
+    expect(readData.time).toStrictEqual(testData.time);
+
+    // Spectrum data
+    expect(readData.spectrumCount).toStrictEqual(testData.spectrumCount);
+    expect(readData.spectrum).toHaveLength(0);
+    expect(readData.spectrum[0]).toBeUndefined();
+
+    // Chromatogram data
+    expect(readData.chromatogramCount).toStrictEqual(
+      testData.chromatogramCount,
+    );
+    expect(readData.chromatogram).toHaveLength(0);
+    expect(readData.chromatogram[0]).toBeUndefined();
   });
 
-  test('MS defined', () => {
-    expect(testData).toHaveProperty('sampleID');
-    expect(testData).toHaveProperty('date');
-    expect(testData).toHaveProperty('time');
-    expect(testData).toHaveProperty('spectrumCount');
-    expect(testData).toHaveProperty('spectrum');
-    expect(testData).toHaveProperty('chromatogramCount');
-    expect(testData).toHaveProperty('chromatogram');
+  //   Clean up test environment after tests
+  afterAll(() => {
+    rmSync('./tmp/writeJSON/', { recursive: true });
   });
 });
