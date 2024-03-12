@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 /**
  * @type {Object}
  * @description Provides a mapping between original cvParam keys and their corresponding values.
@@ -35,7 +37,6 @@ const keyMap = {
   'total ion current chromatogram': 'chromatogramType',
   'basepeak chromatogram': 'chromatogramType',
   'selected reaction monitoring chromatogram': 'chromatogramType',
-  // eslint-disable-next-line camelcase
   MS_dwell_time: 'dwellTime',
   'non-standard data array': 'msLevelArray',
 };

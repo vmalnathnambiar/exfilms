@@ -24,17 +24,17 @@ describe('setDefaults', () => {
    */
   const testArgv = {
     interactive: false,
-    inputDirectory: './tmp/setDefaults/inputDirectory/',
+    inputDirectory: './.tmp/setDefaults/inputDirectory/',
     fileList: ['*'],
     outputFormat: ['JSON'],
     outputDirectory: join(
       homedir(),
       '/exfilms/outputFormat/inputDirectoryName/',
     ),
-    logDirectory: './tmp/setDefaults/logDirectory/',
+    logDirectory: './.tmp/setDefaults/logDirectory/',
     decimalPlace: NaN,
     targeted: false,
-    targetFile: './tmp/setDefaults/targetFile.tsv',
+    targetFile: './.tmp/setDefaults/targetFile.tsv',
     mzTolerance: 0.005,
     ppmTolerance: 5,
     mzRange: false,
@@ -95,7 +95,7 @@ describe('setDefaults', () => {
 
   test('return configParam: using defined values', async () => {
     testArgv.fileList = ['testFile1.mzML'];
-    testArgv.outputDirectory = './tmp/setDefaults/outputDirectory/';
+    testArgv.outputDirectory = './.tmp/setDefaults/outputDirectory/';
     testArgv.targeted = true;
     testArgv.mzRange = true;
     testArgv.filterSpectrumData = true;
@@ -123,6 +123,6 @@ describe('setDefaults', () => {
 
   // Clean up test environment after tests
   afterAll(() => {
-    rmSync('./tmp/setDefaults/', { recursive: true });
+    rmSync('./.tmp/setDefaults/', { recursive: true });
   });
 });

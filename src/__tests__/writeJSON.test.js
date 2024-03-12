@@ -192,7 +192,7 @@ describe('writeJSON', () => {
       },
     ],
   };
-  const testOutputDirectory = './tmp/writeJSON/outputDirectory/';
+  const testOutputDirectory = './.tmp/writeJSON/outputDirectory/';
   const testOutputFile = join(testOutputDirectory, `${testData.sampleID}.json`);
 
   // Setting up test environment before tests
@@ -384,6 +384,6 @@ describe('writeJSON', () => {
 
   //   Clean up test environment after tests
   afterAll(() => {
-    rmSync('./tmp/writeJSON/', { recursive: true });
+    rmSync('./.tmp/writeJSON/', { recursive: true });
   });
 });

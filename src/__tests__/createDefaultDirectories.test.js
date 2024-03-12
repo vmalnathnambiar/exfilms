@@ -14,13 +14,13 @@ describe('createDefaultDirectories', () => {
   // Dummy data
   const testConfigFormat = {
     outputFormat: 'TSV',
-    outputDirectory: './tmp/createDefaultDirectories/outputDirectory/',
-    logDirectory: './tmp/createDefaultDirectories/logDirectory/',
+    outputDirectory: './.tmp/createDefaultDirectories/outputDirectory/',
+    logDirectory: './.tmp/createDefaultDirectories/logDirectory/',
   };
 
   // Clean up tmp environment after each tests
   afterEach(() => {
-    rmSync('./tmp/createDefaultDirectories/', { recursive: true });
+    rmSync('./.tmp/createDefaultDirectories/', { recursive: true });
   });
 
   // Tests

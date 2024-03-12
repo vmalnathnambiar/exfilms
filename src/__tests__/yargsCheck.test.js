@@ -31,7 +31,7 @@ describe('yargsCheck', () => {
       homedir(),
       '/exfilms/outputFormat/inputDirectoryName/',
     ),
-    logDirectory: './tmp/yargsCheck/logDirectory/',
+    logDirectory: './.tmp/yargsCheck/logDirectory/',
     decimalPlace: NaN,
     targeted: false,
     targetFile: undefined,
@@ -46,7 +46,7 @@ describe('yargsCheck', () => {
     polarity: ['positive', 'negative'],
     excludeSpectra: false,
   };
-  const testDirectory = './tmp/yargsCheck/inputDirectory/';
+  const testDirectory = './.tmp/yargsCheck/inputDirectory/';
   const testFile1 = join(testDirectory, 'testFile1.mzML');
   const testFile2 = join(testDirectory, 'testFile2.json');
 
@@ -85,7 +85,7 @@ describe('yargsCheck', () => {
   test('throw error: targetFile, mzTolerance and ppmTolerance defined (not default values) without targeted ', async () => {
     // targetFile
     testArgv.targeted = false;
-    testArgv.targetFile = './tmp/targetFile.tsv';
+    testArgv.targetFile = './.tmp/targetFile.tsv';
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-t (or --targeted) required to specify --targetFile, --mzTolerance and --ppmTolerance',
     );
@@ -193,7 +193,7 @@ describe('yargsCheck', () => {
 
   test('return configParam: using defined values', async () => {
     testArgv.fileList = ['testFile1.mzML'];
-    testArgv.outputDirectory = './tmp/yargsCheck/outputDirectory/';
+    testArgv.outputDirectory = './.tmp/yargsCheck/outputDirectory/';
     testArgv.filterSpectrumData = true;
 
     // If mzRange is set to true
@@ -212,7 +212,7 @@ describe('yargsCheck', () => {
 
     // If targeted is set to true
     testArgv.targeted = true;
-    testArgv.targetFile = './tmp/yargsCheck/targetFile.tsv';
+    testArgv.targetFile = './.tmp/yargsCheck/targetFile.tsv';
     configParam = await yargsCheck(testArgv);
     expect(configParam).toHaveProperty('targetFile');
     expect(configParam).toHaveProperty('mzTolerance');
@@ -237,6 +237,6 @@ describe('yargsCheck', () => {
 
   // Clean up test environment after tests
   afterAll(() => {
-    rmSync('./tmp/yargsCheck/', { recursive: true });
+    rmSync('./.tmp/yargsCheck/', { recursive: true });
   });
 });

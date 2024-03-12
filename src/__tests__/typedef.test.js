@@ -21,14 +21,14 @@ describe('typedef', () => {
   /**@type {Yargs} */
   const testArgv = {
     interactive: false,
-    inputDirectory: './tmp/inputDirectory/',
+    inputDirectory: './.tmp/inputDirectory/',
     fileList: ['*'],
     outputFormat: ['JSON'],
-    outputDirectory: './tmp/outputDirectory/',
-    logDirectory: './tmp/logDirectory/',
+    outputDirectory: './.tmp/outputDirectory/',
+    logDirectory: './.tmp/logDirectory/',
     decimalPlace: 4,
     targeted: true,
-    targetFile: './tmp/targetFile.tsv',
+    targetFile: './.tmp/targetFile.tsv',
     mzTolerance: 0.005,
     ppmTolerance: 5,
     mzRange: true,

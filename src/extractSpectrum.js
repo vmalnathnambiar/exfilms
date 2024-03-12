@@ -3,6 +3,7 @@
 
 /**
  * @typedef {import('../typedef.mjs').Chromatogram} Chromatogram
+ * @typedef {import('../typedef.mjs').Spectrum} Spectrum
  */
 
 import { keyMap, valueMap } from './cvParamMap.js';
@@ -34,6 +35,9 @@ export async function extractSpectrum(
     const binaryDataArrayMap = spectrumData.binaryDataArrayList.binaryDataArray;
 
     // Initialise object to store spectrum data
+    /**
+     * @type {Spectrum}
+     */
     const data = {
       index: spectrumData.$index,
       scanID: spectrumData.$id,

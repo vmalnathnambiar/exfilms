@@ -81,7 +81,7 @@ describe('setForSpectraFiltering', () => {
     expect(configParam.maxMZ).toBeDefined();
 
     // Local file TSV pattern
-    testConfigParam.targetFile = './data/testTargetFile_validLayout.tsv';
+    testConfigParam.targetFile = './data/targetFile/validLayout.tsv';
     configParam = await setForSpectraFiltering(testConfigParam);
     expect(configParam).toHaveProperty('mzTargetList');
     expect(configParam.minMZ).toBeDefined();
@@ -90,7 +90,7 @@ describe('setForSpectraFiltering', () => {
     // Filter spectrum data
     testConfigParam.filterSpectrumData = true;
     testConfigParam.msLevel = [1];
-    testConfigParam.targetFile = './data/testTargetFile_invalidLayout.tsv';
+    testConfigParam.targetFile = './data/targetFile/invalidLayout.tsv';
     await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
       '\nparseTargetFile() - Target m/z data not found',
     );
@@ -103,7 +103,7 @@ describe('setForSpectraFiltering', () => {
 
     // decimalPlace is not NaN
     testConfigParam.decimalPlace = 4;
-    testConfigParam.targetFile = './data/testTargetFile_validLayout.tsv';
+    testConfigParam.targetFile = './data/targetFile/validLayout.tsv';
     configParam = await setForSpectraFiltering(testConfigParam);
     expect(configParam).toHaveProperty('mzTargetList');
     expect(configParam.minMZ).toBeDefined();

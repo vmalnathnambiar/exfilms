@@ -69,7 +69,7 @@ describe('parseTargetFile', () => {
     expect(targetFile.maxMZ).toStrictEqual(testMaxMzDefault);
 
     // Local file path
-    testConfigParam.targetFile = './data/testTargetFile_validLayout.tsv';
+    testConfigParam.targetFile = './data/targetFile/validLayout.tsv';
     targetFile = await parseTargetFile(testConfigParam);
     expect(targetFile.mzTargetList).toStrictEqual(testMzTargetListDefault);
     expect(targetFile.minMZ).toStrictEqual(testMinMzDefault);
@@ -110,7 +110,7 @@ describe('parseTargetFile', () => {
     );
 
     // Extract from a a file with invalid layout (wrong header)
-    testConfigParam.targetFile = './data/testTargetFile_invalidLayout.tsv';
+    testConfigParam.targetFile = './data/targetFile/invalidLayout.tsv';
     await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
       '\nparseTargetFile() - Target m/z data not found',
     );
@@ -124,7 +124,7 @@ describe('parseTargetFile', () => {
     // Extract from an empty file with just the header
     testConfigParam.filterSpectrumData = true;
     testConfigParam.msLevel = [1, 2];
-    testConfigParam.targetFile = './data/testTargetFile_empty.tsv';
+    testConfigParam.targetFile = './data/targetFile/empty.tsv';
     await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
       '\nparseTargetFile() - Target m/z data not found',
     );

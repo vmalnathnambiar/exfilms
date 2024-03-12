@@ -14,7 +14,7 @@ import { listMZML } from '../listMZML.js';
  */
 describe('listMZML', () => {
   // Dummy data
-  const testDirectory = './tmp/listMZML/';
+  const testDirectory = './.tmp/listMZML/';
   const testFile1 = join(testDirectory, 'testFile1.mzML');
   const testFile2 = join(testDirectory, 'testFile2.json');
   const testFile3 = join(testDirectory, '._testFile3.mzML');

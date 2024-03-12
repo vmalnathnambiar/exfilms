@@ -13,7 +13,7 @@ import { writeLog } from '../writeLog.js';
  */
 describe('writeLog', () => {
   // Dummy data
-  const testLogDirectory = './tmp/writeLog/logDirectory/';
+  const testLogDirectory = './.tmp/writeLog/logDirectory/';
   const testData = 'Test log message';
 
   // Setting up test environment before tests
@@ -43,6 +43,6 @@ describe('writeLog', () => {
 
   // Clean up test environment after tests
   afterAll(() => {
-    rmSync('./tmp/writeLog/', { recursive: true });
+    rmSync('./.tmp/writeLog/', { recursive: true });
   });
 });
