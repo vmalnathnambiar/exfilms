@@ -7,15 +7,35 @@ import pako from 'pako';
  * Decode binary data based on precision value and compression method used for original encoding.
  * @param {number} precisionValue A precision value that was used to encode the binary data.
  * @param {string} compressionMethod Method of compression used while encoding the binary data.
- * @param {number[]} decodedData Data to be encoded.
- * @returns {Promise<string>} A promise that resolves with encoded binary data.
+ * @param {ArrayBufferLike|ArrayLike<number>|Iterable<number>|number} decodedData Data to be encoded.
+ * @returns {Promise<string>} A promise that resolves with encoded data string.
  */
 export async function encodeBinary(
   precisionValue,
   compressionMethod,
   decodedData,
 ) {
-  let encodedData;
+  // Check input type
+  if (typeof precisionValue !== 'number') {
+    throw new Error('\nencodeBinary() - precisionValue must be of type number');
+  } else if (precisionValue !== 64 && precisionValue !== 32) {
+    throw new Error('\nencodeBinary() - precisionValue defined not valid');
+  } else if (typeof compressionMethod !== 'string') {
+    throw new Error(
+      '\nencodeBinary() - compressionMethod must be of type string',
+    );
+  } else if (compressionMethod !== 'none' && compressionMethod !== 'zlib') {
+    throw new Error('\nencodeBinary() - compressionMethod defined not valid');
+  } else if (
+    !Array.isArray(decodedData) &&
+    !(decodedData instanceof ArrayBuffer) &&
+    typeof decodedData !== 'number'
+  ) {
+    throw new Error(
+      '\nencodeBinary() - decodedData must be of type ArrayBufferLike, ArrayLike<number>, Iterable<number> or number',
+    );
+  }
+
   let dataBuffer;
 
   // Check precision value of the array
@@ -27,10 +47,8 @@ export async function encodeBinary(
 
   // Check compression method used
   if (compressionMethod === 'none') {
-    encodedData = encode(dataBuffer.buffer);
+    return encode(dataBuffer.buffer);
   } else {
-    encodedData = encode(pako.deflate(dataBuffer.buffer));
+    return encode(pako.deflate(dataBuffer.buffer));
   }
-
-  return encodedData;
 }

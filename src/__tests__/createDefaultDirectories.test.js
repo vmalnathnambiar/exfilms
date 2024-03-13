@@ -12,33 +12,33 @@ import { createDefaultDirectories } from '../createDefaultDirectories.js';
  */
 describe('createDefaultDirectories', () => {
   // Dummy data
-  const testConfigFormat = {
+  const testConfigParam = {
     outputFormat: 'TSV',
-    outputDirectory: './.tmp/createDefaultDirectories/outputDirectory/',
-    logDirectory: './.tmp/createDefaultDirectories/logDirectory/',
+    outputDirectory: './tmp/createDefaultDirectories/outputDirectory/',
+    logDirectory: './tmp/createDefaultDirectories/logDirectory/',
   };
 
   // Clean up tmp environment after each tests
   afterEach(() => {
-    rmSync('./.tmp/createDefaultDirectories/', { recursive: true });
+    rmSync('./tmp/createDefaultDirectories/', { recursive: true });
   });
 
   // Tests
-  test('create default directories: TSV format', async () => {
-    expect(await createDefaultDirectories(testConfigFormat));
+  test('create directories: TSV format', async () => {
+    expect(await createDefaultDirectories(testConfigParam));
+    expect(existsSync(join(testConfigParam.outputDirectory, 'spectrum/'))).toBe(
+      true,
+    );
     expect(
-      existsSync(join(testConfigFormat.outputDirectory, 'spectrum/')),
+      existsSync(join(testConfigParam.outputDirectory, 'chromatogram/')),
     ).toBe(true);
-    expect(
-      existsSync(join(testConfigFormat.outputDirectory, 'chromatogram/')),
-    ).toBe(true);
-    expect(existsSync(testConfigFormat.logDirectory)).toBe(true);
+    expect(existsSync(testConfigParam.logDirectory)).toBe(true);
   });
 
-  test('create default directories: JSON format', async () => {
-    testConfigFormat.outputFormat = 'JSON';
-    expect(await createDefaultDirectories(testConfigFormat));
-    expect(existsSync(testConfigFormat.outputDirectory)).toBe(true);
-    expect(existsSync(testConfigFormat.logDirectory)).toBe(true);
+  test('create directories: JSON format', async () => {
+    testConfigParam.outputFormat = 'JSON';
+    expect(await createDefaultDirectories(testConfigParam));
+    expect(existsSync(testConfigParam.outputDirectory)).toBe(true);
+    expect(existsSync(testConfigParam.logDirectory)).toBe(true);
   });
 });

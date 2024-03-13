@@ -23,13 +23,13 @@ describe('writeLog', () => {
     }
   });
 
-  test('throw error: logDirectory is not of type string', async () => {
+  test('throw error: input type check', async () => {
+    // logDirectory
     await expect(writeLog(0, testData)).rejects.toThrowError(
       '\nwriteLog() - logDirectory must be of type string',
     );
-  });
 
-  test('throw error: data is not of type string', async () => {
+    // data
     await expect(writeLog(testLogDirectory, 0)).rejects.toThrowError(
       '\nwriteLog() - data must be of type string',
     );

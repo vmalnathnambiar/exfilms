@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { describe, test, expect } from 'vitest';
 
 import { decodeBinary } from '../decodeBinary.js';
@@ -8,7 +10,7 @@ import { encodeBinary } from '../encodeBinary.js';
  * Input: precisionValue (number), compressionMethod (string), binaryData (string)
  * Output: Decoded binary data (number[])
  */
-describe('decodeBinary', () => {
+describe('binaryDecoder', () => {
   // Dummy data
   const testMZ = [
     70.0647, 90.7658, 110.0704, 116.0494, 116.0714, 158.9637, 165.09, 171.0546,
@@ -36,7 +38,89 @@ describe('decodeBinary', () => {
   };
 
   // Tests
-  test('decode 64-bit encoded data', async () => {
+  test('throw error: decodeBinary() input type check', async () => {
+    // precisionValue
+    await expect(
+      decodeBinary(
+        encoding.precisionValue.toString(),
+        encoding.compressionMethod,
+        testMZ,
+      ),
+    ).rejects.toThrowError(
+      '\ndecodeBinary() - precisionValue must be of type number',
+    );
+
+    await expect(
+      decodeBinary(50, encoding.compressionMethod, testMZ),
+    ).rejects.toThrowError(
+      '\ndecodeBinary() - precisionValue defined not valid',
+    );
+
+    // compressionMethod
+    await expect(
+      decodeBinary(encoding.precisionValue, 0, testMZ),
+    ).rejects.toThrowError(
+      '\ndecodeBinary() - compressionMethod must be of type string',
+    );
+
+    await expect(
+      decodeBinary(encoding.precisionValue, 'gzip', testMZ),
+    ).rejects.toThrowError(
+      '\ndecodeBinary() - compressionMethod defined not valid',
+    );
+
+    // encodedData
+    await expect(
+      decodeBinary(encoding.precisionValue, encoding.compressionMethod, 0),
+    ).rejects.toThrowError(
+      '\ndecodeBinary() - encodedData must be of type string',
+    );
+  });
+
+  test('throw error: encodeBinary() input type check', async () => {
+    // precisionValue
+    await expect(
+      encodeBinary(
+        encoding.precisionValue.toString(),
+        encoding.compressionMethod,
+        testMZ,
+      ),
+    ).rejects.toThrowError(
+      '\nencodeBinary() - precisionValue must be of type number',
+    );
+
+    await expect(
+      encodeBinary(50, encoding.compressionMethod, testMZ),
+    ).rejects.toThrowError(
+      '\nencodeBinary() - precisionValue defined not valid',
+    );
+
+    // compressionMethod
+    await expect(
+      encodeBinary(encoding.precisionValue, 0, testMZ),
+    ).rejects.toThrowError(
+      '\nencodeBinary() - compressionMethod must be of type string',
+    );
+
+    await expect(
+      encodeBinary(encoding.precisionValue, 'gzip', testMZ),
+    ).rejects.toThrowError(
+      '\nencodeBinary() - compressionMethod defined not valid',
+    );
+
+    // decodedData
+    await expect(
+      encodeBinary(
+        encoding.precisionValue,
+        encoding.compressionMethod,
+        'hello world',
+      ),
+    ).rejects.toThrowError(
+      '\nencodeBinary() - decodedData must be of type ArrayBufferLike, ArrayLike<number>, Iterable<number> or number',
+    );
+  });
+
+  test('decode encoded data: 64-bit', async () => {
     // Without compression
     let encodedData = await encodeBinary(
       encoding.precisionValue,
@@ -71,7 +155,7 @@ describe('decodeBinary', () => {
     ).toStrictEqual(testMZ);
   });
 
-  test('decode 32-bit encoded data', async () => {
+  test('decode encoded data: 32-bit', async () => {
     encoding.precisionValue = 32;
 
     // With compression

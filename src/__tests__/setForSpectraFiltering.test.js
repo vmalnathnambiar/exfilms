@@ -43,7 +43,7 @@ describe('setForSpectraFiltering', () => {
     expect(configParam.minMZ).toStrictEqual(90.7664);
     expect(configParam.maxMZ).toStrictEqual(1518.7125);
 
-    // ! Fail to catch roundDecimal() error: Code won't reach
+    // ! Fail to catch roundDecimal() error - Code won't reach: roundDecimalPlace.js line 11-13, 15-18
     // ! decimalPlace is always coerced into number resulting in NaN if not a number and skip roundDecimal()
     // ! toRoundValue is also coerced into number type resulting in NaN if not a number
     // testConfigParam.decimalPlace = testConfigParam.decimalPlace.toString();
@@ -55,14 +55,14 @@ describe('setForSpectraFiltering', () => {
     //     '\nroundDecimalPlace() - toRoundValue must be of type number',
     //   );
     // );
+  });
 
+  test('return configParam: targeted defined', async () => {
     testConfigParam.mzRange = false;
     testConfigParam.decimalPlace = NaN;
     testConfigParam.minMZ = undefined;
     testConfigParam.maxMZ = undefined;
-  });
 
-  test('return configParam: targeted defined', async () => {
     // TSV pattern check failure
     testConfigParam.targeted = true;
     testConfigParam.mzTolerance = 0.005;
@@ -109,7 +109,7 @@ describe('setForSpectraFiltering', () => {
     expect(configParam.minMZ).toBeDefined();
     expect(configParam.maxMZ).toBeDefined();
 
-    // ! Fail to catch roundDecimal() error: Code won't reach
+    // ! Fail to catch roundDecimal() error - Code won't reach: roundDecimalPlace.js line 11-13, 15-18
     // ! decimalPlace is always coerced into number resulting in NaN if not a number and skip roundDecimal()
     // ! toRoundValue is also coerced into number type resulting in NaN if not a number
     // testConfigParam.decimalPlace = testConfigParam.decimalPlace.toString();

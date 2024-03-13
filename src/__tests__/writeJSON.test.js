@@ -203,7 +203,8 @@ describe('writeJSON', () => {
   });
 
   // Tests
-  test('throw error: outputDirectory is not of type string', async () => {
+  test('throw error: input type check', async () => {
+    // outputDirectory
     await expect(writeJSON(0, testData)).rejects.toThrowError(
       '\nwriteJSON() - outputDirectory must be of type string',
     );
@@ -358,7 +359,7 @@ describe('writeJSON', () => {
     expect(readData.chromatogram[0]).toBeUndefined();
   });
 
-  test('write JSON: null date and time', async () => {
+  test('write JSON: date and time is null', async () => {
     testData.date = null;
     testData.time = null;
     expect(await writeJSON(testOutputDirectory, testData));

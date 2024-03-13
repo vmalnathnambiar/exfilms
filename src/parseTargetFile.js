@@ -17,7 +17,7 @@ export async function parseTargetFile(configParam) {
   let data;
 
   try {
-    // Check input pattern against urlPattern and tsvPattern
+    // Check input file pattern against urlPattern and tsvPattern
     if (urlPattern.test(configParam.targetFile)) {
       await fetch(configParam.targetFile)
         .then((response) => response.text())

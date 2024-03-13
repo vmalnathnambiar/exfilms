@@ -30,13 +30,13 @@ describe('listMZML', () => {
   });
 
   // Tests
-  test('throw error: directory is not of type string', async () => {
+  test('throw error: input type check', async () => {
     await expect(listMZML(0)).rejects.toThrowError(
       '\nlistMZML() - directory must be of type string',
     );
   });
 
-  test('return an array of only mzML file names from input directory', async () => {
+  test('return array of only mzML file names', async () => {
     expect(await listMZML(testDirectory)).toStrictEqual(['testFile1.mzML']);
   });
 

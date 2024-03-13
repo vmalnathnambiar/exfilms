@@ -53,13 +53,13 @@ describe('parseTargetFile', () => {
   const testMaxMZ = 1518.7175;
 
   // Tests
-  test('throw error: targetFile does not match TSV pattern check', async () => {
+  test('throw error: input file pattern check', async () => {
     await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
       '\nparseTargetFile() - targetFile does not match TSV pattern check',
     );
   });
 
-  test('pattern check', async () => {
+  test('successful input file pattern check', async () => {
     // Published to web URL
     testConfigParam.targetFile =
       'https://docs.google.com/spreadsheets/d/e/2PACX-1vSeo31hlruA3QuwoESz5IDJ9Nu6ndSAgLTRn3uc45rOPO4BlksfHzh9xtNB22Oes9JOxhEbI4NK-zxl/pub?gid=0&single=true&output=tsv';
@@ -84,16 +84,16 @@ describe('parseTargetFile', () => {
     expect(targetFile.maxMZ).toStrictEqual(testMaxMZ);
   });
 
-  test('throw error: roundDecimalPlace() invalid input type', async () => {
+  test('throw error: roundDecimalPlace() input type check', async () => {
     // toRoundValue
     testConfigParam.decimalPlace = 4;
     testConfigParam.mzTolerance = testConfigParam.mzTolerance.toString();
     await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
       '\nroundDecimalPlace() - toRoundValue must be of type number',
     );
-    testConfigParam.mzTolerance = 0.005;
 
     // decimalPlace
+    testConfigParam.mzTolerance = 0.005;
     testConfigParam.decimalPlace = testConfigParam.decimalPlace.toString();
     await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
       '\nroundDecimalPlace() - decimalPlace must be of type number',
@@ -102,26 +102,26 @@ describe('parseTargetFile', () => {
   });
 
   test('throw error: no target m/z data found', async () => {
-    // Filter from valid file with invalid spectrum msLevel filtering
+    // Valid file with invalid spectrum msLevel filtering
     testConfigParam.filterSpectrumData = true;
     testConfigParam.msLevel = [3];
     await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
       '\nparseTargetFile() - Target m/z data not found',
     );
 
-    // Extract from a a file with invalid layout (wrong header)
+    // File with invalid layout (wrong header)
     testConfigParam.targetFile = './data/targetFile/invalidLayout.tsv';
     await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
       '\nparseTargetFile() - Target m/z data not found',
     );
 
-    // Testing as the above but without filtering spectrum msLevel filtering
+    // Without spectrum msLevel filtering
     testConfigParam.filterSpectrumData = false;
     await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
       '\nparseTargetFile() - Target m/z data not found',
     );
 
-    // Extract from an empty file with just the header
+    // Empty file with just the header
     testConfigParam.filterSpectrumData = true;
     testConfigParam.msLevel = [1, 2];
     testConfigParam.targetFile = './data/targetFile/empty.tsv';
@@ -129,7 +129,7 @@ describe('parseTargetFile', () => {
       '\nparseTargetFile() - Target m/z data not found',
     );
 
-    // Testing as the above but without spectrum msLevel filtering
+    // Without spectrum msLevel filtering
     testConfigParam.filterSpectrumData = false;
     await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
       '\nparseTargetFile() - Target m/z data not found',

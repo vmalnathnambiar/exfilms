@@ -60,89 +60,85 @@ describe('yargsCheck', () => {
   });
 
   // Tests
-  test('throw error: inputDirectory not defined', async () => {
+  test('throw error: command line arguments check', async () => {
+    // inputDirectory not defined
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-i (or --inputDirectory) "/path/to/input/directory/" required',
     );
-  });
 
-  test('throw error: both targeted and mzRange defined', async () => {
+    // both targeted and mzRange defined
     testArgv.inputDirectory = testDirectory;
     testArgv.targeted = true;
     testArgv.mzRange = true;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\nUse one of the following options for spectra filtering:\n-t (or --targeted) --targetFile "/local/path/or/published/to/web/URL/to/target/tsv/file" --mzTolerance <number> --ppmTolerance <number>\n-r (or --mzRange) --minMZ <number> --maxMZ <number',
     );
-    testArgv.mzRange = false;
-  });
 
-  test('throw error: targetFile not defined when targeted is defined', async () => {
+    // targetFile not defined when targeted is defined
+    testArgv.mzRange = false;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n--targetFile "/path/to/target/file.tsv" required',
     );
-  });
 
-  test('throw error: targetFile, mzTolerance and ppmTolerance defined (not default values) without targeted ', async () => {
+    // targetFile, mzTolerance and ppmTolerance defined (not default values) without targeted
     // targetFile
     testArgv.targeted = false;
     testArgv.targetFile = './.tmp/targetFile.tsv';
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-t (or --targeted) required to specify --targetFile, --mzTolerance and --ppmTolerance',
     );
-    testArgv.targetFile = undefined;
 
     // mzTolerance
+    testArgv.targetFile = undefined;
     testArgv.mzTolerance = 3;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-t (or --targeted) required to specify --targetFile, --mzTolerance and --ppmTolerance',
     );
-    testArgv.mzTolerance = 0.005;
 
     // ppmTolerance
+    testArgv.mzTolerance = 0.005;
     testArgv.ppmTolerance = 3;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-t (or --targeted) required to specify --targetFile, --mzTolerance and --ppmTolerance',
     );
-    testArgv.ppmTolerance = 5;
-  });
 
-  test('throw error: minMZ and maxMZ defined (not default values) without mzRange', async () => {
+    // minMZ and maxMZ defined (not default values) without mzRange
     // minMZ
+    testArgv.ppmTolerance = 5;
     testArgv.minMZ = 500;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '-r (or --mzRange) required to specify --minMZ and --maxMZ',
     );
-    testArgv.minMZ = 0;
 
     // maxMZ
+    testArgv.minMZ = 0;
     testArgv.maxMZ = 500;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '-r (or --mzRange) required to specify --minMZ and --maxMZ',
     );
     testArgv.maxMZ = NaN;
-  });
 
-  test('throw error: maxMZ defined (not default value) is smaller than minMZ', async () => {
+    // maxMZ defined (not default value) is smaller than minMZ
     testArgv.mzRange = true;
     testArgv.minMZ = 500;
     testArgv.maxMZ = 10;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\nmaxMZ value needs to be greater than minMZ value',
     );
+
+    // spectrumType, msLevel, polarity and excludeSpectra defined (not default values) without filterSpectrumData
     testArgv.mzRange = false;
     testArgv.minMZ = 0;
     testArgv.maxMZ = NaN;
-  });
 
-  test('throw error: spectrumType, msLevel, polarity and excludeSpectra defined (not default values) without filterSpectrumData', async () => {
     // spectrumType
     testArgv.spectrumType = ['profile'];
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
     );
-    testArgv.spectrumType = ['profile', 'centroid'];
 
     // msLevel
+    testArgv.spectrumType = ['profile', 'centroid'];
     testArgv.msLevel = [1];
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
@@ -152,16 +148,16 @@ describe('yargsCheck', () => {
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
     );
-    testArgv.msLevel = [1, 2];
 
     // polarity
+    testArgv.msLevel = [1, 2];
     testArgv.polarity = ['positive'];
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
     );
-    testArgv.polarity = ['positive', 'negative'];
 
     // excludeSpectra
+    testArgv.polarity = ['positive', 'negative'];
     testArgv.excludeSpectra = true;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
@@ -225,7 +221,7 @@ describe('yargsCheck', () => {
     expect(configParam).toHaveProperty('excludeSpectra');
   });
 
-  // ! Fail to catch listMZML() error: Code won't reach.
+  // ! Fail to catch listMZML() error - Code won't reach: listMZML.js line 12-13 and setDefaults.js line 68-69
   // ! Code will throw undefined inputDirectory error if anything but string is inputted
   // test('throw error: listMZML() invalid input type', async () => {
   //   testArgv.inputDirectory = 0;

@@ -113,7 +113,7 @@ describe('setDefaults', () => {
     expect(configParam.excludeSpectra).toStrictEqual(testArgv.excludeSpectra);
   });
 
-  test('throw error: listMZML() invalid input type', async () => {
+  test('throw error: listMZML() input type check', async () => {
     testArgv.inputDirectory = 0;
     testArgv.fileList = ['*'];
     await expect(setDefaults(testArgv)).rejects.toThrowError(
