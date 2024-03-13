@@ -2,11 +2,7 @@
   "name": "exfilms",
   "version": "1.0.0",
   "description": "A cross-platform, command line interface (CLI) tool to extract MS data from mzML formatted files, with spectrum filtering capabilities.",
-  "bin": "./bin/exfilms.js",
-  "files": [
-    "bin",
-    "src"
-  ],
+  "bin": "./src/exfilms.js",
   "type": "module",
   "scripts": {
     "eslint": "eslint src",
@@ -23,7 +19,11 @@
     "type": "git",
     "url": "git+https://github.com/vmalnathnambiar/exfilms.git"
   },
-  "keywords": [],
+  "keywords": [
+    "mass spectrometry",
+    "data extraction",
+    "spectrum filtering"
+  ],
   "author": "Vimalnath Nambiar",
   "license": "MIT",
   "bugs": {

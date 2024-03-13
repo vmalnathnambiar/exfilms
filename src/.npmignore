@@ -1,3 +1,5 @@
-__tests__
+# Test folder
+__tests__/
+
+# npm ignore file 
 .npmignore
-.DS_Store

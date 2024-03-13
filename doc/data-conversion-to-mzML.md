@@ -96,16 +96,16 @@ Download [Docker][docker-url]
    ```md
    # Run ProteoWizard msConvert with default data conversion parameters
 
-   docker run --rm -v "/path/to/directory/containing/raw/MS/data/":/inputDirectory -v "/path/to/output/directory/":/outputDirectory proteowizard/pwiz-skyline-i-agree-to-the-vendor-licenses wine msconvert /inputDirectory/"_._" -o /outputDirectory
+   docker run --rm -v "/path/to/directory/containing/raw/MS/data/":/inputDirectory -v "/path/to/output/directory/":/outputDirectory proteowizard/pwiz-skyline-i-agree-to-the-vendor-licenses wine msconvert /inputDirectory/"*.*" -o /outputDirectory
 
    # Default data conversion parameters used
 
    format: mzML
-      m/z: Compression-None, 64-bit
-      intensity: Compression-None, 32-bit
-      rt: Compression-None, 64-bit
+   m/z: Compression-None, 64-bit
+   intensity: Compression-None, 32-bit
+   rt: Compression-None, 64-bit
    ByteOrder_LittleEndian
-      indexed="true"
+   indexed="true"
    outputPath: /outputDirectory
    extension: .mzML
    contactFilename:

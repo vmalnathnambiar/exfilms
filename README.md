@@ -18,7 +18,7 @@ Before being able to install ExfilMS on your device, you will first need to have
 
 Once the required prerequisites have been installed, you can now use npm to install ExfilMS from your terminal.
 
-`$ npm install exfilms`
+`$ npm install -g exfilms`
 
 > _Note: ExfilMS have been tested on Windows, macOS and Linux._
 
