@@ -61,8 +61,10 @@ figlet('ExfilMS', async function (err, data) {
       configParam = await yargsCheck(argv);
     }
 
-    // Set spectra filtering method if defined
-    configParam = await setForSpectraFiltering(configParam);
+    // Set for spectra filtering method if defined
+    if (configParam.targeted || configParam.mzRange) {
+      configParam = await setForSpectraFiltering(configParam);
+    }
 
     // Create output and log directories based on configuration
     await createDefaultDirectories(configParam);

@@ -11,8 +11,9 @@ export async function setForSpectraFiltering(configParam) {
   configParam.decimalPlace = Number(configParam.decimalPlace);
 
   try {
-    // If targeted m/z filtering is defined
+    // Determine the spectra filtering method defined
     if (configParam.targeted) {
+      // If targeted m/z filtering
       configParam.mzTolerance = Number(configParam.mzTolerance);
       configParam.ppmTolerance = Number(configParam.ppmTolerance);
 
@@ -21,13 +22,12 @@ export async function setForSpectraFiltering(configParam) {
       configParam.mzTargetList = targetFile.mzTargetList;
       configParam.minMZ = targetFile.minMZ;
       configParam.maxMZ = targetFile.maxMZ;
-    }
-
-    // If m/z range filtering is defined
-    if (configParam.mzRange) {
+    } else if (configParam.mzRange) {
+      // If m/z range filtering
       configParam.minMZ = Number(configParam.minMZ);
       configParam.maxMZ = Number(configParam.maxMZ);
 
+      // Round minMZ and maxMZ to specific decimal place if specified
       if (!isNaN(configParam.decimalPlace)) {
         configParam.minMZ = await roundDecimalPlace(
           configParam.minMZ,

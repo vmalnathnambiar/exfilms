@@ -188,16 +188,16 @@ const argv = yargs(hideBin(process.argv))
     description: 'Exclude spectra (m/z and intensity values) from output file',
     default: false,
   })
-  .usage('Usage: $0 <commands> <subcommands>')
+  .usage('Usage: exfilms <commands> <subcommands>')
   .alias('help', 'h')
   .alias('version', 'v')
-  .example('$0 -x', 'Run ExfilMS in interactive mode')
+  .example('exfilms -x', 'Run ExfilMS in interactive mode')
   .example(
-    '$0 -i "/path/to/input/directory/"',
+    'exfilms -i "/path/to/input/directory/"',
     'Run ExfilMS with default configurations',
   )
   .example(
-    '$0 -i "/path/to/input/directory/" -f --spectrumType "centroid" --msLevel 1 2 --polarity "positive" "negative"',
+    'exfilms -i "/path/to/input/directory/" -f --spectrumType "centroid" --msLevel 1 2 --polarity "positive" "negative"',
     'Run ExfilMS configured to filter spectrum data for centroided MS1 and MS2 spectrum data with both polarity types',
   ).argv;
 

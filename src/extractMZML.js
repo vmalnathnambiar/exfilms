@@ -74,7 +74,7 @@ export async function extractMZML(configParam, msData) {
       chromatogram,
     };
 
-    // Write JSON file
+    // Write output file based on outputFormat
     if (configParam.outputFormat === 'JSON') {
       await writeJSON(configParam.outputDirectory, data);
     } else if (configParam.outputFormat === 'TSV') {
