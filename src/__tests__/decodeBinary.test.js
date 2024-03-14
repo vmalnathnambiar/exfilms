@@ -6,9 +6,9 @@ import { decodeBinary } from '../decodeBinary.js';
 import { encodeBinary } from '../encodeBinary.js';
 
 /**
- * To test decodeBinary function
+ * To test decodeBinary (and encodeBinary function)
  * Input: precisionValue (number), compressionMethod (string), binaryData (string)
- * Output: Decoded binary data (number[])
+ * Output: Decoded binary data (number[]) || Error message (Error)
  */
 describe('binaryDecoder', () => {
   // Dummy data

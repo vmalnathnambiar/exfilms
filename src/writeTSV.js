@@ -10,6 +10,7 @@ import { join } from 'path';
  * @param {string} outputDirectory Output directory path.
  * @param {MS} data MS data extracted from parsed mzML file.
  * @returns {Promise<void>} A Promise that resolves when the writing to TSV files are complete.
+ * @throws {Error} Throws error if writeTSV() encounters issues in its process.
  */
 export async function writeTSV(outputDirectory, data) {
   // Check input type

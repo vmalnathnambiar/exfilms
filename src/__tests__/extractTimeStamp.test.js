@@ -7,7 +7,7 @@ import { extractTimeStamp } from '../extractTimeStamp.js';
 /**
  * To test extractTimeStamp function
  * Input: timeStamp (string)
- * Output: An object with extracted date and time (TimeStamp)
+ * Output: An object with extracted date and time (TimeStamp) || Error message (Error)
  */
 describe('extractTimeStamp', () => {
   // Tests

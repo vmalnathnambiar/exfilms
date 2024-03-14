@@ -9,7 +9,7 @@ import { writeLog } from '../writeLog.js';
 /**
  * To test writeLog function
  * Input: configParam (Object), data (string)
- * Output: NA
+ * Output: NA || Error message (Error)
  */
 describe('writeLog', () => {
   // Dummy data
@@ -23,7 +23,7 @@ describe('writeLog', () => {
     }
   });
 
-  test('throw error: input type check', async () => {
+  test('throw errors: input type check', async () => {
     // logDirectory
     await expect(writeLog(0, testData)).rejects.toThrowError(
       '\nwriteLog() - logDirectory must be of type string',

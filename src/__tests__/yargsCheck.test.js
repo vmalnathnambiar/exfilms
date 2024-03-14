@@ -15,7 +15,7 @@ import { yargsCheck } from '../yargsCheck.js';
 /**
  * To test yargsCheck function
  * Input: argv (Yargs)
- * Output: configParam (Object)
+ * Output: configParam (Object) || Error message (Error)
  */
 describe('yargsCheck', () => {
   // Dummy data
@@ -60,7 +60,7 @@ describe('yargsCheck', () => {
   });
 
   // Tests
-  test('throw error: command line arguments check', async () => {
+  test('throw errors: command line arguments check', async () => {
     // inputDirectory not defined
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
       '\n-i (or --inputDirectory) "/path/to/input/directory/" required',
@@ -221,9 +221,9 @@ describe('yargsCheck', () => {
     expect(configParam).toHaveProperty('excludeSpectra');
   });
 
-  // ! Fail to catch listMZML() error - Code won't reach: listMZML.js line 12-13 and setDefaults.js line 68-69
+  // ! Fail to catch listMZML() error - Code won't reach: listMZML.js line 12-13
   // ! Code will throw undefined inputDirectory error if anything but string is inputted
-  // test('throw error: listMZML() invalid input type', async () => {
+  // test('throw errors: listMZML() input type check', async () => {
   //   testArgv.inputDirectory = 0;
   //   testArgv.fileList = ['*'];
   //   await expect(yargsCheck(testArgv)).rejects.toThrowError(

@@ -7,6 +7,7 @@ import pako from 'pako';
  * @param {string} compressionMethod Method of compression used while encoding the binary data.
  * @param {string} encodedData Binary string data to be decoded.
  * @returns {Promise<Float64Array|Float32Array>} A promise that resolves with decoded Float64 or Float32 array.
+ * @throws {Error} Throws error if decodeBinary() encounters issues in its process.
  */
 export async function decodeBinary(
   precisionValue,

@@ -14,7 +14,7 @@ import { writeTSV } from '../writeTSV.js';
 /**
  * To test writeTSV function
  * Input: outputDirectory (string), data (MS)
- * Output: NA
+ * Output: NA || Error message (Error)
  */
 describe('writeTSV', () => {
   // Dummy data
@@ -222,7 +222,7 @@ describe('writeTSV', () => {
   });
 
   // Tests
-  test('throw error: input type check', async () => {
+  test('throw errors: input type check', async () => {
     // outputDirectory
     await expect(writeTSV(0, testData)).rejects.toThrowError(
       '\nwriteTSV() - outputDirectory must be of type string',

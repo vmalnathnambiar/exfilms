@@ -7,7 +7,7 @@ import { setForSpectraFiltering } from '../setForSpectraFiltering.js';
 /**
  * To test setForSpectraFiltering function
  * Input: configParam (Object)
- * Output: An updated object of configParam (if spectra filtering is defined) (Object)
+ * Output: An updated object of configParam (if spectra filtering is defined) (Object) || Error message (Error)
  */
 describe('setForSpectraFiltering', () => {
   // Dummy data
@@ -42,19 +42,6 @@ describe('setForSpectraFiltering', () => {
     expect(configParam.mzTargetList).toBeUndefined();
     expect(configParam.minMZ).toStrictEqual(90.7664);
     expect(configParam.maxMZ).toStrictEqual(1518.7125);
-
-    // ! Fail to catch roundDecimal() error - Code won't reach: roundDecimalPlace.js line 11-13, 15-18
-    // ! decimalPlace is always coerced into number resulting in NaN if not a number and skip roundDecimal()
-    // ! toRoundValue is also coerced into number type resulting in NaN if not a number
-    // testConfigParam.decimalPlace = testConfigParam.decimalPlace.toString();
-    // await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
-    //   '\nroundDecimalPlace() - decimalPlace must be of type number',
-
-    //   testConfigParam.minMZ = '5a';
-    //   await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
-    //     '\nroundDecimalPlace() - toRoundValue must be of type number',
-    //   );
-    // );
   });
 
   test('return configParam: targeted defined', async () => {
@@ -108,17 +95,20 @@ describe('setForSpectraFiltering', () => {
     expect(configParam).toHaveProperty('mzTargetList');
     expect(configParam.minMZ).toBeDefined();
     expect(configParam.maxMZ).toBeDefined();
-
-    // ! Fail to catch roundDecimal() error - Code won't reach: roundDecimalPlace.js line 11-13, 15-18
-    // ! decimalPlace is always coerced into number resulting in NaN if not a number and skip roundDecimal()
-    // ! toRoundValue is also coerced into number type resulting in NaN if not a number
-    // testConfigParam.decimalPlace = testConfigParam.decimalPlace.toString();
-    // await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
-    //   '\nroundDecimalPlace() - decimalPlace must be of type number',
-
-    // testConfigParam.mzTolerance = '5a';
-    // await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
-    //   '\nroundDecimalPlace() - toRoundValue must be of type number',
-    // );
   });
+
+  // ! Fail to catch roundDecimal() error - Code won't reach: roundDecimalPlace.js line 11-13, 15-18
+  // ! decimalPlace is always coerced into number resulting in NaN if not a number and skip roundDecimal()
+  // ! toRoundValue is also coerced into number type resulting in NaN if not a number
+  // test('throw errors: roundDecimalPlace() input type check', async () => {
+  //   testConfigParam.decimalPlace = testConfigParam.decimalPlace.toString();
+  //   await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
+  //     '\nroundDecimalPlace() - decimalPlace must be of type number',
+  //   );
+
+  //   testConfigParam.mzTolerance = '5a';
+  //   await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
+  //     '\nroundDecimalPlace() - toRoundValue must be of type number',
+  //   );
+  // });
 });

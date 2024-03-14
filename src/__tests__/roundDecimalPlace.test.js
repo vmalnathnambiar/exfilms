@@ -7,7 +7,7 @@ import { roundDecimalPlace } from '../roundDecimalPlace.js';
 /**
  * To test roundDecimalPlace function
  * Input: toRoundValue (number), decimalPlace (number)
- * Output: Rounded value to a specified number of decimal places (number)
+ * Output: Rounded value to a specified number of decimal places (number) || Error message (Error)
  */
 describe('roundDecimalPlace', () => {
   // Dummy data
@@ -15,7 +15,7 @@ describe('roundDecimalPlace', () => {
   const testDecimalPlace = 4;
 
   // Tests
-  test('throw error: input type check', async () => {
+  test('throw errors: input type check', async () => {
     // toRoundValue
     await expect(
       roundDecimalPlace(testToRoundValue.toString(), testDecimalPlace),

@@ -7,7 +7,7 @@ import { parseTargetFile } from '../parseTargetFile.js';
 /**
  * To test parseTargetFile function
  * Input: configParam (Object)
- * Output: An object containing the m/z target list, minimum and maximum values (Object)
+ * Output: An object containing the m/z target list, minimum and maximum values (Object) || Error message (Error)
  */
 describe('parseTargetFile', () => {
   // Dummy data
@@ -53,7 +53,7 @@ describe('parseTargetFile', () => {
   const testMaxMZ = 1518.7175;
 
   // Tests
-  test('throw error: input file pattern check', async () => {
+  test('throw errors: input file pattern check', async () => {
     await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
       '\nparseTargetFile() - targetFile does not match TSV pattern check',
     );
@@ -84,7 +84,7 @@ describe('parseTargetFile', () => {
     expect(targetFile.maxMZ).toStrictEqual(testMaxMZ);
   });
 
-  test('throw error: roundDecimalPlace() input type check', async () => {
+  test('throw errors: roundDecimalPlace() input type check', async () => {
     // toRoundValue
     testConfigParam.decimalPlace = 4;
     testConfigParam.mzTolerance = testConfigParam.mzTolerance.toString();
@@ -101,7 +101,7 @@ describe('parseTargetFile', () => {
     testConfigParam.decimalPlace = 4;
   });
 
-  test('throw error: no target m/z data found', async () => {
+  test('throw errors: no target m/z data found', async () => {
     // Valid file with invalid spectrum msLevel filtering
     testConfigParam.filterSpectrumData = true;
     testConfigParam.msLevel = [3];

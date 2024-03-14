@@ -9,6 +9,7 @@ import pako from 'pako';
  * @param {string} compressionMethod Method of compression used while encoding the binary data.
  * @param {ArrayBufferLike|ArrayLike<number>|Iterable<number>|number} decodedData Data to be encoded.
  * @returns {Promise<string>} A promise that resolves with encoded data string.
+ * @throws {Error} Throws error if encodeBinary() encounters issues in its process.
  */
 export async function encodeBinary(
   precisionValue,

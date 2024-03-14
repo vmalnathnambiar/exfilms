@@ -14,7 +14,7 @@ import { writeJSON } from '../writeJSON.js';
 /**
  * To test writeJSON function
  * Input: outputDirectory (string), data (MS)
- * Output: NA
+ * Output: NA || Error message (Error)
  */
 describe('writeJSON', () => {
   // Dummy data
@@ -203,7 +203,7 @@ describe('writeJSON', () => {
   });
 
   // Tests
-  test('throw error: input type check', async () => {
+  test('throw errors: input type check', async () => {
     // outputDirectory
     await expect(writeJSON(0, testData)).rejects.toThrowError(
       '\nwriteJSON() - outputDirectory must be of type string',

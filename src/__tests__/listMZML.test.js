@@ -10,7 +10,7 @@ import { listMZML } from '../listMZML.js';
 /**
  * To test listMZML function
  * Input: directory (string)
- * Output: An array list of mzML file names (String[])
+ * Output: An array list of mzML file names (String[]) || Error message (Error)
  */
 describe('listMZML', () => {
   // Dummy data
@@ -30,7 +30,7 @@ describe('listMZML', () => {
   });
 
   // Tests
-  test('throw error: input type check', async () => {
+  test('throw errors: input type check', async () => {
     await expect(listMZML(0)).rejects.toThrowError(
       '\nlistMZML() - directory must be of type string',
     );

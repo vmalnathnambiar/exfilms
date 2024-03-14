@@ -15,7 +15,7 @@ import { setDefaults } from '../setDefaults.js';
 /**
  * To test setDefaults function
  * Input: argv (Yargs)
- * Output: configParam (Object)
+ * Output: configParam (Object) || Error message (Error)
  */
 describe('setDefaults', () => {
   // Dummy data

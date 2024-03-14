@@ -3,7 +3,7 @@
  * @param {number} toRoundValue The number value you want to round.
  * @param {number} decimalPlace The number of decimal places you would like to round to.
  * @returns {Promise<number>} A promise that resolves with the rounded value to the specified number of decimal places.
- * @throws {?Error} Throws error if the roundDecimalPlace process encounters issues.
+ * @throws {Error} Throws error if roundDecimalPlace() encounters issues in its process.
  */
 export async function roundDecimalPlace(toRoundValue, decimalPlace) {
   // Check input type

@@ -6,6 +6,7 @@ import { join } from 'path';
  * @param {string} logDirectory Log directory path.
  * @param {string} data The log message to be written in the log file
  * @returns {Promise<void>} A promise that resolves when the writing operation is completed
+ * @throws {Error} Throws error if writeLog() encounters issues in its process.
  */
 export async function writeLog(logDirectory, data) {
   // Check input type

@@ -9,6 +9,7 @@ import { join } from 'path';
  * @param {string} outputDirectory Output directory path.
  * @param {MS} data MS data extracted from parsed mzML file.
  * @returns {Promise<void>} A Promise that resolves when the writing to JSON file is complete.
+ * @throws {Error} Throws error if writeJSON() encounters issues in its process.
  */
 export async function writeJSON(outputDirectory, data) {
   // Check input type

@@ -6,6 +6,7 @@
  * Extract date and time from time stamp.
  * @param {string} timeStamp Timestamp to extract date and time from (Format: 'YYYY-MM-DD HH:mm:ss').
  * @returns {Promise<TimeStamp>} A promise that resolves with an TimeStamp object containing the extracted date and time.
+ * @throws {Error} Throws error if extractTimeStamp() encounters issues in its process.
  */
 export async function extractTimeStamp(timeStamp) {
   // Check input type

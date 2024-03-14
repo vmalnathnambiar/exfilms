@@ -13,7 +13,7 @@ import { writeLog } from './writeLog.js';
  * Parse mzML files to be processed for MS data extraction (and filtration).
  * @param {Object} configParam Configuration parameters passed via the command line interface.
  * @return {Promise<void>} A promise that resolves when all mzML files to be processed have been parsed and extracted (and filtered).
- * @throws {?Error} Throws error displaying a list of mzML files that encountered issues during the extraction (and filtration) process.
+ * @throws {Error} Throws error if parseMZML() encounters issues in its process.
  */
 export async function parseMZML(configParam) {
   const spinner = ora();
@@ -55,14 +55,10 @@ export async function parseMZML(configParam) {
   }
 
   // Write failed files list into log file
-  try {
-    await writeLog(
-      configParam.logDirectory,
-      `Failed files: [${failedFiles}]\n\n`,
-    );
-  } catch (err) {
-    throw err.toString();
-  }
+  await writeLog(
+    configParam.logDirectory,
+    `Failed files: [${failedFiles}]\n\n`,
+  );
 
   // Throw error if there were failed files
   if (failedFiles.length !== 0) {
