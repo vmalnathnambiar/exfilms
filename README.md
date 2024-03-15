@@ -1,12 +1,27 @@
-# ExfilMS
-
+![ExfilMS](./img/logo.png)  
 [![NPM version][npm-image]][npm-url]
 [![build status][ci-image]][ci-url]
 [![Test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
 
-ExfilMS is a cross-platform, command line interface (CLI) tool to extract MS data from mzML formatted files, with spectrum filtering capabilities.  
-<br>
+ExfilMS is a cross-platform, command line interface (CLI) tool to extract MS data from mzML formatted files, with spectrum filtering capabilities.
+
+**Features include:**
+
+- Precision value rounding
+
+- Spectra filtering
+
+  - Targeted m/z filtering
+  - m/z range filtering
+
+- Spectrum data filtering
+
+  - Spectrum type (profile / centroid)
+  - MS level
+  - Polarity (positive / negative)
+  - Exclude spectra (m/z and intensity)
+    <br>
 
 ## Installation
 

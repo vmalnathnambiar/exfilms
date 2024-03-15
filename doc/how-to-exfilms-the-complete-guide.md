@@ -186,8 +186,6 @@ ExfilMS also provides you with the capability to filter the spectra (m/z and int
 
 > _Note: The spectra filtering options are mutually exclusive. You can only use **ONE** of the method at a time._
 
-<br>
-
 #### Method 1 - Targeted m/z Filtering
 
 `-t`, `--targeted` \*_Required_
