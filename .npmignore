@@ -1,6 +1,12 @@
-# Test folder
-/src/__tests__/
+# Tests
 data/
+src/__tests__/
 
-# npm ignore file 
+# Config files (Dev dependencies)
+.dockerignore
+.eslintrc.yml
+.gitignore
 .npmignore
+.prettierrc.json
+.vite.js
+Dockerfile
