@@ -1,6 +1,9 @@
 # How to Create A Target File
 
-To create the target file, I would highly recommend the use of Google Sheets. This will enable you to easily save and/or publish the sheet to the web as tsv with ease.
+> [!NOTE]\
+> To create the target file, I would highly recommend the use of Google Sheets. This will enable you to easily save and/or publish the sheet to the web as tsv with ease.
+
+### Table of Contents
 
 1. [File Layout](#file-layout)
 2. [Save to Local Device](#save-to-local-device)
@@ -26,6 +29,9 @@ To create this target file, you **MUST** follow the layout shown below.
 
 ![layout](../img/targetFile/layout.png)
 
+> [!IMPORTANT]\
+> The header names MUST match the headers displayed in the layout.
+
 <br>
 
 ## Save to Local Device
@@ -34,7 +40,7 @@ To save the newly created target file as a tsv file to a local path on your devi
 
 `File` > `Download` > `Tab Separated Values (.tsv)`
 
-![save-local](../img/targetFile/save-local.png)  
+![save-local](../img/targetFile/save-local.png)\
 <br>
 
 ## Publish to Web
@@ -59,5 +65,5 @@ For the purpose of ExfilMS, you should do the following:
 
 ![publish-web-2](../img/targetFile/publish-web-2.png)
 
-> [!NOTE]  
-> Once you publish the sheet, you will be provided a link that you can then use as the input while using the `--targetFile` flag when running the targeted m/z filtering method for spectra filtering.\_
+> [!NOTE]\
+> Once you publish the sheet, you will be provided a link that you can then use as the input while using the `--targetFile` flag when running the targeted m/z filtering method for spectra filtering.

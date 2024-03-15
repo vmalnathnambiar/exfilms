@@ -1,4 +1,4 @@
-![ExfilMS](./img/logo.png)  
+![ExfilMS](./img/logo.png)\
 [![NPM version][npm-image]][npm-url]
 [![build status][ci-image]][ci-url]
 [![Test coverage][codecov-image]][codecov-url]
@@ -6,20 +6,16 @@
 
 ## Introduction
 
-ExfilMS is a cross-platform, command line interface (CLI) tool to extract MS data from mzML formatted files, with spectrum filtering capabilities.  
+ExfilMS is a cross-platform, command line interface (CLI) tool to extract MS data from mzML formatted files, with spectrum filtering capabilities.\
 <br>
 
-**Features include:**
+### Features:
 
 - Precision value rounding
-
 - Spectra filtering
-
   - Targeted m/z filtering
   - m/z range filtering
-
 - Spectrum data filtering
-
   - Spectrum type (profile / centroid)
   - MS level
   - Polarity (positive / negative)
@@ -29,15 +25,9 @@ ExfilMS is a cross-platform, command line interface (CLI) tool to extract MS dat
 
 ## Installation
 
-> _Note: ExfilMS have been tested on Windows, macOS and Linux._
-
-Before being able to install ExfilMS on your device, you will first need to have the following installed:
-
-- [Node.js®][nodejs-url]
-
-<br>
-
-Once the required prerequisites have been installed, you can now use npm to install ExfilMS from your terminal.
+> [!IMPORTANT]\
+> **Prerequisite:** [Node.js®][nodejs-url]\
+> **Platform compatibility:** Windows, macOS and Linux.
 
 `$ npm install -g exfilms`
 

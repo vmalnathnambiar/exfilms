@@ -1,5 +1,7 @@
 # How to ExfilMS: The Complete Guide
 
+### Table of Contents
+
 1. [Introduction](#introduction)
 2. [Execution of ExfilMS and The Use of Flags](#execution-of-exfilms-and-the-use-of-flags)
 3. [Useful Commands](#useful-commands)
@@ -18,7 +20,8 @@
 
 ExfilMS is a cross-platform, command line interface (CLI) tool that allows you to easily extract MS data from mzML formatted files, with spectrum filtering capabilities. This guide will help you understand how to use ExfilMS to its full potential.
 
-> _Note: If you are reading this guide, it is assumed that you have ExfilMS already installed and is available on your device. If it is not installed, please refer to the installation guide [here](../README.md#installation)._
+> [!NOTE]\
+> If you are reading this guide, it is assumed that you have ExfilMS already installed and is available on your device. If it is not installed, please refer to the installation guide [here](../README.md#installation).
 
 <br>
 
@@ -30,7 +33,7 @@ However, running this command on its own will result in an error, as seen below.
 
 ![launch-err](../img/launch/err-default.png)
 
-The `i`, `--inputDirectory` displayed in the error message is known as as a command line flag (or "flag") that is required for a successful execution of ExfilMS. There are both required and non-required flags available for your use. The inclusion of these flags along with the `exfilms` command will configure and establish the behaviour of the tool for running its extraction (and filtering) process.  
+The `i`, `--inputDirectory` displayed in the error message is known as as a command line argument (or "command" or "flag") that is required for a successful execution of ExfilMS. There are both required and non-required flags available for your use. The inclusion of these flags along with the `exfilms` command will configure and establish the behaviour of the tool for running its extraction (and filtering) process.\
 <br>
 
 ## Useful Commands
@@ -91,8 +94,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/"
 
 Along with the `-i`, `--inputDirectory` flag, you can also specify specific files within the input directory that you would like to process by simply appending `--fileList` to the command. This flag accepts space-separated strings of file names or "\*" for all files as its value.
 
-_Input type: Space-separated strings_
-
+_Input type: Space-separated strings_\
 _Default: "\*"_
 
 ```md
@@ -107,16 +109,16 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" --fileList "file1
 
 `-f`, `--outputFormat`
 
-_Input type: String_
-
-_Choices: "JSON", "TSV" | Default: "JSON"_
+_Input type: String_\
+_Choices: "JSON", "TSV" || Default: "JSON"_
 
 Specify output format. There are currently two available output formats for you to choose from.
 
 1. JSON, also known as JavaScript Object Notation is a standard, human readable text stored in the basis of object key-value pairs.
 
 2. TSV, on the other hand, is an output format in the form of tab separated values.
-   > _Note: Due to the characteristics of MS data being n-dimensional, it is a challenge to store all of the extracted data into a single file. If you do choose TSV as your desired output format, two folders will be created in the output directory labelled 'spectrum' and 'chromatogram', containing the associated MS data of the file being processed, respectively._
+   > [!NOTE]\
+   > Due to the characteristics of MS data being n-dimensional, it is a challenge to store all of the extracted data into a single TSV file. If you do choose TSV as your desired output format, two folders will be created in the output directory labelled 'spectrum' and 'chromatogram', containing the associated MS data of the file being processed, respectively.
 
 <br>
 
@@ -126,14 +128,11 @@ Specify output format. There are currently two available output formats for you 
 $ exfilms -i "/path/to/input/directory/" -f (or --outputFormat) "JSON"
 ```
 
-> _Note: This flag only accepts only **ONE** output format for its value at a time._
-
 <br>
 
 `-o`, `--outputDirectory`
 
-_Input type: String_
-
+_Input type: String_\
 _Default: /home/dir/exfilms/outputFormat/_
 
 Specify the output directory to store all the generated output files.
@@ -148,8 +147,7 @@ $ exfilms -i "/path/to/input/directory/" -o (or --outputDirectory) "/path/to/out
 
 `-l`, `--logDirectory`
 
-_Input type: String_
-
+_Input type: String_\
 _Default: /home/dir/.exfilms/_
 
 Specify the log directory to store the generated log file of the extraction (and filtering) process.
@@ -166,8 +164,7 @@ $ exfilms -i "/path/to/input/directory/" -l (or --logDirectory) "/path/to/log/di
 
 `-d`, `--decimalPlace`
 
-_Input type: Number_
-
+_Input type: Number_\
 _Default: No rounding of precision values_
 
 MS data (i.e., m/z values detected by the instrument) often comes with precision values that contains a long range of decimal places. However, it is found that sometimes while processing MS data, these precision values are represented by a smaller range of decimal places (i.e., 4 decimal places). With this flag, you can determine the number of decimal places that you would like to round the precision values identified to.
@@ -184,7 +181,8 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -d (or --decimalP
 
 ExfilMS also provides you with the capability to filter the spectra (m/z and intensity) acquired during acquisition for each scan point (retention time) via two methods.
 
-> _Note: The spectra filtering options are mutually exclusive. You can only use **ONE** of the method at a time._
+> [!WARNING]\
+> The spectra filtering options are mutually exclusive. You can only use **ONE** of the method at a time.
 
 #### Method 1 - Targeted m/z Filtering
 
@@ -196,9 +194,10 @@ ExfilMS also provides you with the capability to filter the spectra (m/z and int
 
 _Input type: String_
 
-This method works with the assumption that the m/z values of investigated analytes of interest within a spectra are known to you. To use this method for filtering targeted m/z values within the spectra, you are **REQUIRED** to include the above two flags in the command to be executed. The `-t`, `--targeted` flag indicates to ExfilMS that you would like to perform this method of spectra filtering, whereas the `--targetFile` flag specifies a target file that is locally stored on your device or published to web URL (Should be available in TSV format).
+This method works with the assumption that the m/z values of investigated analytes of interest within a spectra are known to you. The `-t`, `--targeted` flag indicates to ExfilMS that you would like to perform this method of spectra filtering, whereas the `--targetFile` flag specifies a target file that is locally stored on your device or published to web URL (Should be available in TSV format).
 
-For more info on how to create a target file, please refer [here](./how-to-create-a-target-file.md).
+> [!NOTE]\
+> For more info on how to create a target file, please refer [here](./how-to-create-a-target-file.md).
 
 ```md
 # Targeted m/z filtering
@@ -212,8 +211,7 @@ In addition to the required flags, there are two additional flags that can also 
 
 `--mzTolerance`
 
-_Input type: Number_
-
+_Input type: Number_\
 _Default: 0.005_
 
 ```md
@@ -226,8 +224,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -t (or --targeted
 
 `--ppmTolerance`
 
-_Input type: Number_
-
+_Input type: Number_\
 _Default: 5_
 
 ```md
@@ -256,8 +253,7 @@ With the above flag included in the command, you can also specify the minimum an
 
 `--minMZ`
 
-_Input type: Number_
-
+_Input type: Number_\
 _Default: 0_
 
 ```md
@@ -270,8 +266,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -r (or --mzRange)
 
 `--maxMZ`
 
-_Input type: Number_
-
+_Input type: Number_\
 _Default: End of spectra range_
 
 ```md
@@ -292,9 +287,8 @@ ExfilMS also provides you with the functionality of filtering the spectrum based
 
 `--spectrumType`
 
-_Input type: Space-separated strings_
-
-_Choices: "profile", "centroid" | Default: Both spectrum types_
+_Input type: Space-separated strings_\
+_Choices: "profile", "centroid" || Default: Both spectrum types_
 
 ```md
 # Filter for specific spectrum type
@@ -306,8 +300,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSp
 
 `--msLevel`
 
-_Input type: Space-separated numbers_
-
+_Input type: Space-separated numbers_\
 _Default: MS level 1 and 2_
 
 ```md
@@ -320,9 +313,8 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSp
 
 `--polarity`
 
-_Input type: Space-separated strings_
-
-_Choices: "positive", "negative" | Default: Both polarities_
+_Input type: Space-separated strings_\
+_Choices: "positive", "negative" || Default: Both polarities_
 
 ```md
 # Filter for specific polarities
