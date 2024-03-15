@@ -52,7 +52,7 @@ Download [ProteoWizard][pwiz-download]\
 Download [Docker][docker-url]
 
 > [!NOTE]\
-> If you are using Linux, it is recommended to download the Docker Engine.\_
+> If you are using Linux, it is recommended to download the Docker Engine.
 
 <br>
 
@@ -91,11 +91,7 @@ Download [Docker][docker-url]
    sudo systemctl enable containerd.service
    ```
 
-   > [!Note]\
-   > Please log out and log back into your device for membership re-evaluation.
-
-   > [!WARNING]\
-   > Restart may be required.
+   > _Please log out and log back into your device for membership re-evaluation. Restart may be required._
 
 <br>
 

@@ -117,8 +117,7 @@ Specify output format. There are currently two available output formats for you 
 1. JSON, also known as JavaScript Object Notation is a standard, human readable text stored in the basis of object key-value pairs.
 
 2. TSV, on the other hand, is an output format in the form of tab separated values.
-   > [!NOTE]\
-   > Due to the characteristics of MS data being n-dimensional, it is a challenge to store all of the extracted data into a single TSV file. If you do choose TSV as your desired output format, two folders will be created in the output directory labelled 'spectrum' and 'chromatogram', containing the associated MS data of the file being processed, respectively.
+   > _Due to the characteristics of MS data being n-dimensional, it is a challenge to store all of the extracted data into a single TSV file. If you do choose TSV as your desired output format, two folders will be created in the output directory labelled 'spectrum' and 'chromatogram', containing the associated MS data of the file being processed, respectively._
 
 <br>
 
@@ -196,14 +195,14 @@ _Input type: String_
 
 This method works with the assumption that the m/z values of investigated analytes of interest within a spectra are known to you. The `-t`, `--targeted` flag indicates to ExfilMS that you would like to perform this method of spectra filtering, whereas the `--targetFile` flag specifies a target file that is locally stored on your device or published to web URL (Should be available in TSV format).
 
-> [!NOTE]\
-> For more info on how to create a target file, please refer [here](./how-to-create-a-target-file.md).
-
 ```md
 # Targeted m/z filtering
 
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -t (or --targeted) --targetFile "/local/path/or/published/to/web/URL/to/target/tsv/file"
 ```
+
+> [!NOTE]\
+> For more info on how to create a target file, please refer [here](./how-to-create-a-target-file.md).
 
 <br>
 
