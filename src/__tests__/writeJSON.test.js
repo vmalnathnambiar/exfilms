@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 /**
- * @typedef {import('../../typedef.mjs').MS} MS
+ * @typedef {import('../typedef.mjs').MS} MS
  */
 
 import { existsSync, mkdirSync, readFileSync, rmSync } from 'fs';

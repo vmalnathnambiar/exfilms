@@ -133,8 +133,5 @@ dist
 # macOS DS Store
 .DS_Store
 
-# exfilms tmp test folder
+# tmp test folder
 .tmp/
-
-#.vscode settings
-.vscode

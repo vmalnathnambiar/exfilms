@@ -1,5 +1,5 @@
 /**
- * @typedef {import('../typedef.mjs').MS} MS
+ * @typedef {import('./typedef.mjs').MS} MS
  */
 
 import { writeFileSync, appendFileSync } from 'fs';

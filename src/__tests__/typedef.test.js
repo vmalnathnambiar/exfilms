@@ -1,9 +1,9 @@
 /**
- * @typedef {import('../../typedef.mjs').Yargs} Yargs
- * @typedef {import('../../typedef.mjs').TimeStamp} TimeStamp
- * @typedef {import('../../typedef.mjs').Spectrum} Spectrum
- * @typedef {import('../../typedef.mjs').Chromatogram} Chromatogram
- * @typedef {import('../../typedef.mjs').MS} MS
+ * @typedef {import('../typedef.mjs').Yargs} Yargs
+ * @typedef {import('../typedef.mjs').TimeStamp} TimeStamp
+ * @typedef {import('../typedef.mjs').Spectrum} Spectrum
+ * @typedef {import('../typedef.mjs').Chromatogram} Chromatogram
+ * @typedef {import('../typedef.mjs').MS} MS
  */
 
 import { describe, test, expect } from 'vitest';

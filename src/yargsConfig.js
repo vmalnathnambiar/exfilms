@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 
 /**
- * @typedef {import('../typedef.mjs').Yargs} Yargs
+ * @typedef {import('./typedef.mjs').Yargs} Yargs
  */
 
 import { existsSync, statSync } from 'fs';

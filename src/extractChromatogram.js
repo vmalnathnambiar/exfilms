@@ -2,7 +2,7 @@
 // @ts-nocheck
 
 /**
- * @typedef {import('../typedef.mjs').Chromatogram} Chromatogram
+ * @typedef {import('./typedef.mjs').Chromatogram} Chromatogram
  */
 import { keyMap, valueMap } from './cvParamMap.js';
 import { decodeBinary } from './decodeBinary.js';

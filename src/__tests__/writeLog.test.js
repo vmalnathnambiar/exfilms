@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 import { existsSync, mkdirSync, readFileSync, rmSync } from 'fs';
 import { join } from 'path';
 

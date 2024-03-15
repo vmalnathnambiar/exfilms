@@ -1,5 +1,6 @@
 # Test folder
-__tests__/
+/src/__tests__/
+data/
 
 # npm ignore file 
 .npmignore

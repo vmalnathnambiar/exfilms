@@ -2,12 +2,13 @@
   "name": "exfilms",
   "version": "1.0.0",
   "description": "A cross-platform, command line interface (CLI) tool to extract MS data from mzML formatted files, with spectrum filtering capabilities.",
-  "bin": "./src/exfilms.js",
+  "bin": {
+    "exfilms": "./src/exfilms.js"
+  },
   "type": "module",
   "scripts": {
     "eslint": "eslint src",
     "eslint-fix": "npm run eslint -- --fix",
-    "prepack": "rollup -c",
     "prettier": "prettier --check src",
     "prettier-write": "prettier --write src",
     "test": "npm run vitest && npm run eslint && npm run prettier",
@@ -30,9 +31,6 @@
     "url": "https://github.com/vmalnathnambiar/exfilms/issues"
   },
   "homepage": "https://github.com/vmalnathnambiar/exfilms#readme",
-  "jest": {
-    "testEnvironment": "node"
-  },
   "devDependencies": {
     "@types/clear": "^0.1.4",
     "@types/figlet": "^1.5.8",
@@ -45,7 +43,6 @@
     "eslint": "^8.57.0",
     "eslint-config-cheminfo": "^9.2.0",
     "prettier": "^2.8.8",
-    "rollup": "^3.25.1",
     "vitest": "^1.3.1"
   },
   "dependencies": {
