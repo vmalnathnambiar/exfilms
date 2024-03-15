@@ -21,7 +21,8 @@ ExfilMS is a cross-platform, command line interface (CLI) tool to extract MS dat
   - MS level
   - Polarity (positive / negative)
   - Exclude spectra (m/z and intensity)
-    <br>
+
+<br>
 
 ## Installation
 
