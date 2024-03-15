@@ -29,6 +29,8 @@ ExfilMS is a cross-platform, command line interface (CLI) tool to extract MS dat
 
 ## Installation
 
+> _Note: ExfilMS have been tested on Windows, macOS and Linux._
+
 Before being able to install ExfilMS on your device, you will first need to have the following installed:
 
 - [Node.js®][nodejs-url]
@@ -38,8 +40,6 @@ Before being able to install ExfilMS on your device, you will first need to have
 Once the required prerequisites have been installed, you can now use npm to install ExfilMS from your terminal.
 
 `$ npm install -g exfilms`
-
-> _Note: ExfilMS have been tested on Windows, macOS and Linux._
 
 <br>
 
