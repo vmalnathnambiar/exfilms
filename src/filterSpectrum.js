@@ -32,9 +32,9 @@ export async function filterSpectrum(
 
   let mz, intensity;
 
-  // Check to execute m/z range or targeted m/z filtering
-  // If m/z range filtering
-  if (!configParam.targeted) {
+  // Check for defined spectra filtering method
+  if (configParam.mzRange) {
+    // If m/z range filtering
     // Set m/z range boundaries (minMZ and maxMZ)
     const minMZ = configParam.minMZ;
     const maxMZ = isNaN(configParam.maxMZ)
@@ -59,8 +59,8 @@ export async function filterSpectrum(
         intensityValues.push(intensity);
       }
     }
-  } // If targeted m/z filtering
-  else {
+  } else if (configParam.targeted) {
+    // If targeted m/z filtering
     // Loop through m/z target list
     for (const targetMZ of configParam.mzTargetList) {
       // Set new m/z range (minMZ & maxMZ) based on target m/z

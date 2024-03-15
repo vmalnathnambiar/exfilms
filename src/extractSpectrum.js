@@ -205,8 +205,9 @@ export async function extractSpectrum(
       );
     }
 
-    // Filter spectrum data (m/z and intensity) if true
-    if (configParam.minMZ && (configParam.maxMZ || isNaN(configParam.maxMZ))) {
+    // Spectra filtering if defined
+    // Append data to Extracted Ion Chromatogram array (for targeted m/z filtering method)
+    if (configParam.targeted || configParam.mzRange) {
       const filteredData = await filterSpectrum(
         configParam,
         data.spectrumType,
@@ -226,15 +227,15 @@ export async function extractSpectrum(
       data.intensityArray = filteredData.intensityValues;
     }
 
-    // Empty spectra data arrays (m/z and intensities) if true
+    // Exclude spectra data if defined
     if (configParam.excludeSpectra) {
       data.mzArray = [];
       data.intensityArray = [];
     }
 
-    // Filter for spectrum type, msLevel and polarity (if filter applied)
-    // And append spectrum data object to spectrum array
-    // And update chromatogram (Total Ion Chromatogram and Base Peak Chromatogram) data
+    // Spectrum data filtering based on properties (if defined)
+    // Add data object to spectrum array
+    // Append data to Total Ion Chromatogram (TIC) and Base Peak Chromatogram (BPC)
     const ticIDX = chromatogram.findIndex((chromObj) => chromObj.id === 'TIC');
     const bpcIDX = chromatogram.findIndex((chromObj) => chromObj.id === 'BPC');
     if (configParam.filterSpectrumData) {
