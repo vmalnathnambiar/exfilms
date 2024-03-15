@@ -4,7 +4,8 @@
 [![Test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
 
-ExfilMS is a cross-platform, command line interface (CLI) tool to extract MS data from mzML formatted files, with spectrum filtering capabilities.
+ExfilMS is a cross-platform, command line interface (CLI) tool to extract MS data from mzML formatted files, with spectrum filtering capabilities.  
+<br>
 
 **Features include:**
 
