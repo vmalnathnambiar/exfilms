@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 /**
- * @typedef {import('../utils/typedef.mjs').Yargs} Yargs
+ * @typedef {import('../typedef/index.mjs').Yargs} Yargs
  */
 
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';

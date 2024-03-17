@@ -2,8 +2,8 @@
 // @ts-nocheck
 
 /**
- * @typedef {import('./typedef.mjs').Chromatogram} Chromatogram
- * @typedef {import('./typedef.mjs').Spectrum} Spectrum
+ * @typedef {import('../typedef/index.mjs').Chromatogram} Chromatogram
+ * @typedef {import('../typedef/index.mjs').Spectrum} Spectrum
  */
 
 import { keyMap, valueMap } from './cvParamMap.js';

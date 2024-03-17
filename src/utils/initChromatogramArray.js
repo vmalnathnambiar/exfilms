@@ -1,5 +1,5 @@
 /**
- * @typedef {import('./typedef.mjs').Chromatogram} Chromatogram
+ * @typedef {import('../typedef/index.mjs').Chromatogram} Chromatogram
  */
 
 /**

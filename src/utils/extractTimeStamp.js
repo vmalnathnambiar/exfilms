@@ -1,5 +1,5 @@
 /**
- * @typedef {import('./typedef.mjs').TimeStamp} TimeStamp
+ * @typedef {import('../typedef/index.mjs').TimeStamp} TimeStamp
  */
 
 /**

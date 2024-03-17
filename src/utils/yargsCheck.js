@@ -1,5 +1,5 @@
 /**
- * @typedef {import('./typedef.mjs').Yargs} Yargs
+ * @typedef {import('../typedef/index.mjs').Yargs} Yargs
  */
 
 import { setDefaults } from './setDefaults.js';
