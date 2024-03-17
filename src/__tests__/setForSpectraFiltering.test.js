@@ -5,7 +5,7 @@ import { describe, test, expect } from 'vitest';
 import { setForSpectraFiltering } from '../utils/setForSpectraFiltering.js';
 
 /**
- * To test setForSpectraFiltering function
+ * To test setForSpectraFiltering()
  * Input: configParam (Object)
  * Output: An updated object of configParam (if spectra filtering is defined) (Object) || Error message (Error)
  */

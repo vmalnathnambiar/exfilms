@@ -4,9 +4,9 @@ import { encode } from 'base64-arraybuffer';
 import pako from 'pako';
 
 /**
- * Decode binary data based on precision value and compression method used for original encoding.
- * @param {number} precisionValue A precision value that was used to encode the binary data.
- * @param {string} compressionMethod Method of compression used while encoding the binary data.
+ * Encode data based on precision value and compression method used for original encoding.
+ * @param {number} precisionValue Precision value to be used for encoding.
+ * @param {string} compressionMethod Method of compression to be used for encoding.
  * @param {ArrayBufferLike|ArrayLike<number>|Iterable<number>|number} data Data to be encoded.
  * @returns {Promise<string>} A promise that resolves with encoded data string.
  * @throws {Error} Throws error if encoder() encounters issues in its process.

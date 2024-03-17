@@ -8,7 +8,7 @@ import { describe, test, expect, beforeAll, afterAll } from 'vitest';
 import { writeLog } from '../utils/writeLog.js';
 
 /**
- * To test writeLog function
+ * To test writeLog()
  * Input: configParam (Object), data (string)
  * Output: NA || Error message (Error)
  */

@@ -3,8 +3,8 @@ import pako from 'pako';
 
 /**
  * Decode encoded data based on precision value and compression method used for original encoding.
- * @param {number} precisionValue A precision value that was used to encode the binary data.
- * @param {string} compressionMethod Method of compression used while encoding the binary data.
+ * @param {number} precisionValue Precision value used for encoding.
+ * @param {string} compressionMethod Method of compression used for encoding.
  * @param {string} encodedData Encoded data to be decoded.
  * @returns {Promise<Float64Array|Float32Array>} A promise that resolves with decoded Float64 or Float32 array.
  * @throws {Error} Throws error if decoder() encounters issues in its process.

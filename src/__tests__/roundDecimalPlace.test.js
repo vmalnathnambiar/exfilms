@@ -5,7 +5,7 @@ import { describe, test, expect } from 'vitest';
 import { roundDecimalPlace } from '../utils/roundDecimalPlace.js';
 
 /**
- * To test roundDecimalPlace function
+ * To test roundDecimalPlace()
  * Input: toRoundValue (number), decimalPlace (number)
  * Output: Rounded value to a specified number of decimal places (number) || Error message (Error)
  */

@@ -3,7 +3,7 @@ import { describe, test, expect } from 'vitest';
 import { extractBasePeakMZ } from '../utils/extractBasePeakMZ.js';
 
 /**
- * To test extractBasePeakMZ function
+ * To test extractBasePeakMZ()
  * Input: mzArray (number []), intensityArray (number[])
  * Output: m/z value with the highest intensity (number)
  */

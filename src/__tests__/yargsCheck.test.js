@@ -13,7 +13,7 @@ import { describe, test, expect, beforeAll, afterAll } from 'vitest';
 import { yargsCheck } from '../utils/yargsCheck.js';
 
 /**
- * To test yargsCheck function
+ * To test yargsCheck()
  * Input: argv (Yargs)
  * Output: configParam (Object) || Error message (Error)
  */

@@ -12,7 +12,7 @@ import { describe, test, expect, beforeAll, afterAll } from 'vitest';
 import { writeTSV } from '../utils/writeTSV.js';
 
 /**
- * To test writeTSV function
+ * To test writeTSV()
  * Input: outputDirectory (string), data (MS)
  * Output: NA || Error message (Error)
  */

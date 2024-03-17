@@ -12,7 +12,7 @@ import { describe, test, expect, beforeAll, afterAll } from 'vitest';
 import { writeJSON } from '../utils/writeJSON.js';
 
 /**
- * To test writeJSON function
+ * To test writeJSON()
  * Input: outputDirectory (string), data (MS)
  * Output: NA || Error message (Error)
  */

@@ -6,7 +6,7 @@ import { describe, test, expect, afterEach } from 'vitest';
 import { createDefaultDirectories } from '../utils/createDefaultDirectories.js';
 
 /**
- * To test createDefaultDirectories function
+ * To test createDefaultDirectories()
  * Input: configParam (Object)
  * Output: NA
  */

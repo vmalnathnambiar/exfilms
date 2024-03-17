@@ -6,7 +6,7 @@ import { decoder } from '../utils/decoder.js';
 import { encoder } from '../utils/encoder.js';
 
 /**
- * To test decoder (and encoder function)
+ * To test decoder()
  * Input: precisionValue (number), compressionMethod (string), data (string)
  * Output: Decoded array (number[]) || Error message (Error)
  */

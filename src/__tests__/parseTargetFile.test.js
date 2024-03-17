@@ -5,7 +5,7 @@ import { describe, test, expect } from 'vitest';
 import { parseTargetFile } from '../utils/parseTargetFile.js';
 
 /**
- * To test parseTargetFile function
+ * To test parseTargetFile()
  * Input: configParam (Object)
  * Output: An object containing the m/z target list, minimum and maximum values (Object) || Error message (Error)
  */

@@ -2,7 +2,7 @@ import { parseTargetFile } from './parseTargetFile.js';
 import { roundDecimalPlace } from './roundDecimalPlace.js';
 
 /**
- *
+ * Set parameters required for spectra filtering based on defined method.
  * @param {Object} configParam Configuration parameters passed via the command line interface.
  * @returns {Promise<Object>} A promise that resolves when data required for spectra filtering is established.
  * @throws {Error} Throws error if setForSpectraFiltering() encounters issues in its process.

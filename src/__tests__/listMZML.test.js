@@ -8,7 +8,7 @@ import { describe, test, expect, beforeAll, afterAll } from 'vitest';
 import { listMZML } from '../utils/listMZML.js';
 
 /**
- * To test listMZML function
+ * To test listMZML()
  * Input: directory (string)
  * Output: An array list of mzML file names (String[]) || Error message (Error)
  */

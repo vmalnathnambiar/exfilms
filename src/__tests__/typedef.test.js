@@ -9,7 +9,7 @@
 import { describe, test, expect } from 'vitest';
 
 /**
- * To test typedef properties
+ * To test typedef
  * - Yargs
  * - TimeStamp
  * - Spectrum

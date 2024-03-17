@@ -5,7 +5,7 @@ import { describe, test, expect } from 'vitest';
 import { extractTimeStamp } from '../utils/extractTimeStamp.js';
 
 /**
- * To test extractTimeStamp function
+ * To test extractTimeStamp()
  * Input: timeStamp (string)
  * Output: An object with extracted date and time (TimeStamp) || Error message (Error)
  */

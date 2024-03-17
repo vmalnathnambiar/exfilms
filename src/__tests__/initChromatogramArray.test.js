@@ -3,7 +3,7 @@ import { describe, test, expect } from 'vitest';
 import { initChromatogramArray } from '../utils/initChromatogramArray.js';
 
 /**
- * To test initChromatogramArray function
+ * To test initChromatogramArray()
  * Input: configParam (Object)
  * Output: An array structure to store extracted chromatogram data in a standardised manner (Chromatogram[])
  */

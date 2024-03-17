@@ -13,7 +13,7 @@ import { describe, test, expect, beforeAll, afterAll } from 'vitest';
 import { setDefaults } from '../utils/setDefaults.js';
 
 /**
- * To test setDefaults function
+ * To test setDefaults()
  * Input: argv (Yargs)
  * Output: configParam (Object) || Error message (Error)
  */
