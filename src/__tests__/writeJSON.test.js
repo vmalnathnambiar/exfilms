@@ -212,7 +212,7 @@ describe('writeJSON', () => {
 
   test('write JSON: spectrum and chromatogram data > 0', async () => {
     expect(await writeJSON(testOutputDirectory, testData));
-    const readData = JSON.parse(readFileSync(testOutputFile));
+    const readData = JSON.parse(readFileSync(testOutputFile).toString());
 
     // File metadata
     expect(readData.sampleID).toStrictEqual(testData.sampleID);
@@ -339,7 +339,7 @@ describe('writeJSON', () => {
     testData.spectrumCount = 0;
     testData.chromatogramCount = 0;
     expect(await writeJSON(testOutputDirectory, testData));
-    const readData = JSON.parse(readFileSync(testOutputFile));
+    const readData = JSON.parse(readFileSync(testOutputFile).toString());
 
     // File metadata
     expect(readData.sampleID).toStrictEqual(testData.sampleID);
@@ -363,7 +363,7 @@ describe('writeJSON', () => {
     testData.date = null;
     testData.time = null;
     expect(await writeJSON(testOutputDirectory, testData));
-    let readData = JSON.parse(readFileSync(testOutputFile));
+    let readData = JSON.parse(readFileSync(testOutputFile).toString());
 
     // File metadata
     expect(readData.sampleID).toStrictEqual(testData.sampleID);
