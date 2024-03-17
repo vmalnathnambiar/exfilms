@@ -133,5 +133,5 @@ dist
 # macOS DS Store
 .DS_Store
 
-# tmp test folder
+# Tests
 .tmp/

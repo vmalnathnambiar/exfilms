@@ -4,8 +4,9 @@
 /**
  * @typedef {import('./typedef.mjs').Chromatogram} Chromatogram
  */
+
 import { keyMap, valueMap } from './cvParamMap.js';
-import { decodeBinary } from './decodeBinary.js';
+import { decoder } from './decoder.js';
 import { roundDecimalPlace } from './roundDecimalPlace.js';
 
 /**
@@ -121,7 +122,7 @@ export async function extractChromatogram(configParam, chromatogramArray) {
             mappedKey === 'msLevelArray'
           ) {
             let decodedBinary = Array.from(
-              await decodeBinary(
+              await decoder(
                 encoder.precision,
                 encoder.compression,
                 binaryData.binary,

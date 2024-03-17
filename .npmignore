@@ -2,7 +2,7 @@
 data/
 src/__tests__/
 
-# Config files (Dev dependencies)
+# Configuration files (Dev dependencies)
 .dockerignore
 .eslintrc.yml
 .gitignore

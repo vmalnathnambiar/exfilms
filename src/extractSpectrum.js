@@ -7,9 +7,9 @@
  */
 
 import { keyMap, valueMap } from './cvParamMap.js';
-import { decodeBinary } from './decodeBinary.js';
+import { decoder } from './decoder.js';
 import { extractBasePeakMZ } from './extractBasePeakMZ.js';
-import { filterSpectrum } from './filterSpectrum.js';
+import { filterSpectra } from './filterSpectra.js';
 import { roundDecimalPlace } from './roundDecimalPlace.js';
 
 /**
@@ -175,7 +175,7 @@ export async function extractSpectrum(
 
           if (mappedKey === 'mzArray' || mappedKey === 'intensityArray') {
             let decodedBinary = Array.from(
-              await decodeBinary(
+              await decoder(
                 encoder.precision,
                 encoder.compression,
                 binaryData.binary,
@@ -208,7 +208,7 @@ export async function extractSpectrum(
     // Spectra filtering if defined
     // Append data to Extracted Ion Chromatogram array (for targeted m/z filtering method)
     if (configParam.targeted || configParam.mzRange) {
-      const filteredData = await filterSpectrum(
+      const filteredData = await filterSpectra(
         configParam,
         data.spectrumType,
         data.msLevel,

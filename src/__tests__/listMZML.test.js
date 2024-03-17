@@ -30,7 +30,7 @@ describe('listMZML', () => {
   });
 
   // Tests
-  test('throw errors: input type check', async () => {
+  test('throw error: input type check', async () => {
     await expect(listMZML(0)).rejects.toThrowError(
       '\nlistMZML() - directory must be of type string',
     );

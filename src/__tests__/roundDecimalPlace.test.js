@@ -15,7 +15,7 @@ describe('roundDecimalPlace', () => {
   const testDecimalPlace = 4;
 
   // Tests
-  test('throw errors: input type check', async () => {
+  test('throw error: input type check', async () => {
     // toRoundValue
     await expect(
       roundDecimalPlace(testToRoundValue.toString(), testDecimalPlace),

@@ -1,6 +1,7 @@
 /**
  * @typedef {import('./typedef.mjs').MS} MS
  */
+
 import { writeFileSync, appendFileSync } from 'fs';
 import { join } from 'path';
 
