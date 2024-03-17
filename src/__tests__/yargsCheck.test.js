@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 /**
- * @typedef {import('../typedef.mjs').Yargs} Yargs
+ * @typedef {import('../utils/typedef.mjs').Yargs} Yargs
  */
 
 import { existsSync, mkdirSync, writeFileSync, rmSync } from 'fs';
@@ -10,7 +10,7 @@ import { join } from 'path';
 
 import { describe, test, expect, beforeAll, afterAll } from 'vitest';
 
-import { yargsCheck } from '../yargsCheck.js';
+import { yargsCheck } from '../utils/yargsCheck.js';
 
 /**
  * To test yargsCheck function

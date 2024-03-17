@@ -2,7 +2,7 @@
 
 import { describe, test, expect } from 'vitest';
 
-import { roundDecimalPlace } from '../roundDecimalPlace.js';
+import { roundDecimalPlace } from '../utils/roundDecimalPlace.js';
 
 /**
  * To test roundDecimalPlace function

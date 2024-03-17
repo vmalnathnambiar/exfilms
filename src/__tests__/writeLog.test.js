@@ -5,7 +5,7 @@ import { join } from 'path';
 
 import { describe, test, expect, beforeAll, afterAll } from 'vitest';
 
-import { writeLog } from '../writeLog.js';
+import { writeLog } from '../utils/writeLog.js';
 
 /**
  * To test writeLog function

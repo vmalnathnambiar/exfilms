@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 
-import { extractBasePeakMZ } from '../extractBasePeakMZ.js';
+import { extractBasePeakMZ } from '../utils/extractBasePeakMZ.js';
 
 /**
  * To test extractBasePeakMZ function

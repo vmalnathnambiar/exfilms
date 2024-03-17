@@ -5,7 +5,7 @@ import { join } from 'path';
 
 import { describe, test, expect, beforeAll, afterAll } from 'vitest';
 
-import { listMZML } from '../listMZML.js';
+import { listMZML } from '../utils/listMZML.js';
 
 /**
  * To test listMZML function

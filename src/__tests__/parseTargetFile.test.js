@@ -2,7 +2,7 @@
 
 import { describe, test, expect } from 'vitest';
 
-import { parseTargetFile } from '../parseTargetFile.js';
+import { parseTargetFile } from '../utils/parseTargetFile.js';
 
 /**
  * To test parseTargetFile function

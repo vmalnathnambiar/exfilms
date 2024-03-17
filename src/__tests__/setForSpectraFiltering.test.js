@@ -2,7 +2,7 @@
 
 import { describe, test, expect } from 'vitest';
 
-import { setForSpectraFiltering } from '../setForSpectraFiltering.js';
+import { setForSpectraFiltering } from '../utils/setForSpectraFiltering.js';
 
 /**
  * To test setForSpectraFiltering function

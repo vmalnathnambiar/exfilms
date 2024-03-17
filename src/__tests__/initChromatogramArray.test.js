@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 
-import { initChromatogramArray } from '../initChromatogramArray.js';
+import { initChromatogramArray } from '../utils/initChromatogramArray.js';
 
 /**
  * To test initChromatogramArray function

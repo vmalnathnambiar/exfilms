@@ -3,7 +3,7 @@ import { join } from 'path';
 
 import { describe, test, expect, afterEach } from 'vitest';
 
-import { createDefaultDirectories } from '../createDefaultDirectories.js';
+import { createDefaultDirectories } from '../utils/createDefaultDirectories.js';
 
 /**
  * To test createDefaultDirectories function

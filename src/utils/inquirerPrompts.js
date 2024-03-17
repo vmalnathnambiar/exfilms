@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { existsSync, statSync } from 'fs';
 import { homedir } from 'os';
 import { join, basename } from 'path';

@@ -11,13 +11,13 @@ import clear from 'clear';
 import figlet from 'figlet';
 import inquirer from 'inquirer';
 
-import { createDefaultDirectories } from './createDefaultDirectories.js';
-import { prompts } from './inquirerPrompts.js';
-import { parseMZML } from './parseMZML.js';
-import { setForSpectraFiltering } from './setForSpectraFiltering.js';
-import { writeLog } from './writeLog.js';
-import { yargsCheck } from './yargsCheck.js';
-import { argv } from './yargsConfig.js';
+import { createDefaultDirectories } from './utils/createDefaultDirectories.js';
+import { prompts } from './utils/inquirerPrompts.js';
+import { parseMZML } from './utils/parseMZML.js';
+import { setForSpectraFiltering } from './utils/setForSpectraFiltering.js';
+import { writeLog } from './utils/writeLog.js';
+import { yargsCheck } from './utils/yargsCheck.js';
+import { argv } from './utils/yargsConfig.js';
 
 /**
  * Figlet callback function to display ASCII art and execute the CLI tool.

@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 /**
- * @typedef {import('../typedef.mjs').MS} MS
+ * @typedef {import('../utils/typedef.mjs').MS} MS
  */
 
 import { existsSync, mkdirSync, readFileSync, rmSync } from 'fs';
@@ -9,7 +9,7 @@ import { join } from 'path';
 
 import { describe, test, expect, beforeAll, afterAll } from 'vitest';
 
-import { writeTSV } from '../writeTSV.js';
+import { writeTSV } from '../utils/writeTSV.js';
 
 /**
  * To test writeTSV function

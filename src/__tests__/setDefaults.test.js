@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 /**
- * @typedef {import('../typedef.mjs').Yargs} Yargs
+ * @typedef {import('../utils/typedef.mjs').Yargs} Yargs
  */
 
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
@@ -10,7 +10,7 @@ import { join, basename } from 'path';
 
 import { describe, test, expect, beforeAll, afterAll } from 'vitest';
 
-import { setDefaults } from '../setDefaults.js';
+import { setDefaults } from '../utils/setDefaults.js';
 
 /**
  * To test setDefaults function

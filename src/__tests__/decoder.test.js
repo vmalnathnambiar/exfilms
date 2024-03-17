@@ -2,8 +2,8 @@
 
 import { describe, test, expect } from 'vitest';
 
-import { decoder } from '../decoder.js';
-import { encoder } from '../encoder.js';
+import { decoder } from '../utils/decoder.js';
+import { encoder } from '../utils/encoder.js';
 
 /**
  * To test decoder (and encoder function)

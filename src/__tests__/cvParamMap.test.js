@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 
-import { keyMap, valueMap } from '../cvParamMap.js';
+import { keyMap, valueMap } from '../utils/cvParamMap.js';
 
 /**
  * To test cvParamMap export
