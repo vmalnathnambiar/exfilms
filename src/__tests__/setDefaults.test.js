@@ -117,7 +117,7 @@ describe('setDefaults', () => {
     testArgv.inputDirectory = 0;
     testArgv.fileList = ['*'];
     await expect(setDefaults(testArgv)).rejects.toThrowError(
-      '\nlistMZML() - directory must be of type string',
+      '\nlistMZML(): directory must be of type string',
     );
   });
 

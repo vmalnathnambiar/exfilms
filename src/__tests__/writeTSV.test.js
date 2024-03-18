@@ -225,7 +225,7 @@ describe('writeTSV', () => {
   test('throw error: input type check', async () => {
     // outputDirectory
     await expect(writeTSV(0, testData)).rejects.toThrowError(
-      '\nwriteTSV() - outputDirectory must be of type string',
+      '\nwriteTSV(): outputDirectory must be of type string',
     );
   });
 

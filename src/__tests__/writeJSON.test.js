@@ -206,7 +206,7 @@ describe('writeJSON', () => {
   test('throw error: input type check', async () => {
     // outputDirectory
     await expect(writeJSON(0, testData)).rejects.toThrowError(
-      '\nwriteJSON() - outputDirectory must be of type string',
+      '\nwriteJSON(): outputDirectory must be of type string',
     );
   });
 

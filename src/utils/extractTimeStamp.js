@@ -11,7 +11,7 @@
 export async function extractTimeStamp(timeStamp) {
   // Check input type
   if (typeof timeStamp !== 'string') {
-    throw new Error('\nextractTimeStamp() - timeStamp must be of type string');
+    throw new Error('\nextractTimeStamp(): timeStamp must be of type string');
   }
 
   // Extract date and time based on pattern

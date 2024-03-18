@@ -36,7 +36,7 @@ export async function parseTargetFile(configParam) {
   // Throw error if data is undefined (targetFile do not match pattern check)
   if (!data) {
     throw new Error(
-      '\nparseTargetFile() - targetFile does not match TSV pattern check',
+      '\nparseTargetFile(): targetFile does not match TSV pattern check',
     );
   }
 
@@ -60,7 +60,7 @@ export async function parseTargetFile(configParam) {
     (mzTargetList.length === 1 && isNaN(mzTargetList[0])) ||
     mzTargetList.length === 0
   ) {
-    throw new Error('\nparseTargetFile() - Target m/z data not found');
+    throw new Error('\nparseTargetFile(): Target m/z data not found');
   }
 
   // Round m/z target list if decimal place is defined

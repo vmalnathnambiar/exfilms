@@ -20,18 +20,18 @@ describe('roundDecimalPlace', () => {
     await expect(
       roundDecimalPlace(testToRoundValue.toString(), testDecimalPlace),
     ).rejects.toThrowError(
-      '\nroundDecimalPlace() - toRoundValue must be of type number',
+      '\nroundDecimalPlace(): toRoundValue must be of type number',
     );
 
     // decimalPlace
     await expect(
       roundDecimalPlace(testToRoundValue, testDecimalPlace.toString()),
     ).rejects.toThrowError(
-      '\nroundDecimalPlace() - decimalPlace must be of type number',
+      '\nroundDecimalPlace(): decimalPlace must be of type number',
     );
 
     await expect(roundDecimalPlace(testToRoundValue, NaN)).rejects.toThrowError(
-      '\nroundDecimalPlace() - decimalPlace must be of type number',
+      '\nroundDecimalPlace(): decimalPlace must be of type number',
     );
   });
 

@@ -32,7 +32,7 @@ export async function parseMZML(configParam) {
       // Check file path
       const filePath = join(configParam.inputDirectory, file);
       if (!existsSync(filePath)) {
-        throw new Error('File not found in input directory');
+        throw new Error('parseMZML(): File not found in input directory');
       }
 
       // Get current timestamp

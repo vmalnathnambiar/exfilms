@@ -9,11 +9,11 @@ export async function roundDecimalPlace(toRoundValue, decimalPlace) {
   // Check input type
   if (typeof toRoundValue !== 'number') {
     throw new Error(
-      '\nroundDecimalPlace() - toRoundValue must be of type number',
+      '\nroundDecimalPlace(): toRoundValue must be of type number',
     );
   } else if (isNaN(decimalPlace) || typeof decimalPlace !== 'number') {
     throw new Error(
-      '\nroundDecimalPlace() - decimalPlace must be of type number',
+      '\nroundDecimalPlace(): decimalPlace must be of type number',
     );
   }
 

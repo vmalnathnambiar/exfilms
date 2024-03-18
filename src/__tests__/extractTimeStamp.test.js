@@ -13,7 +13,7 @@ describe('extractTimeStamp', () => {
   // Tests
   test('throw error: input type check', async () => {
     await expect(extractTimeStamp(0)).rejects.toThrowError(
-      '\nextractTimeStamp() - timeStamp must be of type string',
+      '\nextractTimeStamp(): timeStamp must be of type string',
     );
   });
 

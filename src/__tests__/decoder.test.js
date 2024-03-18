@@ -47,28 +47,28 @@ describe('decoder', () => {
         testMZ,
       ),
     ).rejects.toThrowError(
-      '\ndecoder() - precisionValue must be of type number',
+      '\ndecoder(): precisionValue must be of type number',
     );
 
     await expect(
       decoder(50, encoding.compressionMethod, testMZ),
-    ).rejects.toThrowError('\ndecoder() - precisionValue defined not valid');
+    ).rejects.toThrowError('\ndecoder(): precisionValue defined not valid');
 
     // compressionMethod
     await expect(
       decoder(encoding.precisionValue, 0, testMZ),
     ).rejects.toThrowError(
-      '\ndecoder() - compressionMethod must be of type string',
+      '\ndecoder(): compressionMethod must be of type string',
     );
 
     await expect(
       decoder(encoding.precisionValue, 'gzip', testMZ),
-    ).rejects.toThrowError('\ndecoder() - compressionMethod defined not valid');
+    ).rejects.toThrowError('\ndecoder(): compressionMethod defined not valid');
 
     // encodedData
     await expect(
       decoder(encoding.precisionValue, encoding.compressionMethod, 0),
-    ).rejects.toThrowError('\ndecoder() - encodedData must be of type string');
+    ).rejects.toThrowError('\ndecoder(): encodedData must be of type string');
   });
 
   test('throw error: encoder() input type check', async () => {
@@ -80,23 +80,23 @@ describe('decoder', () => {
         testMZ,
       ),
     ).rejects.toThrowError(
-      '\nencoder() - precisionValue must be of type number',
+      '\nencoder(): precisionValue must be of type number',
     );
 
     await expect(
       encoder(50, encoding.compressionMethod, testMZ),
-    ).rejects.toThrowError('\nencoder() - precisionValue defined not valid');
+    ).rejects.toThrowError('\nencoder(): precisionValue defined not valid');
 
     // compressionMethod
     await expect(
       encoder(encoding.precisionValue, 0, testMZ),
     ).rejects.toThrowError(
-      '\nencoder() - compressionMethod must be of type string',
+      '\nencoder(): compressionMethod must be of type string',
     );
 
     await expect(
       encoder(encoding.precisionValue, 'gzip', testMZ),
-    ).rejects.toThrowError('\nencoder() - compressionMethod defined not valid');
+    ).rejects.toThrowError('\nencoder(): compressionMethod defined not valid');
 
     // decodedData
     await expect(
@@ -106,7 +106,7 @@ describe('decoder', () => {
         'hello world',
       ),
     ).rejects.toThrowError(
-      '\nencoder() - data must be of type ArrayBufferLike, ArrayLike<number>, Iterable<number> or number',
+      '\nencoder(): data must be of type ArrayBufferLike, ArrayLike<number>, Iterable<number> or number',
     );
   });
 
