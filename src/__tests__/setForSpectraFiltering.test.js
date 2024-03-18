@@ -97,18 +97,8 @@ describe('setForSpectraFiltering', () => {
     expect(configParam.maxMZ).toBeDefined();
   });
 
-  // ! Fail to catch roundDecimal() error - Code won't reach: roundDecimalPlace.js line 11-13, 15-18
+  // ! Fail to catch roundDecimal() error - Code won't reach: roundDecimalPlace.js line 11, 13-14
   // ! decimalPlace is always coerced into number resulting in NaN if not a number and skip roundDecimal()
   // ! toRoundValue is also coerced into number type resulting in NaN if not a number
-  // test('throw error: roundDecimalPlace() input type check', async () => {
-  //   testConfigParam.decimalPlace = testConfigParam.decimalPlace.toString();
-  //   await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
-  //     'roundDecimalPlace(): decimalPlace must be of type number',
-  //   );
-
-  //   testConfigParam.mzTolerance = '5a';
-  //   await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
-  //     'roundDecimalPlace(): toRoundValue must be of type number',
-  //   );
-  // });
+  // ! roundDecimal() unit test is conducted and covers all lines
 });

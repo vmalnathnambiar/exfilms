@@ -223,13 +223,7 @@ describe('yargsCheck', () => {
 
   // ! Fail to catch listMZML() error - Code won't reach: listMZML.js line 12-13
   // ! Code will throw undefined inputDirectory error if anything but string is inputted
-  // test('throw error: listMZML() input type check', async () => {
-  //   testArgv.inputDirectory = 0;
-  //   testArgv.fileList = ['*'];
-  //   await expect(yargsCheck(testArgv)).rejects.toThrowError(
-  //     'listMZML(): directory must be of type string',
-  //   );
-  // });
+  // ! listMZML() unit test is conducted and covers all lines
 
   // Clean up test environment after tests
   afterAll(() => {
