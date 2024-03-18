@@ -1,9 +1,9 @@
 // @ts-nocheck
 
-import { existsSync, mkdirSync } from 'fs';
+import { existsSync, mkdirSync, rmSync } from 'fs';
 import { join } from 'path';
 
-import { describe, test, expect, beforeAll } from 'vitest';
+import { describe, test, expect, beforeAll, afterAll } from 'vitest';
 
 import { parseMZML } from '../utils/parseMZML.js';
 
@@ -298,4 +298,9 @@ describe('parseMZML', () => {
   // If writeTSV() throws an error - it is caught and handled within parseMZML()
   // Test data files all have chromatogram data > 0 from parsed mzML data
   // writeTSV() unit test is conducted and covers all lines
+
+  // Clean up test environment after tests
+  afterAll(() => {
+    rmSync('./.tmp/parseMZML/', { recursive: true });
+  });
 });
