@@ -79,8 +79,8 @@ figlet('ExfilMS', async (err, data) => {
     // Parse mzML data files for extraction
     await parseMZML(configParam);
   } catch (err) {
-    console.error(`\n${err.toString()}\n`);
+    console.error(`\n${err.toString()}`);
   } finally {
-    console.log('ExfilMS process complete');
+    console.log('\nExfilMS process complete');
   }
 });

@@ -11,9 +11,9 @@ import { join } from 'path';
 export async function writeLog(logDirectory, data) {
   // Check input type
   if (typeof logDirectory !== 'string') {
-    throw new Error('\nwriteLog(): logDirectory must be of type string');
+    throw new Error('writeLog(): logDirectory must be of type string');
   } else if (typeof data !== 'string') {
-    throw new Error('\nwriteLog(): data must be of type string');
+    throw new Error('writeLog(): data must be of type string');
   }
 
   // Write data to log.txt

@@ -9,7 +9,7 @@ import { readdirSync } from 'fs';
 export async function listMZML(directory) {
   // Check input type
   if (typeof directory !== 'string') {
-    throw new Error('\nlistMZML(): directory must be of type string');
+    throw new Error('listMZML(): directory must be of type string');
   }
 
   // Filter for and return mzML filenames from directory

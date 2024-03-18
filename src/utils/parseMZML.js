@@ -1,4 +1,5 @@
 /* eslint-disable no-await-in-loop */
+/* eslint-disable no-console */
 
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
@@ -18,6 +19,8 @@ import { writeLog } from './writeLog.js';
 export async function parseMZML(configParam) {
   const spinner = ora();
   let failedFiles = [];
+  let currDateTime;
+  let logger;
 
   spinner.info(
     `Extracting MS data from ${configParam.fileList.length} file(s):`,
@@ -36,8 +39,8 @@ export async function parseMZML(configParam) {
       }
 
       // Get current timestamp
-      let currDateTime = new Date();
-      let logger = `${currDateTime}\t${file}\n`;
+      currDateTime = new Date();
+      logger = `${currDateTime}\t${file}`;
 
       // Parse mzML data file
       let msData = parse(readFileSync(filePath));
@@ -45,23 +48,34 @@ export async function parseMZML(configParam) {
       // Extract MS data
       await extractMZML(configParam, msData);
 
-      // Write timestamp and file name into log file
-      await writeLog(configParam.logDirectory, logger);
       spinner.succeed();
     } catch (err) {
       failedFiles.push(file);
       spinner.fail();
+      console.error(err.toString());
+      logger = `${logger}\t${err.toString()}`;
+    } finally {
+      try {
+        // Write timestamp and file name (and error message) into log file
+        await writeLog(configParam.logDirectory, `${logger}\n`);
+      } catch (err) {
+        console.error(err.toString());
+      }
     }
   }
 
   // Write failed files list into log file
-  await writeLog(
-    configParam.logDirectory,
-    `Failed files: [${failedFiles}]\n\n`,
-  );
+  try {
+    await writeLog(
+      configParam.logDirectory,
+      `Failed files: [${failedFiles}]\n\n`,
+    );
+  } catch (err) {
+    console.error(`\n${err.toString()}`);
+  }
 
   // Throw error if there were failed files
   if (failedFiles.length !== 0) {
-    throw new Error(`\nExtraction failure:\n${failedFiles}`);
+    throw new Error(`\nExtraction failure: ${failedFiles}`);
   }
 }

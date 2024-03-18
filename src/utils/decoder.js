@@ -12,15 +12,15 @@ import pako from 'pako';
 export async function decoder(precisionValue, compressionMethod, encodedData) {
   // Check input type
   if (typeof precisionValue !== 'number') {
-    throw new Error('\ndecoder(): precisionValue must be of type number');
+    throw new Error('decoder(): precisionValue must be of type number');
   } else if (precisionValue !== 64 && precisionValue !== 32) {
-    throw new Error('\ndecoder(): precisionValue defined not valid');
+    throw new Error('decoder(): precisionValue defined not valid');
   } else if (typeof compressionMethod !== 'string') {
-    throw new Error('\ndecoder(): compressionMethod must be of type string');
+    throw new Error('decoder(): compressionMethod must be of type string');
   } else if (compressionMethod !== 'none' && compressionMethod !== 'zlib') {
-    throw new Error('\ndecoder(): compressionMethod defined not valid');
+    throw new Error('decoder(): compressionMethod defined not valid');
   } else if (typeof encodedData !== 'string') {
-    throw new Error('\ndecoder(): encodedData must be of type string');
+    throw new Error('decoder(): encodedData must be of type string');
   }
 
   let decodedData;

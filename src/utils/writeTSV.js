@@ -15,7 +15,7 @@ import { join } from 'path';
 export async function writeTSV(outputDirectory, data) {
   // Check input type
   if (typeof outputDirectory !== 'string') {
-    throw new Error('\nwriteTSV(): outputDirectory must be of type string');
+    throw new Error('writeTSV(): outputDirectory must be of type string');
   }
 
   // Spectrum and chromatogram output path

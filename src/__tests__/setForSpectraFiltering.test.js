@@ -56,7 +56,7 @@ describe('setForSpectraFiltering', () => {
     testConfigParam.ppmTolerance = 5;
     testConfigParam.targetFile = '';
     await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
-      '\nparseTargetFile(): targetFile does not match TSV pattern check',
+      'parseTargetFile(): targetFile does not match TSV pattern check',
     );
 
     // Published to web URL pattern
@@ -79,13 +79,13 @@ describe('setForSpectraFiltering', () => {
     testConfigParam.msLevel = [1];
     testConfigParam.targetFile = './data/targetFile/invalidLayout.tsv';
     await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
-      '\nparseTargetFile(): Target m/z data not found',
+      'parseTargetFile(): Target m/z data not found',
     );
 
     // Same as above but without filter spectrum data
     testConfigParam.filterSpectrumData = false;
     await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
-      '\nparseTargetFile(): Target m/z data not found',
+      'parseTargetFile(): Target m/z data not found',
     );
 
     // decimalPlace is not NaN
@@ -103,12 +103,12 @@ describe('setForSpectraFiltering', () => {
   // test('throw error: roundDecimalPlace() input type check', async () => {
   //   testConfigParam.decimalPlace = testConfigParam.decimalPlace.toString();
   //   await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
-  //     '\nroundDecimalPlace(): decimalPlace must be of type number',
+  //     'roundDecimalPlace(): decimalPlace must be of type number',
   //   );
 
   //   testConfigParam.mzTolerance = '5a';
   //   await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
-  //     '\nroundDecimalPlace(): toRoundValue must be of type number',
+  //     'roundDecimalPlace(): toRoundValue must be of type number',
   //   );
   // });
 });

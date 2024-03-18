@@ -63,7 +63,7 @@ describe('yargsCheck', () => {
   test('throw error: command line argument check', async () => {
     // inputDirectory not defined
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
-      '\n-i (or --inputDirectory) "/path/to/input/directory/" required',
+      '-i (or --inputDirectory) "/path/to/input/directory/" required',
     );
 
     // both targeted and mzRange defined
@@ -71,13 +71,13 @@ describe('yargsCheck', () => {
     testArgv.targeted = true;
     testArgv.mzRange = true;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
-      '\nUse one of the following options for spectra filtering:\n-t (or --targeted) --targetFile "/local/path/or/published/to/web/URL/to/target/tsv/file" --mzTolerance <number> --ppmTolerance <number>\n-r (or --mzRange) --minMZ <number> --maxMZ <number',
+      'Use one of the following options for spectra filtering:\n-t (or --targeted) --targetFile "/local/path/or/published/to/web/URL/to/target/tsv/file" --mzTolerance <number> --ppmTolerance <number>\n\nor\n\n-r (or --mzRange) --minMZ <number> --maxMZ <number',
     );
 
     // targetFile not defined when targeted is defined
     testArgv.mzRange = false;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
-      '\n--targetFile "/path/to/target/file.tsv" required',
+      '--targetFile "/path/to/target/file.tsv" required',
     );
 
     // targetFile, mzTolerance and ppmTolerance defined (not default values) without targeted
@@ -85,21 +85,21 @@ describe('yargsCheck', () => {
     testArgv.targeted = false;
     testArgv.targetFile = './.tmp/targetFile.tsv';
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
-      '\n-t (or --targeted) required to specify --targetFile, --mzTolerance and --ppmTolerance',
+      '-t (or --targeted) required to specify --targetFile, --mzTolerance and --ppmTolerance',
     );
 
     // mzTolerance
     testArgv.targetFile = undefined;
     testArgv.mzTolerance = 3;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
-      '\n-t (or --targeted) required to specify --targetFile, --mzTolerance and --ppmTolerance',
+      '-t (or --targeted) required to specify --targetFile, --mzTolerance and --ppmTolerance',
     );
 
     // ppmTolerance
     testArgv.mzTolerance = 0.005;
     testArgv.ppmTolerance = 3;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
-      '\n-t (or --targeted) required to specify --targetFile, --mzTolerance and --ppmTolerance',
+      '-t (or --targeted) required to specify --targetFile, --mzTolerance and --ppmTolerance',
     );
 
     // minMZ and maxMZ defined (not default values) without mzRange
@@ -123,7 +123,7 @@ describe('yargsCheck', () => {
     testArgv.minMZ = 500;
     testArgv.maxMZ = 10;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
-      '\nmaxMZ value needs to be greater than minMZ value',
+      'maxMZ value needs to be greater than minMZ value',
     );
 
     // spectrumType, msLevel, polarity and excludeSpectra defined (not default values) without filterSpectrumData
@@ -134,33 +134,33 @@ describe('yargsCheck', () => {
     // spectrumType
     testArgv.spectrumType = ['profile'];
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
-      '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
+      '-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
     );
 
     // msLevel
     testArgv.spectrumType = ['profile', 'centroid'];
     testArgv.msLevel = [1];
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
-      '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
+      '-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
     );
 
     testArgv.msLevel = [1, 3];
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
-      '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
+      '-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
     );
 
     // polarity
     testArgv.msLevel = [1, 2];
     testArgv.polarity = ['positive'];
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
-      '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
+      '-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
     );
 
     // excludeSpectra
     testArgv.polarity = ['positive', 'negative'];
     testArgv.excludeSpectra = true;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
-      '\n-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
+      '-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
     );
     testArgv.excludeSpectra = false;
   });
@@ -227,7 +227,7 @@ describe('yargsCheck', () => {
   //   testArgv.inputDirectory = 0;
   //   testArgv.fileList = ['*'];
   //   await expect(yargsCheck(testArgv)).rejects.toThrowError(
-  //     '\nlistMZML(): directory must be of type string',
+  //     'listMZML(): directory must be of type string',
   //   );
   // });
 

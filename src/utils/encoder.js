@@ -14,20 +14,20 @@ import pako from 'pako';
 export async function encoder(precisionValue, compressionMethod, data) {
   // Check input type
   if (typeof precisionValue !== 'number') {
-    throw new Error('\nencoder(): precisionValue must be of type number');
+    throw new Error('encoder(): precisionValue must be of type number');
   } else if (precisionValue !== 64 && precisionValue !== 32) {
-    throw new Error('\nencoder(): precisionValue defined not valid');
+    throw new Error('encoder(): precisionValue defined not valid');
   } else if (typeof compressionMethod !== 'string') {
-    throw new Error('\nencoder(): compressionMethod must be of type string');
+    throw new Error('encoder(): compressionMethod must be of type string');
   } else if (compressionMethod !== 'none' && compressionMethod !== 'zlib') {
-    throw new Error('\nencoder(): compressionMethod defined not valid');
+    throw new Error('encoder(): compressionMethod defined not valid');
   } else if (
     !Array.isArray(data) &&
     !(data instanceof ArrayBuffer) &&
     typeof data !== 'number'
   ) {
     throw new Error(
-      '\nencoder(): data must be of type ArrayBufferLike, ArrayLike<number>, Iterable<number> or number',
+      'encoder(): data must be of type ArrayBufferLike, ArrayLike<number>, Iterable<number> or number',
     );
   }
 
