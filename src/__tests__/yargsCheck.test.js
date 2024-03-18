@@ -221,9 +221,9 @@ describe('yargsCheck', () => {
     expect(configParam).toHaveProperty('excludeSpectra');
   });
 
-  // ! Fail to catch listMZML() error - Code won't reach: listMZML.js line 12-13
-  // ! Code will throw undefined inputDirectory error if anything but string is inputted
-  // ! listMZML() unit test is conducted and covers all lines
+  // ! Fail to catch listMZML() input type error - Code won't reach: listMZML.js line 12-13
+  // Code will throw undefined inputDirectory error if anything but string is inputted
+  // listMZML() unit test is conducted and covers all lines
 
   // Clean up test environment after tests
   afterAll(() => {

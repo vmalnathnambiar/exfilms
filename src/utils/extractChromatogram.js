@@ -69,7 +69,7 @@ export async function extractChromatogram(configParam, chromatogramArray) {
       }
     }
 
-    // Check if precursor data available
+    // Precursor data
     if (precursorMap) {
       const isolationWindowMap = precursorMap.isolationWindow;
       const activationMap = precursorMap.activation;

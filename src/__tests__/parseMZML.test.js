@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
 
@@ -6,11 +8,10 @@ import { describe, test, expect, beforeAll } from 'vitest';
 import { parseMZML } from '../utils/parseMZML.js';
 
 /**
- * To test parseMZML()
+ * To test parseMZML() - and extractMZML(), extractSpectrum(), filterSpectrum(), extractChromatogram()
  * Input: configParam (Object)
  * Output: NA || Error message (Error)
  */
-
 describe('parseMZML', () => {
   // Dummy data
   const testConfigParam = {
@@ -19,7 +20,7 @@ describe('parseMZML', () => {
     outputFormat: 'JSON',
     outputDirectory: './.tmp/parseMZML/outputDirectory/',
     logDirectory: './.tmp/parseMZML/logDirectory/',
-    decimalPlace: 4,
+    decimalPlace: NaN,
     targeted: false,
     mzRange: false,
     filterSpectrumData: false,
@@ -45,10 +46,18 @@ describe('parseMZML', () => {
     minMZ: 70.06,
     maxMZ: 1518.7175,
   };
-  const testFile = [
-    'S36_XEVOG2XSQToF_REIMS.mzML',
-    'S41_SCIEX_QTRAP6500P_TQMS_Old.mzML',
+  const testFileBruker = [
     'S15_Bruker_ImpactII_QToFMS.mzML',
+    'S16_Bruker_solariX_MRMS.mzML',
+  ];
+  const testFileWaters = [
+    'S26_Waters_XEVOTQXS_TQMS.mzML',
+    'S32_Waters_XEVOG2XSQToF_DESIMS.mzML',
+    'S36_Waters_XEVOG2XSQToF_REIMS.mzML',
+  ];
+  const testFileSciex = [
+    'S41_SCIEX_QTRAP6500P_TQMS_Old.mzML',
+    'S46_SCIEX_QTRAP6500P_TQMS_New.mzML',
   ];
 
   // Setting up test environment before tests
@@ -87,8 +96,9 @@ describe('parseMZML', () => {
     );
   });
 
-  test('file found parsed successfully', async () => {
-    testConfigParam.fileList = testFile;
+  test('extraction: Bruker', async () => {
+    testConfigParam.fileList = testFileBruker;
+
     // JSON
     expect(await parseMZML(testConfigParam));
 
@@ -97,7 +107,195 @@ describe('parseMZML', () => {
     expect(await parseMZML(testConfigParam));
   });
 
-  // ! Fail to catch writeLog() error - Code won't reach: writeLog.js line 14, 16-17
-  // ! If writeLog() throws an error - it is caught and handled within parseMZML()
-  // ! writeLog() unit test is conducted and covers all lines
+  test('extraction: Waters', async () => {
+    testConfigParam.fileList = testFileWaters;
+
+    // JSON
+    testConfigParam.outputFormat = 'JSON';
+    expect(await parseMZML(testConfigParam));
+
+    // TSV
+    testConfigParam.outputFormat = 'TSV';
+    expect(await parseMZML(testConfigParam));
+  });
+
+  test('extraction: Sciex', async () => {
+    testConfigParam.fileList = testFileSciex;
+
+    // JSON
+    testConfigParam.outputFormat = 'JSON';
+    expect(await parseMZML(testConfigParam));
+
+    // TSV
+    testConfigParam.outputFormat = 'TSV';
+    expect(await parseMZML(testConfigParam));
+  });
+
+  test('targeted m/z filtering: Bruker', async () => {
+    testConfigParam.decimalPlace = 4;
+    testConfigParam.targeted = true;
+    testConfigParam.fileList = testFileBruker;
+
+    // JSON
+    testConfigParam.outputFormat = 'JSON';
+    expect(await parseMZML(testConfigParam));
+
+    // TSV
+    testConfigParam.outputFormat = 'TSV';
+    expect(await parseMZML(testConfigParam));
+  });
+
+  test('targeted m/z filtering: Waters', async () => {
+    testConfigParam.fileList = testFileWaters;
+
+    // JSON
+    testConfigParam.outputFormat = 'JSON';
+    expect(await parseMZML(testConfigParam));
+
+    // TSV
+    testConfigParam.outputFormat = 'TSV';
+    expect(await parseMZML(testConfigParam));
+  });
+
+  test('targeted m/z filtering: Sciex', async () => {
+    testConfigParam.fileList = testFileSciex;
+
+    // JSON
+    testConfigParam.outputFormat = 'JSON';
+    expect(await parseMZML(testConfigParam));
+
+    // TSV
+    testConfigParam.outputFormat = 'TSV';
+    expect(await parseMZML(testConfigParam));
+  });
+
+  test('m/z range filtering: Bruker', async () => {
+    testConfigParam.targeted = false;
+    testConfigParam.mzRange = true;
+    testConfigParam.maxMZ = NaN;
+    testConfigParam.fileList = testFileBruker;
+
+    // JSON
+    testConfigParam.outputFormat = 'JSON';
+    expect(await parseMZML(testConfigParam));
+
+    // TSV
+    testConfigParam.outputFormat = 'TSV';
+    expect(await parseMZML(testConfigParam));
+  });
+
+  test('m/z range filtering: Waters', async () => {
+    testConfigParam.fileList = testFileWaters;
+
+    // JSON
+    testConfigParam.outputFormat = 'JSON';
+    expect(await parseMZML(testConfigParam));
+
+    // TSV
+    testConfigParam.outputFormat = 'TSV';
+    expect(await parseMZML(testConfigParam));
+  });
+
+  test('m/z range filtering: Sciex', async () => {
+    testConfigParam.fileList = testFileSciex;
+
+    // JSON
+    testConfigParam.outputFormat = 'JSON';
+    expect(await parseMZML(testConfigParam));
+
+    // TSV
+    testConfigParam.outputFormat = 'TSV';
+    expect(await parseMZML(testConfigParam));
+  });
+
+  test('spectrum data filtering: Bruker', async () => {
+    testConfigParam.targeted = true;
+    testConfigParam.maxMZ = 1518.7175;
+    testConfigParam.filterSpectrumData = true;
+    testConfigParam.excludeSpectra = true;
+    testConfigParam.fileList = testFileBruker;
+
+    // JSON
+    testConfigParam.outputFormat = 'JSON';
+    expect(await parseMZML(testConfigParam));
+
+    // TSV
+    testConfigParam.outputFormat = 'TSV';
+    expect(await parseMZML(testConfigParam));
+  });
+
+  test('spectrum data filtering: Waters', async () => {
+    testConfigParam.fileList = testFileWaters;
+
+    // JSON
+    testConfigParam.outputFormat = 'JSON';
+    expect(await parseMZML(testConfigParam));
+
+    // TSV
+    testConfigParam.outputFormat = 'TSV';
+    expect(await parseMZML(testConfigParam));
+  });
+
+  test('spectrum data filtering: Sciex', async () => {
+    testConfigParam.fileList = testFileSciex;
+
+    // JSON
+    testConfigParam.outputFormat = 'JSON';
+    expect(await parseMZML(testConfigParam));
+
+    // TSV
+    testConfigParam.outputFormat = 'TSV';
+    expect(await parseMZML(testConfigParam));
+  });
+
+  test('catch error: logDirectory is not type string', async () => {
+    testConfigParam.fileList = ['S15_Bruker_ImpactII_QToFMS.mzML'];
+    testConfigParam.logDirectory = 0;
+    expect(await parseMZML(testConfigParam));
+  });
+
+  // ! Uncovered Lines - extractChromatogram.js line 55, 62, 79, 105
+  // Line 55 - Assignation of value (mappedValue || paramValue) works but don't know why it doesn't pick up in test
+  // Line 62 - userParamMap array check with the test data is always false
+  // Line 79 - isolationWindowMap.cvParam array check with the test data is always false
+  // Line 105 - binaryData.cvParam array check with the test data is always true
+
+  // ! Uncovered Lines - extractSpectrum.js line 69, 107, 147, 161
+  // Line 69 - spectrumData.cvParam array check with test data is always true
+  // Line 107 - scanWindowMap.cvParam array check with test data is always true
+  // Line 147 - activationMap.cvParam array check with test data is always true
+  // Line 161 - binaryData.cvParam array check with the test data is always true
+
+  // ! Uncovered Lines - filterSpectrum.js line 95-106, 112-114, 124-133
+  // Line 95-106 - Calculation of mass accuracy if m/z falls within range works, but don't know why it doesn't pick up in test
+  // Line 112-114 - Assignation of new basePeakIntensity and basePeakMZ works, but don't know why it doesn't pick up in test
+  // Line 124-133 - Pushing chromatogram data based on spectrum data filtering works, but don't know why it doesn't pick up in test
+
+  // ! Fail to catch decoder() input type error - Code won't reach: decoder.js line 15, 17, 19, 21, 23-24
+  // If decoder() throws an error - it is caught and handled within parseMZML()
+  // decoder() unit test is conducted and covers all lines
+
+  // ! Fail to catch extractTimeStamp() input type error - Code won't reach: extractTimeStamp.js line 14-15
+  // If extractTimeStamp() throws an error - it is caught and handled within parseMZML()
+  // extractTimeStamp() unit test is conducted and covers all lines
+
+  // ! Fail to catch roundDecimalPlace() input type error - Code won't reach: roundDecimalPlace.js line 11, 13-14
+  // If roundDecimalPlace() throws an error - it is caught and handled within parseMZML()
+  // roundDecimalPlace() unit test is conducted and covers all lines
+
+  // ! Fail to catch writeJSON() input type error - Code won't reach: writeJSON.js line 18-19
+  // ! Fail to catch writeJSON() date/time null writing to file - Code won't reach: writeJSON.js line 30-31, 36-37
+  // If writeJSON() throws an error - it is caught and handled within parseMZML()
+  // Test data files all have valid data and time extracted from parsed mzML data
+  // writeJSON() unit test is conducted and covers all lines
+
+  // ! Fail to catch writeLog() input type error - Code won't reach: writeLog.js line 16-17
+  // If writeLog() throws an error - it is caught and handled within parseMZML()
+  // writeLog() unit test is conducted and covers all lines
+
+  // ! Fail to catch writeTSV() input type error - Code won't reach: writeTSV.js line 18-19
+  // ! Fail to catch writeTSV() chromatogram === 0 writing to file - Code won't reach: writeTSV.js line 64-68
+  // If writeTSV() throws an error - it is caught and handled within parseMZML()
+  // Test data files all have chromatogram data > 0 from parsed mzML data
+  // writeTSV() unit test is conducted and covers all lines
 });

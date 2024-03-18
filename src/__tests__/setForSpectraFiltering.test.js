@@ -97,8 +97,8 @@ describe('setForSpectraFiltering', () => {
     expect(configParam.maxMZ).toBeDefined();
   });
 
-  // ! Fail to catch roundDecimal() error - Code won't reach: roundDecimalPlace.js line 11, 13-14
-  // ! decimalPlace is always coerced into number resulting in NaN if not a number and skip roundDecimal()
-  // ! toRoundValue is also coerced into number type resulting in NaN if not a number
-  // ! roundDecimal() unit test is conducted and covers all lines
+  // ! Fail to catch roundDecimal() input type error - Code won't reach: roundDecimalPlace.js line 11, 13-14
+  // decimalPlace is always coerced into number resulting in NaN if not a number and skip roundDecimal()
+  // toRoundValue is also coerced into number type resulting in NaN if not a number
+  // roundDecimal() unit test is conducted and covers all lines
 });
