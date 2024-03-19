@@ -98,7 +98,7 @@ $ docker run --rm -it -v "/path/to/input/directory/":/inputDirectory -v "/path/t
 ```
 
 > [!Warning]\
-> Appending `exfilms -x` to the Docker command to execute ExfilMS in interactive mode is currently not working as intended. This is a known issue and we are currently working to resolve it as soon as possible.
+> Appending `-x` to the ExfilMS image in the Docker command to run in interactive mode instead of appending command line flags (like shown above) to configure the tool's behaviour is currently not working as intended. This is a known issue and we are working to resolve it as soon as possible.
 
 <br>
 
@@ -110,6 +110,12 @@ For more guidance on how to use ExfilMS, please refer to our available guides be
 <br>
 
 ## Citations
+
+If you use ExfilMS in your work, please cite it using the following:
+
+<a id="1">[1]</a>
+
+<br>
 
 <!-- ## API Documentation
 Please refer to our API documentation [here](https://vmalnathnambiar.github.io/exfilms/). -->

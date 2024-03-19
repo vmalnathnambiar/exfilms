@@ -33,7 +33,7 @@ However, running this command on its own will result in an error, as seen below.
 
 ![launch-err](../img/launch/err-default.png)
 
-The `i`, `--inputDirectory` displayed in the error message is known as as a command line argument (or "command" or "flag") that is required for a successful execution of ExfilMS. There are both required and non-required flags available for your use. The inclusion of these flags along with the `exfilms` command will configure and establish the behaviour of the tool for running its extraction (and filtering) process.\
+The `i`, `--inputDirectory` displayed in the error message is known as a command line argument (or "command" or "flag") that is required for the successful execution of ExfilMS. There are both required and non-required flags available for your use. The inclusion of these flags along with the `exfilms` command will configure and establish the behaviour of the tool for running its extraction (and filtering) process.\
 <br>
 
 ## Useful Commands
