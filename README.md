@@ -12,9 +12,9 @@ ExfilMS is a cross-platform, command line interface (CLI) tool to extract MS dat
 ### Features:
 
 - Precision value rounding
-- Spectra filtering
-  - Targeted m/z filtering
-  - m/z range filtering
+- Spectra filtering (m/z and intensity)
+  - Targeted (target file, m/z tolerance and ppm tolerance)
+  - Range (minimum and maximum m/z)
 - Spectrum data filtering
   - Spectrum type (profile / centroid)
   - MS level
@@ -25,36 +25,91 @@ ExfilMS is a cross-platform, command line interface (CLI) tool to extract MS dat
 
 ## Installation
 
+> ExfilMS has been tested on Windows, macOS and Linux.
+
+### Node.js
+
 > [!IMPORTANT]\
-> **Prerequisite:** [Node.js®][nodejs-url]\
-> **Platform compatibility:** Windows, macOS and Linux.
+> _Prerequisite:_ [Node.js®][nodejs-url]
+
+```md
+# Clone repository
+
+$ git clone https://github.com/vmalnathnambiar/exfilms.git
+
+# Navigate into repository
+
+$ cd exfilms
+
+# Install dependencies
+
+$ npm install
+
+# Install CLI
+
+$ npm install -g .
+```
+
+or
 
 `$ npm install -g exfilms`
 
 <br>
 
-## Usage
+### Docker
+
+> [!IMPORTANT]\
+> _Prerequisite:_ [Docker][docker-url]
 
 ```md
-# Run with default extraction/spectrum filtering parameters
+# Clone repository
 
-$ exfilms -i (or -inputDirectory) "/path/to/input/directory/containing/mzML/data/files/"
+$ git clone https://github.com/vmalnathnambiar/exfilms.git
 
-# Run interactive mode
+# Navigate into repository
 
-$ exfilms --interactive
+$ cd exfilms
 
-# Getting help
+# Build Docker image
 
-$ exfilms --help
+$ docker build -t exfilms .
 ```
+
+or
+
+`$ docker pull exfilms`
+
+<br>
+
+## Usage
+
+### Node.js
+
+```md
+$ exfilms -i (or --inputDirectory) "/path/to/input/directory/containing/mzML/data/files/" ...
+```
+
+<br>
+
+### Docker
+
+```md
+$ docker run --rm -it -v "/path/to/input/directory/":/inputDirectory -v "/path/to/output/directory/":/outputDirectory -v "/path/to/log/directory/":/logDirectory exfilms -i /inputDirectory -o /outputDirectory -l /logDirectory ....
+```
+
+> [!Warning]\
+> Appending `exfilms -x` to the Docker command to execute ExfilMS in interactive mode is currently not working as intended. This is a known issue and we are currently working to resolve it as soon as possible.
+
+<br>
 
 For more guidance on how to use ExfilMS, please refer to our available guides below:
 
-- [Data Conversion to mzML](./doc/data-conversion-to-mzML.md)
+- [Data Conversion to mzML using ProteoWizard](./doc/data-conversion-to-mzml-using-proteowizard.md)
 - [How To ExfilMS: The Complete Guide](./doc/how-to-exfilms-the-complete-guide.md)
 
 <br>
+
+## Citations
 
 <!-- ## API Documentation
 Please refer to our API documentation [here](https://vmalnathnambiar.github.io/exfilms/). -->
@@ -74,3 +129,4 @@ Please refer to our license information [here](./LICENSE).
 [download-image]: https://img.shields.io/npm/dm/exfilms.svg
 [download-url]: https://www.npmjs.com/package/exfilms
 [nodejs-url]: https://nodejs.org/en/download/
+[docker-url]: https://docs.docker.com/engine/install/

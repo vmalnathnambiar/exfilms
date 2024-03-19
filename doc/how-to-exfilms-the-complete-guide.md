@@ -47,7 +47,7 @@ Displays a list of available commands along with their descriptions. This is use
 ```md
 # Show help
 
-$ exfilms --help
+$ exfilms -h (or --help)
 ```
 
 <br>
@@ -59,7 +59,7 @@ Displays the current version of ExfilMS that is installed on your device. This i
 ```md
 # Show version number
 
-$ exfilms --version
+$ exfilms -v (or --version)
 ```
 
 <br>
@@ -71,7 +71,7 @@ Runs ExfilMS in interactive mode. This mode will prompt questions on the termina
 ```md
 # Run interactive mode
 
-$ exfilms --interactive
+$ exfilms -x (or --interactive)
 ```
 
 <br>
@@ -178,7 +178,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -d (or --decimalP
 
 ### Spectra Filtering
 
-ExfilMS also provides you with the capability to filter the spectra (m/z and intensity) acquired during acquisition for each scan point (retention time) via two methods.
+ExfilMS also provides you with the capability to filter the spectra (m/z and intensity array) acquired during acquisition for each scan point (retention time) via two methods.
 
 > [!WARNING]\
 > The spectra filtering options are mutually exclusive. You can only use **ONE** of the method at a time.
@@ -206,7 +206,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -t (or --targeted
 
 <br>
 
-In addition to the required flags, there are two additional flags that can also be configured which sets the m/z and mass accuracy (ppm) tolerance ranges, respectively. These tolerance range will then be used while filtering for the targeted m/z values in the spectra.
+In addition to the required flags, there are two additional flags that can also be configured which sets the m/z and mass accuracy (ppm) tolerance ranges, respectively. These tolerances will then be used while filtering for the targeted m/z values in the spectra.
 
 `--mzTolerance`
 
@@ -238,7 +238,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -t (or --targeted
 
 `-r`, `--mzRange` \*_Required_
 
-This method is based on range filtering using a minimum (lower bound) and maximum (upper bound) values. This method is for you if you still would like to filter the spectra but do not know the specific m/z values to target for.
+This method is based on range filtering using a minimum (lower bound) and maximum (upper bound) m/z values. This method is for you if you still would like to filter the spectra but do not know the specific m/z values to target for.
 
 ```md
 # Filter spectra for specific m/z range
@@ -280,7 +280,10 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -r (or --mzRange)
 
 `-s`, `--filterSpectrumData` \*_Required_
 
-ExfilMS also provides you with the functionality of filtering the spectrum based on its properties such as spectrum type, MS level and polarity. With this flag, you can also decide to exclude the spectra (m/z and intensity array) acquired for each spectrum from being stored in the output file. This spectra exclusion filter is particularly useful if you are interested in analysis only the metadata of each spectrum.
+ExfilMS also provides you with the functionality of filtering the spectrum data based on its properties such as spectrum type, MS level and polarity. With this flag, you can also decide to exclude the spectra (m/z and intensity array) acquired of each scan point (retention time) from being stored in the output file.
+
+> [!NOTE]\
+> The spectra exclusion filter is particularly useful if you are interested only in analysing the metadata of each spectrum (i.e., total ion current, base peak intensity).
 
 <br>
 

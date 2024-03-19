@@ -1,4 +1,4 @@
-# Data Conversion to mzML
+# Data Conversion to mzML using ProteoWizard
 
 ### Table of Contents
 
