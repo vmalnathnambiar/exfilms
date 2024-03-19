@@ -14,7 +14,7 @@ import { roundDecimalPlace } from './roundDecimalPlace.js';
  * @param {array} chromatogram An array of chromatogram data defined by initChromatogramArray to be used for the extraction (and filtration) process.
  * @returns {Promise<Object>} A promise that resolves with an object containing the chromatogram array, base peak intensity, base peak m/z, total ion current, and spectra array (m/z and intensity values)
  */
-export async function filterSpectrum(
+export async function filterSpectra(
   configParam,
   spectrumType,
   msLevel,
