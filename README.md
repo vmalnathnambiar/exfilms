@@ -109,12 +109,23 @@ $ docker run --rm -it -v "/path/to/input/directory/":/inputDirectory -v "/path/t
 $ docker run --rm -it -v "/path/to/input/directory/":/inputDirectory -v "/path/to/output/directory/":/outputDirectory -v "/path/to/log/directory/":/logDirectory exfilms -x
 ```
 
+> [!NOTE]\
+> Running ExfilMS using Docker requires the use of volume mapping in the Docker command.
+>
+> `-v "/path/on/the/local/machine/":/tmpPath`
+>
+> Once the volume mapping is done, you would use /tmpPath as the input data where required, instead of the actual path on the local machine. For the successful execution of ExfilMS, you are **REQUIRED** to provide the following:
+>
+> - -v "/path/to/input/directory/":/inputDirectory
+> - -v "/path/to/output/directory/":/outputDirectory
+> - -v "/path/to/log/directory/":/logDirectory
+
 <br>
 
-> [!Warning]\
-> Known Limitations:
+> [!WARNING]\
+> Known Limitations of ExfilMS:
 >
-> - Docker interactive mode unable to output extracted files despite volume mapping is configured. However, writing to log file works.
+> - Unable to output extracted files when running interactive mode with Docker. However, writing to log file works.
 > - Unable to parse mzML data that have a file size **GREATER THAN** 2GB.
 
 <br>

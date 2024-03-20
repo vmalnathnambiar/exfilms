@@ -112,7 +112,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" --fileList "file1
 _Input type: String_\
 _Choices: "JSON", "TSV" || Default: "JSON"_
 
-Specify output format. There are currently two available output formats for you to choose from.
+Specify an output format. There are currently two available output formats for you to choose from.
 
 1. JSON, also known as JavaScript Object Notation is a standard, human readable text stored in the basis of object key-value pairs.
 
