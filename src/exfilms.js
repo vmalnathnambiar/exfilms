@@ -60,6 +60,16 @@ figlet('ExfilMS', async (err, data) => {
       configParam = await yargsCheck(argv);
     }
 
+    // Testing to see if code is running inside of Docker container
+    // if (join(dirname(fileURLToPath(import.meta.url)), '..') === '/app') {
+    //   console.log('running in Docker');
+    // } else {
+    //   console.log('running locally');
+    // }
+
+    // Ensure decimal place is either a number or NaN
+    configParam.decimalPlace = Number(configParam.decimalPlace);
+
     // Set for spectra filtering method if defined
     if (configParam.targeted || configParam.mzRange) {
       configParam = await setForSpectraFiltering(configParam);

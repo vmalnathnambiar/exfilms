@@ -59,7 +59,7 @@ or
 ### Docker
 
 > [!IMPORTANT]\
-> _Prerequisite:_ [Docker][docker-url]
+> _*Prerequisite:*_ [Docker][docker-url]
 
 ```md
 # Clone repository
@@ -86,7 +86,13 @@ or
 ### Node.js
 
 ```md
-$ exfilms -i (or --inputDirectory) "/path/to/input/directory/containing/mzML/data/files/" ...
+# Command Line Interface (CLI)
+
+$ exfilms -i "/path/to/input/directory/containing/mzML/data/files/" ...
+
+# Interactive
+
+$ exfilms -x
 ```
 
 <br>
@@ -94,11 +100,22 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/containing/mzML/dat
 ### Docker
 
 ```md
+# Command Line Interface (CLI)
+
 $ docker run --rm -it -v "/path/to/input/directory/":/inputDirectory -v "/path/to/output/directory/":/outputDirectory -v "/path/to/log/directory/":/logDirectory exfilms -i /inputDirectory -o /outputDirectory -l /logDirectory ....
+
+# Interactive
+
+$ docker run --rm -it -v "/path/to/input/directory/":/inputDirectory -v "/path/to/output/directory/":/outputDirectory -v "/path/to/log/directory/":/logDirectory exfilms -x
 ```
 
+<br>
+
 > [!Warning]\
-> Appending `-x` to the ExfilMS image in the Docker command to run in interactive mode instead of appending command line flags (like shown above) to configure the tool's behaviour is currently not working as intended. This is a known issue and we are working to resolve it as soon as possible.
+> _Known Limitations:_
+>
+> - Docker interactive mode unable to output extracted files despite volume mapping is configured. However, writing to log file works.
+> - Unable to parse mzML data that have a file size **GREATER THAN** 2GB.
 
 <br>
 
@@ -114,7 +131,7 @@ For more guidance on how to use ExfilMS, please refer to our available guides be
 
 If you use ExfilMS in your work, please cite it using the following:
 
-<a id="1">[1]</a>
+<!-- <a id="1">[1]</a> -->
 
 <br>
 

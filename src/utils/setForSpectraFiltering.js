@@ -8,8 +8,6 @@ import { roundDecimalPlace } from './roundDecimalPlace.js';
  * @throws {Error} Throws error if setForSpectraFiltering() encounters issues in its process.
  */
 export async function setForSpectraFiltering(configParam) {
-  configParam.decimalPlace = Number(configParam.decimalPlace);
-
   // Determine the spectra filtering method defined
   if (configParam.targeted) {
     // If targeted m/z filtering

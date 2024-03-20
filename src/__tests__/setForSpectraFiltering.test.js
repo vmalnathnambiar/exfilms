@@ -74,7 +74,7 @@ describe('setForSpectraFiltering', () => {
     expect(configParam.minMZ).toBeDefined();
     expect(configParam.maxMZ).toBeDefined();
 
-    // Filter spectrum data
+    // Filter spectrum data with invalid target file layout
     testConfigParam.filterSpectrumData = true;
     testConfigParam.msLevel = [1];
     testConfigParam.targetFile = './data/targetFile/invalidLayout.tsv';
@@ -88,9 +88,16 @@ describe('setForSpectraFiltering', () => {
       'parseTargetFile(): Target m/z data not found',
     );
 
-    // decimalPlace is not NaN
+    // Target file layout is valid and decimalPlace is not NaN
     testConfigParam.decimalPlace = 4;
     testConfigParam.targetFile = './data/targetFile/validLayout.tsv';
+    configParam = await setForSpectraFiltering(testConfigParam);
+    expect(configParam).toHaveProperty('mzTargetList');
+    expect(configParam.minMZ).toBeDefined();
+    expect(configParam.maxMZ).toBeDefined();
+
+    // Same as above but decimalPlace is NaN
+    testConfigParam.decimalPlace = NaN;
     configParam = await setForSpectraFiltering(testConfigParam);
     expect(configParam).toHaveProperty('mzTargetList');
     expect(configParam.minMZ).toBeDefined();
@@ -98,7 +105,7 @@ describe('setForSpectraFiltering', () => {
   });
 
   // ! Fail to catch roundDecimal() input type error - Code won't reach: roundDecimalPlace.js line 11, 13-14
-  // decimalPlace is always coerced into number resulting in NaN if not a number and skip roundDecimal()
-  // toRoundValue is also coerced into number type resulting in NaN if not a number
+  // decimalPlace is always coerced into number type resulting in NaN if not a number
+  // toRoundValue is always coerced into number type resulting in NaN if not a number
   // roundDecimal() unit test is conducted and covers all lines
 });
