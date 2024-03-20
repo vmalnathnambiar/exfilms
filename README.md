@@ -30,7 +30,7 @@ ExfilMS is a cross-platform, command line interface (CLI) tool to extract MS dat
 ### Node.js
 
 > [!IMPORTANT]\
-> _Prerequisite:_ [Node.js®][nodejs-url]
+> Prerequisite: [Node.js®][nodejs-url]
 
 ```md
 # Clone repository
@@ -59,7 +59,7 @@ or
 ### Docker
 
 > [!IMPORTANT]\
-> _*Prerequisite:*_ [Docker][docker-url]
+> Prerequisite: [Docker][docker-url]
 
 ```md
 # Clone repository
@@ -112,7 +112,7 @@ $ docker run --rm -it -v "/path/to/input/directory/":/inputDirectory -v "/path/t
 <br>
 
 > [!Warning]\
-> _Known Limitations:_
+> Known Limitations:
 >
 > - Docker interactive mode unable to output extracted files despite volume mapping is configured. However, writing to log file works.
 > - Unable to parse mzML data that have a file size **GREATER THAN** 2GB.
