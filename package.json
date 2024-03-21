@@ -1,6 +1,6 @@
 {
   "name": "exfilms",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "A cross-platform, command line interface (CLI) tool to extract mass spectrometry (MS) data from mzML formatted files, with spectrum filtering capabilities.",
   "bin": {
     "exfilms": "./src/exfilms.js"
