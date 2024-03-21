@@ -2,6 +2,12 @@
 data/
 src/__tests__/
 
+# GitHub Workflows
+.github/
+
+# Docker
+Dockerfile
+
 # Configuration files (Dev dependencies)
 .dockerignore
 .eslintrc.yml
@@ -10,4 +16,3 @@ src/__tests__/
 .prettierrc.json
 .releaserc.json
 vitest.config.js
-Dockerfile
