@@ -32,26 +32,6 @@ ExfilMS is a cross-platform, command line interface (CLI) tool to extract MS dat
 > [!IMPORTANT]\
 > Prerequisite: [Node.js®][nodejs-url]
 
-```md
-# Clone repository
-
-$ git clone https://github.com/vmalnathnambiar/exfilms.git
-
-# Navigate into repository
-
-$ cd exfilms
-
-# Install dependencies
-
-$ npm install
-
-# Install CLI
-
-$ npm install -g .
-```
-
-or
-
 `$ npm install -g exfilms`
 
 <br>
@@ -74,10 +54,6 @@ $ cd exfilms
 
 $ docker build -t exfilms .
 ```
-
-or
-
-`$ docker pull exfilms`
 
 <br>
 
@@ -110,7 +86,7 @@ $ docker run --rm -it -v "/path/to/input/directory/":/inputDirectory -v "/path/t
 ```
 
 > [!NOTE]\
-> Running ExfilMS using Docker requires the use of volume mapping in the Docker command.
+> Running ExfilMS using Docker requires the use of volume mapping in the Docker command. For example,
 >
 > `-v "/path/on/the/local/machine/":/tmpPath`
 >
