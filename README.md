@@ -32,7 +32,7 @@ ExfilMS is a cross-platform, command line interface (CLI) tool to extract mass s
 > [!IMPORTANT]\
 > Prerequisite: [Node.js®][nodejs-url]
 
-`$ npm install -g exfilms`
+`$ npm i -g exfilms`
 
 <br>
 
@@ -137,8 +137,8 @@ Please refer to our license information [here](./LICENSE).
 [npm-image]: https://img.shields.io/npm/v/exfilms.svg
 [npm-url]: https://www.npmjs.com/package/exfilms
 [ci-image]: https://github.com/vmalnathnambiar/exfilms/workflows/Node.js%20CI/badge.svg?branch=main
-[ci-url]: https://github.com/vmalnathnambiar/exfilms/actions?query=workflow%3A%22Node.js+CI%22
-[codecov-image]: https://img.shields.io/codecov/c/github/vmalnathnambiar/exfilms.svg
+[ci-url]: https://github.com/vmalnathnambiar/exfilms/actions/workflows/publish-npm.yml/badge.svg?event=push
+[codecov-image]: https://codecov.io/gh/vmalnathnambiar/exfilms/graph/badge.svg?token=V8O80QXJ5S
 [codecov-url]: https://codecov.io/gh/vmalnathnambiar/exfilms
 [download-image]: https://img.shields.io/npm/dm/exfilms.svg
 [download-url]: https://www.npmjs.com/package/exfilms
