@@ -10,7 +10,7 @@ on:
     branches: '*'
 
 jobs:
-  build-quality:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -31,7 +31,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
-    needs: [build-quality]
+    needs: [build]
     steps:
       - uses: actions/checkout@v3
       - name: Use latest LTS Node.js
@@ -43,4 +43,4 @@ jobs:
       - run: npm run semantic-release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

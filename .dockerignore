@@ -144,5 +144,6 @@ src/__tests__
 .gitignore
 .npmignore
 .prettierrc.json
-.vite.js
+.releaserc.json
+vitest.config.js
 Dockerfile
