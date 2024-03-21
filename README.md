@@ -6,7 +6,7 @@
 
 ## Introduction
 
-ExfilMS is a cross-platform, command line interface (CLI) tool to extract MS data from mzML formatted files, with spectrum filtering capabilities.\
+ExfilMS is a cross-platform, command line interface (CLI) tool to extract mass spectrometry (MS) data from mzML formatted files, with spectrum filtering capabilities.\
 <br>
 
 ### Features:
@@ -27,7 +27,7 @@ ExfilMS is a cross-platform, command line interface (CLI) tool to extract MS dat
 
 > ExfilMS has been tested on Windows, macOS and Linux.
 
-### Node.js
+### CLI
 
 > [!IMPORTANT]\
 > Prerequisite: [Node.js®][nodejs-url]
@@ -59,10 +59,10 @@ $ docker build -t exfilms .
 
 ## Usage
 
-### Node.js
+### CLI
 
 ```md
-# Command Line Interface (CLI)
+# Using command line arguments
 
 $ exfilms -i "/path/to/input/directory/containing/mzML/data/files/" ...
 
@@ -76,7 +76,7 @@ $ exfilms -x
 ### Docker
 
 ```md
-# Command Line Interface (CLI)
+# Using command line arguments
 
 $ docker run --rm -it -v "/path/to/input/directory/":/inputDirectory -v "/path/to/output/directory/":/outputDirectory -v "/path/to/log/directory/":/logDirectory exfilms -i /inputDirectory -o /outputDirectory -l /logDirectory ....
 
