@@ -98,19 +98,19 @@ $ docker run --rm -it -v "/path/to/input/directory/":/inputDirectory -v "/path/t
 
 <br>
 
-> [!WARNING]\
-> Known Limitations of ExfilMS:
->
-> - Unable to output extracted files when running interactive mode with Docker. However, writing to log file works.
-> - Unable to parse mzML data that have a file size **GREATER THAN** 2GB.
-
-<br>
-
 For more guidance on how to use ExfilMS, please refer to our available guides below:
 
 - [Data Conversion to mzML using ProteoWizard](./doc/data-conversion-to-mzml-using-proteowizard.md)
 - [How to ExfilMS: The Complete Guide](./doc/how-to-exfilms-the-complete-guide.md)
 - [How to Create A Target File](./doc/how-to-create-a-target-file.md)
+
+<br><br>
+
+> [!WARNING]\
+> Known Limitations of ExfilMS:
+>
+> - Unable to output extracted files when running interactive mode with Docker.
+> - Unable to parse mzML data that has a file size **GREATER THAN** 2GB.
 
 <br>
 
