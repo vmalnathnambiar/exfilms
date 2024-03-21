@@ -188,7 +188,7 @@ const argv = yargs(hideBin(process.argv))
     description: 'Exclude spectra (m/z and intensity values) from output file',
     default: false,
   })
-  .usage('Usage: exfilms <commands> <subcommands>')
+  .usage('Usage: exfilms <options> <suboptions>')
   .alias('help', 'h')
   .alias('version', 'v')
   .example('exfilms -x', 'Run ExfilMS in interactive mode')
