@@ -100,9 +100,9 @@ $ docker run --rm -it -v "/path/to/input/directory/":/inputDirectory -v "/path/t
 
 For more guidance on how to use ExfilMS, please refer to our available guides below:
 
-- [Data Conversion to mzML using ProteoWizard](./doc/data-conversion-to-mzml-using-proteowizard.md)
-- [How to ExfilMS: The Complete Guide](./doc/how-to-exfilms-the-complete-guide.md)
-- [How to Create A Target File](./doc/how-to-create-a-target-file.md)
+- [Data Conversion to mzML using ProteoWizard](./docs/data-conversion-to-mzml-using-proteowizard.md)
+- [How to ExfilMS: The Complete Guide](./docs/how-to-exfilms-the-complete-guide.md)
+- [How to Create A Target File](./docs/how-to-create-a-target-file.md)
 
 <br>
 
