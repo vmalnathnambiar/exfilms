@@ -14,7 +14,7 @@
     "vitest": "vitest --run",
     "vitest-watch": "vitest --ui",
     "test": "npm run vitest && npm run eslint && npm run prettier",
-    "semantic-release": "semantic-release --branches main",
+    "semantic-release": "semantic-release",
     "commit": "git cz"
   },
   "repository": {
