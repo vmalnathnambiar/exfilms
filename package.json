@@ -1,6 +1,6 @@
 {
   "name": "exfilms",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "description": "A cross-platform, command line interface (CLI) tool to extract mass spectrometry (MS) data from mzML formatted files, with spectrum filtering capabilities.",
   "bin": {
     "exfilms": "./src/exfilms.js"
@@ -14,11 +14,13 @@
     "vitest": "vitest --coverage",
     "vitest-ui": "vitest --coverage --ui",
     "test": "npm run vitest && npm run eslint && npm run prettier",
-    "test-ui": "npm run vitest-ui && npm run eslint && npm run prettier"
+    "test-ui": "npm run vitest-ui && npm run eslint && npm run prettier",
+    "semantic-release": "semantic-release --branches main",
+    "commit": "git cz"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vmalnathnambiar/exfilms.git"
+    "url": "https://github.com/vmalnathnambiar/exfilms.git"
   },
   "keywords": [
     "mass spectrometry",
@@ -40,9 +42,12 @@
     "@types/yargs": "^17.0.32",
     "@vitest/coverage-v8": "^1.3.1",
     "@vitest/ui": "^1.3.1",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.57.0",
     "eslint-config-cheminfo": "^9.2.0",
     "prettier": "^2.8.8",
+    "semantic-release": "^23.0.5",
     "vitest": "^1.3.1"
   },
   "dependencies": {
@@ -57,5 +62,10 @@
     "pako": "^2.1.0",
     "papaparse": "^5.4.1",
     "yargs": "^17.7.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
