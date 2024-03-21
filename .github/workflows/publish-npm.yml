@@ -34,10 +34,10 @@ jobs:
     needs: [build-quality]
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use latest LTS Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 'lts'
           cache: 'npm'
       - run: npm ci
       - run: npm run semantic-release
