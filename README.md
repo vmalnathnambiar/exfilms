@@ -108,7 +108,7 @@ For more guidance on how to use ExfilMS, please refer to our available guides be
 
 ## Limitations
 
-> [!WARNING]\
+> [!WARNING]
 >
 > - Unable to output extracted files when running interactive mode with Docker.
 > - Unable to parse mzML data that has a file size **GREATER THAN** 2GB.
