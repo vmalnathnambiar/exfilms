@@ -104,10 +104,11 @@ For more guidance on how to use ExfilMS, please refer to our available guides be
 - [How to ExfilMS: The Complete Guide](./doc/how-to-exfilms-the-complete-guide.md)
 - [How to Create A Target File](./doc/how-to-create-a-target-file.md)
 
-<br><br>
+<br>
+
+## Limitations
 
 > [!WARNING]\
-> Known Limitations of ExfilMS:
 >
 > - Unable to output extracted files when running interactive mode with Docker.
 > - Unable to parse mzML data that has a file size **GREATER THAN** 2GB.
