@@ -12,6 +12,7 @@ ExfilMS is a cross-platform, command line interface (CLI) tool to extract mass s
 
 ### Features:
 
+- MS data extraction (spectrum and chromatogram)
 - Precision value rounding
 - Spectra filtering (m/z and intensity)
   - Targeted (target file, m/z tolerance and ppm tolerance)
