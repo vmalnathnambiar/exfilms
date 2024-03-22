@@ -11,8 +11,8 @@
     "eslint-fix": "npm run eslint -- --fix",
     "prettier": "prettier --check src",
     "prettier-write": "prettier --write src",
-    "vitest": "vitest --coverage --run",
-    "vitest-watch": "vitest --coverage --ui",
+    "vitest": "vitest --run",
+    "vitest-watch": "vitest --ui",
     "test": "npm run vitest && npm run eslint && npm run prettier",
     "semantic-release": "semantic-release",
     "commit": "git cz"
