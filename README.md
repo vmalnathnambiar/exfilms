@@ -136,7 +136,7 @@ Please refer to our license information [here](./LICENSE).
 
 [npm-image]: https://img.shields.io/npm/v/exfilms.svg
 [npm-url]: https://www.npmjs.com/package/exfilms
-[ci-image]: https://github.com/vmalnathnambiar/exfilms/workflows/build-publish.yml/badge.svg?branch=main
+[ci-image]: https://github.com/vmalnathnambiar/exfilms/workflows/CI/badge.svg?branch=main
 [ci-url]: https://github.com/vmalnathnambiar/exfilms/actions/workflows/build-publish.yml
 [codecov-image]: https://codecov.io/gh/vmalnathnambiar/exfilms/graph/badge.svg?token=V8O80QXJ5S
 [codecov-url]: https://codecov.io/gh/vmalnathnambiar/exfilms

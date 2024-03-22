@@ -13,5 +13,8 @@ export default defineConfig({
       ],
     },
     reporters: ['junit'],
+    outputFile: {
+      junit: './test-report.xml',
+    },
   },
 });
