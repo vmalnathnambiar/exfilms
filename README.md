@@ -1,7 +1,8 @@
 ![ExfilMS](./img/logo.png)\
 [![NPM version][npm-image]][npm-url]
+[![license][license-image]][license-url]
 [![build status][ci-image]][ci-url]
-[![Test coverage][codecov-image]][codecov-url]
+[![test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
 
 ## Introduction
@@ -136,7 +137,9 @@ Please refer to our license information [here](./LICENSE).
 
 [npm-image]: https://img.shields.io/npm/v/exfilms.svg
 [npm-url]: https://www.npmjs.com/package/exfilms
-[ci-image]: https://github.com/vmalnathnambiar/exfilms/actions/workflows/build-publish.yml/badge.svg?branch=main
+[license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
+[license-url]: https://github.com/vmalnathnambiar/exfilms/blob/main/LICENSE
+[ci-image]: https://github.com/vmalnathnambiar/exfilms/actions/workflows/build-publish.yml/badge.svg
 [ci-url]: https://github.com/vmalnathnambiar/exfilms/actions/workflows/build-publish.yml
 [codecov-image]: https://codecov.io/gh/vmalnathnambiar/exfilms/graph/badge.svg?token=V8O80QXJ5S
 [codecov-url]: https://codecov.io/gh/vmalnathnambiar/exfilms
