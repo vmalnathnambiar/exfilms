@@ -4,7 +4,7 @@ export default defineConfig({
   test: {
     testTimeout: 60000,
     coverage: {
-      reporter: ['text', 'html'],
+      reporter: ['text', 'html', 'junit'],
       enabled: true,
       exclude: [
         'src/exfilms.js',
@@ -12,6 +12,7 @@ export default defineConfig({
         'src/utils/inquirerPrompts.js',
         'src/typedef/index.mjs',
       ],
+      reportOnFailure: true,
     },
   },
 });
