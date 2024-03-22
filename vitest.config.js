@@ -12,9 +12,6 @@ export default defineConfig({
         'src/typedef/index.mjs',
       ],
     },
-    reporters: ['junit', 'json'],
-    outputFile: {
-      junit: 'coverage/junit-report.xml',
-    },
+    reporters: ['junit'],
   },
 });
