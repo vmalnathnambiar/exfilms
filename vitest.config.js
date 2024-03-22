@@ -14,7 +14,7 @@ export default defineConfig({
     },
     reporters: ['junit'],
     outputFile: {
-      junit: './test-report.xml',
+      junit: './exfilms-vitest.junit.xml',
     },
   },
 });
