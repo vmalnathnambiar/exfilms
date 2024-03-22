@@ -135,3 +135,4 @@ dist
 
 # Tests
 .tmp/
+vitest-report.junit.xml
