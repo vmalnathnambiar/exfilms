@@ -123,7 +123,7 @@ For more guidance on how to use ExfilMS, please refer to our available guides be
 
 If you use ExfilMS in your work, please cite it using the following:
 
-<!-- <a id="1">[1]</a> -->
+Nambiar, V. (2024). ExfilMS. GitHub. https://github.com/vmalnathnambiar/exfilms
 
 <br>
 
