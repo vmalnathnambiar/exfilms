@@ -178,7 +178,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -d (or --decimalP
 
 ### Spectra Filtering
 
-ExfilMS also provides you with the capability to filter the spectra (m/z and intensity array) acquired during acquisition for each scan point (retention time) via two methods.
+ExfilMS also provides you with the capability to filter the spectra (m/z and intensity array) acquired during acquisition for each scan timepoint (retention time) via two methods.
 
 > [!WARNING]\
 > The spectra filtering options are mutually exclusive. You can only use **ONE** of the method at a time.
@@ -280,7 +280,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -r (or --mzRange)
 
 `-s`, `--filterSpectrumData` \*_Required_
 
-ExfilMS also provides you with the functionality of filtering the spectrum data based on its properties such as spectrum type, MS level and polarity. With this flag, you can also decide to exclude the spectra (m/z and intensity array) acquired of each scan point (retention time) from being stored in the output file.
+ExfilMS also provides you with the functionality of filtering the spectrum data based on its properties such as spectrum type, MS level and polarity. With this flag, you can also decide to exclude the spectra (m/z and intensity array) acquired of each scan timepoint (retention time) from being stored in the output file.
 
 > [!NOTE]\
 > The spectra exclusion filter is particularly useful if you are interested only in analysing the metadata of each spectrum (i.e., total ion current, base peak intensity).
