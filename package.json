@@ -24,7 +24,10 @@
   "keywords": [
     "mass spectrometry",
     "data extraction",
-    "spectrum filtering"
+    "spectrum filtering",
+    "data standardisation",
+    "command line tool",
+    "open source"
   ],
   "author": "Vimalnath Nambiar",
   "license": "MIT",
