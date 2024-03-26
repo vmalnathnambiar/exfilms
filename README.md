@@ -112,6 +112,7 @@ For more guidance on how to use ExfilMS, please refer to our available guides be
 
 > [!WARNING]
 >
+> - Unable to extract MS data from Bruker EVOQ instruments (unsupported format by ProteoWizard).
 > - Unable to parse mzML data that has a file size **GREATER THAN** 2GB.
 > - Large MS data may cause Node environment to terminate abruptly due to memory limit exhaustion.
 > - Slow output write speed due to build architecture difference (i.e, Intel vs AMD vs ARM) when running ExfilMS with Docker.
