@@ -63,11 +63,12 @@ export async function filterSpectra(
     // If targeted m/z filtering
     // Loop through m/z target list
     for (const targetMZ of configParam.mzTargetList) {
-      // Set new m/z range (minMZ & maxMZ) based on target m/z
-      const ppmTolerance = Math.abs(
+      // Set new m/z range (minMZ & maxMZ) based on the accepted mass (m/z) difference/tolerance between the identified and true m/z value
+      // Calculate accepted mass error based on defined mass accuracy (ppm) tolerance
+      const acceptedMzTolerance = Math.abs(
         (configParam.ppmTolerance / 1e6) * targetMZ,
       );
-      const tolerance = Math.max(ppmTolerance, configParam.mzTolerance);
+      const tolerance = Math.max(acceptedMzTolerance, configParam.mzTolerance);
       let minMZ = targetMZ - tolerance;
       let maxMZ = targetMZ + tolerance;
 
@@ -77,9 +78,10 @@ export async function filterSpectra(
         maxMZ = await roundDecimalPlace(maxMZ, configParam.decimalPlace);
       }
 
-      // Initialise mass accuracy (based on ppm or m/z tolerance), m/z and intensity value
-      let massPPM =
-        configParam.mzTolerance > ppmTolerance
+      // Initialise accepted mass accuracy (ppm) based on defined m/z or ppm tolerance values
+      // Initialise m/z and intensity values
+      let acceptedMassAccuracy =
+        configParam.mzTolerance > acceptedMzTolerance
           ? Math.abs((configParam.mzTolerance / targetMZ) * 1e6)
           : configParam.ppmTolerance;
       mz = 0;
@@ -93,20 +95,21 @@ export async function filterSpectra(
         // Check if m/z falls within range
         if (potentialMZ >= minMZ && potentialMZ <= maxMZ) {
           // Calculate mass accuracy (ppm)
-          const massAccuracy = Math.abs(
+          const currentMassAccuracy = Math.abs(
             ((potentialMZ - targetMZ) / targetMZ) * 1e6,
           );
 
-          // If mass accuracy (ppm) of current m/z is closer to 0 than the previous m/z
-          if (massAccuracy < massPPM) {
-            massPPM = massAccuracy;
+          // If mass accuracy (ppm) of current potential m/z is closer to 0 than previous accepted mass accuracy (ppm)
+          if (currentMassAccuracy < acceptedMassAccuracy) {
+            acceptedMassAccuracy = currentMassAccuracy;
             mz = potentialMZ;
             intensity = potentialIntensity;
           }
         }
       }
 
-      // New filtered m/z and intensity array (Gap-filling = 0 for targeted m/z that is not found in filtering range)
+      // Amend spectrum information based on the filtered targeted m/z and intensity value: basePeakIntensity, basePeakMZ, totalIonCurrent, filteredMzArray[], filteredIntensityArray[]
+      // Gap-filling = 0 for targeted m/z that is not found within the m/z filtering range and mass accuracy threshold
       mz = mz === 0 ? targetMZ : mz;
       if (intensity > basePeakIntensity) {
         basePeakIntensity = intensity;
