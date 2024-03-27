@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/vmalnathnambiar/exfilms/compare/v1.0.0...v1.0.1) (2024-03-27)
+
+
+### Bug Fixes
+
+* missing badge logo ([aabb99b](https://github.com/vmalnathnambiar/exfilms/commit/aabb99b948b01a4de9e68a9c04d87c69c50743ba))
+
 # 1.0.0 (2024-03-21)
 
 
