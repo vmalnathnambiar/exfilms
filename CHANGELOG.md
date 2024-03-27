@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/vmalnathnambiar/exfilms/compare/v1.0.1...v1.0.2) (2024-03-27)
+
+
+### Bug Fixes
+
+* **interactive:** writing to output file ([9735138](https://github.com/vmalnathnambiar/exfilms/commit/97351388bb67c2e0bd2a290fb6ae10760648fae1)), closes [#2](https://github.com/vmalnathnambiar/exfilms/issues/2)
+
 ## [1.0.1](https://github.com/vmalnathnambiar/exfilms/compare/v1.0.0...v1.0.1) (2024-03-27)
 
 
