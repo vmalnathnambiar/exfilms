@@ -266,7 +266,7 @@ describe('parseMZML', () => {
   // Line 147 - activationMap.cvParam array check with test data is always true
   // Line 161 - binaryData.cvParam array check with the test data is always true
 
-  // ! Uncovered Lines - filterSpectrum.js line 95-106, 112-114, 124-133
+  // ! Uncovered Lines - filterSpectra.js line 97-108, 115-117, 127-136
   // Line 95-106 - Calculation of mass accuracy if m/z falls within range works, but don't know why it doesn't pick up in test
   // Line 112-114 - Assignation of new basePeakIntensity and basePeakMZ works, but don't know why it doesn't pick up in test
   // Line 124-133 - Pushing chromatogram data based on spectrum data filtering works, but don't know why it doesn't pick up in test
