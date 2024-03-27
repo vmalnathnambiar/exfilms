@@ -51,6 +51,9 @@ figlet('ExfilMS', async (err, data) => {
     if (argv.interactive) {
       // If interactive mode
       configParam = await inquirer.prompt(prompts);
+
+      // Configure some parameters to match argv setDefault() settings format
+      configParam.outputFormat = configParam.outputFormat[0];
       if (configParam.msLevel) {
         configParam.msLevel = configParam.msLevel.split(' ').map(Number);
       }
@@ -59,13 +62,6 @@ figlet('ExfilMS', async (err, data) => {
       // Check yargs arguments and set up appropriately
       configParam = await yargsCheck(argv);
     }
-
-    // Testing to see if code is running inside of Docker container
-    // if (join(dirname(fileURLToPath(import.meta.url)), '..') === '/app') {
-    //   console.log('running in Docker');
-    // } else {
-    //   console.log('running locally');
-    // }
 
     // Ensure decimal place is either a number or NaN
     configParam.decimalPlace = Number(configParam.decimalPlace);
