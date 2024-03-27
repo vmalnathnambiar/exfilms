@@ -1,8 +1,9 @@
 ![ExfilMS](./img/logo.png)\
 [![NPM version][npm-image]][npm-url]
 [![license][license-image]][license-url]
-[![build status][ci-image]][ci-url]
+[![CI status][ci-image]][ci-url]
 [![test coverage][codecov-image]][codecov-url]
+[![semantic release][semantic-image]][semantic-url]
 [![npm download][download-image]][download-url]
 
 ## Introduction
@@ -145,6 +146,8 @@ Please refer to our license information [here](./LICENSE).
 [ci-url]: https://github.com/vmalnathnambiar/exfilms/actions/workflows/build-publish.yml
 [codecov-image]: https://codecov.io/gh/vmalnathnambiar/exfilms/graph/badge.svg?token=V8O80QXJ5S
 [codecov-url]: https://codecov.io/gh/vmalnathnambiar/exfilms
+[semantic-image]: https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release
+[semantic-url]: https://github.com/semantic-release/semantic-release
 [download-image]: https://img.shields.io/npm/dm/exfilms.svg
 [download-url]: https://www.npmjs.com/package/exfilms
 [nodejs-url]: https://nodejs.org/en/download/
