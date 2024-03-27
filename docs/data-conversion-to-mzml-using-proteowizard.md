@@ -15,7 +15,8 @@
 
 ## Introduction
 
-Data retrieved from MS instruments (from now on referred to as raw MS data) is widely stored in proprietary vendor formats that are optimised to its respective hardware and are only accessibly using vendor-provided software libraries. To enable cross-platform data integration and analysis, mzML was introduced as an open, universal format to store raw MS data acquired independently of vendor-specific instruments. One of the most prominent way of converting these raw MS data files to mzML is using the ProteoWizard _msConvert_ tool.\
+Data retrieved from MS instruments (from now on referred to as raw MS data) is widely stored in proprietary vendor formats that are optimised to its respective hardware and are only accessibly using vendor-provided software libraries. To enable cross-platform data integration and analysis, mzML was introduced as an open, universal format to store raw MS data acquired independently of vendor-specific instruments. One of the most prominent way of converting these raw MS data files to mzML is using the ProteoWizard _msConvert_ tool.
+
 <br>
 
 ## Supported Vendor Formats
@@ -44,7 +45,8 @@ The following formats are currently supported by ProteoWizard _msConvert_ for da
 
 ### Method 1 - Graphical User Interface (Windows)
 
-Download [ProteoWizard][pwiz-download]\
+Download [ProteoWizard][pwiz-download]
+
 <br>
 
 ### Method 2 - via Docker

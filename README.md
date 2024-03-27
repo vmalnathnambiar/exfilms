@@ -8,21 +8,63 @@
 
 ## Introduction
 
-ExfilMS is a cross-platform, command line interface (CLI) tool to extract mass spectrometry (MS) data from mzML formatted files, with spectrum filtering capabilities.\
+ExfilMS is a cross-platform, command line interface (CLI) tool to extract mass spectrometry (MS) data from mzML formatted files, with spectrum filtering capabilities.
+
 <br>
 
-### Features:
+## Features
 
-- MS data extraction (spectrum and chromatogram)
-- Precision value rounding
-- Spectra filtering (m/z and intensity)
-  - Targeted (target file, m/z tolerance and ppm tolerance)
-  - Range (minimum and maximum m/z)
-- Spectrum data filtering
-  - Spectrum type (profile / centroid)
-  - MS level
-  - Polarity (positive / negative)
-  - Exclude spectra (m/z and intensity)
+1. MS data extraction (spectrum and chromatogram)
+
+2. Precision value rounding
+
+3. Spectra filtering (m/z and intensity)
+
+   - Targeted (target file, m/z tolerance and ppm tolerance)
+   - Range (minimum and maximum m/z)
+
+4. Spectrum data filtering
+   - Spectrum type (profile / centroid)
+   - MS level
+   - Polarity (positive / negative)
+   - Exclude spectra (m/z and intensity)
+
+<br>
+
+## Supported MS Platforms
+
+Data extraction and spectrum filtration have been tested on data acquired from the following MS platforms:
+
+<table>
+   <tr>
+      <th>Instrument Vendor</th>
+      <th>MS Platform</th>
+   </tr>
+   <tr>
+      <td rowspan="3">Bruker</td>
+      <td>ImpactII QToF-MS</td>
+   </tr>
+   <tr>
+      <td>solariX MRMS</td>
+   </tr>
+      <tr>
+      <td>timsTOFPro TIMS-ToF-MS</td>
+   </tr>
+   <tr>
+      <td rowspan="3">Waters</td>
+      <td>XEVOTQXS TQ-MS</td>
+   </tr>
+   <tr>
+      <td>XEVOTQXS DESI-MS</td>
+   </tr>
+      <tr>
+      <td>XEVOG2XSQTOF REIMS</td>
+   </tr>
+   <tr>
+      <td>SCIEX</td>
+      <td>QTRAP6500+ TQ-MS</td>
+   </tr>
+</table>
 
 <br>
 
@@ -105,7 +147,7 @@ For more guidance on how to use ExfilMS, please refer to our available guides be
 
 - [Data Conversion to mzML using ProteoWizard](./docs/data-conversion-to-mzml-using-proteowizard.md)
 - [How to ExfilMS: The Complete Guide](./docs/how-to-exfilms-the-complete-guide.md)
-- [How to Create A Target File](./docs/how-to-create-a-target-file.md)
+- [How to Create a Target File](./docs/how-to-create-a-target-file.md)
 
 <br>
 
@@ -113,10 +155,13 @@ For more guidance on how to use ExfilMS, please refer to our available guides be
 
 > [!WARNING]
 >
-> - Unable to extract MS data from Bruker EVOQ instruments (unsupported format by ProteoWizard).
-> - Unable to parse mzML data that has a file size **GREATER THAN** 2GB.
-> - Large MS data may cause Node environment to terminate abruptly due to memory limit exhaustion.
-> - Slow output write speed due to build architecture difference (i.e, Intel vs AMD vs ARM) when running ExfilMS with Docker.
+> 1. Unable to extract MS data from Bruker EVOQ instruments (unsupported format by ProteoWizard).
+>
+> 2. Unable to parse mzML data that has a file size **GREATER THAN** 2GB.
+>
+> 3. Large MS data may cause Node environment to terminate abruptly due to memory limit exhaustion.
+>
+> 4. Slow output write speed due to build architecture difference (i.e, Intel vs AMD vs ARM) when running ExfilMS with Docker.
 
 <br>
 
