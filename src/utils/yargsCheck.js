@@ -2,7 +2,7 @@
  * @typedef {import('../typedef/index.mjs').Yargs} Yargs
  */
 
-import { setDefaults } from './setDefaults.js';
+import { setYargsDefaults } from './setYargsDefaults.js';
 
 /**
  * Check if CLI arguments are used correctly
@@ -60,7 +60,7 @@ export async function yargsCheck(argv) {
     );
   } else {
     // Set default values (where required)
-    configParam = await setDefaults(argv);
+    configParam = await setYargsDefaults(argv);
   }
 
   return configParam;

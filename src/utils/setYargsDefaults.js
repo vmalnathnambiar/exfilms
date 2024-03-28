@@ -10,12 +10,12 @@ import { join, basename } from 'path';
 import { listMZML } from './listMZML.js';
 
 /**
- * Set the default values for configuration parameters.
+ * Set the configuration parameters based on Yargs input.
  * @param {Yargs} argv Yargs command line arguments.
- * @returns {Promise<Object>} A promise that resolves with an object containing the default values for the configuration parameters.
- * @throws {Error} Throws error if setDefaults() encounters issues in its process.
+ * @returns {Promise<Object>} A promise that resolves with an object containing the configuration parameters in the required format for execution.
+ * @throws {Error} Throws error if setYargsDefaults() encounters issues in its process.
  */
-export async function setDefaults(argv) {
+export async function setYargsDefaults(argv) {
   let configParam = {};
 
   // General config

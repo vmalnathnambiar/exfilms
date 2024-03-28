@@ -15,6 +15,7 @@ import { createDefaultDirectories } from './utils/createDefaultDirectories.js';
 import { prompts } from './utils/inquirerPrompts.js';
 import { parseMZML } from './utils/parseMZML.js';
 import { setForSpectraFiltering } from './utils/setForSpectraFiltering.js';
+import { setInquirerDefaults } from './utils/setInquirerDefaults.js';
 import { writeLog } from './utils/writeLog.js';
 import { yargsCheck } from './utils/yargsCheck.js';
 import { argv } from './utils/yargsConfig.js';
@@ -52,11 +53,8 @@ figlet('ExfilMS', async (err, data) => {
       // If interactive mode
       configParam = await inquirer.prompt(prompts);
 
-      // Configure some parameters to match argv setDefault() settings format
-      configParam.outputFormat = configParam.outputFormat[0];
-      if (configParam.msLevel) {
-        configParam.msLevel = configParam.msLevel.split(' ').map(Number);
-      }
+      // Set up configuration parameters appropriately
+      configParam = await setInquirerDefaults(configParam);
       console.log('');
     } else {
       // Check yargs arguments and set up appropriately
