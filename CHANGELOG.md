@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/vmalnathnambiar/exfilms/compare/v1.0.2...v1.0.3) (2024-03-28)
+
+
+### Bug Fixes
+
+* **input check:** set input defaults appropriately ([67e112a](https://github.com/vmalnathnambiar/exfilms/commit/67e112a3801d4e4d6b190907f96d4b274b265fb8))
+
 ## [1.0.2](https://github.com/vmalnathnambiar/exfilms/compare/v1.0.1...v1.0.2) (2024-03-27)
 
 
