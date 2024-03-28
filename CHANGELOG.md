@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/vmalnathnambiar/exfilms/compare/v1.0.3...v1.1.0) (2024-03-28)
+
+
+### Features
+
+* **chromatogram extraction:** fix and update isolation window target extraction ([1439919](https://github.com/vmalnathnambiar/exfilms/commit/14399197fdc7e82bb2bc3064480de9e402cd02b7)), closes [#3](https://github.com/vmalnathnambiar/exfilms/issues/3)
+
 ## [1.0.3](https://github.com/vmalnathnambiar/exfilms/compare/v1.0.2...v1.0.3) (2024-03-28)
 
 
