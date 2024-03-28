@@ -254,22 +254,19 @@ describe('parseMZML', () => {
     expect(await parseMZML(testConfigParam));
   });
 
-  // ! Uncovered Lines - extractChromatogram.js line 55, 62, 79, 105
-  // Line 55 - Assignation of value (mappedValue || paramValue) works but don't know why it doesn't pick up in test
-  // Line 62 - userParamMap array check with the test data is always false
-  // Line 79 - isolationWindowMap.cvParam array check with the test data is always false
-  // Line 105 - binaryData.cvParam array check with the test data is always true
+  // ! Uncovered Lines - extractChromatogram.js line 91-92, 125-126
+  // Test data only consist of isolationWindowTarget for the mappedKey (Both precursor and product data)
 
-  // ! Uncovered Lines - extractSpectrum.js line 69, 107, 147, 161
+  // ! Uncovered Lines - extractSpectrum.js line 69, 107, 150, 165
   // Line 69 - spectrumData.cvParam array check with test data is always true
   // Line 107 - scanWindowMap.cvParam array check with test data is always true
-  // Line 147 - activationMap.cvParam array check with test data is always true
-  // Line 161 - binaryData.cvParam array check with the test data is always true
+  // Line 150 - activationMap.cvParam array check with test data is always true
+  // Line 165 - binaryData.cvParam array check with the test data is always true
 
   // ! Uncovered Lines - filterSpectra.js line 97-108, 115-117, 127-136
-  // Line 95-106 - Calculation of mass accuracy if m/z falls within range works, but don't know why it doesn't pick up in test
-  // Line 112-114 - Assignation of new basePeakIntensity and basePeakMZ works, but don't know why it doesn't pick up in test
-  // Line 124-133 - Pushing chromatogram data based on spectrum data filtering works, but don't know why it doesn't pick up in test
+  // Line 95-108 - Calculation of mass accuracy if m/z falls within range works, but don't know why it doesn't pick up in test
+  // Line 115-117 - Assignation of new basePeakIntensity and basePeakMZ works, but don't know why it doesn't pick up in test
+  // Line 127-136 - Pushing chromatogram data based on spectrum data filtering works, but don't know why it doesn't pick up in test
 
   // ! Fail to catch decoder() input type error - Code won't reach: decoder.js line 15, 17, 19, 21, 23-24
   // If decoder() throws an error - it is caught and handled within parseMZML()

@@ -194,9 +194,10 @@ describe('typedef', () => {
         chromatogramType: 'total ion current chromatogram',
         polarity: null,
         dwellTime: null,
-        isolationWindowTarget: null,
+        precursorIsolationWindowTarget: null,
         collisionType: null,
         collisionEnergy: null,
+        productIsolationWindowTarget: null,
         timeArray: [0.0031, 0.0052, 0.0074],
         intensityArray: [996, 1346, 50390],
         msLevelArray: [1, 1, 2],
@@ -209,9 +210,10 @@ describe('typedef', () => {
         chromatogramType: 'base peak chromatogram',
         polarity: null,
         dwellTime: null,
-        isolationWindowTarget: null,
+        precursorIsolationWindowTarget: null,
         collisionType: null,
         collisionEnergy: null,
+        productIsolationWindowTarget: null,
         timeArray: [0.0031, 0.0052, 0.0074],
         intensityArray: [370, 390, 38150],
         msLevelArray: [1, 1, 2],
@@ -281,9 +283,14 @@ describe('typedef', () => {
     expect(testData.chromatogram[0]).toHaveProperty('chromatogramType');
     expect(testData.chromatogram[0]).toHaveProperty('polarity');
     expect(testData.chromatogram[0]).toHaveProperty('dwellTime');
-    expect(testData.chromatogram[0]).toHaveProperty('isolationWindowTarget');
+    expect(testData.chromatogram[0]).toHaveProperty(
+      'precursorIsolationWindowTarget',
+    );
     expect(testData.chromatogram[0]).toHaveProperty('collisionType');
     expect(testData.chromatogram[0]).toHaveProperty('collisionEnergy');
+    expect(testData.chromatogram[0]).toHaveProperty(
+      'productIsolationWindowTarget',
+    );
     expect(testData.chromatogram[0]).toHaveProperty('timeArray');
     expect(testData.chromatogram[0]).toHaveProperty('intensityArray');
     expect(testData.chromatogram[0]).toHaveProperty('msLevelArray');

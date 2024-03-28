@@ -69,8 +69,8 @@ export async function extractSpectrum(
       : [spectrumData.cvParam];
     for (const cvParam of spectrumCvParam) {
       const mappedKey = keyMap[cvParam.$name];
-      let paramValue = cvParam.$value;
       const mappedValue = valueMap[cvParam.$name];
+      let paramValue = cvParam.$value;
 
       if (mappedKey) {
         if (mappedKey === 'basePeakMZ') {
@@ -107,8 +107,9 @@ export async function extractSpectrum(
       : [scanWindowMap.cvParam];
     for (const cvParam of scanWindowCvParam) {
       const mappedKey = keyMap[cvParam.$name];
+      const paramValue = cvParam.$value;
       if (mappedKey) {
-        data[mappedKey] = cvParam.$value;
+        data[mappedKey] = paramValue;
       }
     }
 
@@ -125,8 +126,9 @@ export async function extractSpectrum(
         : [isolationWindowMap.cvParam];
       for (const cvParam of isolationWindowCvParam) {
         const mappedKey = keyMap[cvParam.$name];
+        const paramValue = cvParam.$value;
         if (mappedKey) {
-          data[mappedKey] = cvParam.$value;
+          data[mappedKey] = paramValue;
         }
       }
 
@@ -136,8 +138,9 @@ export async function extractSpectrum(
         : [selectedIonMap.cvParam];
       for (const cvParam of selectedIonCvParam) {
         const mappedKey = keyMap[cvParam.$name];
+        const paramValue = cvParam.$value;
         if (mappedKey) {
-          data[mappedKey] = cvParam.$value;
+          data[mappedKey] = paramValue;
         }
       }
 
@@ -148,8 +151,9 @@ export async function extractSpectrum(
       for (const cvParam of activationCvParam) {
         const mappedKey = keyMap[cvParam.$name];
         const mappedValue = valueMap[cvParam.$name];
+        const paramValue = cvParam.$value;
         if (mappedKey) {
-          data[mappedKey] = mappedValue || cvParam.$value;
+          data[mappedKey] = mappedValue || paramValue;
         }
       }
     }

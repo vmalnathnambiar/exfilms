@@ -61,9 +61,10 @@
  * @property {?string} chromatogramType Chromatogram type
  * @property {?string} polarity Polarity
  * @property {?number} dwellTime Dwell time
- * @property {?number} isolationWindowTarget Isolation window target
+ * @property {?number} precursorIsolationWindowTarget Precursor isolation window target
  * @property {?string} collisionType Collision type
  * @property {?number} collisionEnergy Collision energy
+ * @property {?number} productIsolationWindowTarget Product isolation window target
  * @property {[]|number[]} timeArray Retention time array
  * @property {[]|number[]} intensityArray Intensity array
  * @property {[]|number[]} msLevelArray MS level array

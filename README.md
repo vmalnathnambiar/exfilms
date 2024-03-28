@@ -39,30 +39,42 @@ Data extraction and spectrum filtration have been tested on data acquired from t
    <tr>
       <th>Instrument Vendor</th>
       <th>MS Platform</th>
+      <th>Status</th>
    </tr>
    <tr>
-      <td rowspan="3">Bruker</td>
+      <td rowspan="4">Bruker</td>
+      <td>EVOQ TQ-MS</td>
+      <td>Not Working</td>
+   </tr>
+   <tr>
       <td>ImpactII QToF-MS</td>
+      <td>Working</td>
    </tr>
    <tr>
       <td>solariX MRMS</td>
+      <td>Working</td>
    </tr>
-      <tr>
+   <tr>
       <td>timsTOFPro TIMS-ToF-MS</td>
+      <td>Not Working</td>
    </tr>
    <tr>
       <td rowspan="3">Waters</td>
       <td>XEVOTQXS TQ-MS</td>
+      <td>Working</td>
    </tr>
    <tr>
-      <td>XEVOTQXS DESI-MS</td>
+      <td>XEVOG2XSQTOF DESI-MS</td>
+      <td>Working</td>
    </tr>
       <tr>
       <td>XEVOG2XSQTOF REIMS</td>
+      <td>Working</td>
    </tr>
    <tr>
       <td>SCIEX</td>
       <td>QTRAP6500+ TQ-MS</td>
+      <td>Working</td>
    </tr>
 </table>
 

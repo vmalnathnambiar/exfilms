@@ -23,6 +23,7 @@ export async function extractChromatogram(configParam, chromatogramArray) {
     const cvParamMap = chromatogramData.cvParam;
     const userParamMap = chromatogramData.userParam;
     const precursorMap = chromatogramData.precursor;
+    const productMap = chromatogramData.product;
     const binaryDataArrayMap =
       chromatogramData.binaryDataArrayList.binaryDataArray;
 
@@ -34,9 +35,10 @@ export async function extractChromatogram(configParam, chromatogramArray) {
       chromatogramType: null,
       polarity: null,
       dwellTime: null,
-      isolationWindowTarget: null,
+      precursorIsolationWindowTarget: null,
       collisionType: null,
       collisionEnergy: null,
+      productIsolationWindowTarget: null,
       timeArray: [],
       intensityArray: [],
       msLevelArray: [],
@@ -49,8 +51,8 @@ export async function extractChromatogram(configParam, chromatogramArray) {
       : [cvParamMap];
     for (const cvParam of chromatogramCvParam) {
       const mappedKey = keyMap[cvParam.$name];
-      let paramValue = cvParam.$value;
       const mappedValue = valueMap[cvParam.$name];
+      const paramValue = cvParam.$value;
       if (mappedKey) {
         data[mappedKey] = mappedValue || paramValue;
       }
@@ -63,8 +65,9 @@ export async function extractChromatogram(configParam, chromatogramArray) {
         : [userParamMap];
       for (const cvParam of userCvParam) {
         const mappedKey = keyMap[cvParam.$name];
+        const paramValue = cvParam.$value;
         if (mappedKey) {
-          data[mappedKey] = cvParam.$value;
+          data[mappedKey] = paramValue;
         }
       }
     }
@@ -80,8 +83,13 @@ export async function extractChromatogram(configParam, chromatogramArray) {
         : [isolationWindowMap.cvParam];
       for (const cvParam of isolationWindowCvParam) {
         const mappedKey = keyMap[cvParam.$name];
+        const paramValue = cvParam.$value;
         if (mappedKey) {
-          data[mappedKey] = cvParam.$value;
+          if (mappedKey === 'isolationWindowTarget') {
+            data.precursorIsolationWindowTarget = paramValue;
+          } else {
+            data[mappedKey] = paramValue;
+          }
         }
       }
 
@@ -92,8 +100,30 @@ export async function extractChromatogram(configParam, chromatogramArray) {
       for (const cvParam of activationCvParam) {
         const mappedKey = keyMap[cvParam.$name];
         const mappedValue = valueMap[cvParam.$name];
+        const paramValue = cvParam.$value;
         if (mappedKey) {
-          data[mappedKey] = mappedValue || cvParam.$value;
+          data[mappedKey] = mappedValue || paramValue;
+        }
+      }
+    }
+
+    // Product data
+    if (productMap) {
+      const isolationWindowMap = productMap.isolationWindow;
+
+      // Isolation window parameters
+      const isolationWindowCvParam = Array.isArray(isolationWindowMap.cvParam)
+        ? isolationWindowMap.cvParam
+        : [isolationWindowMap.cvParam];
+      for (const cvParam of isolationWindowCvParam) {
+        const mappedKey = keyMap[cvParam.$name];
+        const paramValue = cvParam.$value;
+        if (mappedKey) {
+          if (mappedKey === 'isolationWindowTarget') {
+            data.productIsolationWindowTarget = paramValue;
+          } else {
+            data[mappedKey] = paramValue;
+          }
         }
       }
     }

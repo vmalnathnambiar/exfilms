@@ -17,9 +17,10 @@ describe('initChromatogramArray', () => {
       chromatogramType: 'total ion current chromatogram',
       polarity: null,
       dwellTime: null,
-      isolationWindowTarget: null,
+      precursorIsolationWindowTarget: null,
       collisionType: null,
       collisionEnergy: null,
+      productIsolationWindowTarget: null,
       timeArray: [],
       intensityArray: [],
       msLevelArray: [],
@@ -32,9 +33,10 @@ describe('initChromatogramArray', () => {
       chromatogramType: 'base peak chromatogram',
       polarity: null,
       dwellTime: null,
-      isolationWindowTarget: null,
+      precursorIsolationWindowTarget: null,
       collisionType: null,
       collisionEnergy: null,
+      productIsolationWindowTarget: null,
       timeArray: [],
       intensityArray: [],
       msLevelArray: [],
@@ -68,9 +70,10 @@ describe('initChromatogramArray', () => {
       chromatogramType: 'extracted ion chromatogram',
       polarity: null,
       dwellTime: null,
-      isolationWindowTarget: null,
+      precursorIsolationWindowTarget: null,
       collisionType: null,
       collisionEnergy: null,
+      productIsolationWindowTarget: null,
       timeArray: [],
       intensityArray: [],
       msLevelArray: [],
@@ -96,14 +99,17 @@ describe('initChromatogramArray', () => {
     expect(chromatogram[0].dwellTime).toStrictEqual(
       testBasicChromatogram[0].dwellTime,
     );
-    expect(chromatogram[0].isolationWindowTarget).toStrictEqual(
-      testBasicChromatogram[0].isolationWindowTarget,
+    expect(chromatogram[0].precursorIsolationWindowTarget).toStrictEqual(
+      testBasicChromatogram[0].precursorIsolationWindowTarget,
     );
     expect(chromatogram[0].collisionType).toStrictEqual(
       testBasicChromatogram[0].collisionType,
     );
     expect(chromatogram[0].collisionEnergy).toStrictEqual(
       testBasicChromatogram[0].collisionEnergy,
+    );
+    expect(chromatogram[0].productIsolationWindowTarget).toStrictEqual(
+      testBasicChromatogram[0].productIsolationWindowTarget,
     );
     expect(chromatogram[0].timeArray).toStrictEqual(
       testBasicChromatogram[0].timeArray,
@@ -139,14 +145,17 @@ describe('initChromatogramArray', () => {
     expect(chromatogram[3].dwellTime).toStrictEqual(
       testTargetedChromatogram[3].dwellTime,
     );
-    expect(chromatogram[3].isolationWindowTarget).toStrictEqual(
-      testTargetedChromatogram[3].isolationWindowTarget,
+    expect(chromatogram[3].precursorIsolationWindowTarget).toStrictEqual(
+      testTargetedChromatogram[3].precursorIsolationWindowTarget,
     );
     expect(chromatogram[3].collisionType).toStrictEqual(
       testTargetedChromatogram[3].collisionType,
     );
     expect(chromatogram[3].collisionEnergy).toStrictEqual(
       testTargetedChromatogram[3].collisionEnergy,
+    );
+    expect(chromatogram[3].productIsolationWindowTarget).toStrictEqual(
+      testTargetedChromatogram[3].productIsolationWindowTarget,
     );
     expect(chromatogram[3].timeArray).toStrictEqual(
       testTargetedChromatogram[3].timeArray,
