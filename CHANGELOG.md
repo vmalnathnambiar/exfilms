@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/vmalnathnambiar/exfilms/compare/v1.1.0...v1.1.1) (2024-04-03)
+
+
+### Bug Fixes
+
+* update MS data properties ([833a76b](https://github.com/vmalnathnambiar/exfilms/commit/833a76b3733f933132825dc937db3d482366a91c))
+
 # [1.1.0](https://github.com/vmalnathnambiar/exfilms/compare/v1.0.3...v1.1.0) (2024-03-28)
 
 
