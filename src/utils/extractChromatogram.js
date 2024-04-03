@@ -13,7 +13,7 @@ import { roundDecimalPlace } from './roundDecimalPlace.js';
  * Extract chromatogram data from parsed mzML data array.
  * @param {Object} configParam Configuration parameters passed via the command line interface.
  * @param {array} chromatogramArray An array of chromatogram data contained within the parsed mzML data.
- * @returns {Promise<Chromatogram[]>} A promise that resolves with an array of extracted chromatogram array
+ * @returns {Promise<Chromatogram[]>} A promise that resolves with an array of extracted chromatogram array.
  */
 export async function extractChromatogram(configParam, chromatogramArray) {
   let chromatogram = [];
@@ -28,11 +28,14 @@ export async function extractChromatogram(configParam, chromatogramArray) {
       chromatogramData.binaryDataArrayList.binaryDataArray;
 
     // Initialise object to store chromatogram data
+    /**
+     * @type {Chromatogram}
+     */
     const data = {
       index: chromatogramData.$index,
       id: chromatogramData.$id,
       arrayLength: chromatogramData.$defaultArrayLength,
-      chromatogramType: null,
+      type: null,
       polarity: null,
       dwellTime: null,
       precursorIsolationWindowTarget: null,

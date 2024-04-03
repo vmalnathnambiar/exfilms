@@ -14,10 +14,10 @@
  * @property {boolean} mzRange Filter spectra for specific m/z range?
  * @property {number} minMZ Minimum m/z
  * @property {number} maxMZ Maximum m/z
- * @property {boolean} filterSpectrumData Filter spectrum data based on type, MS levels, and polarity?
+ * @property {boolean} filterSpectrum Filter spectrum based on type, MS level, and polarity?
  * @property {string[]} spectrumType Spectrum type to filter for
- * @property {number[]} msLevel MS level(s) to filter for
- * @property {string[]} polarity Polarity to filter for
+ * @property {number[]} msLevel MS level to filter for
+ * @property {string[]} spectrumPolarity Spectrum polarity to filter for
  * @property {boolean} excludeSpectra Exclude spectra from output file?
  */
 
@@ -29,10 +29,10 @@
 
 /**
  * @typedef Spectrum
- * @property {number} index Spectrum index
- * @property {string} scanID Spectrum scan ID
+ * @property {number} index Index
+ * @property {string} id ID
  * @property {number} arrayLength Length of data stored in array
- * @property {?string} spectrumType Spectrum type
+ * @property {?string} type Type
  * @property {?number} msLevel MS level
  * @property {?string} scanType Scan type
  * @property {?string} polarity Polarity
@@ -55,10 +55,10 @@
 
 /**
  * @typedef Chromatogram
- * @property {number} index Chromatogram index
- * @property {string} id Chromatogram ID
+ * @property {number} index Index
+ * @property {string} id ID
  * @property {?number} arrayLength Length of data stored in array
- * @property {?string} chromatogramType Chromatogram type
+ * @property {?string} type Type
  * @property {?string} polarity Polarity
  * @property {?number} dwellTime Dwell time
  * @property {?number} precursorIsolationWindowTarget Precursor isolation window target
@@ -73,7 +73,7 @@
 
 /**
  * @typedef MS
- * @property {string} sampleID Sample ID
+ * @property {string} id ID
  * @property {?string} date Date
  * @property {?string} time Time
  * @property {number} spectrumCount Number of spectrum data stored

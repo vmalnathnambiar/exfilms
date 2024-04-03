@@ -19,11 +19,11 @@ export async function writeJSON(outputDirectory, data) {
   }
 
   // Output file path
-  const jsonFile = join(outputDirectory, `${data.sampleID}.json`);
+  const jsonFile = join(outputDirectory, `${data.id}.json`);
 
   // File metadata
   writeFileSync(jsonFile, '{\n');
-  appendFileSync(jsonFile, `\t"sampleID": "${data.sampleID}",\n`);
+  appendFileSync(jsonFile, `\t"id": "${data.id}",\n`);
   if (data.date !== null) {
     appendFileSync(jsonFile, `\t"date": "${data.date}",\n`);
   } else {
@@ -46,8 +46,8 @@ export async function writeJSON(outputDirectory, data) {
       appendFileSync(jsonFile, '\t\t{\n');
       Object.entries(spectrum).forEach(([key, value], index) => {
         if (
-          (key === 'scanID' ||
-            key === 'spectrumType' ||
+          (key === 'id' ||
+            key === 'type' ||
             key === 'scanType' ||
             key === 'polarity' ||
             key === 'collisionType') &&
@@ -86,7 +86,7 @@ export async function writeJSON(outputDirectory, data) {
       Object.entries(chromatogram).forEach(([key, value], index) => {
         if (
           (key === 'id' ||
-            key === 'chromatogramType' ||
+            key === 'type' ||
             key === 'polarity' ||
             key === 'collisionType') &&
           value !== null

@@ -15,7 +15,7 @@ describe('parseTargetFile', () => {
     decimalPlace: NaN,
     targetFile: '',
     mzTolerance: 0.005,
-    filterSpectrumData: false,
+    filterSpectrum: false,
     msLevel: [1, 2],
   };
   const testMzTargetListDefault = [
@@ -29,12 +29,10 @@ describe('parseTargetFile', () => {
     332.1241, 335.136, 336.1343, 340.1404, 345.167, 346.151, 346.1615, 351.1678,
     352.1292, 355.1752, 362.1564, 362.926338, 375.1452, 388.1761, 430.913762,
     473.1932, 478.21, 487.2088, 498.901186, 501.2432, 566.888609, 634.876033,
-    702.863456, 770.85088, 838.838303, 906.825727, 974.81315, 1042.800574,
-    1110.787998, 1178.775421, 1246.762845, 1314.750268, 1382.737692,
-    1450.725115, 1518.712539,
+    702.863456, 770.85088, 838.838303, 906.825727, 974.81315,
   ];
   const testMinMzDefault = 70.06;
-  const testMaxMzDefault = 1518.7175390000002;
+  const testMaxMzDefault = 974.81815;
   const testMzTargetList = [
     70.065, 90.7664, 110.071, 116.0499, 116.0709, 158.9641, 165.089, 171.055,
     175.119, 188.0705, 226.9515, 232.1081, 237.1008, 239.6092, 244.1081,
@@ -46,11 +44,10 @@ describe('parseTargetFile', () => {
     335.136, 336.1343, 340.1404, 345.167, 346.151, 346.1615, 351.1678, 352.1292,
     355.1752, 362.1564, 362.9263, 375.1452, 388.1761, 430.9138, 473.1932,
     478.21, 487.2088, 498.9012, 501.2432, 566.8886, 634.876, 702.8635, 770.8509,
-    838.8383, 906.8257, 974.8132, 1042.8006, 1110.788, 1178.7754, 1246.7628,
-    1314.7503, 1382.7377, 1450.7251, 1518.7125,
+    838.8383, 906.8257, 974.8132,
   ];
   const testMinMZ = 70.06;
-  const testMaxMZ = 1518.7175;
+  const testMaxMZ = 974.8182;
 
   // Tests
   test('throw error: input file pattern check', async () => {
@@ -103,7 +100,7 @@ describe('parseTargetFile', () => {
 
   test('throw error: no target m/z data found', async () => {
     // Valid file with invalid spectrum msLevel filtering
-    testConfigParam.filterSpectrumData = true;
+    testConfigParam.filterSpectrum = true;
     testConfigParam.msLevel = [3];
     await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
       'parseTargetFile(): Target m/z data not found',
@@ -116,13 +113,13 @@ describe('parseTargetFile', () => {
     );
 
     // Without spectrum msLevel filtering
-    testConfigParam.filterSpectrumData = false;
+    testConfigParam.filterSpectrum = false;
     await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
       'parseTargetFile(): Target m/z data not found',
     );
 
     // Empty file with just the header
-    testConfigParam.filterSpectrumData = true;
+    testConfigParam.filterSpectrum = true;
     testConfigParam.msLevel = [1, 2];
     testConfigParam.targetFile = './data/targetFile/empty.tsv';
     await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
@@ -130,7 +127,7 @@ describe('parseTargetFile', () => {
     );
 
     // Without spectrum msLevel filtering
-    testConfigParam.filterSpectrumData = false;
+    testConfigParam.filterSpectrum = false;
     await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
       'parseTargetFile(): Target m/z data not found',
     );

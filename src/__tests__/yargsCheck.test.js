@@ -40,10 +40,10 @@ describe('yargsCheck', () => {
     mzRange: false,
     minMZ: 0,
     maxMZ: NaN,
-    filterSpectrumData: false,
+    filterSpectrum: false,
     spectrumType: ['profile', 'centroid'],
     msLevel: [1, 2],
-    polarity: ['positive', 'negative'],
+    spectrumPolarity: ['positive', 'negative'],
     excludeSpectra: false,
   };
   const testDirectory = './.tmp/yargsCheck/inputDirectory/';
@@ -126,7 +126,7 @@ describe('yargsCheck', () => {
       'maxMZ value needs to be greater than minMZ value',
     );
 
-    // spectrumType, msLevel, polarity and excludeSpectra defined (not default values) without filterSpectrumData
+    // spectrumType, msLevel, spectrumPolarity and excludeSpectra defined (not default values) without filterSpectrum
     testArgv.mzRange = false;
     testArgv.minMZ = 0;
     testArgv.maxMZ = NaN;
@@ -134,33 +134,33 @@ describe('yargsCheck', () => {
     // spectrumType
     testArgv.spectrumType = ['profile'];
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
-      '-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
+      '-s (or --filterSpectrum) required to specify --spectrumType, --msLevel, --spectrumPolarity and --excludeSpectra',
     );
 
     // msLevel
     testArgv.spectrumType = ['profile', 'centroid'];
     testArgv.msLevel = [1];
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
-      '-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
+      '-s (or --filterSpectrum) required to specify --spectrumType, --msLevel, --spectrumPolarity and --excludeSpectra',
     );
 
     testArgv.msLevel = [1, 3];
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
-      '-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
+      '-s (or --filterSpectrum) required to specify --spectrumType, --msLevel, --spectrumPolarity and --excludeSpectra',
     );
 
-    // polarity
+    // spectrumPolarity
     testArgv.msLevel = [1, 2];
-    testArgv.polarity = ['positive'];
+    testArgv.spectrumPolarity = ['positive'];
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
-      '-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
+      '-s (or --filterSpectrum) required to specify --spectrumType, --msLevel, --spectrumPolarity and --excludeSpectra',
     );
 
     // excludeSpectra
-    testArgv.polarity = ['positive', 'negative'];
+    testArgv.spectrumPolarity = ['positive', 'negative'];
     testArgv.excludeSpectra = true;
     await expect(yargsCheck(testArgv)).rejects.toThrowError(
-      '-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
+      '-s (or --filterSpectrum) required to specify --spectrumType, --msLevel, --spectrumPolarity and --excludeSpectra',
     );
     testArgv.excludeSpectra = false;
   });
@@ -180,17 +180,17 @@ describe('yargsCheck', () => {
     expect(configParam).toHaveProperty('mzRange');
     expect(configParam).not.toHaveProperty('minMZ');
     expect(configParam).not.toHaveProperty('maxMZ');
-    expect(configParam).toHaveProperty('filterSpectrumData');
+    expect(configParam).toHaveProperty('filterSpectrum');
     expect(configParam).not.toHaveProperty('spectrumType');
     expect(configParam).not.toHaveProperty('msLevel');
-    expect(configParam).not.toHaveProperty('polarity');
+    expect(configParam).not.toHaveProperty('spectrumPolarity');
     expect(configParam).not.toHaveProperty('excludeSpectra');
   });
 
   test('return configParam: using defined values', async () => {
     testArgv.fileList = ['testFile1.mzML'];
     testArgv.outputDirectory = './.tmp/yargsCheck/outputDirectory/';
-    testArgv.filterSpectrumData = true;
+    testArgv.filterSpectrum = true;
 
     // If mzRange is set to true
     testArgv.mzRange = true;
@@ -202,7 +202,7 @@ describe('yargsCheck', () => {
     expect(configParam).toHaveProperty('maxMZ');
     expect(configParam).toHaveProperty('spectrumType');
     expect(configParam).toHaveProperty('msLevel');
-    expect(configParam).toHaveProperty('polarity');
+    expect(configParam).toHaveProperty('spectrumPolarity');
     expect(configParam).toHaveProperty('excludeSpectra');
     testArgv.mzRange = false;
 
@@ -217,7 +217,7 @@ describe('yargsCheck', () => {
     expect(configParam).not.toHaveProperty('maxMZ');
     expect(configParam).toHaveProperty('spectrumType');
     expect(configParam).toHaveProperty('msLevel');
-    expect(configParam).toHaveProperty('polarity');
+    expect(configParam).toHaveProperty('spectrumPolarity');
     expect(configParam).toHaveProperty('excludeSpectra');
   });
 

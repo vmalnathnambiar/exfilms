@@ -21,7 +21,7 @@ describe('setForSpectraFiltering', () => {
     minMZ: undefined,
     maxMZ: undefined,
     mzTargetList: undefined,
-    filterSpectrumData: false,
+    filterSpectrum: false,
     msLevel: undefined,
   };
 
@@ -75,15 +75,15 @@ describe('setForSpectraFiltering', () => {
     expect(configParam.maxMZ).toBeDefined();
 
     // Filter spectrum data with invalid target file layout
-    testConfigParam.filterSpectrumData = true;
+    testConfigParam.filterSpectrum = true;
     testConfigParam.msLevel = [1];
     testConfigParam.targetFile = './data/targetFile/invalidLayout.tsv';
     await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
       'parseTargetFile(): Target m/z data not found',
     );
 
-    // Same as above but without filter spectrum data
-    testConfigParam.filterSpectrumData = false;
+    // Same as above but without filtering spectrum
+    testConfigParam.filterSpectrum = false;
     await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
       'parseTargetFile(): Target m/z data not found',
     );

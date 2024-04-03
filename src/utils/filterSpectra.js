@@ -5,18 +5,18 @@ import { roundDecimalPlace } from './roundDecimalPlace.js';
 /**
  * Filter the spectra within each spectrum data by range or targeted filtering.
  * @param {Object} configParam Configuration parameters passed via the command line interface.
- * @param {string} spectrumType
- * @param {number} msLevel
- * @param {string} polarity
- * @param {number} retentionTime
- * @param {number[]} mzArray An array representing the m/z values detected in a spectrum
+ * @param {string} type Spectrum type.
+ * @param {number} msLevel MS level.
+ * @param {string} polarity Spectrum polarity.
+ * @param {number} retentionTime Retention time.
+ * @param {number[]} mzArray An array representing the m/z values detected in a spectrum.
  * @param {number[]} intensityArray An array representing the intensity values of the respective m/z values in a spectrum.
  * @param {array} chromatogram An array of chromatogram data defined by initChromatogramArray to be used for the extraction (and filtration) process.
- * @returns {Promise<Object>} A promise that resolves with an object containing the chromatogram array, base peak intensity, base peak m/z, total ion current, and spectra array (m/z and intensity values)
+ * @returns {Promise<Object>} A promise that resolves with an object containing the chromatogram array, base peak intensity, base peak m/z, total ion current, and spectra array (m/z and intensity values).
  */
 export async function filterSpectra(
   configParam,
-  spectrumType,
+  type,
   msLevel,
   polarity,
   retentionTime,
@@ -123,11 +123,11 @@ export async function filterSpectra(
       const idx = chromatogram.findIndex(
         (chromObj) => chromObj.id === `EIC ${targetMZ}`,
       );
-      if (configParam.filterSpectrumData) {
+      if (configParam.filterSpectrum) {
         if (
-          configParam.spectrumType.includes(spectrumType) &&
+          configParam.spectrumType.includes(type) &&
           configParam.msLevel.includes(msLevel) &&
-          configParam.polarity.includes(polarity)
+          configParam.spectrumPolarity.includes(polarity)
         ) {
           chromatogram[idx].timeArray.push(retentionTime);
           chromatogram[idx].intensityArray.push(intensity);

@@ -17,8 +17,8 @@ describe('cvParamMap', () => {
     expect(keyMap['negative scan']).toStrictEqual('polarity');
     expect(keyMap['base peak intensity']).toStrictEqual('basePeakIntensity');
     expect(keyMap['total ion current']).toStrictEqual('totalIonCurrent');
-    expect(keyMap['profile spectrum']).toStrictEqual('spectrumType');
-    expect(keyMap['centroid spectrum']).toStrictEqual('spectrumType');
+    expect(keyMap['profile spectrum']).toStrictEqual('type');
+    expect(keyMap['centroid spectrum']).toStrictEqual('type');
     expect(keyMap['base peak m/z']).toStrictEqual('basePeakMZ');
     expect(keyMap['scan start time']).toStrictEqual('retentionTime');
     expect(keyMap['preset scan configuration']).toStrictEqual(
@@ -55,12 +55,15 @@ describe('cvParamMap', () => {
     expect(keyMap['time array']).toStrictEqual('timeArray');
     expect(keyMap['64-bit float']).toStrictEqual('precision');
     expect(keyMap['32-bit float']).toStrictEqual('precision');
+    expect(keyMap['64-bit integer']).toStrictEqual('precision');
+    expect(keyMap['32-bit integer']).toStrictEqual('precision');
     expect(keyMap['no compression']).toStrictEqual('compression');
     expect(keyMap['zlib compression']).toStrictEqual('compression');
-    expect(keyMap['total ion current chromatogram']).toStrictEqual(
-      'chromatogramType',
+    expect(keyMap['total ion current chromatogram']).toStrictEqual('type');
+    expect(keyMap['basepeak chromatogram']).toStrictEqual('type');
+    expect(keyMap['selected reaction monitoring chromatogram']).toStrictEqual(
+      'type',
     );
-    expect(keyMap['basepeak chromatogram']).toStrictEqual('chromatogramType');
     expect(keyMap.MS_dwell_time).toStrictEqual('dwellTime');
     expect(keyMap['non-standard data array']).toStrictEqual('msLevelArray');
   });
@@ -83,6 +86,8 @@ describe('cvParamMap', () => {
     );
     expect(valueMap['64-bit float']).toStrictEqual(64);
     expect(valueMap['32-bit float']).toStrictEqual(32);
+    expect(valueMap['64-bit integer']).toStrictEqual(64);
+    expect(valueMap['32-bit integer']).toStrictEqual(32);
     expect(valueMap['no compression']).toStrictEqual('none');
     expect(valueMap['zlib compression']).toStrictEqual('zlib');
     expect(valueMap['total ion current chromatogram']).toStrictEqual(

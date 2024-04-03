@@ -24,7 +24,7 @@ export async function extractMZML(configParam, msData) {
   const timeStamp = await extractTimeStamp(runMap.$startTimeStamp);
 
   // General MS data
-  const sampleID = mzmlMap.$id;
+  const id = mzmlMap.$id;
   const date = timeStamp.date;
   const time = timeStamp.time;
 
@@ -65,7 +65,7 @@ export async function extractMZML(configParam, msData) {
    * @type {MS}
    */
   let data = {
-    sampleID,
+    id,
     date,
     time,
     spectrumCount,

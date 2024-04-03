@@ -279,9 +279,9 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -r (or --mzRange)
 
 ### Spectrum Data Filtering
 
-`-s`, `--filterSpectrumData` \*_Required_
+`-s`, `--filterSpectrum` \*_Required_
 
-ExfilMS also provides you with the functionality of filtering the spectrum data based on its properties such as spectrum type, MS level and polarity. With this flag, you can also decide to exclude the spectra (m/z and intensity array) acquired of each scan timepoint (retention time) from being stored in the output file.
+ExfilMS also provides you with the functionality of filtering the spectrum based on its properties such as type, MS level and polarity. With this flag, you can also decide to exclude the spectra (m/z and intensity array) acquired of each scan timepoint (retention time) from being stored in the output file.
 
 > [!NOTE]\
 > The spectra exclusion filter is particularly useful if you are interested only in analysing the metadata of each spectrum (i.e., total ion current, base peak intensity).
@@ -296,7 +296,7 @@ _Choices: "profile", "centroid" || Default: Both spectrum types_
 ```md
 # Filter for specific spectrum type
 
-$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSpectrumData) --spectrumType "profile" "centroid"
+$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSpectrum) --spectrumType "profile" "centroid"
 ```
 
 <br>
@@ -307,22 +307,22 @@ _Input type: Space-separated numbers_\
 _Default: MS level 1 and 2_
 
 ```md
-# Filter for specific MS levels
+# Filter for specific MS level
 
-$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSpectrumData) --msLevel 1 2
+$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSpectrum) --msLevel 1 2
 ```
 
 <br>
 
-`--polarity`
+`--spectrumPolarity`
 
 _Input type: Space-separated strings_\
 _Choices: "positive", "negative" || Default: Both polarities_
 
 ```md
-# Filter for specific polarities
+# Filter for specific spectrum polarity
 
-$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSpectrumData) --polarity "positive" "negative"
+$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSpectrum) --spectrumPolarity "positive" "negative"
 ```
 
 <br>
@@ -332,7 +332,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSp
 ```md
 # Exclude spectra (m/z and intensity values) from output file
 
-$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSpectrumData) --excludeSpectra
+$ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSpectrum) --excludeSpectra
 ```
 
 <!-- URLs used in the markdown document-->

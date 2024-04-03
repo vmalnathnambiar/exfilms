@@ -5,7 +5,7 @@
 /**
  * Initialise chromatogram array (specifically due to targeted m/z filtering).
  * @param {Object} configParam Configuration parameters passed via the command line interface.
- * @returns {Promise<Chromatogram[]>} A promise that resolves with an array structure to store the extracted chromatogram data
+ * @returns {Promise<Chromatogram[]>} A promise that resolves with an array structure to store the extracted chromatogram data.
  */
 export async function initChromatogramArray(configParam) {
   let chromatogram;
@@ -16,7 +16,7 @@ export async function initChromatogramArray(configParam) {
       index: 0,
       id: 'TIC',
       arrayLength: null,
-      chromatogramType: 'total ion current chromatogram',
+      type: 'total ion current chromatogram',
       polarity: null,
       dwellTime: null,
       precursorIsolationWindowTarget: null,
@@ -32,7 +32,7 @@ export async function initChromatogramArray(configParam) {
       index: 1,
       id: 'BPC',
       arrayLength: null,
-      chromatogramType: 'base peak chromatogram',
+      type: 'base peak chromatogram',
       polarity: null,
       dwellTime: null,
       precursorIsolationWindowTarget: null,
@@ -54,7 +54,7 @@ export async function initChromatogramArray(configParam) {
         index: basicArray.length + index,
         id: `EIC ${value}`,
         arrayLength: null,
-        chromatogramType: 'extracted ion chromatogram',
+        type: 'extracted ion chromatogram',
         polarity: null,
         dwellTime: null,
         precursorIsolationWindowTarget: null,

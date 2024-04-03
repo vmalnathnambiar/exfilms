@@ -22,16 +22,16 @@ describe('writeTSV', () => {
    * @type {MS}
    */
   const testData = {
-    sampleID: 'testSample',
+    id: 'testSample',
     date: '2022-08-17',
     time: '18:43:38',
     spectrumCount: 3,
     spectrum: [
       {
         index: 0,
-        scanID: 'scan=1',
+        id: 'scan=1',
         arrayLength: 85,
-        spectrumType: 'profile',
+        type: 'profile',
         msLevel: 1,
         scanType: 'MS1',
         polarity: 'positive',
@@ -72,9 +72,9 @@ describe('writeTSV', () => {
       },
       {
         index: 1,
-        scanID: 'scan=2',
+        id: 'scan=2',
         arrayLength: 85,
-        spectrumType: 'centroid',
+        type: 'centroid',
         msLevel: 1,
         scanType: 'MS1',
         polarity: 'positive',
@@ -115,9 +115,9 @@ describe('writeTSV', () => {
       },
       {
         index: 2,
-        scanID: 'scan=3',
+        id: 'scan=3',
         arrayLength: 85,
-        spectrumType: 'centroid',
+        type: 'centroid',
         msLevel: 2,
         scanType: 'MSn',
         polarity: 'positive',
@@ -164,12 +164,13 @@ describe('writeTSV', () => {
         index: 0,
         id: 'TIC',
         arrayLength: 3,
-        chromatogramType: 'total ion current chromatogram',
+        type: 'total ion current chromatogram',
         polarity: null,
         dwellTime: null,
-        isolationWindowTarget: null,
+        precursorIsolationWindowTarget: null,
         collisionType: null,
         collisionEnergy: null,
+        productIsolationWindowTarget: null,
         timeArray: [0.0031, 0.0052, 0.0074],
         intensityArray: [996, 1346, 50390],
         msLevelArray: [1, 1, 2],
@@ -179,12 +180,13 @@ describe('writeTSV', () => {
         index: 1,
         id: 'BPC',
         arrayLength: 3,
-        chromatogramType: 'base peak chromatogram',
+        type: 'base peak chromatogram',
         polarity: null,
         dwellTime: null,
-        isolationWindowTarget: null,
+        precursorIsolationWindowTarget: null,
         collisionType: null,
         collisionEnergy: null,
+        productIsolationWindowTarget: null,
         timeArray: [0.0031, 0.0052, 0.0074],
         intensityArray: [370, 390, 38150],
         msLevelArray: [1, 1, 2],
@@ -197,18 +199,15 @@ describe('writeTSV', () => {
   const testOutputDirectory = './.tmp/writeTSV/outputDirectory/';
   const testSpectrumDirectory = join(testOutputDirectory, 'spectrum/');
   const testChromatogramDirectory = join(testOutputDirectory, 'chromatogram/');
-  const testSpectrumFile = join(
-    testSpectrumDirectory,
-    `${testData.sampleID}.tsv`,
-  );
+  const testSpectrumFile = join(testSpectrumDirectory, `${testData.id}.tsv`);
   const testChromatogramFile = join(
     testChromatogramDirectory,
-    `${testData.sampleID}.tsv`,
+    `${testData.id}.tsv`,
   );
   const spectrumHeader =
-    'sampleID\tdate\ttime\tspectrumCount\tindex\tscanID\tarrayLength\tspectrumType\tmsLevel\tscanType\tpolarity\tretentionTime\tscanPresetConfiguration\tscanWindowLowerLimit\tscanWindowUpperLimit\tisolationWindowTarget\tisolationWindowLowerOffset\tisolationWindowUpperOffset\tselectedIonMZ\tcollisionType\tcollisionEnergy\tbasePeakIntensity\tbasePeakMZ\ttotalIonCurrent\tmzArray\tintensityArray\n';
+    'id\tdate\ttime\tspectrumCount\tindex\tid\tarrayLength\ttype\tmsLevel\tscanType\tpolarity\tretentionTime\tscanPresetConfiguration\tscanWindowLowerLimit\tscanWindowUpperLimit\tisolationWindowTarget\tisolationWindowLowerOffset\tisolationWindowUpperOffset\tselectedIonMZ\tcollisionType\tcollisionEnergy\tbasePeakIntensity\tbasePeakMZ\ttotalIonCurrent\tmzArray\tintensityArray\n';
   const chromatogramHeader =
-    'sampleID\tdate\ttime\tchromatogramCount\tindex\tid\tarrayLength\tchromatogramType\tpolarity\tdwellTime\tisolationWindowTarget\tcollisionType\tcollisionEnergy\ttimeArray\tintensityArray\tmsLevelArray\tmzArray\n';
+    'id\tdate\ttime\tchromatogramCount\tindex\tid\tarrayLength\ttype\tpolarity\tdwellTime\tprecursorIsolationWindowTarget\tcollisionType\tcollisionEnergy\tproductIsolationWindowTarget\ttimeArray\tintensityArray\tmsLevelArray\tmzArray\n';
 
   // Setting up test environment before tests
   beforeAll(() => {
@@ -233,7 +232,7 @@ describe('writeTSV', () => {
     expect(await writeTSV(testOutputDirectory, testData));
 
     // Spectrum data
-    const testFirstSpectrum = `${testData.sampleID}\t${testData.date}\t${testData.time}\t${testData.spectrumCount}\t${spectrum.index}\t${spectrum.scanID}\t${spectrum.arrayLength}\t${spectrum.spectrumType}\t${spectrum.msLevel}\t${spectrum.scanType}\t${spectrum.polarity}\t${spectrum.retentionTime}\t${spectrum.scanPresetConfiguration}\t${spectrum.scanWindowLowerLimit}\t${spectrum.scanWindowUpperLimit}\t${spectrum.isolationWindowTarget}\t${spectrum.isolationWindowLowerOffset}\t${spectrum.isolationWindowUpperOffset}\t${spectrum.selectedIonMZ}\t${spectrum.collisionType}\t${spectrum.collisionEnergy}\t${spectrum.basePeakIntensity}\t${spectrum.basePeakMZ}\t${spectrum.totalIonCurrent}\t${spectrum.mzArray}\t${spectrum.intensityArray}\n`;
+    const testFirstSpectrum = `${testData.id}\t${testData.date}\t${testData.time}\t${testData.spectrumCount}\t${spectrum.index}\t${spectrum.id}\t${spectrum.arrayLength}\t${spectrum.type}\t${spectrum.msLevel}\t${spectrum.scanType}\t${spectrum.polarity}\t${spectrum.retentionTime}\t${spectrum.scanPresetConfiguration}\t${spectrum.scanWindowLowerLimit}\t${spectrum.scanWindowUpperLimit}\t${spectrum.isolationWindowTarget}\t${spectrum.isolationWindowLowerOffset}\t${spectrum.isolationWindowUpperOffset}\t${spectrum.selectedIonMZ}\t${spectrum.collisionType}\t${spectrum.collisionEnergy}\t${spectrum.basePeakIntensity}\t${spectrum.basePeakMZ}\t${spectrum.totalIonCurrent}\t${spectrum.mzArray}\t${spectrum.intensityArray}\n`;
     let readData = readFileSync(testSpectrumFile, 'utf-8').split('\n');
     expect(readData[0].replace(/\s+/g, ' ').trim()).toStrictEqual(
       spectrumHeader.replace(/\s+/g, ' ').trim(),
@@ -243,7 +242,7 @@ describe('writeTSV', () => {
     );
 
     // Chromatogram data
-    const testFirstChromatogram = `${testData.sampleID}\t${testData.date}\t${testData.time}\t${testData.chromatogramCount}\t${chromatogram.index}\t${chromatogram.id}\t${chromatogram.arrayLength}\t${chromatogram.chromatogramType}\t${chromatogram.polarity}\t${chromatogram.dwellTime}\t${chromatogram.isolationWindowTarget}\t${chromatogram.collisionType}\t${chromatogram.collisionEnergy}\t${chromatogram.timeArray}\t${chromatogram.intensityArray}\t${chromatogram.msLevelArray}\t${chromatogram.mzArray}\n`;
+    const testFirstChromatogram = `${testData.id}\t${testData.date}\t${testData.time}\t${testData.chromatogramCount}\t${chromatogram.index}\t${chromatogram.id}\t${chromatogram.arrayLength}\t${chromatogram.type}\t${chromatogram.polarity}\t${chromatogram.dwellTime}\t${chromatogram.precursorIsolationWindowTarget}\t${chromatogram.collisionType}\t${chromatogram.collisionEnergy}\t${chromatogram.productIsolationWindowTarget}\t${chromatogram.timeArray}\t${chromatogram.intensityArray}\t${chromatogram.msLevelArray}\t${chromatogram.mzArray}\n`;
     readData = readFileSync(testChromatogramFile, 'utf-8').split('\n');
     expect(readData[0].replace(/\s+/g, ' ').trim()).toStrictEqual(
       chromatogramHeader.replace(/\s+/g, ' ').trim(),
@@ -259,7 +258,7 @@ describe('writeTSV', () => {
     expect(await writeTSV(testOutputDirectory, testData));
 
     // Spectrum data
-    const testFirstSpectrum = `${testData.sampleID}\t${testData.date}\t${testData.time}\t${testData.spectrumCount}\n`;
+    const testFirstSpectrum = `${testData.id}\t${testData.date}\t${testData.time}\t${testData.spectrumCount}\n`;
     let readData = readFileSync(testSpectrumFile, 'utf-8').split('\n');
     expect(readData[0].replace(/\s+/g, ' ').trim()).toStrictEqual(
       spectrumHeader.replace(/\s+/g, ' ').trim(),
@@ -269,7 +268,7 @@ describe('writeTSV', () => {
     );
 
     // Chromatogram data
-    const testFirstChromatogram = `${testData.sampleID}\t${testData.date}\t${testData.time}\t${testData.chromatogramCount}\n`;
+    const testFirstChromatogram = `${testData.id}\t${testData.date}\t${testData.time}\t${testData.chromatogramCount}\n`;
     readData = readFileSync(testChromatogramFile, 'utf-8').split('\n');
     expect(readData[0].replace(/\s+/g, ' ').trim()).toStrictEqual(
       chromatogramHeader.replace(/\s+/g, ' ').trim(),

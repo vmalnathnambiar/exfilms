@@ -40,10 +40,10 @@ describe('setYargsDefaults', () => {
     mzRange: false,
     minMZ: 0,
     maxMZ: NaN,
-    filterSpectrumData: false,
+    filterSpectrum: false,
     spectrumType: ['profile', 'centroid'],
     msLevel: [1, 2],
-    polarity: ['positive', 'negative'],
+    spectrumPolarity: ['positive', 'negative'],
     excludeSpectra: false,
   };
   const testFile1 = join(testArgv.inputDirectory, 'testFile1.mzML');
@@ -84,12 +84,10 @@ describe('setYargsDefaults', () => {
     expect(configParam.mzRange).toStrictEqual(testArgv.mzRange);
     expect(configParam).not.toHaveProperty('minMZ');
     expect(configParam).not.toHaveProperty('maxMZ');
-    expect(configParam.filterSpectrumData).toStrictEqual(
-      testArgv.filterSpectrumData,
-    );
+    expect(configParam.filterSpectrum).toStrictEqual(testArgv.filterSpectrum);
     expect(configParam).not.toHaveProperty('spectrumType');
     expect(configParam).not.toHaveProperty('msLevel');
-    expect(configParam).not.toHaveProperty('polarity');
+    expect(configParam).not.toHaveProperty('spectrumPolarity');
     expect(configParam).not.toHaveProperty('excludeSpectra');
   });
 
@@ -98,7 +96,7 @@ describe('setYargsDefaults', () => {
     testArgv.outputDirectory = './.tmp/setYargsDefaults/outputDirectory/';
     testArgv.targeted = true;
     testArgv.mzRange = true;
-    testArgv.filterSpectrumData = true;
+    testArgv.filterSpectrum = true;
     const configParam = await setYargsDefaults(testArgv);
     expect(configParam.fileList).toStrictEqual(testArgv.fileList);
     expect(configParam.outputDirectory).toStrictEqual(testArgv.outputDirectory);
@@ -109,7 +107,9 @@ describe('setYargsDefaults', () => {
     expect(configParam.maxMZ).toStrictEqual(testArgv.maxMZ);
     expect(configParam.spectrumType).toStrictEqual(testArgv.spectrumType);
     expect(configParam.msLevel).toStrictEqual(testArgv.msLevel);
-    expect(configParam.polarity).toStrictEqual(testArgv.polarity);
+    expect(configParam.spectrumPolarity).toStrictEqual(
+      testArgv.spectrumPolarity,
+    );
     expect(configParam.excludeSpectra).toStrictEqual(testArgv.excludeSpectra);
   });
 

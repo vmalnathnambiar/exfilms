@@ -174,9 +174,9 @@ const prompts = [
   },
   {
     type: 'confirm',
-    name: 'filterSpectrumData',
+    name: 'filterSpectrum',
     message:
-      'Filter spectrum data based on spectrum type, MS levels and polarity, and/or exclude spectra?',
+      'Filter spectrum based on type, MS level and polarity, and/or exclude spectra?',
     default: false,
   },
   {
@@ -185,12 +185,12 @@ const prompts = [
     message: 'Select spectrum type to filter for:',
     choices: ['profile', 'centroid'],
     default: ['profile', 'centroid'],
-    when: (answers) => answers.filterSpectrumData,
+    when: (answers) => answers.filterSpectrum,
   },
   {
     type: 'input',
     name: 'msLevel',
-    message: 'Specify MS level(s) to filter for (space-separated numbers):',
+    message: 'Specify MS level to filter for (space-separated numbers):',
     default: '1 2',
     validate: (msLevel) => {
       const levels = msLevel.split(' ').map(Number);
@@ -203,22 +203,22 @@ const prompts = [
       }
       return true;
     },
-    when: (answers) => answers.filterSpectrumData,
+    when: (answers) => answers.filterSpectrum,
   },
   {
     type: 'checkbox',
-    name: 'polarity',
-    message: 'Select polarity to filter for:',
+    name: 'spectrumPolarity',
+    message: 'Select spectrum polarity to filter for:',
     choices: ['positive', 'negative'],
     default: ['positive', 'negative'],
-    when: (answers) => answers.filterSpectrumData,
+    when: (answers) => answers.filterSpectrum,
   },
   {
     type: 'confirm',
     name: 'excludeSpectra',
     message: 'Exclude spectra (m/z and intensity values) from output file?',
     default: false,
-    when: (answers) => answers.filterSpectrumData,
+    when: (answers) => answers.filterSpectrum,
   },
 ];
 

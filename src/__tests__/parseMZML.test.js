@@ -8,7 +8,7 @@ import { describe, test, expect, beforeAll, afterAll } from 'vitest';
 import { parseMZML } from '../utils/parseMZML.js';
 
 /**
- * To test parseMZML() - and extractMZML(), extractSpectrum(), filterSpectrum(), extractChromatogram()
+ * To test parseMZML() - and extractMZML(), extractSpectrum(), filterSpectra(), extractChromatogram()
  * Input: configParam (Object)
  * Output: NA || Error message (Error)
  */
@@ -23,10 +23,10 @@ describe('parseMZML', () => {
     decimalPlace: NaN,
     targeted: false,
     mzRange: false,
-    filterSpectrumData: false,
+    filterSpectrum: false,
     spectrumType: ['centroid'],
     msLevel: [1, 2],
-    polarity: ['positive'],
+    spectrumPolarity: ['positive'],
     excludeSpectra: false,
     mzTargetList: [
       70.065, 90.76644, 110.071, 116.0499, 116.0709, 158.964068, 165.089,
@@ -211,7 +211,7 @@ describe('parseMZML', () => {
   test('spectrum data filtering: Bruker', async () => {
     testConfigParam.targeted = true;
     testConfigParam.maxMZ = 1518.7175;
-    testConfigParam.filterSpectrumData = true;
+    testConfigParam.filterSpectrum = true;
     testConfigParam.excludeSpectra = true;
     testConfigParam.fileList = testFileBruker;
 
@@ -248,13 +248,13 @@ describe('parseMZML', () => {
     expect(await parseMZML(testConfigParam));
   });
 
-  test('catch error: logDirectory is not type string', async () => {
+  test('catch error: logDirectory is not of type string', async () => {
     testConfigParam.fileList = ['S15_Bruker_ImpactII_QToFMS.mzML'];
     testConfigParam.logDirectory = 0;
     expect(await parseMZML(testConfigParam));
   });
 
-  // ! Uncovered Lines - extractChromatogram.js line 91-92, 125-126
+  // ! Uncovered Lines - extractChromatogram.js line 94-95, 128-129
   // Test data only consist of isolationWindowTarget for the mappedKey (Both precursor and product data)
 
   // ! Uncovered Lines - extractSpectrum.js line 69, 107, 150, 165

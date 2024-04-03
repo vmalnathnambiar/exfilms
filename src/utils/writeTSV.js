@@ -19,17 +19,14 @@ export async function writeTSV(outputDirectory, data) {
   }
 
   // Spectrum and chromatogram output path
-  const spectrumFile = join(outputDirectory, `spectrum/${data.sampleID}.tsv`);
-  const chromatogramFile = join(
-    outputDirectory,
-    `chromatogram/${data.sampleID}.tsv`,
-  );
+  const spectrumFile = join(outputDirectory, `spectrum/${data.id}.tsv`);
+  const chromatogramFile = join(outputDirectory, `chromatogram/${data.id}.tsv`);
 
   // Header for both spectrum and chromatogram data
   const spectrumHeader =
-    'sampleID\tdate\ttime\tspectrumCount\tindex\tscanID\tarrayLength\tspectrumType\tmsLevel\tscanType\tpolarity\tretentionTime\tscanPresetConfiguration\tscanWindowLowerLimit\tscanWindowUpperLimit\tisolationWindowTarget\tisolationWindowLowerOffset\tisolationWindowUpperOffset\tselectedIonMZ\tcollisionType\tcollisionEnergy\tbasePeakIntensity\tbasePeakMZ\ttotalIonCurrent\tmzArray\tintensityArray\n';
+    'id\tdate\ttime\tspectrumCount\tindex\tid\tarrayLength\ttype\tmsLevel\tscanType\tpolarity\tretentionTime\tscanPresetConfiguration\tscanWindowLowerLimit\tscanWindowUpperLimit\tisolationWindowTarget\tisolationWindowLowerOffset\tisolationWindowUpperOffset\tselectedIonMZ\tcollisionType\tcollisionEnergy\tbasePeakIntensity\tbasePeakMZ\ttotalIonCurrent\tmzArray\tintensityArray\n';
   const chromatogramHeader =
-    'sampleID\tdate\ttime\tchromatogramCount\tindex\tid\tarrayLength\tchromatogramType\tpolarity\tdwellTime\tisolationWindowTarget\tcollisionType\tcollisionEnergy\ttimeArray\tintensityArray\tmsLevelArray\tmzArray\n';
+    'id\tdate\ttime\tchromatogramCount\tindex\tid\tarrayLength\ttype\tpolarity\tdwellTime\tprecursorIsolationWindowTarget\tcollisionType\tcollisionEnergy\tproductIsolationWindowTarget\ttimeArray\tintensityArray\tmsLevelArray\tmzArray\n';
   writeFileSync(spectrumFile, spectrumHeader);
   writeFileSync(chromatogramFile, chromatogramHeader);
 
@@ -40,13 +37,13 @@ export async function writeTSV(outputDirectory, data) {
 
       appendFileSync(
         spectrumFile,
-        `${data.sampleID}\t${data.date}\t${data.time}\t${data.spectrumCount}\t${spectrum.index}\t${spectrum.scanID}\t${spectrum.arrayLength}\t${spectrum.spectrumType}\t${spectrum.msLevel}\t${spectrum.scanType}\t${spectrum.polarity}\t${spectrum.retentionTime}\t${spectrum.scanPresetConfiguration}\t${spectrum.scanWindowLowerLimit}\t${spectrum.scanWindowUpperLimit}\t${spectrum.isolationWindowTarget}\t${spectrum.isolationWindowLowerOffset}\t${spectrum.isolationWindowUpperOffset}\t${spectrum.selectedIonMZ}\t${spectrum.collisionType}\t${spectrum.collisionEnergy}\t${spectrum.basePeakIntensity}\t${spectrum.basePeakMZ}\t${spectrum.totalIonCurrent}\t${spectrum.mzArray}\t${spectrum.intensityArray}\n`,
+        `${data.id}\t${data.date}\t${data.time}\t${data.spectrumCount}\t${spectrum.index}\t${spectrum.id}\t${spectrum.arrayLength}\t${spectrum.type}\t${spectrum.msLevel}\t${spectrum.scanType}\t${spectrum.polarity}\t${spectrum.retentionTime}\t${spectrum.scanPresetConfiguration}\t${spectrum.scanWindowLowerLimit}\t${spectrum.scanWindowUpperLimit}\t${spectrum.isolationWindowTarget}\t${spectrum.isolationWindowLowerOffset}\t${spectrum.isolationWindowUpperOffset}\t${spectrum.selectedIonMZ}\t${spectrum.collisionType}\t${spectrum.collisionEnergy}\t${spectrum.basePeakIntensity}\t${spectrum.basePeakMZ}\t${spectrum.totalIonCurrent}\t${spectrum.mzArray}\t${spectrum.intensityArray}\n`,
       );
     }
   } else {
     appendFileSync(
       spectrumFile,
-      `${data.sampleID}\t${data.date}\t${data.time}\t${data.spectrumCount}\n`,
+      `${data.id}\t${data.date}\t${data.time}\t${data.spectrumCount}\n`,
     );
   }
 
@@ -57,13 +54,13 @@ export async function writeTSV(outputDirectory, data) {
 
       appendFileSync(
         chromatogramFile,
-        `${data.sampleID}\t${data.date}\t${data.time}\t${data.chromatogramCount}\t${chromatogram.index}\t${chromatogram.id}\t${chromatogram.arrayLength}\t${chromatogram.chromatogramType}\t${chromatogram.polarity}\t${chromatogram.dwellTime}\t${chromatogram.isolationWindowTarget}\t${chromatogram.collisionType}\t${chromatogram.collisionEnergy}\t${chromatogram.timeArray}\t${chromatogram.intensityArray}\t${chromatogram.msLevelArray}\t${chromatogram.mzArray}\n`,
+        `${data.id}\t${data.date}\t${data.time}\t${data.chromatogramCount}\t${chromatogram.index}\t${chromatogram.id}\t${chromatogram.arrayLength}\t${chromatogram.type}\t${chromatogram.polarity}\t${chromatogram.dwellTime}\t${chromatogram.precursorIsolationWindowTarget}\t${chromatogram.collisionType}\t${chromatogram.collisionEnergy}\t${chromatogram.productIsolationWindowTarget}\t${chromatogram.timeArray}\t${chromatogram.intensityArray}\t${chromatogram.msLevelArray}\t${chromatogram.mzArray}\n`,
       );
     }
   } else {
     appendFileSync(
       chromatogramFile,
-      `${data.sampleID}\t${data.date}\t${data.time}\t${data.chromatogramCount}\n`,
+      `${data.id}\t${data.date}\t${data.time}\t${data.chromatogramCount}\n`,
     );
   }
 }

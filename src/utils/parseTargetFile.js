@@ -42,7 +42,7 @@ export async function parseTargetFile(configParam) {
 
   // Extract and sort m/z target list (distinct values only)
   // - Requires to follow a targetFile layout (header - msLevel and mzValue must be present)
-  let mzTargetList = configParam.filterSpectrumData
+  let mzTargetList = configParam.filterSpectrum
     ? Array.from(
         new Set(
           data

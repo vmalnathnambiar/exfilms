@@ -34,10 +34,10 @@ describe('typedef', () => {
     mzRange: true,
     minMZ: 0,
     maxMZ: NaN,
-    filterSpectrumData: true,
+    filterSpectrum: true,
     spectrumType: ['profile', 'centroid'],
     msLevel: [1, 2],
-    polarity: ['positive', 'negative'],
+    spectrumPolarity: ['positive', 'negative'],
     excludeSpectra: false,
   };
 
@@ -49,16 +49,16 @@ describe('typedef', () => {
 
   /**@type {MS} */
   const testData = {
-    sampleID: 'testSample',
+    id: 'testSample',
     date: '2022-08-17',
     time: '18:43:38',
     spectrumCount: 3,
     spectrum: [
       {
         index: 0,
-        scanID: 'scan=1',
+        id: 'scan=1',
         arrayLength: 85,
-        spectrumType: 'profile',
+        type: 'profile',
         msLevel: 1,
         scanType: 'MS1',
         polarity: 'positive',
@@ -99,9 +99,9 @@ describe('typedef', () => {
       },
       {
         index: 1,
-        scanID: 'scan=2',
+        id: 'scan=2',
         arrayLength: 85,
-        spectrumType: 'centroid',
+        type: 'centroid',
         msLevel: 1,
         scanType: 'MS1',
         polarity: 'positive',
@@ -142,9 +142,9 @@ describe('typedef', () => {
       },
       {
         index: 2,
-        scanID: 'scan=3',
+        id: 'scan=3',
         arrayLength: 85,
-        spectrumType: 'centroid',
+        type: 'centroid',
         msLevel: 2,
         scanType: 'MSn',
         polarity: 'positive',
@@ -191,7 +191,7 @@ describe('typedef', () => {
         index: 0,
         id: 'TIC',
         arrayLength: 3,
-        chromatogramType: 'total ion current chromatogram',
+        type: 'total ion current chromatogram',
         polarity: null,
         dwellTime: null,
         precursorIsolationWindowTarget: null,
@@ -207,7 +207,7 @@ describe('typedef', () => {
         index: 1,
         id: 'BPC',
         arrayLength: 3,
-        chromatogramType: 'base peak chromatogram',
+        type: 'base peak chromatogram',
         polarity: null,
         dwellTime: null,
         precursorIsolationWindowTarget: null,
@@ -238,10 +238,10 @@ describe('typedef', () => {
     expect(testArgv).toHaveProperty('mzRange');
     expect(testArgv).toHaveProperty('minMZ');
     expect(testArgv).toHaveProperty('maxMZ');
-    expect(testArgv).toHaveProperty('filterSpectrumData');
+    expect(testArgv).toHaveProperty('filterSpectrum');
     expect(testArgv).toHaveProperty('spectrumType');
     expect(testArgv).toHaveProperty('msLevel');
-    expect(testArgv).toHaveProperty('polarity');
+    expect(testArgv).toHaveProperty('spectrumPolarity');
     expect(testArgv).toHaveProperty('excludeSpectra');
   });
 
@@ -252,11 +252,10 @@ describe('typedef', () => {
 
   test('Spectrum defined', () => {
     expect(testData.spectrum[0]).toHaveProperty('index');
-    expect(testData.spectrum[0]).toHaveProperty('scanID');
+    expect(testData.spectrum[0]).toHaveProperty('id');
     expect(testData.spectrum[0]).toHaveProperty('arrayLength');
-    expect(testData.spectrum[0]).toHaveProperty('spectrumType');
+    expect(testData.spectrum[0]).toHaveProperty('type');
     expect(testData.spectrum[0]).toHaveProperty('msLevel');
-    expect(testData.spectrum[0]).toHaveProperty('scanType');
     expect(testData.spectrum[0]).toHaveProperty('scanType');
     expect(testData.spectrum[0]).toHaveProperty('polarity');
     expect(testData.spectrum[0]).toHaveProperty('retentionTime');
@@ -280,7 +279,7 @@ describe('typedef', () => {
     expect(testData.chromatogram[0]).toHaveProperty('index');
     expect(testData.chromatogram[0]).toHaveProperty('id');
     expect(testData.chromatogram[0]).toHaveProperty('arrayLength');
-    expect(testData.chromatogram[0]).toHaveProperty('chromatogramType');
+    expect(testData.chromatogram[0]).toHaveProperty('type');
     expect(testData.chromatogram[0]).toHaveProperty('polarity');
     expect(testData.chromatogram[0]).toHaveProperty('dwellTime');
     expect(testData.chromatogram[0]).toHaveProperty(
@@ -298,7 +297,7 @@ describe('typedef', () => {
   });
 
   test('MS defined', () => {
-    expect(testData).toHaveProperty('sampleID');
+    expect(testData).toHaveProperty('id');
     expect(testData).toHaveProperty('date');
     expect(testData).toHaveProperty('time');
     expect(testData).toHaveProperty('spectrumCount');

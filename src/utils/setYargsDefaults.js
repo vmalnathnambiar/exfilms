@@ -54,11 +54,11 @@ export async function setYargsDefaults(argv) {
   }
 
   // Spectrum data filtering config
-  configParam.filterSpectrumData = argv.filterSpectrumData;
-  if (configParam.filterSpectrumData) {
+  configParam.filterSpectrum = argv.filterSpectrum;
+  if (configParam.filterSpectrum) {
     configParam.spectrumType = argv.spectrumType;
     configParam.msLevel = argv.msLevel;
-    configParam.polarity = argv.polarity;
+    configParam.spectrumPolarity = argv.spectrumPolarity;
     configParam.excludeSpectra = argv.excludeSpectra;
   }
 

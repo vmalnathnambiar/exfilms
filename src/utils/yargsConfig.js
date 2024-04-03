@@ -148,11 +148,11 @@ const argv = yargs(hideBin(process.argv))
     description: 'Set maximum m/z',
     default: NaN,
   })
-  .option('filterSpectrumData', {
+  .option('filterSpectrum', {
     alias: 's',
     type: 'boolean',
     description:
-      'Filter spectrum data based on type, MS levels and polarity, and/or exclude spectra',
+      'Filter spectrum based on type, MS level and polarity, and/or exclude spectra',
     default: false,
   })
   .option('spectrumType', {
@@ -164,7 +164,7 @@ const argv = yargs(hideBin(process.argv))
   })
   .option('msLevel', {
     type: 'array',
-    description: 'Specify MS level(s) to filter for (space-separated numbers)',
+    description: 'Specify MS level to filter for (space-separated numbers)',
     default: [1, 2],
     coerce: (msLevel) => {
       if (msLevel.some(isNaN)) {
@@ -177,10 +177,11 @@ const argv = yargs(hideBin(process.argv))
       return msLevel;
     },
   })
-  .option('polarity', {
+  .option('spectrumPolarity', {
     type: 'array',
     choices: ['positive', 'negative'],
-    description: 'Specify polarity to filter for (space-separated strings)',
+    description:
+      'Specify spectrum polarity to filter for (space-separated strings)',
     default: ['positive', 'negative'],
   })
   .option('excludeSpectra', {
@@ -197,8 +198,8 @@ const argv = yargs(hideBin(process.argv))
     'Run ExfilMS with default configurations',
   )
   .example(
-    'exfilms -i "/path/to/input/directory/" -f --spectrumType "centroid" --msLevel 1 2 --polarity "positive" "negative"',
-    'Run ExfilMS configured to filter spectrum data for centroided MS1 and MS2 spectrum data with both polarity types',
+    'exfilms -i "/path/to/input/directory/" -s --spectrumType "centroid" --msLevel 1 2 --spectrumPolarity "positive"',
+    'Run ExfilMS configured to filter spectrum for centroided MS1 and MS2 data of positive polarity',
   ).argv;
 
 export { argv };

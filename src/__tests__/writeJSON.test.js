@@ -22,16 +22,16 @@ describe('writeJSON', () => {
    * @type {MS}
    */
   const testData = {
-    sampleID: 'testSample',
+    id: 'testSample',
     date: '2022-08-17',
     time: '18:43:38',
     spectrumCount: 3,
     spectrum: [
       {
         index: 0,
-        scanID: 'scan=1',
+        id: 'scan=1',
         arrayLength: 85,
-        spectrumType: 'profile',
+        type: 'profile',
         msLevel: 1,
         scanType: 'MS1',
         polarity: 'positive',
@@ -72,9 +72,9 @@ describe('writeJSON', () => {
       },
       {
         index: 1,
-        scanID: 'scan=2',
+        id: 'scan=2',
         arrayLength: 85,
-        spectrumType: 'centroid',
+        type: 'centroid',
         msLevel: 1,
         scanType: 'MS1',
         polarity: 'positive',
@@ -115,9 +115,9 @@ describe('writeJSON', () => {
       },
       {
         index: 2,
-        scanID: 'scan=3',
+        id: 'scan=3',
         arrayLength: 85,
-        spectrumType: 'centroid',
+        type: 'centroid',
         msLevel: 2,
         scanType: 'MSn',
         polarity: 'positive',
@@ -164,12 +164,13 @@ describe('writeJSON', () => {
         index: 0,
         id: 'TIC',
         arrayLength: 3,
-        chromatogramType: 'total ion current chromatogram',
+        type: 'total ion current chromatogram',
         polarity: null,
         dwellTime: null,
-        isolationWindowTarget: null,
+        precursorIsolationWindowTarget: null,
         collisionType: null,
         collisionEnergy: null,
+        productIsolationWindowTarget: null,
         timeArray: [0.0031, 0.0052, 0.0074],
         intensityArray: [996, 1346, 50390],
         msLevelArray: [1, 1, 2],
@@ -179,12 +180,13 @@ describe('writeJSON', () => {
         index: 1,
         id: 'BPC',
         arrayLength: 3,
-        chromatogramType: 'base peak chromatogram',
+        type: 'base peak chromatogram',
         polarity: null,
         dwellTime: null,
-        isolationWindowTarget: null,
+        precursorIsolationWindowTarget: null,
         collisionType: null,
         collisionEnergy: null,
+        productIsolationWindowTarget: null,
         timeArray: [0.0031, 0.0052, 0.0074],
         intensityArray: [370, 390, 38150],
         msLevelArray: [1, 1, 2],
@@ -193,7 +195,7 @@ describe('writeJSON', () => {
     ],
   };
   const testOutputDirectory = './.tmp/writeJSON/outputDirectory/';
-  const testOutputFile = join(testOutputDirectory, `${testData.sampleID}.json`);
+  const testOutputFile = join(testOutputDirectory, `${testData.id}.json`);
 
   // Setting up test environment before tests
   beforeAll(() => {
@@ -215,7 +217,7 @@ describe('writeJSON', () => {
     const readData = JSON.parse(readFileSync(testOutputFile).toString());
 
     // File metadata
-    expect(readData.sampleID).toStrictEqual(testData.sampleID);
+    expect(readData.id).toStrictEqual(testData.id);
     expect(readData.date).toStrictEqual(testData.date);
     expect(readData.time).toStrictEqual(testData.time);
 
@@ -225,15 +227,11 @@ describe('writeJSON', () => {
     expect(readData.spectrum[0].index).toStrictEqual(
       testData.spectrum[0].index,
     );
-    expect(readData.spectrum[0].scanID).toStrictEqual(
-      testData.spectrum[0].scanID,
-    );
+    expect(readData.spectrum[0].id).toStrictEqual(testData.spectrum[0].id);
     expect(readData.spectrum[0].arrayLength).toStrictEqual(
       testData.spectrum[0].arrayLength,
     );
-    expect(readData.spectrum[0].spectrumType).toStrictEqual(
-      testData.spectrum[0].spectrumType,
-    );
+    expect(readData.spectrum[0].type).toStrictEqual(testData.spectrum[0].type);
     expect(readData.spectrum[0].msLevel).toStrictEqual(
       testData.spectrum[0].msLevel,
     );
@@ -303,8 +301,8 @@ describe('writeJSON', () => {
     expect(readData.chromatogram[0].arrayLength).toStrictEqual(
       testData.chromatogram[0].arrayLength,
     );
-    expect(readData.chromatogram[0].chromatogramType).toStrictEqual(
-      readData.chromatogram[0].chromatogramType,
+    expect(readData.chromatogram[0].type).toStrictEqual(
+      readData.chromatogram[0].type,
     );
     expect(readData.chromatogram[0].polarity).toStrictEqual(
       readData.chromatogram[0].polarity,
@@ -312,14 +310,17 @@ describe('writeJSON', () => {
     expect(readData.chromatogram[0].dwellTime).toStrictEqual(
       readData.chromatogram[0].dwellTime,
     );
-    expect(readData.chromatogram[0].isolationWindowTarget).toStrictEqual(
-      readData.chromatogram[0].isolationWindowTarget,
-    );
+    expect(
+      readData.chromatogram[0].precursorIsolationWindowTarget,
+    ).toStrictEqual(readData.chromatogram[0].precursorIsolationWindowTarget);
     expect(readData.chromatogram[0].collisionType).toStrictEqual(
       readData.chromatogram[0].collisionType,
     );
     expect(readData.chromatogram[0].collisionEnergy).toStrictEqual(
       readData.chromatogram[0].collisionEnergy,
+    );
+    expect(readData.chromatogram[0].productIsolationWindowTarget).toStrictEqual(
+      readData.chromatogram[0].productIsolationWindowTarget,
     );
     expect(readData.chromatogram[0].timeArray).toStrictEqual(
       readData.chromatogram[0].timeArray,
@@ -342,7 +343,7 @@ describe('writeJSON', () => {
     const readData = JSON.parse(readFileSync(testOutputFile).toString());
 
     // File metadata
-    expect(readData.sampleID).toStrictEqual(testData.sampleID);
+    expect(readData.id).toStrictEqual(testData.id);
     expect(readData.date).toStrictEqual(testData.date);
     expect(readData.time).toStrictEqual(testData.time);
 
@@ -366,7 +367,7 @@ describe('writeJSON', () => {
     let readData = JSON.parse(readFileSync(testOutputFile).toString());
 
     // File metadata
-    expect(readData.sampleID).toStrictEqual(testData.sampleID);
+    expect(readData.id).toStrictEqual(testData.id);
     expect(readData.date).toStrictEqual(testData.date);
     expect(readData.time).toStrictEqual(testData.time);
 

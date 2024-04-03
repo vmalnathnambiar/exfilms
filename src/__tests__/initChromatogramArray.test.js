@@ -14,7 +14,7 @@ describe('initChromatogramArray', () => {
       index: 0,
       id: 'TIC',
       arrayLength: null,
-      chromatogramType: 'total ion current chromatogram',
+      type: 'total ion current chromatogram',
       polarity: null,
       dwellTime: null,
       precursorIsolationWindowTarget: null,
@@ -30,7 +30,7 @@ describe('initChromatogramArray', () => {
       index: 1,
       id: 'BPC',
       arrayLength: null,
-      chromatogramType: 'base peak chromatogram',
+      type: 'base peak chromatogram',
       polarity: null,
       dwellTime: null,
       precursorIsolationWindowTarget: null,
@@ -67,7 +67,7 @@ describe('initChromatogramArray', () => {
       index: testBasicChromatogram.length + index,
       id: `EIC ${value}`,
       arrayLength: null,
-      chromatogramType: 'extracted ion chromatogram',
+      type: 'extracted ion chromatogram',
       polarity: null,
       dwellTime: null,
       precursorIsolationWindowTarget: null,
@@ -90,9 +90,7 @@ describe('initChromatogramArray', () => {
     expect(chromatogram[0].arrayLength).toStrictEqual(
       testBasicChromatogram[0].arrayLength,
     );
-    expect(chromatogram[0].chromatogramType).toStrictEqual(
-      testBasicChromatogram[0].chromatogramType,
-    );
+    expect(chromatogram[0].type).toStrictEqual(testBasicChromatogram[0].type);
     expect(chromatogram[0].polarity).toStrictEqual(
       testBasicChromatogram[0].polarity,
     );
@@ -136,8 +134,8 @@ describe('initChromatogramArray', () => {
     expect(chromatogram[3].arrayLength).toStrictEqual(
       testTargetedChromatogram[3].arrayLength,
     );
-    expect(chromatogram[3].chromatogramType).toStrictEqual(
-      testTargetedChromatogram[3].chromatogramType,
+    expect(chromatogram[3].type).toStrictEqual(
+      testTargetedChromatogram[3].type,
     );
     expect(chromatogram[3].polarity).toStrictEqual(
       testTargetedChromatogram[3].polarity,

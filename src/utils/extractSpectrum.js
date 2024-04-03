@@ -17,7 +17,7 @@ import { roundDecimalPlace } from './roundDecimalPlace.js';
  * @param {Object} configParam Configuration parameters passed via the command line interface.
  * @param {array} spectrumArray An array of spectrum data contained within the parsed mzML data.
  * @param {Chromatogram[]} chromatogram An array of chromatogram data defined by initChromatogramArray to be used for the extraction (and filtration) process.
- * @returns {Promise<Object>} A promise that resolves with an object containing the extracted spectrum count, spectrum data array and chromatogram data array .
+ * @returns {Promise<Object>} A promise that resolves with an object containing the extracted spectrum count, spectrum data array and chromatogram data array.
  */
 export async function extractSpectrum(
   configParam,
@@ -40,9 +40,9 @@ export async function extractSpectrum(
      */
     const data = {
       index: spectrumData.$index,
-      scanID: spectrumData.$id,
+      id: spectrumData.$id,
       arrayLength: spectrumData.$defaultArrayLength,
-      spectrumType: null,
+      type: null,
       msLevel: null,
       scanType: null,
       polarity: null,
@@ -214,7 +214,7 @@ export async function extractSpectrum(
     if (configParam.targeted || configParam.mzRange) {
       const filteredData = await filterSpectra(
         configParam,
-        data.spectrumType,
+        data.type,
         data.msLevel,
         data.polarity,
         data.retentionTime,
@@ -242,11 +242,11 @@ export async function extractSpectrum(
     // Append data to Total Ion Chromatogram (TIC) and Base Peak Chromatogram (BPC)
     const ticIDX = chromatogram.findIndex((chromObj) => chromObj.id === 'TIC');
     const bpcIDX = chromatogram.findIndex((chromObj) => chromObj.id === 'BPC');
-    if (configParam.filterSpectrumData) {
+    if (configParam.filterSpectrum) {
       if (
-        configParam.spectrumType.includes(data.spectrumType) &&
+        configParam.spectrumType.includes(data.type) &&
         configParam.msLevel.includes(data.msLevel) &&
-        configParam.polarity.includes(data.polarity)
+        configParam.spectrumPolarity.includes(data.polarity)
       ) {
         data.index = spectrumCount;
         spectrumCount++;

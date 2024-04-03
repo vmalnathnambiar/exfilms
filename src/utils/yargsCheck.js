@@ -5,9 +5,9 @@
 import { setYargsDefaults } from './setYargsDefaults.js';
 
 /**
- * Check if CLI arguments are used correctly
- * @param {Yargs} argv  Yargs command line arguments.
- * @returns {Promise<Object>} A promise that resolves when all checks have been completed and configParam object is created
+ * Check if CLI arguments are used correctly.
+ * @param {Yargs} argv Yargs command line arguments.
+ * @returns {Promise<Object>} A promise that resolves when all checks have been completed and configParam object is created.
  * @throws {Error} Throws error if yargsCheck() encounters issues in its process.
  */
 export async function yargsCheck(argv) {
@@ -44,19 +44,19 @@ export async function yargsCheck(argv) {
     // If maxMZ defined (not default value) is smaller than minMZ
     throw new Error('maxMZ value needs to be greater than minMZ value');
   } else if (
-    !argv.filterSpectrumData &&
+    !argv.filterSpectrum &&
     (argv.spectrumType.length !== 2 ||
       !(
         argv.msLevel.length === 2 &&
         argv.msLevel[0] === 1 &&
         argv.msLevel[1] === 2
       ) ||
-      argv.polarity.length !== 2 ||
+      argv.spectrumPolarity.length !== 2 ||
       argv.excludeSpectra)
   ) {
-    // If spectrumType, msLevel, polarity and excludeSpectra defined (not default values) without filterSpectrumData
+    // If spectrumType, msLevel, spectrumPolarity and excludeSpectra defined (not default values) without filterSpectrum
     throw new Error(
-      '-s (or --filterSpectrumData) required to specify --spectrumType, --msLevel, --polarity and --excludeSpectra',
+      '-s (or --filterSpectrum) required to specify --spectrumType, --msLevel, --spectrumPolarity and --excludeSpectra',
     );
   } else {
     // Set default values (where required)
