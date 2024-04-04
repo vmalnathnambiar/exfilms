@@ -257,14 +257,11 @@ describe('parseMZML', () => {
   // ! Uncovered Lines - extractChromatogram.js line 94-95, 128-129
   // Test data only consist of isolationWindowTarget for the mappedKey (Both precursor and product data)
 
-  // ! Uncovered Lines - extractSpectrum.js line 69, 107, 150, 165
-  // Line 69 - spectrumData.cvParam array check with test data is always true
-  // Line 107 - scanWindowMap.cvParam array check with test data is always true
-  // Line 150 - activationMap.cvParam array check with test data is always true
-  // Line 165 - binaryData.cvParam array check with the test data is always true
+  // ! Uncovered Lines - extractSpectrum.js line 102
+  // Unable to test TIMS-ToF-MS data that has the inverseReducedIonMobility value
 
   // ! Uncovered Lines - filterSpectra.js line 97-108, 115-117, 127-136
-  // Line 95-108 - Calculation of mass accuracy if m/z falls within range works, but don't know why it doesn't pick up in test
+  // Line 97-108 - Calculation of mass accuracy if m/z falls within range works, but don't know why it doesn't pick up in test
   // Line 115-117 - Assignation of new basePeakIntensity and basePeakMZ works, but don't know why it doesn't pick up in test
   // Line 127-136 - Pushing chromatogram data based on spectrum data filtering works, but don't know why it doesn't pick up in test
 
@@ -291,7 +288,7 @@ describe('parseMZML', () => {
   // writeLog() unit test is conducted and covers all lines
 
   // ! Fail to catch writeTSV() input type error - Code won't reach: writeTSV.js line 18-19
-  // ! Fail to catch writeTSV() chromatogram === 0 writing to file - Code won't reach: writeTSV.js line 64-68
+  // ! Fail to catch writeTSV() chromatogram === 0 writing to file - Code won't reach: writeTSV.js line 61-65
   // If writeTSV() throws an error - it is caught and handled within parseMZML()
   // Test data files all have chromatogram data > 0 from parsed mzML data
   // writeTSV() unit test is conducted and covers all lines

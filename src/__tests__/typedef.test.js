@@ -63,7 +63,8 @@ describe('typedef', () => {
         scanType: 'MS1',
         polarity: 'positive',
         retentionTime: 0.0031,
-        scanPresetConfiguration: null,
+        presetScanConfiguration: null,
+        inverseReducedIonMobility: null,
         scanWindowLowerLimit: 30,
         scanWindowUpperLimit: 1000,
         isolationWindowTarget: null,
@@ -106,7 +107,8 @@ describe('typedef', () => {
         scanType: 'MS1',
         polarity: 'positive',
         retentionTime: 0.0052,
-        scanPresetConfiguration: null,
+        presetScanConfiguration: null,
+        inverseReducedIonMobility: null,
         scanWindowLowerLimit: 30,
         scanWindowUpperLimit: 1000,
         isolationWindowTarget: null,
@@ -149,7 +151,8 @@ describe('typedef', () => {
         scanType: 'MSn',
         polarity: 'positive',
         retentionTime: 0.0074,
-        scanPresetConfiguration: null,
+        presetScanConfiguration: null,
+        inverseReducedIonMobility: null,
         scanWindowLowerLimit: 30,
         scanWindowUpperLimit: 1000,
         isolationWindowTarget: 515,
@@ -259,7 +262,8 @@ describe('typedef', () => {
     expect(testData.spectrum[0]).toHaveProperty('scanType');
     expect(testData.spectrum[0]).toHaveProperty('polarity');
     expect(testData.spectrum[0]).toHaveProperty('retentionTime');
-    expect(testData.spectrum[0]).toHaveProperty('scanPresetConfiguration');
+    expect(testData.spectrum[0]).toHaveProperty('presetScanConfiguration');
+    expect(testData.spectrum[0]).toHaveProperty('inverseReducedIonMobility');
     expect(testData.spectrum[0]).toHaveProperty('scanWindowLowerLimit');
     expect(testData.spectrum[0]).toHaveProperty('scanWindowUpperLimit');
     expect(testData.spectrum[0]).toHaveProperty('isolationWindowTarget');

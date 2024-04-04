@@ -22,7 +22,10 @@ describe('cvParamMap', () => {
     expect(keyMap['base peak m/z']).toStrictEqual('basePeakMZ');
     expect(keyMap['scan start time']).toStrictEqual('retentionTime');
     expect(keyMap['preset scan configuration']).toStrictEqual(
-      'scanPresetConfiguration',
+      'presetScanConfiguration',
+    );
+    expect(keyMap['inverse reduced ion mobility']).toStrictEqual(
+      'inverseReducedIonMobility',
     );
     expect(keyMap['scan window lower limit']).toStrictEqual(
       'scanWindowLowerLimit',

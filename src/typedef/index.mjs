@@ -37,7 +37,8 @@
  * @property {?string} scanType Scan type
  * @property {?string} polarity Polarity
  * @property {?number} retentionTime Retention time
- * @property {?number} scanPresetConfiguration Scan preset configuration
+ * @property {?number} presetScanConfiguration Preset scan configuration
+ * @property {?number} inverseReducedIonMobility Inverse reduced ion mobility
  * @property {?number} scanWindowLowerLimit Scan window lower limit
  * @property {?number} scanWindowUpperLimit Scan window upper limit
  * @property {?number} isolationWindowTarget Isolation window target

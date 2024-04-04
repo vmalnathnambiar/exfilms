@@ -24,8 +24,8 @@ ExfilMS is a cross-platform, command line interface (CLI) tool to extract mass s
    - Range (minimum and maximum m/z)
 
 4. Spectrum data filtering
-   - Spectrum type (profile / centroid)
-   - MS level
+   - Type (profile / centroid)
+   - MS level (i.e., 1, 2, ..., n)
    - Polarity (positive / negative)
    - Exclude spectra (m/z and intensity)
 
@@ -33,18 +33,18 @@ ExfilMS is a cross-platform, command line interface (CLI) tool to extract mass s
 
 ## Supported MS Platforms
 
-Data extraction and spectrum filtration have been tested on data acquired from the following MS platforms:
+Data extraction and spectrum filtration have been tested on data files acquired on the following MS platforms:
 
 <table>
    <tr>
       <th>Instrument Vendor</th>
       <th>MS Platform</th>
-      <th>Status</th>
+      <th>Status / Description</th>
    </tr>
    <tr>
       <td rowspan="4">Bruker</td>
       <td>EVOQ TQ-MS</td>
-      <td>Not Working</td>
+      <td>Untested (Conversion not supported by ProteoWizard)</td>
    </tr>
    <tr>
       <td>ImpactII QToF-MS</td>
@@ -56,7 +56,7 @@ Data extraction and spectrum filtration have been tested on data acquired from t
    </tr>
    <tr>
       <td>timsTOFPro TIMS-ToF-MS</td>
-      <td>Not Working</td>
+      <td>Not Working (File size > 2GB)</td>
    </tr>
    <tr>
       <td rowspan="3">Waters</td>
@@ -74,7 +74,7 @@ Data extraction and spectrum filtration have been tested on data acquired from t
    <tr>
       <td>SCIEX</td>
       <td>QTRAP6500+ TQ-MS</td>
-      <td>Working</td>
+      <td>Working (Untested on wiff2 scan files acquired using the new SCIEX OS acquisition software - Conversion not supported by ProteoWizard)</td>
    </tr>
 </table>
 
@@ -167,13 +167,15 @@ For more guidance on how to use ExfilMS, please refer to our available guides be
 
 > [!WARNING]
 >
-> 1. Unable to extract MS data from Bruker EVOQ instruments (unsupported format by ProteoWizard).
+> 1. Unable to extract MS data from Bruker EVOQ instruments and SCIEX wiff2 scan files (unsupported format by ProteoWizard).
 >
-> 2. Unable to parse mzML data that has a file size **GREATER THAN** 2GB.
+> 2. Unable to parse mzML data with a file size > 2GB.
 >
 > 3. Large MS data may cause Node environment to terminate abruptly due to memory limit exhaustion.
 >
 > 4. Slow output write speed due to build architecture difference (i.e, Intel vs AMD vs ARM) when running ExfilMS with Docker.
+>
+> 5. Unable to perform chromatography filtering as of now.
 
 <br>
 

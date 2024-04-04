@@ -47,7 +47,8 @@ export async function extractSpectrum(
       scanType: null,
       polarity: null,
       retentionTime: null,
-      scanPresetConfiguration: null,
+      presetScanConfiguration: null,
+      inverseReducedIonMobility: null,
       scanWindowLowerLimit: null,
       scanWindowUpperLimit: null,
       isolationWindowTarget: null,
@@ -96,7 +97,10 @@ export async function extractSpectrum(
         data[mappedKey] = !isNaN(configParam.decimalPlace)
           ? await roundDecimalPlace(paramValue, configParam.decimalPlace)
           : paramValue;
-      } else if (mappedKey === 'scanPresetConfiguration') {
+      } else if (
+        mappedKey === 'presetScanConfiguration' ||
+        mappedKey === 'inverseReducedIonMobility'
+      ) {
         data[mappedKey] = paramValue;
       }
     }

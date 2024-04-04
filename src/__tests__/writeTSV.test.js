@@ -36,7 +36,8 @@ describe('writeTSV', () => {
         scanType: 'MS1',
         polarity: 'positive',
         retentionTime: 0.0031,
-        scanPresetConfiguration: null,
+        presetScanConfiguration: null,
+        inverseReducedIonMobility: null,
         scanWindowLowerLimit: 30,
         scanWindowUpperLimit: 1000,
         isolationWindowTarget: null,
@@ -79,7 +80,8 @@ describe('writeTSV', () => {
         scanType: 'MS1',
         polarity: 'positive',
         retentionTime: 0.0052,
-        scanPresetConfiguration: null,
+        presetScanConfiguration: null,
+        inverseReducedIonMobility: null,
         scanWindowLowerLimit: 30,
         scanWindowUpperLimit: 1000,
         isolationWindowTarget: null,
@@ -122,7 +124,8 @@ describe('writeTSV', () => {
         scanType: 'MSn',
         polarity: 'positive',
         retentionTime: 0.0074,
-        scanPresetConfiguration: null,
+        presetScanConfiguration: null,
+        inverseReducedIonMobility: null,
         scanWindowLowerLimit: 30,
         scanWindowUpperLimit: 1000,
         isolationWindowTarget: 515,
@@ -205,7 +208,7 @@ describe('writeTSV', () => {
     `${testData.id}.tsv`,
   );
   const spectrumHeader =
-    'id\tdate\ttime\tspectrumCount\tindex\tid\tarrayLength\ttype\tmsLevel\tscanType\tpolarity\tretentionTime\tscanPresetConfiguration\tscanWindowLowerLimit\tscanWindowUpperLimit\tisolationWindowTarget\tisolationWindowLowerOffset\tisolationWindowUpperOffset\tselectedIonMZ\tcollisionType\tcollisionEnergy\tbasePeakIntensity\tbasePeakMZ\ttotalIonCurrent\tmzArray\tintensityArray\n';
+    'id\tdate\ttime\tspectrumCount\tindex\tid\tarrayLength\ttype\tmsLevel\tscanType\tpolarity\tretentionTime\tpresetScanConfiguration\tinverseReducedIonMobility\tscanWindowLowerLimit\tscanWindowUpperLimit\tisolationWindowTarget\tisolationWindowLowerOffset\tisolationWindowUpperOffset\tselectedIonMZ\tcollisionType\tcollisionEnergy\tbasePeakIntensity\tbasePeakMZ\ttotalIonCurrent\tmzArray\tintensityArray\n';
   const chromatogramHeader =
     'id\tdate\ttime\tchromatogramCount\tindex\tid\tarrayLength\ttype\tpolarity\tdwellTime\tprecursorIsolationWindowTarget\tcollisionType\tcollisionEnergy\tproductIsolationWindowTarget\ttimeArray\tintensityArray\tmsLevelArray\tmzArray\n';
 
@@ -232,7 +235,7 @@ describe('writeTSV', () => {
     expect(await writeTSV(testOutputDirectory, testData));
 
     // Spectrum data
-    const testFirstSpectrum = `${testData.id}\t${testData.date}\t${testData.time}\t${testData.spectrumCount}\t${spectrum.index}\t${spectrum.id}\t${spectrum.arrayLength}\t${spectrum.type}\t${spectrum.msLevel}\t${spectrum.scanType}\t${spectrum.polarity}\t${spectrum.retentionTime}\t${spectrum.scanPresetConfiguration}\t${spectrum.scanWindowLowerLimit}\t${spectrum.scanWindowUpperLimit}\t${spectrum.isolationWindowTarget}\t${spectrum.isolationWindowLowerOffset}\t${spectrum.isolationWindowUpperOffset}\t${spectrum.selectedIonMZ}\t${spectrum.collisionType}\t${spectrum.collisionEnergy}\t${spectrum.basePeakIntensity}\t${spectrum.basePeakMZ}\t${spectrum.totalIonCurrent}\t${spectrum.mzArray}\t${spectrum.intensityArray}\n`;
+    const testFirstSpectrum = `${testData.id}\t${testData.date}\t${testData.time}\t${testData.spectrumCount}\t${spectrum.index}\t${spectrum.id}\t${spectrum.arrayLength}\t${spectrum.type}\t${spectrum.msLevel}\t${spectrum.scanType}\t${spectrum.polarity}\t${spectrum.retentionTime}\t${spectrum.presetScanConfiguration}\t${spectrum.inverseReducedIonMobility}\t${spectrum.scanWindowLowerLimit}\t${spectrum.scanWindowUpperLimit}\t${spectrum.isolationWindowTarget}\t${spectrum.isolationWindowLowerOffset}\t${spectrum.isolationWindowUpperOffset}\t${spectrum.selectedIonMZ}\t${spectrum.collisionType}\t${spectrum.collisionEnergy}\t${spectrum.basePeakIntensity}\t${spectrum.basePeakMZ}\t${spectrum.totalIonCurrent}\t${spectrum.mzArray}\t${spectrum.intensityArray}\n`;
     let readData = readFileSync(testSpectrumFile, 'utf-8').split('\n');
     expect(readData[0].replace(/\s+/g, ' ').trim()).toStrictEqual(
       spectrumHeader.replace(/\s+/g, ' ').trim(),

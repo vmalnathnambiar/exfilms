@@ -24,7 +24,7 @@ export async function writeTSV(outputDirectory, data) {
 
   // Header for both spectrum and chromatogram data
   const spectrumHeader =
-    'id\tdate\ttime\tspectrumCount\tindex\tid\tarrayLength\ttype\tmsLevel\tscanType\tpolarity\tretentionTime\tscanPresetConfiguration\tscanWindowLowerLimit\tscanWindowUpperLimit\tisolationWindowTarget\tisolationWindowLowerOffset\tisolationWindowUpperOffset\tselectedIonMZ\tcollisionType\tcollisionEnergy\tbasePeakIntensity\tbasePeakMZ\ttotalIonCurrent\tmzArray\tintensityArray\n';
+    'id\tdate\ttime\tspectrumCount\tindex\tid\tarrayLength\ttype\tmsLevel\tscanType\tpolarity\tretentionTime\tpresetScanConfiguration\tinverseReducedIonMobility\tscanWindowLowerLimit\tscanWindowUpperLimit\tisolationWindowTarget\tisolationWindowLowerOffset\tisolationWindowUpperOffset\tselectedIonMZ\tcollisionType\tcollisionEnergy\tbasePeakIntensity\tbasePeakMZ\ttotalIonCurrent\tmzArray\tintensityArray\n';
   const chromatogramHeader =
     'id\tdate\ttime\tchromatogramCount\tindex\tid\tarrayLength\ttype\tpolarity\tdwellTime\tprecursorIsolationWindowTarget\tcollisionType\tcollisionEnergy\tproductIsolationWindowTarget\ttimeArray\tintensityArray\tmsLevelArray\tmzArray\n';
   writeFileSync(spectrumFile, spectrumHeader);
@@ -37,7 +37,7 @@ export async function writeTSV(outputDirectory, data) {
 
       appendFileSync(
         spectrumFile,
-        `${data.id}\t${data.date}\t${data.time}\t${data.spectrumCount}\t${spectrum.index}\t${spectrum.id}\t${spectrum.arrayLength}\t${spectrum.type}\t${spectrum.msLevel}\t${spectrum.scanType}\t${spectrum.polarity}\t${spectrum.retentionTime}\t${spectrum.scanPresetConfiguration}\t${spectrum.scanWindowLowerLimit}\t${spectrum.scanWindowUpperLimit}\t${spectrum.isolationWindowTarget}\t${spectrum.isolationWindowLowerOffset}\t${spectrum.isolationWindowUpperOffset}\t${spectrum.selectedIonMZ}\t${spectrum.collisionType}\t${spectrum.collisionEnergy}\t${spectrum.basePeakIntensity}\t${spectrum.basePeakMZ}\t${spectrum.totalIonCurrent}\t${spectrum.mzArray}\t${spectrum.intensityArray}\n`,
+        `${data.id}\t${data.date}\t${data.time}\t${data.spectrumCount}\t${spectrum.index}\t${spectrum.id}\t${spectrum.arrayLength}\t${spectrum.type}\t${spectrum.msLevel}\t${spectrum.scanType}\t${spectrum.polarity}\t${spectrum.retentionTime}\t${spectrum.presetScanConfiguration}\t${spectrum.inverseReducedIonMobility}\t${spectrum.scanWindowLowerLimit}\t${spectrum.scanWindowUpperLimit}\t${spectrum.isolationWindowTarget}\t${spectrum.isolationWindowLowerOffset}\t${spectrum.isolationWindowUpperOffset}\t${spectrum.selectedIonMZ}\t${spectrum.collisionType}\t${spectrum.collisionEnergy}\t${spectrum.basePeakIntensity}\t${spectrum.basePeakMZ}\t${spectrum.totalIonCurrent}\t${spectrum.mzArray}\t${spectrum.intensityArray}\n`,
       );
     }
   } else {

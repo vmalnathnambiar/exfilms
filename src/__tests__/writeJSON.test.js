@@ -36,7 +36,8 @@ describe('writeJSON', () => {
         scanType: 'MS1',
         polarity: 'positive',
         retentionTime: 0.0031,
-        scanPresetConfiguration: null,
+        presetScanConfiguration: null,
+        inverseReducedIonMobility: null,
         scanWindowLowerLimit: 30,
         scanWindowUpperLimit: 1000,
         isolationWindowTarget: null,
@@ -79,7 +80,8 @@ describe('writeJSON', () => {
         scanType: 'MS1',
         polarity: 'positive',
         retentionTime: 0.0052,
-        scanPresetConfiguration: null,
+        presetScanConfiguration: null,
+        inverseReducedIonMobility: null,
         scanWindowLowerLimit: 30,
         scanWindowUpperLimit: 1000,
         isolationWindowTarget: null,
@@ -122,7 +124,8 @@ describe('writeJSON', () => {
         scanType: 'MSn',
         polarity: 'positive',
         retentionTime: 0.0074,
-        scanPresetConfiguration: null,
+        presetScanConfiguration: null,
+        inverseReducedIonMobility: null,
         scanWindowLowerLimit: 30,
         scanWindowUpperLimit: 1000,
         isolationWindowTarget: 515,
@@ -244,8 +247,11 @@ describe('writeJSON', () => {
     expect(readData.spectrum[0].retentionTime).toStrictEqual(
       testData.spectrum[0].retentionTime,
     );
-    expect(readData.spectrum[0].scanPresetConfiguration).toStrictEqual(
-      testData.spectrum[0].scanPresetConfiguration,
+    expect(readData.spectrum[0].presetScanConfiguration).toStrictEqual(
+      testData.spectrum[0].presetScanConfiguration,
+    );
+    expect(readData.spectrum[0].inverseReducedIonMobility).toStrictEqual(
+      testData.spectrum[0].inverseReducedIonMobility,
     );
     expect(readData.spectrum[0].scanWindowLowerLimit).toStrictEqual(
       testData.spectrum[0].scanWindowLowerLimit,
