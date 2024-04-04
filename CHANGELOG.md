@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/vmalnathnambiar/exfilms/compare/v1.1.1...v1.2.0) (2024-04-04)
+
+
+### Features
+
+* **spectrum extraction:** extract inverse reduced ion mobility value ([98cbc55](https://github.com/vmalnathnambiar/exfilms/commit/98cbc551ff1f7f018da13bd80067a4edb196d7a2)), closes [#4](https://github.com/vmalnathnambiar/exfilms/issues/4)
+
 ## [1.1.1](https://github.com/vmalnathnambiar/exfilms/compare/v1.1.0...v1.1.1) (2024-04-03)
 
 
