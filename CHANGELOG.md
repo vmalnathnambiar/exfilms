@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/vmalnathnambiar/exfilms/compare/v1.2.0...v1.2.1) (2024-04-04)
+
+
+### Bug Fixes
+
+* **vitest:** patch vite security issue ([c377a11](https://github.com/vmalnathnambiar/exfilms/commit/c377a1130d86066cf5ad53112abf4849e1122fcd)), closes [#5](https://github.com/vmalnathnambiar/exfilms/issues/5)
+
 # [1.2.0](https://github.com/vmalnathnambiar/exfilms/compare/v1.1.1...v1.2.0) (2024-04-04)
 
 
