@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/vmalnathnambiar/exfilms/compare/v1.2.1...v1.2.2) (2024-04-12)
+
+
+### Bug Fixes
+
+* **precision rounding:** issue [#6](https://github.com/vmalnathnambiar/exfilms/issues/6) ([b37fae5](https://github.com/vmalnathnambiar/exfilms/commit/b37fae59e566e49a50b2f19c418eb3e0a2a559d7))
+
 ## [1.2.1](https://github.com/vmalnathnambiar/exfilms/compare/v1.2.0...v1.2.1) (2024-04-04)
 
 
