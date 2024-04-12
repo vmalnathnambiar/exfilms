@@ -1,13 +1,13 @@
 import { describe, test, expect } from 'vitest';
 
-import { setInquirerDefaults } from '../utils/setInquirerDefaults';
+import { setInquirerConfig } from '../utils/setInquirerConfig.js';
 
 /**
- * To test setInquirerDefaults()
+ * To test setInquirerConfig()
  * Input: configParam (Object)
  * Output: configParam (Object)
  */
-describe('setInquirerDefaults', () => {
+describe('setInquirerConfig', () => {
   // Dummy data
   const testConfigParam = {
     outputFormat: ['JSON'],
@@ -16,8 +16,7 @@ describe('setInquirerDefaults', () => {
 
   // Tests
   test('configure configParam appropriately', async () => {
-    const configParam = await setInquirerDefaults(testConfigParam);
-
+    const configParam = await setInquirerConfig(testConfigParam);
     expect(configParam.outputFormat).toStrictEqual('JSON');
     expect(configParam.msLevel).toStrictEqual([1, 2]);
   });

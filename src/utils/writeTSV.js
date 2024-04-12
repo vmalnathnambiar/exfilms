@@ -8,8 +8,8 @@ import { join } from 'path';
 /**
  * Write extracted (and filtered) MS data into TSV file in output directories (spectrum and chromatogram).
  * @param {string} outputDirectory Output directory path.
- * @param {MS} data MS data extracted from parsed mzML file.
- * @returns {Promise<void>} A Promise that resolves when the writing to TSV files are complete.
+ * @param {MS} data Extracted MS data.
+ * @returns {Promise<void>} A promise that resolves when the extracted MS data is successfully written into TSV files (spectrum and chromatogram).
  * @throws {Error} Throws error if writeTSV() encounters issues in its process.
  */
 export async function writeTSV(outputDirectory, data) {
@@ -34,7 +34,6 @@ export async function writeTSV(outputDirectory, data) {
   if (data.spectrumCount !== 0) {
     for (let i = 0; i < data.spectrumCount; i++) {
       const spectrum = data.spectrum[i];
-
       appendFileSync(
         spectrumFile,
         `${data.id}\t${data.date}\t${data.time}\t${data.spectrumCount}\t${spectrum.index}\t${spectrum.id}\t${spectrum.arrayLength}\t${spectrum.type}\t${spectrum.msLevel}\t${spectrum.scanType}\t${spectrum.polarity}\t${spectrum.retentionTime}\t${spectrum.presetScanConfiguration}\t${spectrum.inverseReducedIonMobility}\t${spectrum.scanWindowLowerLimit}\t${spectrum.scanWindowUpperLimit}\t${spectrum.isolationWindowTarget}\t${spectrum.isolationWindowLowerOffset}\t${spectrum.isolationWindowUpperOffset}\t${spectrum.selectedIonMZ}\t${spectrum.collisionType}\t${spectrum.collisionEnergy}\t${spectrum.basePeakIntensity}\t${spectrum.basePeakMZ}\t${spectrum.totalIonCurrent}\t${spectrum.mzArray}\t${spectrum.intensityArray}\n`,
@@ -51,7 +50,6 @@ export async function writeTSV(outputDirectory, data) {
   if (data.chromatogramCount !== 0) {
     for (let i = 0; i < data.chromatogramCount; i++) {
       const chromatogram = data.chromatogram[i];
-
       appendFileSync(
         chromatogramFile,
         `${data.id}\t${data.date}\t${data.time}\t${data.chromatogramCount}\t${chromatogram.index}\t${chromatogram.id}\t${chromatogram.arrayLength}\t${chromatogram.type}\t${chromatogram.polarity}\t${chromatogram.dwellTime}\t${chromatogram.precursorIsolationWindowTarget}\t${chromatogram.collisionType}\t${chromatogram.collisionEnergy}\t${chromatogram.productIsolationWindowTarget}\t${chromatogram.timeArray}\t${chromatogram.intensityArray}\t${chromatogram.msLevelArray}\t${chromatogram.mzArray}\n`,

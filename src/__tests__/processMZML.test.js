@@ -5,21 +5,21 @@ import { join } from 'path';
 
 import { describe, test, expect, beforeAll, afterAll } from 'vitest';
 
-import { parseMZML } from '../utils/parseMZML.js';
+import { processMZML } from '../utils/processMZML.js';
 
 /**
- * To test parseMZML() - and extractMZML(), extractSpectrum(), filterSpectra(), extractChromatogram()
+ * To test processMZML() - and extractMS(), extractSpectrum(), filterSpectra(), extractChromatogram()
  * Input: configParam (Object)
  * Output: NA || Error message (Error)
  */
-describe('parseMZML', () => {
+describe('processMZML', () => {
   // Dummy data
   const testConfigParam = {
     inputDirectory: './data/mzML/',
     fileList: ['test1.mzML'],
     outputFormat: 'JSON',
-    outputDirectory: './.tmp/parseMZML/outputDirectory/',
-    logDirectory: './.tmp/parseMZML/logDirectory/',
+    outputDirectory: './.tmp/processMZML/outputDirectory/',
+    logDirectory: './.tmp/processMZML/logDirectory/',
     decimalPlace: NaN,
     targeted: false,
     mzRange: false,
@@ -91,7 +91,7 @@ describe('parseMZML', () => {
 
   // Tests
   test('throw error: file not found in input directory', async () => {
-    await expect(parseMZML(testConfigParam)).rejects.toThrowError(
+    await expect(processMZML(testConfigParam)).rejects.toThrowError(
       '\nExtraction failure: test1.mzML',
     );
   });
@@ -100,11 +100,11 @@ describe('parseMZML', () => {
     testConfigParam.fileList = testFileBruker;
 
     // JSON
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
 
     // TSV
     testConfigParam.outputFormat = 'TSV';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
   });
 
   test('extraction: Waters', async () => {
@@ -112,11 +112,11 @@ describe('parseMZML', () => {
 
     // JSON
     testConfigParam.outputFormat = 'JSON';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
 
     // TSV
     testConfigParam.outputFormat = 'TSV';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
   });
 
   test('extraction: Sciex', async () => {
@@ -124,11 +124,11 @@ describe('parseMZML', () => {
 
     // JSON
     testConfigParam.outputFormat = 'JSON';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
 
     // TSV
     testConfigParam.outputFormat = 'TSV';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
   });
 
   test('targeted m/z filtering: Bruker', async () => {
@@ -138,11 +138,11 @@ describe('parseMZML', () => {
 
     // JSON
     testConfigParam.outputFormat = 'JSON';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
 
     // TSV
     testConfigParam.outputFormat = 'TSV';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
   });
 
   test('targeted m/z filtering: Waters', async () => {
@@ -150,11 +150,11 @@ describe('parseMZML', () => {
 
     // JSON
     testConfigParam.outputFormat = 'JSON';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
 
     // TSV
     testConfigParam.outputFormat = 'TSV';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
   });
 
   test('targeted m/z filtering: Sciex', async () => {
@@ -162,11 +162,11 @@ describe('parseMZML', () => {
 
     // JSON
     testConfigParam.outputFormat = 'JSON';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
 
     // TSV
     testConfigParam.outputFormat = 'TSV';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
   });
 
   test('m/z range filtering: Bruker', async () => {
@@ -177,11 +177,11 @@ describe('parseMZML', () => {
 
     // JSON
     testConfigParam.outputFormat = 'JSON';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
 
     // TSV
     testConfigParam.outputFormat = 'TSV';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
   });
 
   test('m/z range filtering: Waters', async () => {
@@ -189,11 +189,11 @@ describe('parseMZML', () => {
 
     // JSON
     testConfigParam.outputFormat = 'JSON';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
 
     // TSV
     testConfigParam.outputFormat = 'TSV';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
   });
 
   test('m/z range filtering: Sciex', async () => {
@@ -201,11 +201,11 @@ describe('parseMZML', () => {
 
     // JSON
     testConfigParam.outputFormat = 'JSON';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
 
     // TSV
     testConfigParam.outputFormat = 'TSV';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
   });
 
   test('spectrum data filtering: Bruker', async () => {
@@ -217,11 +217,11 @@ describe('parseMZML', () => {
 
     // JSON
     testConfigParam.outputFormat = 'JSON';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
 
     // TSV
     testConfigParam.outputFormat = 'TSV';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
   });
 
   test('spectrum data filtering: Waters', async () => {
@@ -229,11 +229,11 @@ describe('parseMZML', () => {
 
     // JSON
     testConfigParam.outputFormat = 'JSON';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
 
     // TSV
     testConfigParam.outputFormat = 'TSV';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
   });
 
   test('spectrum data filtering: Sciex', async () => {
@@ -241,17 +241,17 @@ describe('parseMZML', () => {
 
     // JSON
     testConfigParam.outputFormat = 'JSON';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
 
     // TSV
     testConfigParam.outputFormat = 'TSV';
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
   });
 
   test('catch error: logDirectory is not of type string', async () => {
     testConfigParam.fileList = ['S15_Bruker_ImpactII_QToFMS.mzML'];
     testConfigParam.logDirectory = 0;
-    expect(await parseMZML(testConfigParam));
+    expect(await processMZML(testConfigParam));
   });
 
   // ! Uncovered Lines - extractChromatogram.js line 94-95, 128-129
@@ -266,35 +266,35 @@ describe('parseMZML', () => {
   // Line 127-136 - Pushing chromatogram data based on spectrum data filtering works, but don't know why it doesn't pick up in test
 
   // ! Fail to catch decoder() input type error - Code won't reach: decoder.js line 15, 17, 19, 21, 23-24
-  // If decoder() throws an error - it is caught and handled within parseMZML()
+  // If decoder() throws an error - it is caught and handled within processMZML()
   // decoder() unit test is conducted and covers all lines
 
   // ! Fail to catch extractTimeStamp() input type error - Code won't reach: extractTimeStamp.js line 14-15
-  // If extractTimeStamp() throws an error - it is caught and handled within parseMZML()
+  // If extractTimeStamp() throws an error - it is caught and handled within processMZML()
   // extractTimeStamp() unit test is conducted and covers all lines
 
   // ! Fail to catch roundDecimalPlace() input type error - Code won't reach: roundDecimalPlace.js line 11, 13-14
-  // If roundDecimalPlace() throws an error - it is caught and handled within parseMZML()
+  // If roundDecimalPlace() throws an error - it is caught and handled within processMZML()
   // roundDecimalPlace() unit test is conducted and covers all lines
 
   // ! Fail to catch writeJSON() input type error - Code won't reach: writeJSON.js line 18-19
   // ! Fail to catch writeJSON() date/time null writing to file - Code won't reach: writeJSON.js line 30-31, 36-37
-  // If writeJSON() throws an error - it is caught and handled within parseMZML()
+  // If writeJSON() throws an error - it is caught and handled within processMZML()
   // Test data files all have valid data and time extracted from parsed mzML data
   // writeJSON() unit test is conducted and covers all lines
 
   // ! Fail to catch writeLog() input type error - Code won't reach: writeLog.js line 16-17
-  // If writeLog() throws an error - it is caught and handled within parseMZML()
+  // If writeLog() throws an error - it is caught and handled within processMZML()
   // writeLog() unit test is conducted and covers all lines
 
   // ! Fail to catch writeTSV() input type error - Code won't reach: writeTSV.js line 18-19
-  // ! Fail to catch writeTSV() chromatogram === 0 writing to file - Code won't reach: writeTSV.js line 61-65
-  // If writeTSV() throws an error - it is caught and handled within parseMZML()
+  // ! Fail to catch writeTSV() chromatogram === 0 writing to file - Code won't reach: writeTSV.js line 59-63
+  // If writeTSV() throws an error - it is caught and handled within processMZML()
   // Test data files all have chromatogram data > 0 from parsed mzML data
   // writeTSV() unit test is conducted and covers all lines
 
   // Clean up test environment after tests
   afterAll(() => {
-    rmSync('./.tmp/parseMZML/', { recursive: true });
+    rmSync('./.tmp/processMZML/', { recursive: true });
   });
 });

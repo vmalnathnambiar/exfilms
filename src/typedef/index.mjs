@@ -22,7 +22,7 @@
  */
 
 /**
- * @typedef TimeStamp
+ * @typedef Timestamp
  * @property {?string} date Date "YYYY-MM-DD"
  * @property {?string} time Time "HH:MM:SS"
  */

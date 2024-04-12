@@ -7,7 +7,7 @@ import { setForSpectraFiltering } from '../utils/setForSpectraFiltering.js';
 /**
  * To test setForSpectraFiltering()
  * Input: configParam (Object)
- * Output: An updated object of configParam (if spectra filtering is defined) (Object) || Error message (Error)
+ * Output: Updated configuration parameters required for spectra filtering (Object) || Error message (Error)
  */
 describe('setForSpectraFiltering', () => {
   // Dummy data

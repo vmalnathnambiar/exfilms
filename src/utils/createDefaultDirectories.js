@@ -2,9 +2,9 @@ import { existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
 
 /**
- * Create default directories: output and log; for ExfilMS operation.
- * @param {Object} configParam Configuration parameters passed via the command line interface.
- * @returns {Promise<void>} A promise that resolves when both directories have been created (if they don't already exist).
+ * Create default directories (output and log) for ExfilMS operation.
+ * @param {Object} configParam Configuration parameters.
+ * @returns {Promise<void>} A promise that resolves when all default directories have been created (if non-existent).
  */
 export async function createDefaultDirectories(configParam) {
   // Create output directory/directories

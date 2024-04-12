@@ -10,31 +10,31 @@ import { join, basename } from 'path';
 
 import { describe, test, expect, beforeAll, afterAll } from 'vitest';
 
-import { setYargsDefaults } from '../utils/setYargsDefaults.js';
+import { setYargsConfig } from '../utils/setYargsConfig.js';
 
 /**
- * To test setYargsDefaults()
+ * To test setYargsConfig()
  * Input: argv (Yargs)
  * Output: configParam (Object) || Error message (Error)
  */
-describe('setYargsDefaults', () => {
+describe('setYargsConfig', () => {
   // Dummy data
   /**
    * @type {Yargs}
    */
   const testArgv = {
     interactive: false,
-    inputDirectory: './.tmp/setYargsDefaults/inputDirectory/',
+    inputDirectory: './.tmp/setYargsConfig/inputDirectory/',
     fileList: ['*'],
     outputFormat: ['JSON'],
     outputDirectory: join(
       homedir(),
       '/exfilms/outputFormat/inputDirectoryName/',
     ),
-    logDirectory: './.tmp/setYargsDefaults/logDirectory/',
+    logDirectory: './.tmp/setYargsConfig/logDirectory/',
     decimalPlace: NaN,
     targeted: false,
-    targetFile: './.tmp/setYargsDefaults/targetFile.tsv',
+    targetFile: './.tmp/setYargsConfig/targetFile.tsv',
     mzTolerance: 0.005,
     ppmTolerance: 5,
     mzRange: false,
@@ -60,7 +60,7 @@ describe('setYargsDefaults', () => {
 
   // Tests
   test('return configParam: using default values', async () => {
-    const configParam = await setYargsDefaults(testArgv);
+    const configParam = await setYargsConfig(testArgv);
     expect(configParam.inputDirectory).toStrictEqual(testArgv.inputDirectory);
     expect(configParam.fileList).toStrictEqual([
       'testFile1.mzML',
@@ -93,11 +93,11 @@ describe('setYargsDefaults', () => {
 
   test('return configParam: using defined values', async () => {
     testArgv.fileList = ['testFile1.mzML'];
-    testArgv.outputDirectory = './.tmp/setYargsDefaults/outputDirectory/';
+    testArgv.outputDirectory = './.tmp/setYargsConfig/outputDirectory/';
     testArgv.targeted = true;
     testArgv.mzRange = true;
     testArgv.filterSpectrum = true;
-    const configParam = await setYargsDefaults(testArgv);
+    const configParam = await setYargsConfig(testArgv);
     expect(configParam.fileList).toStrictEqual(testArgv.fileList);
     expect(configParam.outputDirectory).toStrictEqual(testArgv.outputDirectory);
     expect(configParam.targetFile).toStrictEqual(testArgv.targetFile);
@@ -116,13 +116,13 @@ describe('setYargsDefaults', () => {
   test('throw error: listMZML() input type check', async () => {
     testArgv.inputDirectory = 0;
     testArgv.fileList = ['*'];
-    await expect(setYargsDefaults(testArgv)).rejects.toThrowError(
+    await expect(setYargsConfig(testArgv)).rejects.toThrowError(
       'listMZML(): directory must be of type string',
     );
   });
 
   // Clean up test environment after tests
   afterAll(() => {
-    rmSync('./.tmp/setYargsDefaults/', { recursive: true });
+    rmSync('./.tmp/setYargsConfig/', { recursive: true });
   });
 });

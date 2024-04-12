@@ -2,30 +2,30 @@
 
 import { describe, test, expect } from 'vitest';
 
-import { extractTimeStamp } from '../utils/extractTimeStamp.js';
+import { extractTimestamp } from '../utils/extractTimestamp.js';
 
 /**
- * To test extractTimeStamp()
- * Input: timeStamp (string)
- * Output: An object with extracted date and time (TimeStamp) || Error message (Error)
+ * To test extractTimestamp()
+ * Input: timestamp (string)
+ * Output: An object with extracted date and time (Timestamp) || Error message (Error)
  */
-describe('extractTimeStamp', () => {
+describe('extractTimestamp', () => {
   // Tests
   test('throw error: input type check', async () => {
-    await expect(extractTimeStamp(0)).rejects.toThrowError(
-      'extractTimeStamp(): timeStamp must be of type string',
+    await expect(extractTimestamp(0)).rejects.toThrowError(
+      'extractTimestamp(): timestamp must be of type string',
     );
   });
 
-  test('return TimeStamp object: valid timestamp pattern', async () => {
-    const timeStamp = await extractTimeStamp('2023-02-28T15:15:10Z');
-    expect(timeStamp.date).toStrictEqual('2023-02-28');
-    expect(timeStamp.time).toStrictEqual('15:15:10');
+  test('return Timestamp object: valid timestamp pattern', async () => {
+    const timestamp = await extractTimestamp('2023-02-28T15:15:10Z');
+    expect(timestamp.date).toStrictEqual('2023-02-28');
+    expect(timestamp.time).toStrictEqual('15:15:10');
   });
 
-  test('return TimeStamp object: invalid timestamp pattern', async () => {
-    const timeStamp = await extractTimeStamp('28-02-2023T1555:10Z');
-    expect(timeStamp.date).toBeNull();
-    expect(timeStamp.time).toBeNull();
+  test('return Timestamp object: invalid timestamp pattern', async () => {
+    const timestamp = await extractTimestamp('28-02-2023T1555:10Z');
+    expect(timestamp.date).toBeNull();
+    expect(timestamp.time).toBeNull();
   });
 });

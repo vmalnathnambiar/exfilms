@@ -13,9 +13,9 @@ import inquirer from 'inquirer';
 
 import { createDefaultDirectories } from './utils/createDefaultDirectories.js';
 import { prompts } from './utils/inquirerPrompts.js';
-import { parseMZML } from './utils/parseMZML.js';
+import { processMZML } from './utils/processMZML.js';
 import { setForSpectraFiltering } from './utils/setForSpectraFiltering.js';
-import { setInquirerDefaults } from './utils/setInquirerDefaults.js';
+import { setInquirerConfig } from './utils/setInquirerConfig.js';
 import { writeLog } from './utils/writeLog.js';
 import { yargsCheck } from './utils/yargsCheck.js';
 import { argv } from './utils/yargsConfig.js';
@@ -52,24 +52,24 @@ figlet('ExfilMS', async (err, data) => {
     if (argv.interactive) {
       // If interactive mode
       configParam = await inquirer.prompt(prompts);
-
-      // Set up configuration parameters appropriately
-      configParam = await setInquirerDefaults(configParam);
       console.log('');
+
+      // Set up configuration parameters received via Inquirer appropriately
+      configParam = await setInquirerConfig(configParam);
     } else {
-      // Check yargs arguments and set up appropriately
+      // Check and set up configuration parameters received via Yargs appropriately
       configParam = await yargsCheck(argv);
     }
 
-    // Ensure decimal place is either a number or NaN
+    // Determine if decimal place is a number or NaN
     configParam.decimalPlace = Number(configParam.decimalPlace);
 
-    // Set for spectra filtering method if defined
+    // Set for spectra filtering method if defined (targeted m/z or m/z range filtering)
     if (configParam.targeted || configParam.mzRange) {
       configParam = await setForSpectraFiltering(configParam);
     }
 
-    // Create output and log directories based on configuration
+    // Create default directories (output and log)
     await createDefaultDirectories(configParam);
 
     // Display and write configuration parameters into log file
@@ -80,8 +80,8 @@ figlet('ExfilMS', async (err, data) => {
       `Configuration Parameters\n${JSON.stringify(configParam, null, '\t')}\n`,
     );
 
-    // Parse mzML data files for extraction
-    await parseMZML(configParam);
+    // Process mzML data files for MS data extraction
+    await processMZML(configParam);
   } catch (err) {
     console.error(`\n${err.toString()}`);
   } finally {

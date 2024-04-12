@@ -14,7 +14,7 @@ import { writeTSV } from '../utils/writeTSV.js';
 /**
  * To test writeTSV()
  * Input: outputDirectory (string), data (MS)
- * Output: NA || Error message (Error)
+ * Output: Write extracted MS data into TSV files (spectrum and chromatogram) || Error message (Error)
  */
 describe('writeTSV', () => {
   // Dummy data

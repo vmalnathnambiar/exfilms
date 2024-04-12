@@ -10,7 +10,7 @@ import { writeLog } from '../utils/writeLog.js';
 /**
  * To test writeLog()
  * Input: configParam (Object), data (string)
- * Output: NA || Error message (Error)
+ * Output: Write log data into log file || Error message (Error)
  */
 describe('writeLog', () => {
   // Dummy data

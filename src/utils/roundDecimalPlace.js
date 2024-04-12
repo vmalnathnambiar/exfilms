@@ -1,7 +1,7 @@
 /**
- * Round values to a specific decimal place.
- * @param {number} toRoundValue The number value you want to round.
- * @param {number} decimalPlace The number of decimal places you would like to round to.
+ * Round values to a specific number of decimal places.
+ * @param {number} toRoundValue The number to round.
+ * @param {number} decimalPlace The number of decimal places to round to.
  * @returns {Promise<number>} A promise that resolves with the rounded value to the specified number of decimal places.
  * @throws {Error} Throws error if roundDecimalPlace() encounters issues in its process.
  */

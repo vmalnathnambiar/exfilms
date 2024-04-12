@@ -6,10 +6,10 @@ import { writeFileSync, appendFileSync } from 'fs';
 import { join } from 'path';
 
 /**
- * Write extracted (and filtered) MS data into JSON file in output directory.
+ * Write extracted MS data into a JSON file in output directory.
  * @param {string} outputDirectory Output directory path.
- * @param {MS} data MS data extracted from parsed mzML file.
- * @returns {Promise<void>} A Promise that resolves when the writing to JSON file is complete.
+ * @param {MS} data Extracted MS data.
+ * @returns {Promise<void>} A promise that resolves when the extracted MS data is successfully written into a JSON file.
  * @throws {Error} Throws error if writeJSON() encounters issues in its process.
  */
 export async function writeJSON(outputDirectory, data) {
@@ -42,7 +42,6 @@ export async function writeJSON(outputDirectory, data) {
   if (data.spectrumCount !== 0) {
     for (let i = 0; i < data.spectrumCount; i++) {
       const spectrum = data.spectrum[i];
-
       appendFileSync(jsonFile, '\t\t{\n');
       Object.entries(spectrum).forEach(([key, value], index) => {
         if (
@@ -81,7 +80,6 @@ export async function writeJSON(outputDirectory, data) {
   if (data.chromatogramCount !== 0) {
     for (let i = 0; i < data.chromatogramCount; i++) {
       const chromatogram = data.chromatogram[i];
-
       appendFileSync(jsonFile, '\t\t{\n');
       Object.entries(chromatogram).forEach(([key, value], index) => {
         if (

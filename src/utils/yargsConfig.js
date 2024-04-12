@@ -14,6 +14,7 @@ import { hideBin } from 'yargs/helpers';
 
 /**
  * @type {Yargs}
+ * @description An object containing the configuration parameters obtained via Yargs (CLI mode)
  */
 const argv = yargs(hideBin(process.argv))
   .option('interactive', {

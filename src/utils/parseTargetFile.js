@@ -7,8 +7,8 @@ import { roundDecimalPlace } from './roundDecimalPlace.js';
 
 /**
  * Parse target file (tsv) from local file path or a published to web URL.
- * @param {Object} configParam Configuration parameters passed via the command line interface.
- * @returns {Promise<Object>} A promise that resolves with an object containing the m/z target list (array), and the minimum and maximum m/z values.
+ * @param {Object} configParam Configuration parameters.
+ * @returns {Promise<Object>} A promise that resolves with a m/z target list (array), and the minimum and maximum m/z values to filter for.
  * @throws {Error} Throws error if parseTargetFile() encounters issues in its process.
  */
 export async function parseTargetFile(configParam) {
@@ -41,7 +41,7 @@ export async function parseTargetFile(configParam) {
   }
 
   // Extract and sort m/z target list (distinct values only)
-  // - Requires to follow a targetFile layout (header - msLevel and mzValue must be present)
+  // Requires to follow a targetFile layout (header - msLevel and mzValue must be present)
   let mzTargetList = configParam.filterSpectrum
     ? Array.from(
         new Set(

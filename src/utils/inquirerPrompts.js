@@ -8,7 +8,7 @@ import { listMZML } from './listMZML.js';
 
 /**
  * @type {Object}
- * @description An object containing user input for each interactive question prompt.
+ * @description An object containing the configuration parameters obtained via Inquirer (Interative mode)
  */
 const prompts = [
   {

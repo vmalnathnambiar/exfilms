@@ -8,7 +8,7 @@ import { createDefaultDirectories } from '../utils/createDefaultDirectories.js';
 /**
  * To test createDefaultDirectories()
  * Input: configParam (Object)
- * Output: NA
+ * Output: Default directories (output and log) are created if non-existent
  */
 describe('createDefaultDirectories', () => {
   // Dummy data

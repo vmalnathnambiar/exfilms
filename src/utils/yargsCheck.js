@@ -2,17 +2,15 @@
  * @typedef {import('../typedef/index.mjs').Yargs} Yargs
  */
 
-import { setYargsDefaults } from './setYargsDefaults.js';
+import { setYargsConfig } from './setYargsConfig.js';
 
 /**
- * Check if CLI arguments are used correctly.
+ * Check if Yargs command line arguments (CLI mode) are used appropriately.
  * @param {Yargs} argv Yargs command line arguments.
- * @returns {Promise<Object>} A promise that resolves when all checks have been completed and configParam object is created.
+ * @returns {Promise<Object>} A promise that resolves with the configuration parameters when all checks have been completed and the parameters are set appropriately.
  * @throws {Error} Throws error if yargsCheck() encounters issues in its process.
  */
 export async function yargsCheck(argv) {
-  let configParam = {};
-
   // Check yargs command line arguments
   if (!argv.inputDirectory) {
     // If inputDirectory is not defined
@@ -58,10 +56,8 @@ export async function yargsCheck(argv) {
     throw new Error(
       '-s (or --filterSpectrum) required to specify --spectrumType, --msLevel, --spectrumPolarity and --excludeSpectra',
     );
-  } else {
-    // Set default values (where required)
-    configParam = await setYargsDefaults(argv);
   }
 
-  return configParam;
+  // Set up configuration parameters received via Yargs appropriately
+  return await setYargsConfig(argv);
 }

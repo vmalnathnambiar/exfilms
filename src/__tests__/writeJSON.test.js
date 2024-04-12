@@ -14,7 +14,7 @@ import { writeJSON } from '../utils/writeJSON.js';
 /**
  * To test writeJSON()
  * Input: outputDirectory (string), data (MS)
- * Output: NA || Error message (Error)
+ * Output: Write extracted MS data into a JSON file || Error message (Error)
  */
 describe('writeJSON', () => {
   // Dummy data
@@ -370,7 +370,7 @@ describe('writeJSON', () => {
     testData.date = null;
     testData.time = null;
     expect(await writeJSON(testOutputDirectory, testData));
-    let readData = JSON.parse(readFileSync(testOutputFile).toString());
+    const readData = JSON.parse(readFileSync(testOutputFile).toString());
 
     // File metadata
     expect(readData.id).toStrictEqual(testData.id);

@@ -4,29 +4,29 @@
 
 import { extractChromatogram } from './extractChromatogram.js';
 import { extractSpectrum } from './extractSpectrum.js';
-import { extractTimeStamp } from './extractTimeStamp.js';
+import { extractTimestamp } from './extractTimestamp.js';
 import { initChromatogramArray } from './initChromatogramArray.js';
 import { writeJSON } from './writeJSON.js';
 import { writeTSV } from './writeTSV.js';
 
 /**
  * Extract MS data from parsed mzML.
- * @param {Object} configParam Configuration parameters passed via the command line interface.
- * @param {Object} msData An object that contains all MS data parsed from the mzML file.
+ * @param {Object} configParam Configuration parameters.
+ * @param {Object} data Parsed mzML data.
  * @returns {Promise<void>} A promise that resolves when the extraction process is complete.
- * @throws {Error} Throws error if extractMZML() encounters issues in its process.
+ * @throws {Error} Throws error if extractMS() encounters issues in its process.
  */
-export async function extractMZML(configParam, msData) {
-  const mzmlMap = msData.indexedmzML.mzML;
+export async function extractMS(configParam, data) {
+  const mzmlMap = data.indexedmzML.mzML;
   const runMap = mzmlMap.run;
   const spectrumListMap = runMap.spectrumList;
   const chromatogramListMap = runMap.chromatogramList;
-  const timeStamp = await extractTimeStamp(runMap.$startTimeStamp);
+  const timestamp = await extractTimestamp(runMap.$startTimeStamp);
 
   // General MS data
   const id = mzmlMap.$id;
-  const date = timeStamp.date;
-  const time = timeStamp.time;
+  const date = timestamp.date;
+  const time = timestamp.time;
 
   let spectrumCount = 0;
   let spectrum = [];
@@ -64,7 +64,7 @@ export async function extractMZML(configParam, msData) {
   /**
    * @type {MS}
    */
-  let data = {
+  const msData = {
     id,
     date,
     time,
@@ -76,8 +76,8 @@ export async function extractMZML(configParam, msData) {
 
   // Write output file
   if (configParam.outputFormat === 'JSON') {
-    await writeJSON(configParam.outputDirectory, data);
+    await writeJSON(configParam.outputDirectory, msData);
   } else if (configParam.outputFormat === 'TSV') {
-    await writeTSV(configParam.outputDirectory, data);
+    await writeTSV(configParam.outputDirectory, msData);
   }
 }
