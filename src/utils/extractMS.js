@@ -3,8 +3,8 @@
  */
 
 import { extractChromatogram } from './extractChromatogram.js';
-import { extractTimestamp } from './extractDateTime.js';
 import { extractSpectrum } from './extractSpectrum.js';
+import { extractTimestamp } from './extractTimestamp.js';
 import { initChromatogramArray } from './initChromatogramArray.js';
 import { writeJSON } from './writeJSON.js';
 import { writeTSV } from './writeTSV.js';
