@@ -254,16 +254,16 @@ describe('processMZML', () => {
     expect(await processMZML(testConfigParam));
   });
 
-  // ! Uncovered Lines - extractChromatogram.js line 97-98, 131-132
+  // ! Uncovered Lines - extractChromatogram.js line 106-107, 142-143
   // Test data only consist of isolationWindowTarget for the mappedKey (Both precursor and product data)
 
-  // ! Uncovered Lines - extractSpectrum.js line 105
-  // Unable to test TIMS-ToF-MS data that has the inverseReducedIonMobility value
+  // ! Uncovered Lines - extractSpectrum.js line 73, 116, 181, 196
+  // Test data never needed to make the cvParam into an array
 
   // ! Uncovered Lines - filterSpectra.js line 100-111, 118-120, 130-139
-  // Line 97-108 - Calculation of mass accuracy if m/z falls within range works, but don't know why it doesn't pick up in test
-  // Line 115-117 - Assignation of new basePeakIntensity and basePeakMZ works, but don't know why it doesn't pick up in test
-  // Line 127-136 - Pushing chromatogram data based on spectrum data filtering works, but don't know why it doesn't pick up in test
+  // Line 100-111 - Calculation of mass accuracy if m/z falls within range works, but don't know why it doesn't pick up in test
+  // Line 118-120 - Assignation of new basePeakIntensity and basePeakMZ works, but don't know why it doesn't pick up in test
+  // Line 130-139 - Pushing chromatogram data based on spectrum data filtering works, but don't know why it doesn't pick up in test
 
   // ! Fail to catch decoder() input type error - Code won't reach: decoder.js line 15, 17, 19, 21, 23-24
   // If decoder() throws an error - it is caught and handled within processMZML()

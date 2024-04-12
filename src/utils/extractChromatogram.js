@@ -71,8 +71,13 @@ export async function extractChromatogram(configParam, chromatogramArray) {
         : [userParamMap];
       for (const cvParam of userCvParam) {
         const mappedKey = keyMap[cvParam.$name];
-        const paramValue = cvParam.$value;
+        let paramValue = cvParam.$value;
         if (mappedKey) {
+          if (mappedKey === 'dwellTime') {
+            paramValue = !isNaN(configParam.decimalPlace)
+              ? await roundDecimalPlace(paramValue, configParam.decimalPlace)
+              : paramValue;
+          }
           data[mappedKey] = paramValue;
         }
       }
@@ -92,7 +97,11 @@ export async function extractChromatogram(configParam, chromatogramArray) {
         const paramValue = cvParam.$value;
         if (mappedKey) {
           if (mappedKey === 'isolationWindowTarget') {
-            data.precursorIsolationWindowTarget = paramValue;
+            data.precursorIsolationWindowTarget = !isNaN(
+              configParam.decimalPlace,
+            )
+              ? await roundDecimalPlace(paramValue, configParam.decimalPlace)
+              : paramValue;
           } else {
             data[mappedKey] = paramValue;
           }
@@ -126,7 +135,9 @@ export async function extractChromatogram(configParam, chromatogramArray) {
         const paramValue = cvParam.$value;
         if (mappedKey) {
           if (mappedKey === 'isolationWindowTarget') {
-            data.productIsolationWindowTarget = paramValue;
+            data.productIsolationWindowTarget = !isNaN(configParam.decimalPlace)
+              ? await roundDecimalPlace(paramValue, configParam.decimalPlace)
+              : paramValue;
           } else {
             data[mappedKey] = paramValue;
           }
@@ -165,14 +176,16 @@ export async function extractChromatogram(configParam, chromatogramArray) {
               ),
             );
 
-            if (mappedKey === 'timeArray' && !isNaN(configParam.decimalPlace)) {
+            if (
+              (mappedKey === 'timeArray' || mappedKey === 'msLevelArray') &&
+              !isNaN(configParam.decimalPlace)
+            ) {
               decodedBinary = await Promise.all(
                 decodedBinary.map((value) =>
                   roundDecimalPlace(value, configParam.decimalPlace),
                 ),
               );
             }
-
             data[mappedKey] = decodedBinary;
             decodedBinary = [];
           }

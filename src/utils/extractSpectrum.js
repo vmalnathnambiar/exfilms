@@ -75,7 +75,6 @@ export async function extractSpectrum(
       const mappedKey = keyMap[cvParam.$name];
       const mappedValue = valueMap[cvParam.$name];
       let paramValue = cvParam.$value;
-
       if (mappedKey) {
         if (mappedKey === 'basePeakMZ') {
           paramValue = !isNaN(configParam.decimalPlace)
@@ -94,16 +93,19 @@ export async function extractSpectrum(
       const mappedKey = keyMap[cvParam.$name];
       let paramValue = cvParam.$value;
       const paramUnit = cvParam.$unitName;
+      if (mappedKey) {
+        if (mappedKey === 'retentionTime') {
+          paramValue = paramUnit === 'second' ? paramValue / 60 : paramValue;
+        }
 
-      if (mappedKey === 'retentionTime') {
-        paramValue = paramUnit === 'second' ? paramValue / 60 : paramValue;
-        data[mappedKey] = !isNaN(configParam.decimalPlace)
-          ? await roundDecimalPlace(paramValue, configParam.decimalPlace)
-          : paramValue;
-      } else if (
-        mappedKey === 'presetScanConfiguration' ||
-        mappedKey === 'inverseReducedIonMobility'
-      ) {
+        if (
+          mappedKey === 'retentionTime' ||
+          mappedKey === 'inverseReducedIonMobility'
+        ) {
+          paramValue = !isNaN(configParam.decimalPlace)
+            ? await roundDecimalPlace(paramValue, configParam.decimalPlace)
+            : paramValue;
+        }
         data[mappedKey] = paramValue;
       }
     }
@@ -114,8 +116,16 @@ export async function extractSpectrum(
       : [scanWindowMap.cvParam];
     for (const cvParam of scanWindowCvParam) {
       const mappedKey = keyMap[cvParam.$name];
-      const paramValue = cvParam.$value;
+      let paramValue = cvParam.$value;
       if (mappedKey) {
+        if (
+          mappedKey === 'scanWindowLowerLimit' ||
+          mappedKey === 'scanWindowUpperLimit'
+        ) {
+          paramValue = !isNaN(configParam.decimalPlace)
+            ? await roundDecimalPlace(paramValue, configParam.decimalPlace)
+            : paramValue;
+        }
         data[mappedKey] = paramValue;
       }
     }
@@ -133,8 +143,17 @@ export async function extractSpectrum(
         : [isolationWindowMap.cvParam];
       for (const cvParam of isolationWindowCvParam) {
         const mappedKey = keyMap[cvParam.$name];
-        const paramValue = cvParam.$value;
+        let paramValue = cvParam.$value;
         if (mappedKey) {
+          if (
+            mappedKey === 'isolationWindowTarget' ||
+            mappedKey === 'isolationWindowLowerOffset' ||
+            mappedKey === 'isolationWindowUpperOffset'
+          ) {
+            paramValue = !isNaN(configParam.decimalPlace)
+              ? await roundDecimalPlace(paramValue, configParam.decimalPlace)
+              : paramValue;
+          }
           data[mappedKey] = paramValue;
         }
       }
@@ -145,8 +164,13 @@ export async function extractSpectrum(
         : [selectedIonMap.cvParam];
       for (const cvParam of selectedIonCvParam) {
         const mappedKey = keyMap[cvParam.$name];
-        const paramValue = cvParam.$value;
+        let paramValue = cvParam.$value;
         if (mappedKey) {
+          if (mappedKey === 'selectedIonMZ') {
+            paramValue = !isNaN(configParam.decimalPlace)
+              ? await roundDecimalPlace(paramValue, configParam.decimalPlace)
+              : paramValue;
+          }
           data[mappedKey] = paramValue;
         }
       }
@@ -200,7 +224,6 @@ export async function extractSpectrum(
                 ),
               );
             }
-
             data[mappedKey] = decodedBinary;
             decodedBinary = [];
           }
