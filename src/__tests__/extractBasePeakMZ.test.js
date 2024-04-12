@@ -5,7 +5,7 @@ import { extractBasePeakMZ } from '../utils/extractBasePeakMZ.js';
 /**
  * To test extractBasePeakMZ()
  * Input: mzArray (number []), intensityArray (number[])
- * Output: m/z value with the highest intensity (number)
+ * Output: m/z value corresponding to the highest intensity in the array (number)
  */
 describe('extractBasePeakMZ', () => {
   // Dummy data

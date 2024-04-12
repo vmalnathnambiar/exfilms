@@ -3,14 +3,12 @@
  */
 
 /**
- * Initialise chromatogram array (specifically due to targeted m/z filtering).
- * @param {Object} configParam Configuration parameters passed via the command line interface.
- * @returns {Promise<Chromatogram[]>} A promise that resolves with an array structure to store the extracted chromatogram data.
+ * Initialise chromatogram array (specifically to accommodate for targeted m/z filtering).
+ * @param {Object} configParam Configuration parameters.
+ * @returns {Promise<Chromatogram[]>} A promise that resolves with an array of chromatogram data.
  */
 export async function initChromatogramArray(configParam) {
-  let chromatogram;
-
-  // Basic chromatogram data (applicable to both non-targeted and targeted)
+  // Basic chromatogram array to store data for TIC and BPC (applicable to both non-targeted and targeted)
   const basicArray = [
     {
       index: 0,
@@ -46,8 +44,13 @@ export async function initChromatogramArray(configParam) {
     },
   ];
 
-  // Check if targeted m/z filtering is defined for, additional chromatogram data required based on m/z target list
+  // Check if targeted m/z filtering is defined for
+  /**
+   * @type {Chromatogram[]}
+   */
+  let chromatogram;
   if (configParam.targeted) {
+    // If defined, initialise chromatogram objects to store data for each target m/z in addition to the basic chromatogram array
     chromatogram = [
       ...basicArray,
       ...configParam.mzTargetList.map((value, index) => ({
@@ -68,6 +71,7 @@ export async function initChromatogramArray(configParam) {
       })),
     ];
   } else {
+    // If not defined, initialise with basic chromatogram array
     chromatogram = basicArray;
   }
 

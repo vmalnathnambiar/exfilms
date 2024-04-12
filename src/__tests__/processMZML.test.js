@@ -10,7 +10,7 @@ import { processMZML } from '../utils/processMZML.js';
 /**
  * To test processMZML() - and extractMS(), extractSpectrum(), filterSpectra(), extractChromatogram()
  * Input: configParam (Object)
- * Output: NA || Error message (Error)
+ * Output: MS data successfully extracted from processed mzML data files || Error message (Error)
  */
 describe('processMZML', () => {
   // Dummy data
@@ -254,13 +254,13 @@ describe('processMZML', () => {
     expect(await processMZML(testConfigParam));
   });
 
-  // ! Uncovered Lines - extractChromatogram.js line 94-95, 128-129
+  // ! Uncovered Lines - extractChromatogram.js line 97-98, 131-132
   // Test data only consist of isolationWindowTarget for the mappedKey (Both precursor and product data)
 
-  // ! Uncovered Lines - extractSpectrum.js line 102
+  // ! Uncovered Lines - extractSpectrum.js line 105
   // Unable to test TIMS-ToF-MS data that has the inverseReducedIonMobility value
 
-  // ! Uncovered Lines - filterSpectra.js line 97-108, 115-117, 127-136
+  // ! Uncovered Lines - filterSpectra.js line 100-111, 118-120, 130-139
   // Line 97-108 - Calculation of mass accuracy if m/z falls within range works, but don't know why it doesn't pick up in test
   // Line 115-117 - Assignation of new basePeakIntensity and basePeakMZ works, but don't know why it doesn't pick up in test
   // Line 127-136 - Pushing chromatogram data based on spectrum data filtering works, but don't know why it doesn't pick up in test
@@ -269,9 +269,9 @@ describe('processMZML', () => {
   // If decoder() throws an error - it is caught and handled within processMZML()
   // decoder() unit test is conducted and covers all lines
 
-  // ! Fail to catch extractTimeStamp() input type error - Code won't reach: extractTimeStamp.js line 14-15
-  // If extractTimeStamp() throws an error - it is caught and handled within processMZML()
-  // extractTimeStamp() unit test is conducted and covers all lines
+  // ! Fail to catch extractTimestamp() input type error - Code won't reach: extractTimestamp.js line 14-15
+  // If extractTimestamp() throws an error - it is caught and handled within processMZML()
+  // extractTimestamp() unit test is conducted and covers all lines
 
   // ! Fail to catch roundDecimalPlace() input type error - Code won't reach: roundDecimalPlace.js line 11, 13-14
   // If roundDecimalPlace() throws an error - it is caught and handled within processMZML()

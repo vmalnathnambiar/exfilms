@@ -10,13 +10,16 @@ import { decoder } from './decoder.js';
 import { roundDecimalPlace } from './roundDecimalPlace.js';
 
 /**
- * Extract chromatogram data from parsed mzML data array.
- * @param {Object} configParam Configuration parameters passed via the command line interface.
+ * Extract chromatogram data from parsed mzML data.
+ * @param {Object} configParam Configuration parameters.
  * @param {array} chromatogramArray An array of chromatogram data contained within the parsed mzML data.
- * @returns {Promise<Chromatogram[]>} A promise that resolves with an array of extracted chromatogram array.
+ * @returns {Promise<Chromatogram[]>} A promise that resolves with an array of extracted chromatogram data.
  */
 export async function extractChromatogram(configParam, chromatogramArray) {
-  let chromatogram = [];
+  /**
+   * @type {Chromatogram[]}
+   */
+  const chromatogram = [];
 
   // Loop through chromatogram array
   for (const chromatogramData of chromatogramArray) {
@@ -48,7 +51,7 @@ export async function extractChromatogram(configParam, chromatogramArray) {
       mzArray: [],
     };
 
-    // Chromatogram parameters
+    // Chromatogram parameters (type, polarity)
     const chromatogramCvParam = Array.isArray(cvParamMap)
       ? cvParamMap
       : [cvParamMap];
@@ -61,7 +64,7 @@ export async function extractChromatogram(configParam, chromatogramArray) {
       }
     }
 
-    // User parameters
+    // User parameters (dwellTime)
     if (userParamMap) {
       const userCvParam = Array.isArray(userParamMap)
         ? userParamMap
@@ -80,7 +83,7 @@ export async function extractChromatogram(configParam, chromatogramArray) {
       const isolationWindowMap = precursorMap.isolationWindow;
       const activationMap = precursorMap.activation;
 
-      // Isolation window parameters
+      // Isolation window parameters (precursorIsolationWindowTarget)
       const isolationWindowCvParam = Array.isArray(isolationWindowMap.cvParam)
         ? isolationWindowMap.cvParam
         : [isolationWindowMap.cvParam];
@@ -96,7 +99,7 @@ export async function extractChromatogram(configParam, chromatogramArray) {
         }
       }
 
-      // Activation parameters
+      // Activation parameters (collisionType, collisionEnergy)
       const activationCvParam = Array.isArray(activationMap.cvParam)
         ? activationMap.cvParam
         : [activationMap.cvParam];
@@ -114,7 +117,7 @@ export async function extractChromatogram(configParam, chromatogramArray) {
     if (productMap) {
       const isolationWindowMap = productMap.isolationWindow;
 
-      // Isolation window parameters
+      // Isolation window parameters (productIsolationWindowTarget)
       const isolationWindowCvParam = Array.isArray(isolationWindowMap.cvParam)
         ? isolationWindowMap.cvParam
         : [isolationWindowMap.cvParam];
@@ -131,7 +134,7 @@ export async function extractChromatogram(configParam, chromatogramArray) {
       }
     }
 
-    // Chromatogram binary data array
+    // Binary data array (timeArray, intensityArray, msLevelArray)
     for (const binaryData of binaryDataArrayMap) {
       const binaryCvParam = Array.isArray(binaryData.cvParam)
         ? binaryData.cvParam
@@ -171,12 +174,13 @@ export async function extractChromatogram(configParam, chromatogramArray) {
             }
 
             data[mappedKey] = decodedBinary;
+            decodedBinary = [];
           }
         }
       }
     }
 
-    // Add chromatogram data object to array
+    // Add chromatogram data to array
     chromatogram.push(data);
   }
 

@@ -1,18 +1,23 @@
 /* eslint-disable no-await-in-loop */
+// @ts-nocheck
+
+/**
+ * @typedef {import('../typedef/index.mjs').Chromatogram} Chromatogram
+ */
 
 import { roundDecimalPlace } from './roundDecimalPlace.js';
 
 /**
- * Filter the spectra within each spectrum data by range or targeted filtering.
- * @param {Object} configParam Configuration parameters passed via the command line interface.
+ * Filter spectra (m/z and intensity) by range or targeted m/z filtering.
+ * @param {Object} configParam Configuration parameters.
  * @param {string} type Spectrum type.
  * @param {number} msLevel MS level.
  * @param {string} polarity Spectrum polarity.
  * @param {number} retentionTime Retention time.
- * @param {number[]} mzArray An array representing the m/z values detected in a spectrum.
- * @param {number[]} intensityArray An array representing the intensity values of the respective m/z values in a spectrum.
- * @param {array} chromatogram An array of chromatogram data defined by initChromatogramArray to be used for the extraction (and filtration) process.
- * @returns {Promise<Object>} A promise that resolves with an object containing the chromatogram array, base peak intensity, base peak m/z, total ion current, and spectra array (m/z and intensity values).
+ * @param {number[]} mzArray An array of m/z values.
+ * @param {number[]} intensityArray An array of intensity values.
+ * @param {Chromatogram[]} chromatogram An initialised array of objects to store chromatogram data.
+ * @returns {Promise<Object>} A promise that resolves with an object containing the extracted chromatogram array (if targeted m/z filtering is defined), base peak intensity, base peak m/z, total ion current, m/z array and intensity array.
  */
 export async function filterSpectra(
   configParam,
@@ -27,10 +32,8 @@ export async function filterSpectra(
   let basePeakIntensity = 0;
   let basePeakMZ = 0;
   let totalIonCurrent = 0;
-  let mzValues = [];
-  let intensityValues = [];
-
-  let mz, intensity;
+  const mzValues = [];
+  const intensityValues = [];
 
   // Check for defined spectra filtering method
   if (configParam.mzRange) {
@@ -45,8 +48,8 @@ export async function filterSpectra(
 
     // Loop through m/z array
     for (let i = 0; i < mzArray.length; i++) {
-      mz = mzArray[i];
-      intensity = intensityArray[i];
+      const mz = mzArray[i];
+      const intensity = intensityArray[i];
 
       // Check if m/z falls within range (New filtered m/z and intensity array)
       if (mz >= minMZ && mz <= maxMZ) {
@@ -84,8 +87,8 @@ export async function filterSpectra(
         configParam.mzTolerance > acceptedMzTolerance
           ? Math.abs((configParam.mzTolerance / targetMZ) * 1e6)
           : configParam.ppmTolerance;
-      mz = 0;
-      intensity = 0;
+      let mz = 0;
+      let intensity = 0;
 
       // Loop through m/z array
       for (let j = 0; j < mzArray.length; j++) {
@@ -108,8 +111,8 @@ export async function filterSpectra(
         }
       }
 
-      // Amend spectrum information based on the filtered targeted m/z and intensity value: basePeakIntensity, basePeakMZ, totalIonCurrent, filteredMzArray[], filteredIntensityArray[]
-      // Gap-filling = 0 for targeted m/z that is not found within the m/z filtering range and mass accuracy threshold
+      // Amend spectrum information based on the filtered target m/z and intensity value: basePeakIntensity, basePeakMZ, totalIonCurrent, mzValues[], intensityValues[]
+      // Gap-filling = 0 for target m/z that is not found within the m/z filtering range and mass accuracy threshold
       mz = mz === 0 ? targetMZ : mz;
       if (intensity > basePeakIntensity) {
         basePeakIntensity = intensity;
@@ -119,7 +122,7 @@ export async function filterSpectra(
       mzValues.push(mz);
       intensityValues.push(intensity);
 
-      // Append chromatogram data (Extracted Ion Chromatogram) for targeted m/z based on spectrum data filtering configuration
+      // Append chromatogram data (Extracted Ion Chromatogram) for target m/z
       const idx = chromatogram.findIndex(
         (chromObj) => chromObj.id === `EIC ${targetMZ}`,
       );

@@ -5,7 +5,7 @@ import { initChromatogramArray } from '../utils/initChromatogramArray.js';
 /**
  * To test initChromatogramArray()
  * Input: configParam (Object)
- * Output: An array structure to store extracted chromatogram data in a standardised manner (Chromatogram[])
+ * Output: An array of chromatogram data (Chromatogram[])
  */
 describe('initChromatogramArray', () => {
   // Dummy data

@@ -1,4 +1,6 @@
 /**
+ * @typedef {import('../typedef/index.mjs').Spectrum} Spectrum
+ * @typedef {import('../typedef/index.mjs').Chromatogram} Chromatogram
  * @typedef {import('../typedef/index.mjs').MS} MS
  */
 
@@ -28,13 +30,21 @@ export async function extractMS(configParam, data) {
   const date = timestamp.date;
   const time = timestamp.time;
 
-  let spectrumCount = 0;
+  /**
+   * @type {Spectrum[]}
+   */
   let spectrum = [];
-  let chromatogramCount = 0;
-  let chromatogram = [];
+  let spectrumCount = 0;
 
-  // Check if spectrum array exists in parsed mzML and extract data accordingly
+  /**
+   * @type {Chromatogram[]}
+   */
+  let chromatogram = [];
+  let chromatogramCount = 0;
+
+  // Check if spectrum list exists in parsed mzML and extract data accordingly
   if (spectrumListMap) {
+    // If spectrum list exist
     // Initialise chromatogram array to store chromatogram data
     chromatogram = await initChromatogramArray(configParam);
     chromatogramCount = chromatogram.length;

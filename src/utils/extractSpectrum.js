@@ -14,9 +14,9 @@ import { roundDecimalPlace } from './roundDecimalPlace.js';
 
 /**
  * Extract spectrum data from parsed mzML data.
- * @param {Object} configParam Configuration parameters passed via the command line interface.
+ * @param {Object} configParam Configuration parameters.
  * @param {array} spectrumArray An array of spectrum data contained within the parsed mzML data.
- * @param {Chromatogram[]} chromatogram An array of chromatogram data defined by initChromatogramArray to be used for the extraction (and filtration) process.
+ * @param {Chromatogram[]} chromatogram An initialised array of objects to store chromatogram data.
  * @returns {Promise<Object>} A promise that resolves with an object containing the extracted spectrum count, spectrum data array and chromatogram data array.
  */
 export async function extractSpectrum(
@@ -24,8 +24,11 @@ export async function extractSpectrum(
   spectrumArray,
   chromatogram,
 ) {
+  /**
+   * @type {Spectrum[]}
+   */
+  const spectrum = [];
   let spectrumCount = 0;
-  let spectrum = [];
 
   // Loop through spectrum array
   for (const spectrumData of spectrumArray) {
@@ -64,7 +67,7 @@ export async function extractSpectrum(
       intensityArray: [],
     };
 
-    // Spectrum parameters
+    // Spectrum parameters (type, msLevel, scanType, polarity, basePeakIntensity, basePeakMZ, totalIonCurrent)
     const spectrumCvParam = Array.isArray(spectrumData.cvParam)
       ? spectrumData.cvParam
       : [spectrumData.cvParam];
@@ -83,7 +86,7 @@ export async function extractSpectrum(
       }
     }
 
-    // Scan parameters
+    // Scan parameters (retentionTime, presetScanConfiguration, inverseReducedIonMobility)
     const scanCvParam = Array.isArray(scanMap.cvParam)
       ? scanMap.cvParam
       : [scanMap.cvParam];
@@ -105,7 +108,7 @@ export async function extractSpectrum(
       }
     }
 
-    // Scan window parameters
+    // Scan window parameters (scanWindowLowerLimit, scanWindowUpperLimit)
     const scanWindowCvParam = Array.isArray(scanWindowMap.cvParam)
       ? scanWindowMap.cvParam
       : [scanWindowMap.cvParam];
@@ -124,7 +127,7 @@ export async function extractSpectrum(
       const selectedIonMap = precursorMap.selectedIonList.selectedIon;
       const activationMap = precursorMap.activation;
 
-      // Isolation window parameters
+      // Isolation window parameters (isolationWindowTarget, isolationWindowLowerOffset, isolationWindowUpperOffset)
       const isolationWindowCvParam = Array.isArray(isolationWindowMap.cvParam)
         ? isolationWindowMap.cvParam
         : [isolationWindowMap.cvParam];
@@ -136,7 +139,7 @@ export async function extractSpectrum(
         }
       }
 
-      // Selected ion parameters
+      // Selected ion parameters (selectedIonMZ)
       const selectedIonCvParam = Array.isArray(selectedIonMap.cvParam)
         ? selectedIonMap.cvParam
         : [selectedIonMap.cvParam];
@@ -148,7 +151,7 @@ export async function extractSpectrum(
         }
       }
 
-      // Activation parameters
+      // Activation parameters (collisionType, collisionEnergy)
       const activationCvParam = Array.isArray(activationMap.cvParam)
         ? activationMap.cvParam
         : [activationMap.cvParam];
@@ -162,7 +165,7 @@ export async function extractSpectrum(
       }
     }
 
-    // Spectrum binary data array
+    // Binary data array (mzArray, intensityArray)
     for (const binaryData of binaryDataArrayMap) {
       const binaryCvParam = Array.isArray(binaryData.cvParam)
         ? binaryData.cvParam
@@ -199,7 +202,7 @@ export async function extractSpectrum(
             }
 
             data[mappedKey] = decodedBinary;
-            decodedBinary = null;
+            decodedBinary = [];
           }
         }
       }
@@ -242,7 +245,7 @@ export async function extractSpectrum(
     }
 
     // Spectrum data filtering based on properties (if defined)
-    // Add data object to spectrum array
+    // Add data to spectrum array
     // Append data to Total Ion Chromatogram (TIC) and Base Peak Chromatogram (BPC)
     const ticIDX = chromatogram.findIndex((chromObj) => chromObj.id === 'TIC');
     const bpcIDX = chromatogram.findIndex((chromObj) => chromObj.id === 'BPC');
@@ -254,7 +257,6 @@ export async function extractSpectrum(
       ) {
         data.index = spectrumCount;
         spectrumCount++;
-
         spectrum.push(data);
 
         chromatogram[ticIDX].timeArray.push(data.retentionTime);
@@ -268,7 +270,6 @@ export async function extractSpectrum(
       }
     } else {
       spectrumCount++;
-
       spectrum.push(data);
 
       chromatogram[ticIDX].timeArray.push(data.retentionTime);
