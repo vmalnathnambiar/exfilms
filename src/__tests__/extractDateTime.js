@@ -2,7 +2,7 @@
 
 import { describe, test, expect } from 'vitest';
 
-import { extractTimestamp } from '../utils/extractTimestamp.js';
+import { extractTimestamp } from '../utils/extractDateTime.js';
 
 /**
  * To test extractTimestamp()
