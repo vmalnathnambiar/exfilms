@@ -6,7 +6,7 @@ authors:
     orcid: 'https://orcid.org/0000-0001-5384-6788'
 title: 'ExfilMS'
 version: 1.2.2
-abstract: 'A cross-platform, command line interface (CLI) tool to extract mass spectrometry (MS) data from mzML formatted files, with filtering capabilities.'
+abstract: 'ExfilMS is a cross-platform, command line interface (CLI) tool to extract mass spectrometry (MS) data from mzML formatted files, with filtering capabilities.'
 keywords:
   - 'mass spectrometry'
   - 'data extraction'
