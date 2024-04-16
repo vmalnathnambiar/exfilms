@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/vmalnathnambiar/exfilms/compare/v1.2.4...v1.2.5) (2024-04-16)
+
+
+### Bug Fixes
+
+* **readme:** minor documentation changes ([b4f6db0](https://github.com/vmalnathnambiar/exfilms/commit/b4f6db0058991e4f899fbd094c878ab53e6ec11c))
+
 ## [1.2.4](https://github.com/vmalnathnambiar/exfilms/compare/v1.2.3...v1.2.4) (2024-04-16)
 
 
