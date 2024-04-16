@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/vmalnathnambiar/exfilms/compare/v1.2.2...v1.2.3) (2024-04-16)
+
+
+### Bug Fixes
+
+* add citation file and zenodo release ([ec99294](https://github.com/vmalnathnambiar/exfilms/commit/ec99294cdfaaf77e032fcca20d7977d202fc7f90))
+
 ## [1.2.2](https://github.com/vmalnathnambiar/exfilms/compare/v1.2.1...v1.2.2) (2024-04-12)
 
 
