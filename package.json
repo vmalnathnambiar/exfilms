@@ -23,6 +23,12 @@
     "name": "Vimalnath Nambiar",
     "orcid": "https://orcid.org/0000-0001-5384-6788"
   },
+  "contributors": [
+    {
+      "name": "Shabarinath Nambiar",
+      "orcid": "https://orcid.org/0000-0002-6713-1705"
+    }
+  ],
   "type": "module",
   "bin": {
     "exfilms": "./src/exfilms.js"
