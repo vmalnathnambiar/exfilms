@@ -1,11 +1,32 @@
 {
   "name": "exfilms",
   "version": "1.2.2",
-  "description": "A cross-platform, command line interface (CLI) tool to extract mass spectrometry (MS) data from mzML formatted files, with spectrum filtering capabilities.",
+  "description": "A cross-platform, command line interface (CLI) tool to extract mass spectrometry (MS) data from mzML formatted files, with filtering capabilities.",
+  "keywords": [
+    "mass spectrometry",
+    "data extraction",
+    "spectrum filtering",
+    "data standardisation",
+    "command line tool",
+    "open source"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vmalnathnambiar/exfilms.git"
+  },
+  "homepage": "https://github.com/vmalnathnambiar/exfilms#readme",
+  "bugs": {
+    "url": "https://github.com/vmalnathnambiar/exfilms/issues"
+  },
+  "author": {
+    "name": "Vimalnath Nambiar",
+    "orcid": "https://orcid.org/0000-0001-5384-6788"
+  },
+  "type": "module",
   "bin": {
     "exfilms": "./src/exfilms.js"
   },
-  "type": "module",
   "scripts": {
     "eslint": "eslint src",
     "eslint-fix": "npm run eslint -- --fix",
@@ -17,24 +38,6 @@
     "semantic-release": "semantic-release",
     "commit": "git cz"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vmalnathnambiar/exfilms.git"
-  },
-  "keywords": [
-    "mass spectrometry",
-    "data extraction",
-    "spectrum filtering",
-    "data standardisation",
-    "command line tool",
-    "open source"
-  ],
-  "author": "Vimalnath Nambiar",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/vmalnathnambiar/exfilms/issues"
-  },
-  "homepage": "https://github.com/vmalnathnambiar/exfilms#readme",
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",

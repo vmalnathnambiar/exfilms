@@ -43,7 +43,7 @@ figlet('ExfilMS', async (err, data) => {
     );
     console.log(
       `${chalk.bold.yellowBright(data)}\n${chalk.grey(
-        `Version ${pkg.version} ${pkg.author}\n${pkg.description}\n`,
+        `Version ${pkg.version}\n${pkg.description}\n`,
       )}`,
     );
 

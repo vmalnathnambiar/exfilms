@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: 'If you use ExfilMS in your work, please cite it using the following.'
+authors:
+  - family-names: 'Nambiar'
+    given-names: 'Vimalnath'
+    orcid: 'https://orcid.org/0000-0001-5384-6788'
+title: 'ExfilMS'
+version: 1.2.2
+abstract: 'A cross-platform, command line interface (CLI) tool to extract mass spectrometry (MS) data from mzML formatted files, with filtering capabilities.'
+keywords:
+  - 'mass spectrometry'
+  - 'data extraction'
+  - 'spectrum filtering'
+  - 'data standardisation'
+  - 'command line tool'
+  - 'open source'
+license: 'MIT'
+doi:
+date-released: '2024-04-16'
+url: 'https://github.com/vmalnathnambiar/exfilms'

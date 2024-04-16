@@ -18,7 +18,7 @@
 
 ## Introduction
 
-ExfilMS is a cross-platform, command line interface (CLI) tool that allows you to easily extract mass spectrometry (MS) data from mzML formatted files, with spectrum filtering capabilities. This guide will help you understand how to use ExfilMS to its full potential.
+ExfilMS is a cross-platform, command line interface (CLI) tool that allows you to easily extract mass spectrometry (MS) data from mzML formatted files, with filtering capabilities. This guide will help you understand how to use ExfilMS to its full potential.
 
 > [!NOTE]\
 > If you are reading this guide, it is assumed that you have ExfilMS already installed and is available on your device. If it is not installed, please refer to the installation guide [here](../README.md#installation).
