@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/vmalnathnambiar/exfilms/compare/v1.2.3...v1.2.4) (2024-04-16)
+
+
+### Bug Fixes
+
+* **citation:** version update ([f99d790](https://github.com/vmalnathnambiar/exfilms/commit/f99d790ba9473952f3eb1fc18ed2e6569f80f4ed))
+
 ## [1.2.3](https://github.com/vmalnathnambiar/exfilms/compare/v1.2.2...v1.2.3) (2024-04-16)
 
 
