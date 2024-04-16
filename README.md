@@ -184,7 +184,7 @@ For more guidance on how to use ExfilMS, please refer to our available guides be
 
 If you use ExfilMS in your work, please cite it using the following:
 
-Nambiar, V., & Nambiar, S. (2024). ExfilMS (Version 1.2.3) [Computer software]. https://doi.org/10.5281/zenodo.10976761
+Nambiar, V., & Nambiar, S. (2024). ExfilMS (Version 1.2.4) [Computer software]. https://doi.org/10.5281/zenodo.10976761
 
 <br>
 
