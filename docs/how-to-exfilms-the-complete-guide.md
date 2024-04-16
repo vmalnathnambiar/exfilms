@@ -4,7 +4,7 @@
 
 1. [Introduction](#introduction)
 2. [Execution of ExfilMS and The Use of Flags](#execution-of-exfilms-and-the-use-of-flags)
-3. [Useful Commands](#useful-commands)
+3. [Useful Flags](#useful-flags)
    - [General](#general)
    - [Specifying Input Data](#specifying-input-data)
    - [Specifying Outputs](#specifying-outputs)
@@ -33,17 +33,17 @@ However, running this command on its own will result in an error, as seen below.
 
 ![launch-err](../img/launch/err-default.png)
 
-The `i`, `--inputDirectory` displayed in the error message is known as a command line argument (or "command" or "flag") that is required for the successful execution of ExfilMS. There are both required and non-required flags available for your use. The inclusion of these flags along with the `exfilms` command will configure and establish the behaviour of the tool for running its extraction (and filtering) process.
+The `i`, `--inputDirectory` displayed in the error message is known as a command line flag (or flag) that is required for the successful execution of ExfilMS. There are both required and non-required flags available for your use. The inclusion of these flags along with the `exfilms` command will configure and establish the behaviour of the tool for running its extraction (and filtering) process.
 
 <br>
 
-## Useful Commands
+## Useful Flags
 
 ### General
 
 `--help`
 
-Displays a list of available commands along with their descriptions. This is useful for understanding the purpose of each flag.
+Displays a list of available flags along with their descriptions. This is useful for understanding the purpose of each flag.
 
 ```md
 # Show help

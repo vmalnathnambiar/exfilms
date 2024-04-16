@@ -1,10 +1,10 @@
 ![ExfilMS](./img/logo.png)\
-[![NPM version][npm-image]][npm-url]
-[![license][license-image]][license-url]
-[![CI status][ci-image]][ci-url]
-[![test coverage][codecov-image]][codecov-url]
-[![semantic release][semantic-image]][semantic-url]
-[![npm download][download-image]][download-url]
+[![NPM][npm-image]][npm-url]
+[![License][license-image]][license-url]
+[![CI/CD][cicd-image]][cicd-url]
+[![CodeCov][codecov-image]][codecov-url]
+[![Semantic-Release][semantic-image]][semantic-url]
+[![Downloads][downloads-image]][downloads-url]
 [![DOI-Zenodo][doi-zenodo-image]][doi-zenodo-url]
 
 ## Introduction
@@ -120,11 +120,11 @@ $ docker build -t exfilms .
 ### CLI
 
 ```md
-# Using command line arguments
+# Using command line flags
 
 $ exfilms -i "/path/to/input/directory/containing/mzML/data/files/" ...
 
-# Interactive
+# Running interactive mode
 
 $ exfilms -x
 ```
@@ -134,11 +134,11 @@ $ exfilms -x
 ### Docker
 
 ```md
-# Using command line arguments
+# Using command line flags
 
 $ docker run --rm -it -v "/path/to/input/directory/":/inputDirectory -v "/path/to/output/directory/":/outputDirectory -v "/path/to/log/directory/":/logDirectory exfilms -i /inputDirectory -o /outputDirectory -l /logDirectory ....
 
-# Interactive
+# Running interactive mode
 
 $ docker run --rm -it -v "/path/to/input/directory/":/inputDirectory -v "/path/to/output/directory/":/outputDirectory -v "/path/to/log/directory/":/logDirectory exfilms -x
 ```
@@ -168,15 +168,15 @@ For more guidance on how to use ExfilMS, please refer to our available guides be
 
 > [!WARNING]
 >
-> 1. Unable to extract MS data from Bruker EVOQ instruments and SCIEX wiff2 scan files (unsupported format by ProteoWizard).
+> 1. Unable to extract MS data from Bruker EVOQ instruments and SCIEX wiff2 scan files (Unsupported file formats by ProteoWizard).
 >
 > 2. Unable to parse mzML data with a file size > 2GB.
 >
 > 3. Large MS data may cause Node environment to terminate abruptly due to memory limit exhaustion.
 >
-> 4. Slow output write speed due to build architecture difference (i.e, Intel vs AMD vs ARM) when running ExfilMS with Docker.
+> 4. May have slow output write speed due to build architecture difference (i.e, Intel vs AMD vs ARM) when running ExfilMS with Docker.
 >
-> 5. Unable to perform chromatography filtering as of now.
+> 5. Unable to perform chromatogram filtering as of now.
 
 <br>
 
@@ -184,16 +184,16 @@ For more guidance on how to use ExfilMS, please refer to our available guides be
 
 If you use ExfilMS in your work, please cite it using the following:
 
-Nambiar, V., & Nambiar, S. (2024). ExfilMS (Version 1.2.4) [Computer software]. https://doi.org/10.5281/zenodo.10976761
+Nambiar, V., & Nambiar, S. (2024). ExfilMS (Version 1.2.5) [Computer software]. https://doi.org/10.5281/zenodo.10976761
 
 <br>
-
-<!-- ## API Documentation
-Please refer to our API documentation [here](https://vmalnathnambiar.github.io/exfilms/). -->
 
 ## License
 
 Please refer to our license information [here](./LICENSE).
+
+<!-- ## API Documentation
+Please refer to our API documentation [here](https://vmalnathnambiar.github.io/exfilms/). -->
 
 <!-- URLs used in the markdown document-->
 
@@ -201,14 +201,14 @@ Please refer to our license information [here](./LICENSE).
 [npm-url]: https://www.npmjs.com/package/exfilms
 [license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
 [license-url]: https://github.com/vmalnathnambiar/exfilms/blob/main/LICENSE
-[ci-image]: https://github.com/vmalnathnambiar/exfilms/actions/workflows/build-publish.yml/badge.svg
-[ci-url]: https://github.com/vmalnathnambiar/exfilms/actions/workflows/build-publish.yml
+[cicd-image]: https://github.com/vmalnathnambiar/exfilms/actions/workflows/build-publish.yml/badge.svg
+[cicd-url]: https://github.com/vmalnathnambiar/exfilms/actions/workflows/build-publish.yml
 [codecov-image]: https://codecov.io/gh/vmalnathnambiar/exfilms/graph/badge.svg?token=V8O80QXJ5S
 [codecov-url]: https://codecov.io/gh/vmalnathnambiar/exfilms
 [semantic-image]: https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release
 [semantic-url]: https://github.com/semantic-release/semantic-release
-[download-image]: https://img.shields.io/npm/dm/exfilms.svg
-[download-url]: https://www.npmjs.com/package/exfilms
+[downloads-image]: https://img.shields.io/npm/dm/exfilms.svg
+[downloads-url]: https://www.npmjs.com/package/exfilms
 [doi-zenodo-image]: https://zenodo.org/badge/DOI/10.5281/zenodo.10976761.svg
 [doi-zenodo-url]: https://doi.org/10.5281/zenodo.10976761
 [nodejs-url]: https://nodejs.org/en/download/
