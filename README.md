@@ -5,6 +5,7 @@
 [![test coverage][codecov-image]][codecov-url]
 [![semantic release][semantic-image]][semantic-url]
 [![npm download][download-image]][download-url]
+[![DOI-Zenodo][doi-zenodo-image]][doi-zenodo-url]
 
 ## Introduction
 
@@ -183,7 +184,7 @@ For more guidance on how to use ExfilMS, please refer to our available guides be
 
 If you use ExfilMS in your work, please cite it using the following:
 
-Nambiar, V., & Nambiar, S. (2024). ExfilMS (Version 1.2.3) [Computer software]. https://github.com/vmalnathnambiar/exfilms
+Nambiar, V., & Nambiar, S. (2024). ExfilMS (Version 1.2.3) [Computer software]. https://doi.org/10.5281/zenodo.10976761
 
 <br>
 
@@ -208,5 +209,7 @@ Please refer to our license information [here](./LICENSE).
 [semantic-url]: https://github.com/semantic-release/semantic-release
 [download-image]: https://img.shields.io/npm/dm/exfilms.svg
 [download-url]: https://www.npmjs.com/package/exfilms
+[doi-zenodo-image]: https://zenodo.org/badge/DOI/10.5281/zenodo.10976761.svg
+[doi-zenodo-url]: https://doi.org/10.5281/zenodo.10976761
 [nodejs-url]: https://nodejs.org/en/download/
 [docker-url]: https://docs.docker.com/engine/install/
