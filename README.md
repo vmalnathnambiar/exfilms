@@ -183,7 +183,7 @@ For more guidance on how to use ExfilMS, please refer to our available guides be
 
 If you use ExfilMS in your work, please cite it using the following:
 
-Nambiar, V. (2024). ExfilMS. GitHub. https://github.com/vmalnathnambiar/exfilms
+Nambiar, V., & Nambiar, S. (2024). ExfilMS (Version 1.2.3) [Computer software]. https://github.com/vmalnathnambiar/exfilms
 
 <br>
 
