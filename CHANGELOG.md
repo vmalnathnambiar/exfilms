@@ -1,3 +1,10 @@
+## [1.2.8](https://github.com/vmalnathnambiar/exfilms/compare/v1.2.7...v1.2.8) (2024-04-18)
+
+
+### Bug Fixes
+
+* **package.json:** resolve repository url error ([110ebef](https://github.com/vmalnathnambiar/exfilms/commit/110ebef8e7e643b3c3d241b221761dc8cbaf8c00))
+
 ## [1.2.7](https://github.com/vmalnathnambiar/exfilms/compare/v1.2.6...v1.2.7) (2024-04-18)
 
 
