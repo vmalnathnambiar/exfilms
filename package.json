@@ -13,7 +13,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vmalnathnambiar/exfilms.git"
+    "url": "git+https://github.com/vmalnathnambiar/exfilms.git"
   },
   "homepage": "https://github.com/vmalnathnambiar/exfilms#readme",
   "bugs": {
@@ -31,7 +31,7 @@
   ],
   "type": "module",
   "bin": {
-    "exfilms": "./src/exfilms.js"
+    "exfilms": "src/exfilms.js"
   },
   "scripts": {
     "eslint": "eslint src",
