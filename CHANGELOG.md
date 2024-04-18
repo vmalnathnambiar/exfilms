@@ -1,3 +1,10 @@
+## [1.2.7](https://github.com/vmalnathnambiar/exfilms/compare/v1.2.6...v1.2.7) (2024-04-18)
+
+
+### Bug Fixes
+
+* **npm:** update npm package version ([a3a46bb](https://github.com/vmalnathnambiar/exfilms/commit/a3a46bb46d7132f67ac88546e0c4913f7d0e95c1))
+
 ## [1.2.6](https://github.com/vmalnathnambiar/exfilms/compare/v1.2.5...v1.2.6) (2024-04-18)
 
 
