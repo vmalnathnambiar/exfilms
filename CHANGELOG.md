@@ -1,3 +1,10 @@
+## [1.2.6](https://github.com/vmalnathnambiar/exfilms/compare/v1.2.5...v1.2.6) (2024-04-18)
+
+
+### Bug Fixes
+
+* **decoder:** resolve issue [#7](https://github.com/vmalnathnambiar/exfilms/issues/7) ([6e9dce0](https://github.com/vmalnathnambiar/exfilms/commit/6e9dce0b2ee41cbd978248976cbf5d3ec4001109))
+
 ## [1.2.5](https://github.com/vmalnathnambiar/exfilms/compare/v1.2.4...v1.2.5) (2024-04-16)
 
 
