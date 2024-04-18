@@ -25,6 +25,11 @@ export async function decoder(precisionValue, compressionMethod, encodedData) {
 
   let decodedData;
 
+  // Check if encodedData is empty
+  if (encodedData.length === 0) {
+    return precisionValue === 64 ? new Float64Array() : new Float32Array();
+  }
+
   // Check compression method used
   if (compressionMethod === 'none') {
     decodedData = decode(encodedData);

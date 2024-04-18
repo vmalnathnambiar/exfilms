@@ -141,6 +141,14 @@ describe('decoder', () => {
     ).toStrictEqual(testMZ);
   });
 
+  test('decode encoded data (empty binary): 64-bit', async () => {
+    expect(
+      Array.from(
+        await decoder(encoding.precisionValue, encoding.compressionMethod, ''),
+      ),
+    ).toStrictEqual([]);
+  });
+
   test('decode encoded data: 32-bit', async () => {
     encoding.precisionValue = 32;
 
@@ -176,5 +184,13 @@ describe('decoder', () => {
         ),
       ),
     ).toStrictEqual(testIntensity);
+  });
+
+  test('decode encoded data (empty binary): 32-bit', async () => {
+    expect(
+      Array.from(
+        await decoder(encoding.precisionValue, encoding.compressionMethod, ''),
+      ),
+    ).toStrictEqual([]);
   });
 });

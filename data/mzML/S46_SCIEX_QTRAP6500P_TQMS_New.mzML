@@ -56,7 +56,7 @@
         </processingMethod>
       </dataProcessing>
     </dataProcessingList>
-    <run id="_x0032_0230608_MR-LIPT-001_RLIP_Stress_Test-20230605_MR-LIPT-001_RLIP_Stress_Test_VLTR_96" defaultInstrumentConfigurationRef="IC1" startTimeStamp="2023-06-09T17:24:53Z" defaultSourceFileRef="WIFF">
+    <run id="S46_SCIEX_QTRAP6500P_TQMS_New" defaultInstrumentConfigurationRef="IC1" startTimeStamp="2023-06-09T17:24:53Z" defaultSourceFileRef="WIFF">
       <chromatogramList count="1" defaultDataProcessingRef="pwiz_Reader_ABI_conversion">
         <chromatogram index="0" id="TIC" defaultArrayLength="6053">
           <cvParam cvRef="MS" accession="MS:1000235" name="total ion current chromatogram" value=""/>
