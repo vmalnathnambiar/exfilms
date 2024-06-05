@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/vmalnathnambiar/exfilms/compare/v1.2.8...v1.3.0) (2024-06-05)
+
+
+### Features
+
+* **parsetargetfile:** add preliminary target file check ([93aa3a3](https://github.com/vmalnathnambiar/exfilms/commit/93aa3a306cf550e05363ab0d9313ff93291cbc65))
+
 ## [1.2.8](https://github.com/vmalnathnambiar/exfilms/compare/v1.2.7...v1.2.8) (2024-04-18)
 
 
