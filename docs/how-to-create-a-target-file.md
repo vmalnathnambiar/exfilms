@@ -1,36 +1,49 @@
 # How to Create a Target File
 
 > [!NOTE]\
-> To create the target file, I would highly recommend the use of Google Sheets. This will enable you to easily save and/or publish the sheet to the web as tsv with ease.
+> To create the target file, it is highly recommend to use Google Sheets. This will enable you to easily save and/or publish the sheet to the web as tsv with ease.
 
 ### Table of Contents
 
 1. [File Layout](#file-layout)
+
 2. [Save to Local Device](#save-to-local-device)
+
 3. [Publish to Web](#publish-to-web)
 
 <br>
 
 ## File Layout
 
-The targeted m/z filtering method provided by ExfilMS for spectra filtering requires a target file. This target file should consist of the following data:
+The targeted m/z filtering method provided by ExfilMS for spectra filtering requires a target file. The target file consists of the following data:
 
-- Analyte Name
-- Analyte Type
-- m/z Value
-- Retention Time
-- MS Level
-- Associated Internal Standards
-- Associated Products
+- Compound Name (compoundName)
+
+- Compound Type (compoundType)
+
+  - Mass Calibration Reference
+  - Internal Standard
+  - Endogenous Analyte
+  - Product
+
+- m/z Value (mzValue)
+
+- Retention Time (retentionTime)
+
+- MS Level (msLevel)
+
+- Internal Standard (internalStandard)
+
+- Products (product)
 
 <br>
 
-To create this target file, you **MUST** follow the layout shown below.
+To create the target file, you must follow the layout shown below.
 
 ![layout](../img/targetFile/layout.png)
 
 > [!IMPORTANT]\
-> The header names MUST match the headers displayed in the layout.
+> The header names must match the headers displayed in the layout.
 
 <br>
 
@@ -59,8 +72,11 @@ Once you select the option, you will be prompted a pop-up box allowing you to sp
 For the purpose of ExfilMS, you should do the following:
 
 1. Click on Link
+
 2. Choose the sheet that you would like to publish from the dropdown options
+
 3. Choose TSV format from the dropdown options
+
 4. Publish
 
 <br>

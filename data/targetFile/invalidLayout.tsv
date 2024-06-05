@@ -1,4 +1,4 @@
-analyte	type	mz	rt	level	ISTD	product
+compound	type	mz	rt	level	ISTD	product
 Sodium Formate-PosRef1	Mass Calibration	90.76644		1		
 Sodium Formate-PosRef2	Mass Calibration	158.964068		1		
 Sodium Formate-PosRef3	Mass Calibration	226.951491		1		

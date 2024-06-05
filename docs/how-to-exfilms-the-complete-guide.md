@@ -3,15 +3,24 @@
 ### Table of Contents
 
 1. [Introduction](#introduction)
+
 2. [Execution of ExfilMS and The Use of Flags](#execution-of-exfilms-and-the-use-of-flags)
+
 3. [Useful Flags](#useful-flags)
+
    - [General](#general)
+
    - [Specifying Input Data](#specifying-input-data)
+
    - [Specifying Outputs](#specifying-outputs)
+
    - [Dealing with Precision](#dealing-with-precision)
+
    - [Spectra Filtering](#spectra-filtering)
+
      - [Targeted m/z Filtering](#method-1---targeted-mz-filtering)
      - [m/z Range Filtering](#method-2---mz-range-filtering)
+
    - [Spectrum Data Filtering](#spectrum-data-filtering)
 
 <br>
@@ -111,7 +120,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" --fileList "file1
 `-f`, `--outputFormat`
 
 _Input type: String_\
-_Choices: "JSON", "TSV" || Default: "JSON"_
+_Choices: "JSON", "TSV" | Default: "JSON"_
 
 Specify an output format. There are currently two available output formats for you to choose from.
 
@@ -133,7 +142,7 @@ $ exfilms -i "/path/to/input/directory/" -f (or --outputFormat) "JSON"
 `-o`, `--outputDirectory`
 
 _Input type: String_\
-_Default: /home/dir/exfilms/outputFormat/_
+_Default: "/home/dir/exfilms/outputFormat/"_
 
 Specify the output directory to store all the generated output files.
 
@@ -148,7 +157,7 @@ $ exfilms -i "/path/to/input/directory/" -o (or --outputDirectory) "/path/to/out
 `-l`, `--logDirectory`
 
 _Input type: String_\
-_Default: /home/dir/.exfilms/_
+_Default: "/home/dir/.exfilms/"_
 
 Specify the log directory to store the generated log file of the extraction (and filtering) process.
 
@@ -182,7 +191,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -d (or --decimalP
 ExfilMS also provides you with the capability to filter the spectra (m/z and intensity array) acquired during acquisition for each scan timepoint (retention time) via two methods.
 
 > [!WARNING]\
-> The spectra filtering options are mutually exclusive. You can only use **ONE** of the method at a time.
+> The spectra filtering options are mutually exclusive. You can only use one of the method at any given time.
 
 #### Method 1 - Targeted m/z Filtering
 
@@ -291,7 +300,7 @@ ExfilMS also provides you with the functionality of filtering the spectrum based
 `--spectrumType`
 
 _Input type: Space-separated strings_\
-_Choices: "profile", "centroid" || Default: Both spectrum types_
+_Choices: "profile", "centroid" | Default: "profile", "centroid"_
 
 ```md
 # Filter for specific spectrum type
@@ -304,7 +313,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSp
 `--msLevel`
 
 _Input type: Space-separated numbers_\
-_Default: MS level 1 and 2_
+_Default: 1 2_
 
 ```md
 # Filter for specific MS level
@@ -317,7 +326,7 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSp
 `--spectrumPolarity`
 
 _Input type: Space-separated strings_\
-_Choices: "positive", "negative" || Default: Both polarities_
+_Choices: "positive", "negative" | Default: "positive", "negative"_
 
 ```md
 # Filter for specific spectrum polarity

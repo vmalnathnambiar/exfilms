@@ -9,7 +9,7 @@
 
 ## Introduction
 
-ExfilMS is a cross-platform, command line interface (CLI) tool to extract mass spectrometry (MS) data from mzML formatted files, with filtering capabilities.
+ExfilMS is a cross-platform, command line interface (CLI) tool that allows you to easily extract mass spectrometry (MS) data from mzML formatted files, with filtering capabilities.
 
 <br>
 
@@ -25,6 +25,7 @@ ExfilMS is a cross-platform, command line interface (CLI) tool to extract mass s
    - Range (minimum and maximum m/z)
 
 4. Spectrum data filtering
+
    - Type (profile / centroid)
    - MS level (i.e., 1, 2, ..., n)
    - Polarity (positive / negative)
@@ -75,7 +76,7 @@ Data extraction and spectrum filtration have been tested on data files acquired 
    <tr>
       <td>SCIEX</td>
       <td>QTRAP6500+ TQ-MS</td>
-      <td>Working (Untested on wiff2 scan files acquired using the new SCIEX OS acquisition software - Conversion not supported by ProteoWizard)</td>
+      <td>Working</td>
    </tr>
 </table>
 
@@ -144,15 +145,13 @@ $ docker run --rm -it -v "/path/to/input/directory/":/inputDirectory -v "/path/t
 ```
 
 > [!NOTE]\
-> Running ExfilMS using Docker requires the use of volume mapping in the Docker command. For example,
+> Running ExfilMS using Docker requires the use of volume mapping in the executed Docker command using `-v "/path/on/the/local/machine/":/mappedPath`. Once the volume mapping is done, you would then use the appropriate mapped path as the input where required.
 >
-> `-v "/path/on/the/local/machine/":/tmpPath`
+> For the successful execution of ExfilMS, you are required to map the following paths:
 >
-> Once the volume mapping is done, you would use /tmpPath as the input data where required, instead of the actual path on the local machine. For the successful execution of ExfilMS, you are **REQUIRED** to provide the following:
->
-> - -v "/path/to/input/directory/":/inputDirectory
-> - -v "/path/to/output/directory/":/outputDirectory
-> - -v "/path/to/log/directory/":/logDirectory
+> - Input directory (`-v "/path/to/input/directory/":/inputDirectory`)
+> - Output directory (`-v "/path/to/output/directory/":/outputDirectory`)
+> - Log directory (`-v "/path/to/log/directory/":/logDirectory`)
 
 <br>
 
@@ -168,15 +167,15 @@ For more guidance on how to use ExfilMS, please refer to our available guides be
 
 > [!WARNING]
 >
-> 1. Unable to extract MS data from Bruker EVOQ instruments and SCIEX wiff2 scan files (Unsupported file formats by ProteoWizard).
+> 1. Unable to extract MS data from Bruker EVOQ instruments (Unsupported file formats by ProteoWizard).
 >
 > 2. Unable to parse mzML data with a file size > 2GB.
 >
 > 3. Large MS data may cause Node environment to terminate abruptly due to memory limit exhaustion.
 >
-> 4. May have slow output write speed due to build architecture difference (i.e, Intel vs AMD vs ARM) when running ExfilMS with Docker.
+> 4. May have slow output write speed due to build architecture difference.
 >
-> 5. Unable to perform chromatogram filtering as of now.
+> 5. Unable to perform chromatogram filtering (work in progress).
 
 <br>
 
@@ -184,7 +183,7 @@ For more guidance on how to use ExfilMS, please refer to our available guides be
 
 If you use ExfilMS in your work, please cite it using the following:
 
-Nambiar, V., & Nambiar, S. (2024). ExfilMS (Version 1.2.8) [Computer software]. https://doi.org/10.5281/zenodo.10976761
+Nambiar, V., & Nambiar, S. (2024). ExfilMS (Version 1.3.0) [Computer software]. https://doi.org/10.5281/zenodo.10976761
 
 <br>
 

@@ -109,30 +109,17 @@ describe('parseTargetFile', () => {
       'parseTargetFile(): Target m/z data not found',
     );
 
-    // File with invalid layout (wrong header)
-    testConfigParam.targetFile = './data/targetFile/invalidLayout.tsv';
-    await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
-      'parseTargetFile(): Target m/z data not found',
-    );
-
-    // Without spectrum msLevel filtering
-    testConfigParam.filterSpectrum = false;
-    await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
-      'parseTargetFile(): Target m/z data not found',
-    );
-
-    // Empty file with just the header
-    testConfigParam.filterSpectrum = true;
-    testConfigParam.msLevel = [1, 2];
     testConfigParam.targetFile = './data/targetFile/empty.tsv';
     await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
       'parseTargetFile(): Target m/z data not found',
     );
+  });
 
-    // Without spectrum msLevel filtering
-    testConfigParam.filterSpectrum = false;
+  test('throw error: missing column headers', async () => {
+    // File with invalid headers
+    testConfigParam.targetFile = './data/targetFile/invalidLayout.tsv';
     await expect(parseTargetFile(testConfigParam)).rejects.toThrowError(
-      'parseTargetFile(): Target m/z data not found',
+      'parseTargetFile(): Missing column headers - compoundName, compoundType, mzValue, retentionTime, msLevel, internalStandard',
     );
   });
 });

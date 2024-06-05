@@ -40,8 +40,33 @@ export async function parseTargetFile(configParam) {
     );
   }
 
+  // Check data availability and column headers
+  const requiredColumns = [
+    'compoundName',
+    'compoundType',
+    'mzValue',
+    'retentionTime',
+    'msLevel',
+    'internalStandard',
+    'product',
+  ];
+  const actualColumns = data.length > 0 ? Object.keys(data[0]) : [];
+  const missingColumns = requiredColumns.filter(
+    (col) => !actualColumns.includes(col),
+  );
+
+  // Throw error if target file has no data or has missing column headers
+  if (data.length === 0) {
+    throw new Error('parseTargetFile(): Target m/z data not found');
+  } else if (missingColumns.length > 0) {
+    throw new Error(
+      `parseTargetFile(): Missing column headers - ${missingColumns.join(
+        ', ',
+      )}`,
+    );
+  }
+
   // Extract and sort m/z target list (distinct values only)
-  // Requires to follow a targetFile layout (header - msLevel and mzValue must be present)
   let mzTargetList = configParam.filterSpectrum
     ? Array.from(
         new Set(
@@ -56,10 +81,7 @@ export async function parseTargetFile(configParam) {
       );
 
   // Throw error if no m/z data found
-  if (
-    (mzTargetList.length === 1 && isNaN(mzTargetList[0])) ||
-    mzTargetList.length === 0
-  ) {
+  if (mzTargetList.length === 0) {
     throw new Error('parseTargetFile(): Target m/z data not found');
   }
 

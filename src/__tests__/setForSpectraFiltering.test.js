@@ -46,7 +46,6 @@ describe('setForSpectraFiltering', () => {
 
   test('return configParam: targeted defined', async () => {
     testConfigParam.mzRange = false;
-    testConfigParam.decimalPlace = NaN;
     testConfigParam.minMZ = undefined;
     testConfigParam.maxMZ = undefined;
 
@@ -74,34 +73,38 @@ describe('setForSpectraFiltering', () => {
     expect(configParam.minMZ).toBeDefined();
     expect(configParam.maxMZ).toBeDefined();
 
-    // Filter spectrum data with invalid target file layout
+    // Filter spectrum of a specific MS level that do not have target m/z data
     testConfigParam.filterSpectrum = true;
+    testConfigParam.msLevel = [3];
+    await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
+      'parseTargetFile(): Target m/z data not found',
+    );
+
+    // Filter spectrum and decimalPlace is not NaN
     testConfigParam.msLevel = [1];
-    testConfigParam.targetFile = './data/targetFile/invalidLayout.tsv';
-    await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
-      'parseTargetFile(): Target m/z data not found',
-    );
-
-    // Same as above but without filtering spectrum
-    testConfigParam.filterSpectrum = false;
-    await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
-      'parseTargetFile(): Target m/z data not found',
-    );
-
-    // Target file layout is valid and decimalPlace is not NaN
-    testConfigParam.decimalPlace = 4;
-    testConfigParam.targetFile = './data/targetFile/validLayout.tsv';
     configParam = await setForSpectraFiltering(testConfigParam);
     expect(configParam).toHaveProperty('mzTargetList');
     expect(configParam.minMZ).toBeDefined();
     expect(configParam.maxMZ).toBeDefined();
 
-    // Same as above but decimalPlace is NaN
+    // Filter spectrum and decimalPlace is NaN
     testConfigParam.decimalPlace = NaN;
     configParam = await setForSpectraFiltering(testConfigParam);
     expect(configParam).toHaveProperty('mzTargetList');
     expect(configParam.minMZ).toBeDefined();
     expect(configParam.maxMZ).toBeDefined();
+
+    // Invalid target file layout (wrong headers)
+    testConfigParam.targetFile = './data/targetFile/invalidLayout.tsv';
+    await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
+      'parseTargetFile(): Missing column headers - compoundName, compoundType, mzValue, retentionTime, msLevel, internalStandard',
+    );
+
+    // Empty file with headers
+    testConfigParam.targetFile = './data/targetFile/empty.tsv';
+    await expect(setForSpectraFiltering(testConfigParam)).rejects.toThrowError(
+      'parseTargetFile(): Target m/z data not found',
+    );
   });
 
   // ! Fail to catch roundDecimal() input type error - Code won't reach: roundDecimalPlace.js line 11, 13-14

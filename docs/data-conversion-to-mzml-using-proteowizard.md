@@ -3,11 +3,16 @@
 ### Table of Contents
 
 1. [Introduction](#introduction)
+
 2. [Supported Vendor Formats](#supported-vendor-formats)
+
 3. [Installation](#installation)
+
    - [Graphical User Interface](#method-1---graphical-user-interface-windows)
    - [Docker](#method-2---via-docker)
+
 4. [Usage](#usage)
+
    - [Graphical User Interface](#method-1---graphical-user-interface-windows-1)
    - [Docker](#method-2---via-docker-1)
 
@@ -63,8 +68,11 @@ Download [Docker][docker-url]
 ### Method 1 - Graphical User Interface (Windows)
 
 1. Launch `msConvertGUI`
+
 2. Choose your raw MS data files to be converted
+
 3. Configure the conversion parameters
+
 4. Begin conversion
 
 <br>
@@ -73,7 +81,7 @@ Download [Docker][docker-url]
 
 1. Launch `Docker`
 
-   If you are using Docker Engine, execute **ONE** of the following from your terminal.
+   If you are using Docker Engine, execute one of the following from your terminal.
 
    ```md
    # To start Docker manually
