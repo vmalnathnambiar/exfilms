@@ -134,7 +134,7 @@ Download [Docker][docker-url]
 
    For more info on all available conversion parameters provided by ProteoWizard _msConvert_ tool, please refer [here][msconvert-doc].
 
-<!-- URLs used in the markdown document-->
+<!-- URLs used in the markdown document -->
 
 [pwiz-download]: https://proteowizard.sourceforge.io/download.html
 [docker-url]: https://docs.docker.com/engine/install/

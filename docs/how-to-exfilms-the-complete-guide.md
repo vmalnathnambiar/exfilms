@@ -344,4 +344,4 @@ $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSp
 $ exfilms -i (or --inputDirectory) "/path/to/input/directory/" -s (or --filterSpectrum) --excludeSpectra
 ```
 
-<!-- URLs used in the markdown document-->
+<!-- URLs used in the markdown document -->

@@ -191,10 +191,7 @@ Nambiar, V., & Nambiar, S. (2024). ExfilMS (Version 1.3.0) [Computer software]. 
 
 Please refer to our license information [here](./LICENSE).
 
-<!-- ## API Documentation
-Please refer to our API documentation [here](https://vmalnathnambiar.github.io/exfilms/). -->
-
-<!-- URLs used in the markdown document-->
+<!-- URLs used in the markdown document -->
 
 [npm-image]: https://img.shields.io/npm/v/exfilms.svg
 [npm-url]: https://www.npmjs.com/package/exfilms
